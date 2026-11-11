@@ -347,3 +347,40 @@ Tre indirizzi da aprire una volta sola, il giorno dopo aver pubblicato:
 - **Una volta all'anno** apri Search Console e guarda se c'è qualcosa in rosso.
 
 Tutto il resto è già scritto nel sito e non si tocca.
+
+---
+
+## Quattro righe da far impostare a chi mette il sito online
+
+Non sono cose da fare dentro il sito: sono impostazioni del server. Chiunque faccia
+l'hosting le sa fare in cinque minuti. **Giragli questo elenco così com'è.**
+
+1. **Tutto in `https`.** Chi arriva con `http://` deve essere rimandato a `https://`.
+   Senza questo, Google segnala il sito come non sicuro.
+
+2. **Una sola versione dell'indirizzo.** Decidere se il sito è
+   `www.massimogiordano.com` o `massimogiordano.com` e rimandare l'altra alla scelta.
+   Il sito è scritto per **con il www**. Se se ne lasciano attive due, Google le tratta
+   come due siti diversi e si fanno concorrenza da soli.
+
+3. **La pagina degli errori.** Quando un indirizzo non esiste, deve uscire il file
+   `404.html` (e con il codice 404, non 200). È già scritto, in inglese con un rimando
+   all'italiano.
+
+4. **`/it` deve portare a `/it/`.** La voce di Wikipedia italiana linka
+   `massimogiordano.com/it` senza la barra finale: se il server non la aggiunge da solo,
+   quel collegamento finisce su un errore.
+
+---
+
+## Cose piccole già sistemate, perché tu lo sappia
+
+- **L'icona del sito** (quella che Google mostra accanto a ogni risultato da telefono, e
+  che compare nella linguetta del browser) non c'era: adesso c'è, un monogramma MG oro
+  su blu notte. Se preferisci altro, si cambia in un minuto.
+- **La pagina di errore** non c'era: adesso c'è, e invece di un messaggio bianco porta
+  alle pagine vere.
+- **La cartella `press-kit/`** contiene quattro fotografie da 1,5 MB l'una, raggiungibili
+  da chiunque indovini l'indirizzo. Restano dove sono, ma ho detto ai motori di ricerca
+  di non indicizzarle: non devono comparire nelle ricerche di immagini al posto delle
+  foto buone.
