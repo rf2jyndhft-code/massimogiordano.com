@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.massimogiordano.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/biography.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/biography.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/biografia.html"/>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/repertoire.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/repertoire.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/repertorio.html"/>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/gallery.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/gallery.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/galleria.html"/>
+  </url>
+  <url><loc>https://www.massimogiordano.com/it/</loc></url>
+  <url><loc>https://www.massimogiordano.com/it/biografia.html</loc></url>
+  <url><loc>https://www.massimogiordano.com/it/repertorio.html</loc></url>
+  <url><loc>https://www.massimogiordano.com/it/galleria.html</loc></url>
+</urlset>
