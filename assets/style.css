@@ -311,3 +311,99 @@ footer h3{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-trans
   .on-dark,footer{background:#fff;color:#000}
   a{border:0}
 }
+
+/* ---------------------------------------------------------------
+   AGGIUNTE — profili social, consenso, biglietti, newsletter
+   Nessuna libreria, nessun font esterno. Gli unici script di terzi
+   che questo sito puo' caricare sono quelli di Meta, e solo dopo
+   che il visitatore ha accettato (assets/consenso.js).
+   --------------------------------------------------------------- */
+
+/* testo visibile solo ai lettori di schermo */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ---------- fila dei profili ---------- */
+.social{display:flex;flex-wrap:wrap;align-items:center;gap:2px;
+  margin:0 0 6px;padding:0;list-style:none}
+.social a{display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border:0;color:var(--ink);background:transparent}
+.social a svg{width:21px;height:21px;display:block;flex:none}
+.social a:hover{color:var(--gold)}
+footer .social a,.on-dark .social a{color:var(--paper)}
+footer .social a:hover,.on-dark .social a:hover{color:var(--gold-light)}
+
+.altrove{font-family:var(--sans);font-size:13.5px;line-height:2;margin:4px 0 0}
+.altrove-laimtee{font-family:var(--sans);font-size:12.5px;line-height:1.9;
+  margin:14px 0 0;padding-top:12px;border-top:1px solid var(--rule-dark)}
+footer .altrove-laimtee,.on-dark .altrove-laimtee{color:var(--muted-dark)}
+.altrove-laimtee b{display:block;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;font-weight:400}
+
+/* ---------- pulsante biglietti ---------- */
+.btn-tickets{display:inline-block;font-family:var(--sans);font-size:13px;letter-spacing:.06em;
+  padding:9px 18px;border:1px solid var(--gold);color:var(--ink);background:transparent;
+  margin-top:8px}
+.btn-tickets:hover{background:var(--gold);color:#fff}
+.btn-tickets[aria-disabled="true"]{opacity:.55;cursor:not-allowed;
+  border-style:dashed;pointer-events:none}
+
+/* ---------- modulo avvisi ---------- */
+.avvisi{max-width:34rem}
+.avvisi .campo{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.avvisi input[type="email"]{flex:1 1 15rem;min-height:48px;padding:10px 14px;
+  font-family:var(--sans);font-size:16px;color:var(--ink);background:var(--paper);
+  border:1px solid var(--rule);border-radius:0}
+.on-dark .avvisi input[type="email"]{background:#fff;border-color:var(--gold)}
+.avvisi button{min-height:48px;padding:10px 22px;font-family:var(--sans);font-size:14px;
+  letter-spacing:.06em;border:1px solid var(--gold);background:var(--gold);color:#fff;
+  cursor:pointer}
+.avvisi button:hover{background:var(--gold-light);border-color:var(--gold-light);color:var(--ink)}
+.avvisi .consenso-riga{display:flex;gap:10px;align-items:flex-start;margin-top:14px;
+  font-family:var(--sans);font-size:13.5px;line-height:1.55}
+.avvisi input[type="checkbox"]{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--gold)}
+.avvisi .nota{font-family:var(--sans);font-size:12.5px;margin-top:12px}
+.on-dark .avvisi .nota{color:var(--muted-dark)}
+
+/* ---------- banner del consenso ---------- */
+.consenso{position:fixed;inset:auto 0 0 0;z-index:200;background:var(--ink);
+  color:var(--paper);border-top:2px solid var(--gold);
+  font-family:var(--sans);font-size:14px;line-height:1.55;
+  box-shadow:0 -12px 32px rgba(16,26,40,.3)}
+.consenso[hidden]{display:none}
+.consenso .wrap{padding-top:18px;padding-bottom:18px}
+.consenso h2{font-family:var(--sans);font-size:13px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold-light);margin:0 0 8px}
+.consenso p{margin:0 0 14px;max-width:70ch}
+.consenso a{color:var(--paper);border-bottom-color:var(--gold)}
+.consenso a:hover{color:var(--gold-light)}
+.consenso-scelte{display:flex;flex-wrap:wrap;gap:10px}
+.consenso-scelte button{min-height:46px;padding:11px 22px;font-family:var(--sans);
+  font-size:14px;letter-spacing:.05em;cursor:pointer;border:1px solid var(--gold);
+  background:transparent;color:var(--paper)}
+.consenso-scelte button:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.consenso-scelte button[data-consenso="si"]{background:var(--gold);color:#fff}
+.consenso-scelte button[data-consenso="si"]:hover{background:var(--gold-light);color:var(--ink)}
+.consenso :focus-visible{outline:3px solid var(--gold-light);outline-offset:3px}
+.consenso-dettaglio{margin-top:14px;font-size:13px}
+.consenso-dettaglio ul{margin:8px 0 0;padding-left:20px}
+.consenso-dettaglio li{margin-bottom:6px}
+@media (max-width:620px){
+  .consenso-scelte button{flex:1 1 100%}
+}
+
+@media print{.consenso{display:none}}
+
+/* ---------- riquadro del video, prima del clic ---------- */
+.video-fermo{position:absolute;inset:0;width:100%;height:100%;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  padding:20px;cursor:pointer;border:1px solid var(--rule-dark);
+  background:linear-gradient(160deg,#16243a,#0b1320);color:var(--paper);
+  font-family:var(--sans);font-size:14.5px;line-height:1.45;text-align:center}
+.video-fermo:hover{background:linear-gradient(160deg,#1c2d47,#0e1829)}
+.video-fermo .play{width:62px;height:62px;border-radius:50%;flex:none;
+  border:2px solid var(--gold-light);display:flex;align-items:center;justify-content:center}
+.video-fermo .play svg{width:22px;height:22px;margin-left:3px}
+.video-fermo:hover .play{background:var(--gold);border-color:var(--gold)}
+.video-fermo b{display:block;font-weight:400;font-size:15px}
+.video-fermo span{color:var(--muted-dark);font-size:12.5px}

@@ -1,4 +1,13 @@
+# massimogiordano.com
+# Tutto il sito e' aperto ai motori di ricerca: non c'e' niente da nascondere
+# e non c'e' nessuna area privata. Le uniche righe di blocco riguardano file
+# che non sono pagine e che non devono finire nei risultati.
+
 User-agent: *
 Allow: /
+
+# La cartella stampa contiene file originali pesanti, non pagine.
+# Restano scaricabili da chi ha il link: semplicemente non vanno indicizzati.
+Disallow: /press-kit/
 
 Sitemap: https://www.massimogiordano.com/sitemap.xml
