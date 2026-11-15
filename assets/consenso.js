@@ -290,14 +290,17 @@
       dett.appendChild(riga);
     });
 
+    /* Il piede era tre righe di testo legale sotto i pulsanti: pesante da
+       leggere e brutto da vedere. Resta il solo collegamento all'informativa,
+       che e' l'unica cosa davvero richiesta nel banner. Il titolare del
+       trattamento e il fatto che la scelta si possa cambiare stanno scritti
+       dentro l'informativa, a un clic da qui. */
     var piede = document.createElement('p');
     piede.className = 'consenso-piede';
-    piede.textContent = t.titolare + ' \u00b7 ';
     var link = document.createElement('a');
     link.href = t.privacyHref;
     link.textContent = t.privacy;
     piede.appendChild(link);
-    piede.appendChild(document.createTextNode(' \u00b7 ' + t.coda));
 
     /* i pulsanti: accettare e rifiutare hanno lo stesso peso, come chiede il
        Garante. "Scegli" e' terziario e apre il pannello qui sopra. */
