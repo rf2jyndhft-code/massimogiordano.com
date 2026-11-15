@@ -86,10 +86,21 @@
       }
 
       if (dove.indexOf('https://') !== 0) {
-        /* Nessun servizio collegato. NON si fa saltare la pagina a un mailto:
-           dentro un riquadro protetto quella navigazione muore e sembra che il
-           sito si sia rotto. Si mette in pagina un collegamento, e decide chi
-           legge se aprirlo. */
+        /* Nessun servizio collegato: si apre il programma di posta con la
+           richiesta gia' scritta. Si usa un <a> finto invece di cambiare
+           l'indirizzo della pagina, perche' dentro un riquadro protetto quella
+           navigazione muore e sembra che il sito si sia rotto. In pagina resta
+           comunque l'indirizzo, per chi la posta la tiene altrove. */
+        var a = document.createElement('a');
+        a.href = 'mailto:' + POSTA
+          + '?subject=' + encodeURIComponent(p.oggetto)
+          + '&body=' + encodeURIComponent(p.corpo + email.value);
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
         offriLaPosta(email.value);
         return;
       }
