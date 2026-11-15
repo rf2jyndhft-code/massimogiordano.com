@@ -330,8 +330,11 @@
     wrap.appendChild(h);
     wrap.appendChild(p);
     wrap.appendChild(dett);
+    /* Il link all'informativa sta nella stessa riga dei pulsanti, spinto
+       all'altro capo: non e' una scelta, quindi non deve sembrare un tasto,
+       ma nemmeno appiccicato sotto ad Accetta. */
+    scelte.appendChild(piede);
     wrap.appendChild(scelte);
-    wrap.appendChild(piede);
     banner.appendChild(wrap);
     document.body.appendChild(banner);
 

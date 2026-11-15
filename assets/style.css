@@ -704,9 +704,12 @@ footer .altrove-laimtee,.on-dark .altrove-laimtee{color:var(--muted-dark)}
 }
 .consenso-scelte .consenso-terzo:hover{background:transparent;color:var(--gold-light)}
 
-.consenso-piede{
-  margin:14px 0 0;font-size:12px;line-height:1.55;color:var(--muted-dark);
-  max-width:80ch;
+/* Scritto con .consenso davanti perche' .consenso p (che da' margini e
+   max-width a tutti i paragrafi del banner) altrimenti vince e il link
+   resta appiccicato ai pulsanti invece di andare all'altro capo. */
+.consenso .consenso-piede{
+  margin:0 0 0 auto;font-size:12px;line-height:1.55;color:var(--muted-dark);
+  padding-left:28px;max-width:none;
 }
 .consenso :focus-visible{outline:3px solid var(--gold-light);outline-offset:3px}
 
@@ -714,6 +717,8 @@ footer .altrove-laimtee,.on-dark .altrove-laimtee{color:var(--muted-dark)}
   .consenso{font-size:13.5px}
   .consenso-scelte button{flex:1 1 calc(50% - 5px)}
   .consenso-scelte .consenso-terzo{flex:1 1 100%;text-align:center}
+  /* sul telefono la riga e' gia' piena: il link va sotto, centrato e staccato */
+  .consenso .consenso-piede{flex:1 1 100%;margin:8px 0 0;padding:0;text-align:center}
 }
 
 @media print{.consenso{display:none}}
