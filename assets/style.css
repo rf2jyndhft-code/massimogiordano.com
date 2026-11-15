@@ -967,8 +967,6 @@ footer .altrove-laimtee,.on-dark .altrove-laimtee{color:var(--muted-dark)}
     background:currentColor;
     -webkit-mask:var(--globo) center/contain no-repeat;
     mask:var(--globo) center/contain no-repeat}
-  .menu-mail{font-family:var(--sans);font-size:15px;color:var(--paper);
-    border-bottom:1px solid var(--gold);align-self:flex-start;padding-bottom:3px}
   .menu-social{display:flex;flex-wrap:wrap;gap:4px;margin-left:-10px}
   .menu-social li{list-style:none}
   .menu-social a{display:inline-flex;align-items:center;justify-content:center;

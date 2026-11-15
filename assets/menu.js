@@ -52,7 +52,8 @@
     '<nav class="menu-voci" aria-label="' + T.pagine + '">' + voci + '</nav>' +
     '<div class="menu-piede">' +
       rigaLingua +
-      '<a class="menu-mail" href="mailto:info@massimogiordano.com">info@massimogiordano.com</a>' +
+      /* L'indirizzo qui sotto non c'e' piu': era l'unica riga in carattere
+         bastone in mezzo al serif, e Contatti sta due voci sopra. */
       (profili ? '<div class="menu-social">' + profili.innerHTML + '</div>' : '') +
     '</div>';
   barra.appendChild(pan);
