@@ -1,0 +1,20 @@
+# Chiavi: non finiscono mai online
+.instagram-token
+.dropbox-token
+.ftp
+
+# Materiale di lavoro: non fa parte del sito pubblicato
+pratiche/
+provini-scena/
+locandine/
+.vecchie-foto/
+indice-dropbox.jsonl
+backup-*/
+
+# Strumenti: restano sul Mac
+*.py
+GOOGLE.md
+SERVE-DA-MASSIMO.md
+RECENSIONI-TROVATE.md
+PROMOZIONE.md
+ISTRUZIONI-INSTAGRAM.md

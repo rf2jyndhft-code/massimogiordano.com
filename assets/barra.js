@@ -1,33 +1,54 @@
-/* In home il nome non compare due volte.
-   La barra parte senza, e lo fa salire quando la fotografia esce dalla vista.
-   Nelle altre pagine la barra ha il nome da subito: li' serve a orientarsi. */
+/* La barra alta — nome grande e menu sotto — vive in cima alla pagina e se ne
+   va scorrendo, come qualunque altra cosa. Quando e' uscita, dall'alto scende
+   una barra sottile GIA' FATTA.
+
+   Perche' due barre e non una che si trasforma: una barra sola che passa da
+   due righe a una deve spostare il nome dal centro a sinistra e il menu da
+   sotto a destra, tutto mentre la guardi. Quel rimescolio e' sgradevole anche
+   fatto bene (segnalato il 12 novembre 2026: "impazzisce nella transizione").
+   Cosi' invece non si muove niente: una esce, l'altra entra. */
 (function () {
-  var barra = document.querySelector('.topbar[data-home]');
-  if (!barra) return;
+  var alta = document.querySelector('.topbar');
+  if (!alta || alta.classList.contains('topbar-fissa')) return;
 
-  var eroe = document.querySelector('.hero');
-  if (!eroe) return;
+  var telefono = window.matchMedia('(max-width:760px)');
 
-  barra.classList.add('nome-nascosto');
+  /* la copia sottile: stessa barra, gia' in forma compatta */
+  var fissa = alta.cloneNode(true);
+  fissa.classList.add('topbar-fissa', 'compatta');
+  fissa.setAttribute('aria-hidden', 'true');
+  /* da tastiera si usa quella vera, in cima: la copia non intercetta il giro */
+  Array.prototype.forEach.call(fissa.querySelectorAll('a,button'), function (e) {
+    e.setAttribute('tabindex', '-1');
+  });
+  document.body.appendChild(fissa);
 
-  function mostra(si) {
-    barra.classList.toggle('nome-visibile', si);
+  var giu = false;
+
+  /* La sottile scende nell'istante in cui l'alta esce dallo schermo: una
+     passa il testimone all'altra, senza attesa in mezzo. */
+  function guarda() {
+    if (telefono.matches) {
+      if (giu) { fissa.classList.remove('giu'); giu = false; }
+      return;
+    }
+    var alt = alta.offsetHeight || 120;
+    var y = window.scrollY || window.pageYOffset || 0;
+    if (!giu && y > alt - 2) { fissa.classList.add('giu'); giu = true; }
+    else if (giu && y < alt - 26) { fissa.classList.remove('giu'); giu = false; }
   }
 
-  /* Se il visitatore ha chiesto meno animazioni, il nome c'e' e basta. */
-  var lento = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (lento.matches) { barra.classList.remove('nome-nascosto'); return; }
-
-  if ('IntersectionObserver' in window) {
-    /* scatta quando l'ultimo filo di fotografia esce da sotto la barra */
-    new IntersectionObserver(function (voci) {
-      mostra(!voci[0].isIntersecting);
-    }, { rootMargin: '-72px 0px 0px 0px', threshold: 0 }).observe(eroe);
-  } else {
-    var controlla = function () {
-      mostra(window.scrollY > eroe.offsetHeight - 72);
-    };
-    window.addEventListener('scroll', controlla, { passive: true });
-    controlla();
+  var inCoda = false;
+  function alProssimoFotogramma() {
+    if (inCoda) return;
+    inCoda = true;
+    requestAnimationFrame(function () { inCoda = false; guarda(); });
   }
+
+  window.addEventListener('scroll', alProssimoFotogramma, { passive: true });
+  window.addEventListener('resize', alProssimoFotogramma, { passive: true });
+  if (telefono.addEventListener) telefono.addEventListener('change', guarda);
+
+  document.documentElement.classList.add('barra-viva');
+  guarda();
 })();

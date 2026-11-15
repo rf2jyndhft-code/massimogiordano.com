@@ -30,7 +30,8 @@
 
   var PIXEL_ID = 'META_PIXEL_ID';   // <-- il solo valore da cambiare
   var CHIAVE = 'mg-consenso';       // dove si ricorda la scelta
-  var VERSIONE = 1;                 // alzala se cambi cosa viene raccolto
+  var VERSIONE = 2;                 // alzala se cambi cosa viene raccolto
+  var MESI = 6;                     // dopo sei mesi la scelta va richiesta di nuovo
 
   /* ---------- memoria della scelta ---------- */
 
@@ -40,6 +41,15 @@
       if (!g) return null;
       var o = JSON.parse(g);
       if (!o || o.v !== VERSIONE) return null;
+      /* Le linee guida del Garante (9 giugno 2021) dicono di non riproporre il
+         banner a chi ha gia' risposto, ma di tornare a chiedere dopo sei mesi.
+         Una scelta vecchia vale come nessuna scelta. */
+      var quando = Date.parse(o.data || '');
+      if (quando) {
+        var scade = new Date(quando);
+        scade.setMonth(scade.getMonth() + MESI);
+        if (Date.now() > scade.getTime()) return null;
+      }
       return o.scelta === 'si' ? 'si' : 'no';
     } catch (e) { return null; }
   }
@@ -149,32 +159,56 @@
 
   var TESTI = {
     it: {
-      titolo: 'Cookie e misurazione',
-      corpo: 'Questo sito funziona senza tracciamento. Se accetti, carichiamo il pixel di Meta ' +
-             'per capire quali pagine interessano e per le campagne pubblicitarie su Facebook e ' +
-             'Instagram. Se rifiuti, non parte nessuno script e il sito funziona lo stesso.',
-      si: 'Accetto', no: 'Rifiuto', scegli: 'Cosa comporta',
-      dettaglio: [
-        'Sempre attivo: la memoria della tua scelta, salvata solo nel tuo browser.',
-        'Solo se accetti: Meta Pixel (Facebook, Instagram) — misura le visite e i clic sui biglietti.',
-        'I video sono serviti da youtube-nocookie.com e partono solo se li avvii tu.',
-        'Puoi cambiare idea quando vuoi: il collegamento "Cookie" in fondo a ogni pagina.'
+      titolo: 'Privacy e cookie',
+      corpo: 'Questo sito non mette cookie pubblicitari propri e funziona per intero ' +
+             'anche se rifiuti. Con il tuo consenso carica il pixel di Meta, per capire ' +
+             'quali pagine interessano e per la pubblicit\u00e0 su Facebook e Instagram.',
+      si: 'Accetta', no: 'Rifiuta', scegli: 'Scegli', salva: 'Salva le scelte',
+      titolare: 'Titolare del trattamento: Massimo Giordano',
+      privacy: 'Informativa completa', privacyHref: '/it/privacy.html',
+      voci: [
+        { id: 'tecnici', sempre: true,
+          nome: 'Tecnici',
+          stato: 'sempre attivi',
+          testo: 'Solo la memoria della risposta che dai qui, salvata nel tuo browser ' +
+                 'sotto il nome mg-consenso. Non esce dal tuo dispositivo e non arriva ' +
+                 'a nessuno. Senza, il banner tornerebbe a ogni pagina.' },
+        { id: 'misura', sempre: false,
+          nome: 'Misurazione e pubblicit\u00e0',
+          stato: 'facoltativi',
+          testo: 'Pixel di Meta Platforms Ireland Limited. Registra le pagine viste e ' +
+                 'alcuni clic (biglietti, contatti, social). Mette cookie propri e ' +
+                 'condivide dati con Meta, che pu\u00f2 trattarli fuori dall\u2019Unione Europea. ' +
+                 'Se lo lasci spento, verso Meta non parte nessuna richiesta.' }
       ],
-      privacy: 'Privacy e cookie', privacyHref: '/it/privacy.html'
+      coda: 'Puoi cambiare idea quando vuoi dal collegamento Cookie in fondo a ogni pagina. ' +
+            'Trascorsi sei mesi la domanda torna.'
     },
     en: {
-      titolo: 'Cookies and measurement',
-      corpo: 'This site runs without tracking. If you accept, we load the Meta pixel to see which ' +
-             'pages are of interest and to run advertising on Facebook and Instagram. If you ' +
-             'decline, nothing is loaded and the site works exactly the same.',
-      si: 'Accept', no: 'Decline', scegli: 'What this means',
-      dettaglio: [
-        'Always on: the memory of your choice, kept only in your own browser.',
-        'Only if you accept: Meta Pixel (Facebook, Instagram) — measures visits and ticket clicks.',
-        'Videos are served from youtube-nocookie.com and only start when you press play.',
-        'You can change your mind at any time: the "Cookies" link at the foot of every page.'
+      titolo: 'Privacy and cookies',
+      corpo: 'This site sets no advertising cookies of its own and works in full even ' +
+             'if you decline. With your consent it loads the Meta pixel, to see which ' +
+             'pages draw interest and for advertising on Facebook and Instagram.',
+      si: 'Accept', no: 'Decline', scegli: 'Choose', salva: 'Save choices',
+      titolare: 'Data controller: Massimo Giordano',
+      privacy: 'Full privacy notice', privacyHref: '/privacy.html',
+      voci: [
+        { id: 'tecnici', sempre: true,
+          nome: 'Technical',
+          stato: 'always on',
+          testo: 'Only the answer you give here, kept in your browser under the name ' +
+                 'mg-consenso. It never leaves your device and reaches no one. Without ' +
+                 'it this banner would return on every page.' },
+        { id: 'misura', sempre: false,
+          nome: 'Measurement and advertising',
+          stato: 'optional',
+          testo: 'Meta pixel, from Meta Platforms Ireland Limited. It records pages ' +
+                 'viewed and some clicks (tickets, contacts, social). It sets its own ' +
+                 'cookies and shares data with Meta, which may process it outside the ' +
+                 'European Union. Left off, no request reaches Meta at all.' }
       ],
-      privacy: 'Privacy and cookies', privacyHref: '/privacy.html'
+      coda: 'You can change your mind at any time from the Cookies link at the foot of ' +
+            'every page. After six months the question comes back.'
     }
   };
 
@@ -191,7 +225,6 @@
     banner = document.createElement('aside');
     banner.className = 'consenso';
     banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-modal', 'false');
     banner.setAttribute('aria-labelledby', 'consenso-tit');
     banner.hidden = true;
 
@@ -203,57 +236,129 @@
     h.textContent = t.titolo;
 
     var p = document.createElement('p');
-    p.textContent = t.corpo + ' ';
+    p.textContent = t.corpo;
+
+    /* il pannello con le due categorie, chiuso finche' non lo si apre */
+    var dett = document.createElement('div');
+    dett.className = 'consenso-dettaglio';
+    dett.hidden = true;
+
+    var interruttori = {};
+    t.voci.forEach(function (v) {
+      var riga = document.createElement('div');
+      riga.className = 'consenso-voce';
+
+      var testa = document.createElement('div');
+      testa.className = 'consenso-voce-testa';
+
+      var nome = document.createElement('b');
+      nome.textContent = v.nome;
+
+      var stato = document.createElement('span');
+      stato.className = 'consenso-stato';
+
+      if (v.sempre) {
+        stato.textContent = v.stato;
+        testa.appendChild(nome);
+        testa.appendChild(stato);
+      } else {
+        var eti = document.createElement('label');
+        eti.className = 'consenso-switch';
+        var box = document.createElement('input');
+        box.type = 'checkbox';
+        box.setAttribute('data-voce', v.id);
+        var pista = document.createElement('span');
+        pista.className = 'consenso-pista';
+        pista.setAttribute('aria-hidden', 'true');
+        var testoEti = document.createElement('span');
+        testoEti.className = 'sr-only';
+        testoEti.textContent = v.nome;
+        eti.appendChild(box);
+        eti.appendChild(pista);
+        eti.appendChild(testoEti);
+        interruttori[v.id] = box;
+        testa.appendChild(nome);
+        testa.appendChild(eti);
+      }
+
+      var testo = document.createElement('p');
+      testo.className = 'consenso-voce-testo';
+      testo.textContent = v.testo;
+
+      riga.appendChild(testa);
+      riga.appendChild(testo);
+      dett.appendChild(riga);
+    });
+
+    var piede = document.createElement('p');
+    piede.className = 'consenso-piede';
+    piede.textContent = t.titolare + ' \u00b7 ';
     var link = document.createElement('a');
     link.href = t.privacyHref;
     link.textContent = t.privacy;
-    p.appendChild(link);
+    piede.appendChild(link);
+    piede.appendChild(document.createTextNode(' \u00b7 ' + t.coda));
 
+    /* i pulsanti: accettare e rifiutare hanno lo stesso peso, come chiede il
+       Garante. "Scegli" e' terziario e apre il pannello qui sopra. */
     var scelte = document.createElement('div');
     scelte.className = 'consenso-scelte';
 
-    var bSi = document.createElement('button');
-    bSi.type = 'button';
-    bSi.setAttribute('data-consenso', 'si');
-    bSi.textContent = t.si;
+    function tasto(valore, testo, classe) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('data-consenso', valore);
+      b.textContent = testo;
+      if (classe) b.className = classe;
+      return b;
+    }
 
-    var bNo = document.createElement('button');
-    bNo.type = 'button';
-    bNo.setAttribute('data-consenso', 'no');
-    bNo.textContent = t.no;
-
-    var dett = document.createElement('details');
-    dett.className = 'consenso-dettaglio';
-    var sum = document.createElement('summary');
-    sum.textContent = t.scegli;
-    var ul = document.createElement('ul');
-    t.dettaglio.forEach(function (riga) {
-      var li = document.createElement('li');
-      li.textContent = riga;
-      ul.appendChild(li);
-    });
-    dett.appendChild(sum);
-    dett.appendChild(ul);
+    var bSi = tasto('si', t.si);
+    var bNo = tasto('no', t.no);
+    var bScegli = tasto('scegli', t.scegli, 'consenso-terzo');
+    var bSalva = tasto('salva', t.salva);
+    bSalva.hidden = true;
 
     scelte.appendChild(bSi);
     scelte.appendChild(bNo);
+    scelte.appendChild(bScegli);
+    scelte.appendChild(bSalva);
+
     wrap.appendChild(h);
     wrap.appendChild(p);
-    wrap.appendChild(scelte);
     wrap.appendChild(dett);
+    wrap.appendChild(scelte);
+    wrap.appendChild(piede);
     banner.appendChild(wrap);
     document.body.appendChild(banner);
 
     scelte.addEventListener('click', function (ev) {
       var b = ev.target.closest('button[data-consenso]');
       if (!b) return;
-      var scelta = b.getAttribute('data-consenso');
+      var quale = b.getAttribute('data-consenso');
+
+      if (quale === 'scegli') {
+        dett.hidden = false;
+        bScegli.hidden = true;
+        bSalva.hidden = false;
+        document.body.style.paddingBottom = banner.offsetHeight + 'px';
+        var primo = dett.querySelector('input[type=checkbox]');
+        if (primo) primo.focus();
+        return;
+      }
+
+      var scelta;
+      if (quale === 'salva') {
+        scelta = (interruttori.misura && interruttori.misura.checked) ? 'si' : 'no';
+      } else {
+        scelta = quale;
+      }
       scrivi(scelta);
       chiudi();
       if (scelta === 'si') accendiPixel();
     });
 
-    /* Esc = rifiuto, come il pulsante */
+    /* Esc chiude senza accettare: equivale a rifiutare, e si ricorda */
     banner.addEventListener('keydown', function (ev) {
       if (ev.key === 'Escape') { scrivi('no'); chiudi(); }
     });

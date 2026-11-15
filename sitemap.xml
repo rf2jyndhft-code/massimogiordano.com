@@ -1,99 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Mappa del sito di massimogiordano.com.
-     Rigenerata l'11 novembre 2026 sul sito vero: tutte le pagine che esistono,
-     ognuna con la data dell'ultima modifica del file e con la pagina gemella
-     nell'altra lingua dichiarata (hreflang). L'inglese e' la x-default.
-     Se aggiungi una pagina, aggiungila anche qui. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.massimogiordano.com/</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/it/</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/biography.html</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/biography.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/biografia.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/biography.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/it/biografia.html</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/biography.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/biografia.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/biography.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/repertoire.html</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/repertoire.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/repertorio.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/repertoire.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/it/repertorio.html</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/repertoire.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/repertorio.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/repertoire.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/gallery.html</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/gallery.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/galleria.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/gallery.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/it/galleria.html</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/gallery.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/galleria.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/gallery.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/calendar.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/calendar.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/calendario.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/calendar.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/it/calendario.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/calendar.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/calendario.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/calendar.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/teaching.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/teaching.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/didattica.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/teaching.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/it/didattica.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/teaching.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/didattica.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/teaching.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/press.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/press.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/stampa.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/press.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/it/stampa.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/press.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/stampa.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/press.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/contatti.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/contact.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/it/contatti.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/contatti.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/contact.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/privacy.html</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/privacy.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.massimogiordano.com/it/privacy.html</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/privacy.html"/>
+    <lastmod>2026-11-12</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/posters.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/posters.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/locandine.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/posters.html"/>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/it/locandine.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.massimogiordano.com/posters.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/locandine.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/posters.html"/>
   </url>
 </urlset>

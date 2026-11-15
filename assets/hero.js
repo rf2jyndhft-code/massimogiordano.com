@@ -43,6 +43,7 @@
     void corsa.offsetWidth;          // forza il riavvio dell'animazione
   }
 
+
   var uscitaTimer = null;
 
   function mostra(n) {
@@ -154,4 +155,30 @@
 
   mostra(0);
   parti();
+
+  /* ---------- il dito, sul telefono ----------
+     I comandi — pausa e frecce — spariscono sotto i 760px: coprivano la
+     fotografia proprio dove c'e' la scena. Al loro posto il dito, che e'
+     come si scorre su un telefono, e i pallini per sapere quante sono. */
+  (function () {
+    var vista = document.querySelector('.hero-vista');
+    if (!vista) return;
+    var x0 = null, y0 = null, t0 = 0;
+    vista.addEventListener('touchstart', function (e) {
+      x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = Date.now();
+    }, { passive: true });
+    vista.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      var dy = e.changedTouches[0].clientY - y0;
+      /* solo un gesto orizzontale e deciso: scorrere la pagina non deve
+         far cambiare fotografia per sbaglio */
+      if (Math.abs(dx) > 46 && Math.abs(dx) > Math.abs(dy) * 1.6 && Date.now() - t0 < 700) {
+        if (dx < 0) avanti(); else indietro();
+        riparti();
+      }
+      x0 = y0 = null;
+    }, { passive: true });
+  })();
+
 })();
