@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manifesto · prova B</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+img{display:block;max-width:100%}
+a{color:inherit}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+body{margin:0;background:#fbfaf7;color:#14130f;font-family:"EB Garamond",Georgia,serif;
+  --rosso:#8c1d18;--filo:#ccc7bb}
+.in{max-width:1180px;margin:0 auto;padding:0 clamp(20px,4.5vw,52px)}
+.condensata{font-family:"Oswald",sans-serif;font-weight:300;letter-spacing:.14em;text-transform:uppercase}
+.filo{height:1px;background:#14130f}
+.filo-grosso{height:4px;background:#14130f}
+.filo-fine{height:1px;background:var(--filo)}
+
+nav.alto .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;
+  padding-top:16px;padding-bottom:16px}
+nav.alto a{font-family:"Oswald",sans-serif;font-weight:300;font-size:11.5px;letter-spacing:.2em;
+  text-transform:uppercase;text-decoration:none;color:#55514a;margin-left:clamp(12px,2vw,26px)}
+nav.alto a:hover{color:var(--rosso)}
+nav.alto .marchio{font-family:"Oswald",sans-serif;font-weight:400;font-size:13px;letter-spacing:.28em;
+  text-transform:uppercase;margin:0}
+
+header.cartello{text-align:center;padding:clamp(26px,4vw,52px) 0 clamp(22px,3vw,40px)}
+header.cartello .su{margin:0;font-family:"Oswald",sans-serif;font-weight:200;font-size:11.5px;
+  letter-spacing:.56em;text-transform:uppercase;color:#6c6861}
+header.cartello h1{margin:clamp(16px,2.4vw,26px) 0 0;font-family:"Oswald",sans-serif;font-weight:200;
+  font-size:clamp(38px,10.4vw,132px);line-height:.88;letter-spacing:.015em;text-transform:uppercase}
+header.cartello .giu{margin:clamp(16px,2vw,24px) auto 0;max-width:40ch;font-style:italic;
+  font-size:clamp(16px,1.7vw,19px);line-height:1.5;color:var(--rosso)}
+header.cartello .ruoliriga{margin:18px 0 0;font-family:"Oswald",sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase;color:#6c6861;line-height:2.2}
+
+.ritratto{margin:0}
+.ritratto img{width:100%;height:clamp(300px,52vw,560px);object-fit:cover;object-position:50% 22%;
+  filter:sepia(.12) contrast(1.03)}
+.ritratto figcaption{margin-top:9px;font-family:"Oswald",sans-serif;font-weight:300;font-size:10px;
+  letter-spacing:.24em;text-transform:uppercase;color:#6c6861;text-align:right}
+
+section{padding:clamp(42px,6vw,86px) 0}
+h2{font-family:"Oswald",sans-serif;font-weight:200;text-transform:uppercase;letter-spacing:.08em;
+  font-size:clamp(26px,3.6vw,44px);line-height:1.08;margin:0 0 8px}
+.sopratitolo{margin:0;font-family:"Oswald",sans-serif;font-weight:300;font-size:11px;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--rosso)}
+
+.colonne{display:grid;grid-template-columns:1fr;gap:clamp(24px,4vw,54px);margin-top:30px}
+@media(min-width:900px){.colonne{grid-template-columns:1.1fr .9fr;align-items:start}}
+.colonne p{margin:0 0 1.15em;font-size:clamp(16px,1.5vw,18.5px);line-height:1.74;max-width:54ch}
+.colonne p:first-of-type::first-letter{float:left;font-size:3.6em;line-height:.8;
+  padding:.07em .11em 0 0;font-weight:500;color:var(--rosso)}
+.direttori{margin-top:26px;padding-top:16px;border-top:1px solid var(--filo);
+  font-family:"Oswald",sans-serif;font-weight:300;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;color:#6c6861;line-height:2.2}
+
+.tre{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid #14130f}
+@media(min-width:880px){.tre{grid-template-columns:repeat(3,1fr)}}
+.tre article{padding:clamp(24px,3vw,38px) clamp(20px,2.4vw,32px);border-bottom:1px solid var(--filo)}
+@media(min-width:880px){.tre article{border-right:1px solid var(--filo);border-bottom:0}
+  .tre article:last-child{border-right:0}}
+.tre .n{font-family:"Oswald",sans-serif;font-weight:300;font-size:11px;letter-spacing:.3em;color:var(--rosso)}
+.tre h3{margin:14px 0 12px;font-family:"Oswald",sans-serif;font-weight:300;text-transform:uppercase;
+  letter-spacing:.07em;font-size:clamp(18px,2vw,23px);line-height:1.2}
+.tre p{margin:0;font-size:16px;line-height:1.7;color:#403c35}
+
+.locandina{border-top:3px solid #14130f;border-bottom:3px solid #14130f;margin-top:10px}
+.locandina .riga{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--filo)}
+.locandina .riga:last-child{border-bottom:0}
+.locandina .ruolo{font-family:"Oswald",sans-serif;font-weight:300;text-transform:uppercase;
+  letter-spacing:.1em;font-size:clamp(15px,1.7vw,19px);min-width:12em}
+.locandina .opera{font-style:italic;font-size:17px;color:var(--rosso);min-width:11em}
+.locandina .teatri{margin-left:auto;font-family:"Oswald",sans-serif;font-weight:200;font-size:10.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:#6c6861;text-align:right;max-width:46ch;line-height:1.9}
+
+.galleria{display:grid;grid-template-columns:1fr;gap:clamp(14px,2vw,26px)}
+@media(min-width:760px){.galleria{grid-template-columns:repeat(3,1fr)}}
+.galleria figure{margin:0}
+.galleria img{width:100%;height:clamp(220px,28vw,330px);object-fit:cover;filter:sepia(.1) contrast(1.03)}
+.galleria figcaption{margin-top:8px;font-family:"Oswald",sans-serif;font-weight:300;font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;color:#6c6861}
+
+footer{border-top:4px solid #14130f;padding:clamp(34px,4vw,56px) 0 110px;text-align:center}
+footer .nome{margin:0;font-family:"Oswald",sans-serif;font-weight:200;text-transform:uppercase;
+  letter-spacing:.3em;font-size:clamp(17px,2.4vw,26px)}
+footer a.mail{display:inline-block;margin-top:16px;font-size:17px;color:var(--rosso);text-decoration:none;
+  border-bottom:1px solid currentColor;padding-bottom:2px}
+footer nav{margin-top:22px;font-family:"Oswald",sans-serif;font-weight:300;font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase}
+footer nav a{text-decoration:none;color:#6c6861;margin:0 10px;line-height:2.4}
+
+</style>
+</head>
+<body>
+
+<nav class="alto"><div class="filo-grosso"></div><div class="in">
+  <p class="marchio">Massimo Giordano</p>
+  <div><a href="#chi">Biografia</a><a href="#ruoli">Repertorio</a><a href="#foto">Fotografie</a><a href="#piede">Contatti</a></div>
+</div><div class="filo"></div></nav>
+
+<header class="cartello"><div class="in">
+  <p class="su">Tenore · dal 1997</p>
+  <h1>Massimo<br>Giordano</h1>
+  <p class="giu">Quasi trent’anni sui grandi palcoscenici d’Europa e d’America, e un secondo atto passato a costruire le serate, non più solo a cantarle.</p>
+  <p class="ruoliriga">Rodolfo · Alfredo · Cavaradossi · Des Grieux · Don Carlo · Werther · Andrea Chénier</p>
+</div></header>
+
+<div class="in"><div class="filo"></div>
+  <figure class="ritratto" style="margin-top:22px">
+    <img src="/assets/img/gallery/tosca-bolshoi-1800.jpg" alt="Massimo Giordano in scena">
+    <figcaption>Tosca · Teatro Bol’šoj</figcaption>
+  </figure>
+</div>
+
+<section id="chi"><div class="in">
+  <p class="sopratitolo">Biografia</p>
+  <h2>Com’è cominciata</h2>
+  <div class="colonne">
+    <div>
+      <p>È cresciuto dentro un conservatorio, dove suo padre faceva il custode, e si è formato come flautista. Ha trovato la voce pochi giorni prima del diploma di flauto. Il debutto professionale è del 1997, a Spoleto.</p><p>Tre anni dopo cantava al Metropolitan. Poi la Scala, la Staatsoper di Vienna, Covent Garden, l’Opéra national de Paris, la Bayerische Staatsoper: Rodolfo, Alfredo, Cavaradossi, Des Grieux, Don Carlo, Werther, Andrea Chénier, in teatri dove, dopo, non si aggiusta niente.</p><p>Oggi il palcoscenico è solo una parte. Programma un festival a Cipro, produce concerti e tiene una cattedra di canto al Conservatorio di Cagliari, dove passa quello che nessuna incisione può portare: come si costruisce davvero un ruolo, e come regge sera dopo sera.</p>
+      <p class="direttori">Ha cantato con Abbado · Chailly · Maazel · Rattle · Mehta · Pappano · Levine</p>
+    </div>
+    <figure class="ritratto"><img src="/assets/img/ritratti/papillon-o1600.jpg" alt="Massimo Giordano" style="height:clamp(320px,40vw,480px)">
+      <figcaption>Roma, Villa Borghese</figcaption></figure>
+  </div>
+</div></section>
+
+<div class="in"><div class="tre"><article><p class="n">01</p><h3>Opera e concerto</h3><p>Cavaradossi, Don Carlo, Don José, Andrea Chénier, Des Grieux, e un programma da recital che tiene insieme Verdi, Puccini e Gounod con la canzone napoletana.</p></article><article><p class="n">02</p><h3>Minthis Music Festival</h3><p>Direttore artistico a Pafos, Cipro: tre edizioni dal 2024, la quarta confermata per il 2027.</p></article><article><p class="n">03</p><h3>Conservatorio di Cagliari</h3><p>Cattedra di canto al Conservatorio Statale “Giovanni Pierluigi da Palestrina”. Una cattedra vera in un’istituzione statale, non una masterclass occasionale.</p></article></div></div>
+
+<section id="ruoli"><div class="in">
+  <p class="sopratitolo">Repertorio</p>
+  <h2>Ruoli principali</h2>
+  <div class="locandina"><div class="riga"><span class="ruolo">Cavaradossi</span><span class="opera">Tosca</span><span class="teatri">Bayerische Staatsoper · Vienna · Covent Garden · Metropolitan · Parigi · San Francisco · Bol’šoj</span></div><div class="riga"><span class="ruolo">Rodolfo</span><span class="opera">La bohème</span><span class="teatri">Metropolitan · Parigi · Covent Garden · Bayerische Staatsoper · Vienna · Semperoper</span></div><div class="riga"><span class="ruolo">Alfredo Germont</span><span class="opera">La traviata</span><span class="teatri">Metropolitan · Scala · Vienna · Deutsche Oper Berlin · Bol’šoj · Santa Fe</span></div><div class="riga"><span class="ruolo">Des Grieux</span><span class="opera">Manon · Manon Lescaut</span><span class="teatri">Metropolitan · Scala · Vienna · Covent Garden · Baden-Baden con Sir Simon Rattle</span></div><div class="riga"><span class="ruolo">Andrea Chénier</span><span class="opera">Giordano</span><span class="teatri">Staatsoper di Vienna · Deutsche Oper Berlin</span></div></div>
+</div></section>
+
+<section id="foto" style="padding-top:0"><div class="in">
+  <p class="sopratitolo">Fotografie</p>
+  <h2 style="margin-bottom:28px">Scena e ritratti</h2>
+  <div class="galleria">
+    <figure><img src="/assets/img/gallery/boheme-wien-1600.jpg" alt=""><figcaption>La bohème · Vienna</figcaption></figure>
+    <figure><img src="/assets/img/gallery/carmen-wien-2010-netrebko-1600.jpg" alt=""><figcaption>Carmen · Vienna</figcaption></figure>
+    <figure><img src="/assets/img/ritratti/cortile-o1600.jpg" alt=""><figcaption>Ritratti · Roma</figcaption></figure>
+  </div>
+</div></section>
+
+<footer id="piede"><div class="in">
+  <p class="nome">Massimo Giordano</p>
+  <a class="mail" href="mailto:info@massimogiordano.com">info@massimogiordano.com</a>
+  <nav><a href="#">Biografia</a><a href="#">Repertorio</a><a href="#">Impegni</a><a href="#">Didattica</a><a href="#">Stampa</a></nav>
+</div></footer>
+<div class="barra-prove">
+  <span>Prova <b>B</b> · Manifesto</span>
+  <a href="/prove/a-sipario.html">A</a><a href="/prove/b-manifesto.html">B</a><a href="/prove/c-nota.html">C</a>
+  <a href="/" class="vero">il sito vero</a>
+</div>
+<style>
+.barra-prove{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:99;
+ display:flex;align-items:center;gap:7px;padding:8px 10px 8px 16px;border-radius:999px;
+ background:rgba(20,20,24,.93);backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.barra-prove span{font:400 12px/1 ui-sans-serif,system-ui,sans-serif;color:#b9b4ae;margin-right:5px;white-space:nowrap}
+.barra-prove b{color:#fff;font-weight:600}
+.barra-prove a{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;
+ font:600 12px/1 ui-sans-serif,system-ui,sans-serif;color:#d8d4ce;background:#35343c;text-decoration:none}
+.barra-prove a:hover{background:#4d4b57;color:#fff}
+.barra-prove a.vero{width:auto;padding:0 13px;border-radius:999px;background:transparent;
+ color:#8a847d;font-weight:400}
+@media(max-width:520px){.barra-prove span{display:none}}
+</style>
+</body>
+</html>
