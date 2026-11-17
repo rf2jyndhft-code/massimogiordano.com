@@ -1308,3 +1308,17 @@ footer h3{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-trans
 /* Il lettore nativo: non si puo' ridisegnare dentro, ma si puo' almeno
    dargli la larghezza giusta e un'altezza discreta. */
 .brani audio{width:100%;height:34px;display:block}
+
+/* ---- le tre righe in cima agli Impegni: cosa fa adesso, senza date ---- */
+.ora{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-width:62ch}
+.ora li{
+  font-family:var(--sans);font-size:15px;line-height:1.55;
+  padding-left:18px;position:relative;color:var(--muted);
+}
+.ora li::before{
+  content:"";position:absolute;left:0;top:.62em;
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+}
+.ora b{color:var(--ink);font-weight:500}
+.on-dark .ora li,footer .ora li{color:var(--muted-dark)}
+.on-dark .ora b{color:var(--paper)}
