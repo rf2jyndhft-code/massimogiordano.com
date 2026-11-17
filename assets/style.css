@@ -1322,3 +1322,30 @@ footer h3{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-trans
 .ora b{color:var(--ink);font-weight:500}
 .on-dark .ora li,footer .ora li{color:var(--muted-dark)}
 .on-dark .ora b{color:var(--paper)}
+
+
+/* ---- L'apertura della home: stesso testo, piu' aria -------------------
+   Era un muro: colonna larga, sommario e paragrafi dello stesso peso,
+   due rettangoli pieni appaiati. Qui la colonna si stringe sotto la misura
+   comoda di lettura, il sommario prende fiato e stacca davvero dal corpo,
+   e fra testo e fotografia entra aria vera. */
+.sez-aria{gap:clamp(30px,6vw,88px)}
+.sez-aria .prose{max-width:54ch}
+.sez-aria .lede{
+  font-size:clamp(19px,2.1vw,22px);
+  line-height:1.62;
+  color:var(--muted);
+  margin-bottom:2.1em;
+  padding-bottom:0;
+}
+.sez-aria .prose > p:not(.lede):not(.label):not(.nomi){
+  line-height:1.82;
+  margin:0 0 1.35em;
+}
+.sez-aria .prose h2{margin-bottom:.55em}
+.sez-aria .nomi{margin-top:2.4em}
+
+@media (max-width:899px){
+  .sez-aria .prose{max-width:none}
+  .sez-aria .lede{margin-bottom:1.6em}
+}
