@@ -121,7 +121,58 @@
     }
   }
 
+  /* Il tasto finale: si prova a mandare dal server, e solo se non va si apre
+     il programma di posta — che e' quello che si faceva prima e che su molti
+     telefoni non succedeva affatto. */
   modulo.addEventListener('click', function (e) {
+    var manda = e.target.closest('[data-manda]');
+    if (manda) {
+      var v = valori();
+      var indirizzo = v.email || '';
+      if (!indirizzo) return;                 /* senza indirizzo lascia fare al mailto */
+      e.preventDefault();
+      var etichetta = manda.textContent;
+      manda.textContent = (document.documentElement.lang === 'it') ? 'Un momento…' : 'One moment…';
+      manda.setAttribute('aria-disabled', 'true');
+
+      fetch('/api/modulo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tipo: 'lezione',
+          email: indirizzo,
+          nome: v.nome || '',
+          richiesta: v.tipo || '',
+          voce: v.voce || '',
+          livello: v.livello || '',
+          dove: v.dove || '',
+          quando: v.quando || '',
+          messaggio: testo(),
+          lingua: document.documentElement.lang === 'it' ? 'it' : 'en',
+          sito: ''
+        })
+      })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (esito) {
+          if (esito && esito.ok) {
+            manda.textContent = (document.documentElement.lang === 'it')
+              ? 'Richiesta inviata. Ti rispondo io.'
+              : 'Request sent. I’ll get back to you.';
+            manda.classList.add('btn-fatto');
+          } else {
+            manda.textContent = etichetta;
+            manda.removeAttribute('aria-disabled');
+            window.location.href = manda.href;     /* ripiego: la posta */
+          }
+        })
+        .catch(function () {
+          manda.textContent = etichetta;
+          manda.removeAttribute('aria-disabled');
+          window.location.href = manda.href;
+        });
+      return;
+    }
+
     var av = e.target.closest('[data-avanti]');
     if (av) {
       e.preventDefault();

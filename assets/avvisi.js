@@ -1,23 +1,13 @@
 /* Iscrizione agli avvisi.
 
-   Due modi, e il modulo sceglie da solo.
+   Da quando il sito sta su Vercel la cosa funziona davvero: il modulo manda
+   l'indirizzo a /api/modulo, una funzione che gira sul server e fa partire la
+   mail. Prima il sito era fatto di sole pagine ferme e l'unica cosa possibile
+   era aprire il programma di posta di chi legge — che su meta' dei telefoni
+   non succede, e sembra che il sito sia rotto.
 
-   1. SERVIZIO VERO (Brevo e simili). Se sul <form> c'e' data-endpoint con un
-      indirizzo che comincia per https, l'iscrizione parte da sola: il servizio
-      manda la mail di conferma, tiene l'elenco e mette il tasto di disiscrizione
-      in fondo a ogni messaggio. La risposta del servizio non si puo' leggere da
-      un altro dominio, quindi non si finge di saperla: si dice a chi si iscrive
-      di aspettare la mail di conferma, che e' la cosa vera che deve succedere.
-
-   2. SENZA SERVIZIO. Finche' data-endpoint e' vuoto, il tasto apre il programma
-      di posta di chi legge con la richiesta gia' scritta. Non si raccoglie un
-      indirizzo per poi buttarlo via.
-
-   PER ACCENDERE IL SERVIZIO: su Brevo, Moduli -> crea il modulo -> "Condividi" ->
-   copia l'indirizzo che finisce per sibforms.com/serve/... e mettilo dentro
-   data-endpoint nei due contatti (contact.html e it/contatti.html). Nient'altro.
-   Il nome del campo lo si cambia con data-campo se il servizio ne vuole un altro
-   (Brevo usa EMAIL). */
+   Se la funzione non risponde (chiave mancante, rete giu'), si torna al
+   programma di posta: meglio un giro in piu' che un messaggio perso. */
 
 (function () {
   'use strict';
@@ -29,18 +19,16 @@
       oggetto: 'Iscrizione agli avvisi',
       corpo: 'Vorrei ricevere gli avvisi su concerti, incisioni e Minthis Music Festival.\n\nIndirizzo: ',
       manca: 'Scrivi il tuo indirizzo e spunta il consenso.',
-      posta: 'Per ora le iscrizioni si prendono per posta: scrivi a',
       invio: 'Un momento…',
-      conferma: 'Ci siamo quasi: controlla la posta e apri il collegamento di conferma.',
-      guasto: 'Qualcosa non ha funzionato. Scrivi a ' + POSTA + ' e ti iscrivo io.'
+      fatto: 'Fatto: sei iscritto. Ti scrivo io quando c’è qualcosa da dire.',
+      posta: 'Non sono riuscito a registrarti da qui. Si apre la posta: scrivi a'
     } : {
       oggetto: 'Mailing list',
       corpo: 'I would like to receive news about concerts, recordings and the Minthis Music Festival.\n\nEmail address: ',
       manca: 'Enter your address and tick the box.',
-      posta: 'For now subscriptions are taken by email: write to',
       invio: 'One moment…',
-      conferma: 'Almost there: check your inbox and open the confirmation link.',
-      guasto: 'Something went wrong. Write to ' + POSTA + ' and I will add you myself.'
+      fatto: 'Done — you are on the list. I’ll write when there is something to say.',
+      posta: 'I couldn’t sign you up from here. Opening your mail app instead — write to'
     };
   }
 
@@ -48,8 +36,6 @@
     var email = form.querySelector('input[type=email]');
     var ok = form.querySelector('input[type=checkbox]');
     var tasto = form.querySelector('button[type=submit]');
-    var dove = (form.getAttribute('data-endpoint') || '').trim();
-    var campo = form.getAttribute('data-campo') || 'EMAIL';
     var p = parole(document.documentElement.lang === 'it');
 
     var voce = document.createElement('p');
@@ -63,16 +49,29 @@
       voce.hidden = false;
     }
 
-    function offriLaPosta(indirizzo) {
-      voce.textContent = p.posta + ' ';
-      var a = document.createElement('a');
-      a.href = 'mailto:' + POSTA
+    /* Ripiego: si apre il programma di posta con il messaggio gia' scritto, e
+       l'indirizzo resta anche in pagina per chi la posta la tiene altrove. */
+    function perLaPosta(indirizzo) {
+      var href = 'mailto:' + POSTA
         + '?subject=' + encodeURIComponent(p.oggetto)
         + '&body=' + encodeURIComponent(p.corpo + indirizzo);
-      a.textContent = POSTA;
+
+      var a = document.createElement('a');
+      a.href = href;
       a.target = '_blank';
       a.rel = 'noopener';
-      voce.appendChild(a);
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      voce.textContent = p.posta + ' ';
+      var link = document.createElement('a');
+      link.href = href;
+      link.textContent = POSTA;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      voce.appendChild(link);
       voce.hidden = false;
     }
 
@@ -85,53 +84,36 @@
         return;
       }
 
-      if (dove.indexOf('https://') !== 0) {
-        /* Nessun servizio collegato: si apre il programma di posta con la
-           richiesta gia' scritta. Si usa un <a> finto invece di cambiare
-           l'indirizzo della pagina, perche' dentro un riquadro protetto quella
-           navigazione muore e sembra che il sito si sia rotto. In pagina resta
-           comunque l'indirizzo, per chi la posta la tiene altrove. */
-        var a = document.createElement('a');
-        a.href = 'mailto:' + POSTA
-          + '?subject=' + encodeURIComponent(p.oggetto)
-          + '&body=' + encodeURIComponent(p.corpo + email.value);
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        offriLaPosta(email.value);
-        return;
-      }
-
-      var dati = new FormData();
-      dati.append(campo, email.value);
-      dati.append('OPT_IN', '1');
-      dati.append('email_address_check', '');   /* trappola antispam di Brevo: va vuota */
-      dati.append('locale', document.documentElement.lang || 'en');
-
+      var indirizzo = email.value;
       if (tasto) tasto.disabled = true;
       dire(p.invio);
 
-      /* la risposta arriva da un altro dominio ed e' opaca: non si puo' leggere.
-         Quello che conta e' che la richiesta sia partita; la conferma vera la da'
-         il servizio con la sua mail. */
-      fetch(dove, { method: 'POST', mode: 'no-cors', body: dati })
-        .then(function () {
-          form.reset();
-          dire(p.conferma);
-          if (window.fbq) window.fbq('track', 'Lead', { content_name: 'avvisi-email' });
+      fetch('/api/modulo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tipo: 'avvisi',
+          email: indirizzo,
+          consenso: !!ok.checked,
+          lingua: document.documentElement.lang === 'it' ? 'it' : 'en',
+          sito: ''                      /* trappola antispam: resta vuota */
         })
-        .catch(function () {
-          dire(p.guasto);
+      })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (esito) {
+          if (esito && esito.ok) {
+            form.reset();
+            dire(p.fatto);
+            if (window.fbq) window.fbq('track', 'Lead', { content_name: 'avvisi-email' });
+          } else {
+            perLaPosta(indirizzo);
+          }
         })
-        .then(function () {
-          if (tasto) tasto.disabled = false;
-        });
+        .catch(function () { perLaPosta(indirizzo); })
+        .then(function () { if (tasto) tasto.disabled = false; });
     });
   }
 
-  var f = document.querySelectorAll('form[data-avvisi-mailto]');
+  var f = document.querySelectorAll('form[data-avvisi]');
   for (var i = 0; i < f.length; i++) avvia(f[i]);
 })();
