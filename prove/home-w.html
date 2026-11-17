@@ -319,6 +319,46 @@ footer nav a:hover{color:var(--crema)}
   <nav><a href="/it/biografia.html">Biografia</a><a href="/it/repertorio.html">Repertorio</a><a href="/it/calendario.html">Impegni</a><a href="/it/didattica.html">Didattica</a><a href="/it/galleria.html">Fotografie</a><a href="/it/stampa.html">Stampa</a></nav>
 </div></footer>
 
+<div class="scegli-fondo" role="group" aria-label="Fondo della pagina">
+  <span>Fondo</span>
+  <button data-fondo="#07070a" data-f2="#0d0d11" data-filo="#1c1c22" class="scelto">Nero pieno</button>
+  <button data-fondo="#11100e" data-f2="#17150f" data-filo="#241f18">Caldo</button>
+  <button data-fondo="#0e1014" data-f2="#14171c" data-filo="#1e232b">Notte</button>
+  <button data-fondo="#15161a" data-f2="#1c1d22" data-filo="#2a2b31">Carbone</button>
+</div>
+<style>
+.scegli-fondo{position:fixed;left:50%;transform:translateX(-50%);bottom:62px;z-index:80;
+ display:flex;align-items:center;gap:6px;padding:7px 9px 7px 15px;border-radius:999px;
+ background:rgba(20,20,24,.93);backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.scegli-fondo span{font:400 11.5px/1 ui-sans-serif,system-ui,sans-serif;color:#8a847d;margin-right:4px}
+.scegli-fondo button{border:0;cursor:pointer;border-radius:999px;padding:7px 13px;background:#35343c;
+ color:#d8d4ce;font:500 11.5px/1 ui-sans-serif,system-ui,sans-serif;transition:.3s}
+.scegli-fondo button:hover{background:#4d4b57;color:#fff}
+.scegli-fondo button.scelto{background:#c9a227;color:#17140a}
+@media(max-width:620px){.scegli-fondo{bottom:58px;padding:6px 7px 6px 11px}
+ .scegli-fondo span{display:none}.scegli-fondo button{padding:6px 10px;font-size:11px}}
+</style>
+<script>
+(function(){
+  var r = document.documentElement;
+  document.querySelectorAll('.scegli-fondo button').forEach(function(b){
+    b.addEventListener('click', function(){
+      r.style.setProperty('--nero',  b.dataset.fondo);
+      r.style.setProperty('--nero2', b.dataset.f2);
+      r.style.setProperty('--filo',  b.dataset.filo);
+      document.querySelectorAll('.scegli-fondo button').forEach(function(x){ x.classList.remove('scelto'); });
+      b.classList.add('scelto');
+      try { localStorage.setItem('fondo-prova', b.dataset.fondo); } catch(e){}
+    });
+  });
+  /* si ricorda quale aveva scelto, cosi' puo' girare il sito e riguardarlo */
+  try {
+    var f = localStorage.getItem('fondo-prova');
+    if (f) { var b = document.querySelector('.scegli-fondo button[data-fondo="'+f+'"]'); if (b) b.click(); }
+  } catch(e){}
+})();
+</script>
+
 <div class="barra-prove">
   <span>Prova <b>W</b> · home intera</span>
   <a href="/prove/a-sipario.html">A</a><a href="/prove/b-manifesto.html">B</a><a href="/prove/c-nota.html">C</a><a href="/prove/w-voce.html">W</a><a href="/prove/home-w.html" style="background:#c9a227;color:#17140a">W+</a>
