@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="../assets/scena.css?v=87e84cb9">
+<link rel="stylesheet" href="../assets/scena.css?v=76d1705a">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -231,11 +231,13 @@
     </h1>
     <p class="sotto-nome">Trent’anni sui palcoscenici d’Europa e d’America. E una voce che si sente meglio che si legga.</p>
 
-    <button class="ascolta" id="bottone-ascolta" aria-label="Ascolta E lucean le stelle">
+    <div class="voce-riga">
+      <button class="ascolta" id="bottone-ascolta" aria-label="Ascolta E lucean le stelle">
       <span class="cerchio"><span class="tri"></span></span>
       <span class="dice"><b>Ascolta</b><span>E lucean le stelle · Tosca</span></span>
     </button>
     <canvas id="onda" width="1120" height="132" aria-hidden="true"></canvas>
+    </div>
   </div>
   <p class="giu">Scorri<i></i></p>
 </header>
@@ -394,50 +396,62 @@
       tela  = document.getElementById('onda');
   if (tasto && suono && tela){
     var ctx = tela.getContext('2d'), analizzatore = null, dati = null, gira = null;
+    var oro = getComputedStyle(document.documentElement)
+                .getPropertyValue('--oro').trim() || '#b9924a';
 
-    function disegna(){
+    function disegna(t){
       gira = requestAnimationFrame(disegna);
-      analizzatore.getByteTimeDomainData(dati);
       var L = tela.width, A = tela.height, mezzo = A / 2;
       ctx.clearRect(0, 0, L, A);
-      ctx.lineWidth = 1.6;
-      ctx.strokeStyle = 'var(--oro)';
+      ctx.strokeStyle = oro;
+      ctx.lineWidth = 2.2;
       ctx.beginPath();
-      for (var i = 0; i < dati.length; i++){
-        var x = i / dati.length * L;
-        var y = mezzo + (dati[i] - 128) / 128 * (mezzo * .92);
+      var vive = analizzatore && !suono.paused;
+      if (vive) analizzatore.getByteTimeDomainData(dati);
+      for (var i = 0; i <= 160; i++){
+        var x = i / 160 * L, y;
+        if (vive){
+          var k = Math.floor(i / 160 * dati.length);
+          y = mezzo + (dati[k] - 128) / 128 * (mezzo * .92);
+        } else {
+          var f = (t || 0) / 1000;
+          y = mezzo + Math.sin(i * .09 + f * 1.1) * (mezzo * .13)
+                    + Math.sin(i * .021 + f * .55) * (mezzo * .09);
+        }
         i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
       ctx.stroke();
-      /* un'eco piu' tenue sotto, per dare corpo */
-      ctx.globalAlpha = .22; ctx.lineWidth = 5; ctx.stroke(); ctx.globalAlpha = 1;
+      ctx.globalAlpha = .2; ctx.lineWidth = 6; ctx.stroke(); ctx.globalAlpha = 1;
     }
 
     tasto.addEventListener('click', function(){
       if (suono.paused){
         if (!analizzatore){
-          var AC = window.AudioContext || window.webkitAudioContext;
-          var ac = new AC();
-          var sorgente = ac.createMediaElementSource(suono);
-          analizzatore = ac.createAnalyser();
-          analizzatore.fftSize = 2048;
-          dati = new Uint8Array(analizzatore.frequencyBinCount);
-          sorgente.connect(analizzatore); analizzatore.connect(ac.destination);
-          if (ac.state === 'suspended') ac.resume();
+          try {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            var ac = new AC();
+            var sorgente = ac.createMediaElementSource(suono);
+            analizzatore = ac.createAnalyser();
+            analizzatore.fftSize = 2048;
+            dati = new Uint8Array(analizzatore.frequencyBinCount);
+            sorgente.connect(analizzatore); analizzatore.connect(ac.destination);
+            if (ac.state === 'suspended') ac.resume();
+          } catch (e) {
+            analizzatore = null;          /* resta il respiro, il canto parte lo stesso */
+          }
         }
         suono.play();
         tasto.classList.add('suona');
         tela.classList.add('viva');
-        disegna();
       } else {
         suono.pause();
         tasto.classList.remove('suona');
         tela.classList.remove('viva');
-        cancelAnimationFrame(gira);
       }
     });
+    disegna();
     suono.addEventListener('ended', function(){
-      tasto.classList.remove('suona'); tela.classList.remove('viva'); cancelAnimationFrame(gira);
+      tasto.classList.remove('suona'); tela.classList.remove('viva');
     });
   }
 
