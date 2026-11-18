@@ -30,10 +30,12 @@
 
     function porta(a, subito) {
       if (!a) { cursore.classList.remove('viva'); return; }
-      var r = a.getBoundingClientRect(), p = elenco.getBoundingClientRect();
+      /* Si misura rispetto all'ELENCO, non allo schermo: se il pannello
+         scorre di un pelo, le misure sullo schermo cambiano e il riquadro
+         finisce fuori bersaglio. offsetTop invece resta sempre vero. */
       if (subito) cursore.style.transition = 'none';
-      cursore.style.transform = 'translateY(' + (r.top - p.top) + 'px)';
-      cursore.style.height = r.height + 'px';
+      cursore.style.transform = 'translateY(' + a.offsetTop + 'px)';
+      cursore.style.height = a.offsetHeight + 'px';
       cursore.classList.add('viva');
       if (subito) {
         /* si forza il ridisegno, se no la transizione riparte dal vecchio punto */
