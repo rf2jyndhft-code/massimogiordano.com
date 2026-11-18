@@ -599,3 +599,10 @@ body.scena .menu-voci a:hover,body.scena .menu-voci a:active{color:var(--oro)}
 @media (prefers-reduced-motion:reduce){
   body.scena .menu-cursore{transition:opacity .2s}
 }
+
+/* Il browser disegna un suo contorno sull'ultima voce toccata: insieme al
+   riquadro che segue il dito se ne vedevano due. Resta solo il nostro —
+   che indica anche il fuoco della tastiera, quindi non si perde niente. */
+body.scena .menu-voci a:focus{outline:none}
+body.scena .menu-voci a:focus-visible{outline:none}
+body.scena .menu-voci a{-webkit-tap-highlight-color:transparent}
