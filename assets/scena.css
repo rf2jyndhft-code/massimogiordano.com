@@ -35,10 +35,10 @@ a{color:inherit;text-decoration:none}
 .palco::after{content:"";position:absolute;inset:0;z-index:1;
   background:color-mix(in srgb, var(--sfondo) 34%, transparent)}
 .palco .dentro{position:relative;z-index:2;width:100%;text-align:center;
-  padding:clamp(106px,13vh,146px) 0 clamp(128px,16vh,168px)}
+  padding:clamp(92px,12.5vh,146px) 0 clamp(96px,13vh,150px)}
 
 .nome{margin:0;font-family:var(--display);font-weight:400;line-height:.86;letter-spacing:-.02em;
-  font-size:clamp(50px,12vw,164px)}
+  font-size:clamp(48px,min(12vw,19.5vh),168px)}
 .nome .riga{display:block;overflow:hidden}
 .nome .riga span{display:inline-block;transform:translateY(105%);
   animation:sale 1.15s cubic-bezier(.19,1,.22,1) forwards}
@@ -496,7 +496,6 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
    + 72 del comando + 58 di spettro + 58 sotto + 56 dello scorri = 700. */
 @media (max-height:860px){
   body.scena .palco .dentro{padding:clamp(80px,11vh,104px) 0 clamp(74px,9vh,92px)}
-  body.scena .nome{font-size:clamp(48px,10.4vw,140px)}
   body.scena .occhio-apre{margin-bottom:clamp(16px,2.4vh,26px)}
   body.scena .sotto-nome{margin-top:clamp(14px,2vh,22px);font-size:15.5px;line-height:1.66;max-width:28ch}
   body.scena .ascolta{margin-top:clamp(16px,2.4vh,26px)}
@@ -508,7 +507,6 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
 /* solo su uno schermo davvero basso lo "scorri" si toglie */
 @media (max-height:660px){
   body.scena .giu{display:none}
-  body.scena .nome{font-size:clamp(44px,9vw,104px)}
   body.scena .palco .dentro{padding:clamp(72px,10vh,92px) 0 clamp(36px,5vh,52px)}
 }
 
