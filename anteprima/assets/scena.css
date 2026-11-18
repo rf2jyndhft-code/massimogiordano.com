@@ -304,43 +304,36 @@ body.scena .topbar.topbar-fissa{
 body.scena .palco{padding-top:0}
 
 @media (max-width:900px){
-  /* Sul telefono vale lo stesso impianto del computer: il nome sopra, le
-     voci sotto, tutto trasparente sul video. Niente pannello a scomparsa:
-     le otto voci stanno su una riga che si trascina col dito, e chi arriva
-     vede subito dove può andare invece di dover aprire qualcosa. */
-  body.scena .menu-bot{display:none!important}
-  body.scena .menu-pan{display:none!important}
-
+  /* Sul telefono: barra ridotta all'essenziale — il nome e tre righe.
+     Le voci stanno nel pannello grande, numerate come un programma di sala.
+     Otto voci schiacciate in due righe erano complete ma sembravano un
+     elenco della spesa; una riga sola tagliava l'ultima parola a metà. */
   body.scena .topbar:not(.topbar-fissa){
     position:absolute;background:transparent;border-bottom:0;
     -webkit-backdrop-filter:none;backdrop-filter:none}
   body.scena .topbar:not(.topbar-fissa) .wrap{
-    display:block;padding-top:16px;padding-bottom:10px}
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding-top:14px;padding-bottom:14px;min-height:54px}
   body.scena .topbar .brand{
-    display:block;text-align:center;font-size:13px;letter-spacing:.2em}
-
-  /* Due righe, quattro voci per riga, tutte intere.
-     Una riga sola lasciava l'ultima voce tagliata a metà — e una parola
-     spezzata sul bordo è la cosa che fa sembrare un sito fatto in casa.
-     Qui non si scorre e non si indovina: si vede tutto. */
-  body.scena .topbar .nav{
-    display:grid!important;grid-template-columns:repeat(4,1fr);
-    margin-top:11px;gap:7px 4px;padding:10px 6px 3px;overflow:visible;
-    border-top:1px solid color-mix(in srgb,var(--oro) 20%,transparent)}
-  body.scena .topbar .nav a{
-    font-size:10.5px;letter-spacing:.1em;white-space:nowrap;padding:3px 0;
-    text-align:center;border-bottom:0}
-  body.scena .topbar .nav a[aria-current]{
-    border-bottom:0;color:var(--oro)}
-
-  body.scena .topbar .tb-destra{
-    position:absolute;top:10px;right:14px}
+    font-size:12.5px;letter-spacing:.2em;text-align:left;flex:1 1 auto}
+  body.scena .topbar .nav{display:none!important}
+  body.scena .topbar .tb-destra{position:static;flex:0 0 auto;margin-right:4px}
   body.scena .topbar .lang{font-size:11px}
+  body.scena .menu-bot{display:grid!important;margin-right:-6px}
 
-  /* la barra che scende scorrendo: lì serve il fondo, se no non si legge */
+  /* ⚠️ niente sfocatura sulla barra: una zona sfocata diventa la gabbia di
+     tutto ciò che contiene, e il pannello restava chiuso lì dentro */
   body.scena .topbar.topbar-fissa{
-    background:color-mix(in srgb,var(--sfondo) 94%,transparent);
-    -webkit-backdrop-filter:none;backdrop-filter:none}
+    background:var(--sfondo);-webkit-backdrop-filter:none;backdrop-filter:none}
+
+  /* il pannello: a tutto schermo, voci grandi */
+  body.scena .menu-pan{display:flex!important;position:fixed;inset:0;height:100dvh;
+    justify-content:center;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:clamp(84px,12vh,110px) clamp(24px,7vw,40px) clamp(28px,4.5vh,40px)}
+  body.scena .menu-pan[hidden]{display:none!important}
+  body.scena .menu-voci a{font-size:clamp(30px,9vw,44px);padding:clamp(8px,1.5vh,13px) 0;gap:14px}
+  body.scena .menu-voci a::before{font-size:11px}
+  body.scena .menu-piede{margin-top:auto;padding-top:22px}
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -488,7 +481,7 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
    l'ingresso è ripensato per lo schermo stretto, non rimpicciolito.
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width:760px){
-  body.scena .palco .dentro{padding:clamp(142px,19vh,176px) 0 clamp(40px,7vh,70px)}
+  body.scena .palco .dentro{padding:clamp(100px,14vh,130px) 0 clamp(40px,7vh,70px)}
 
   /* il nome prende la pagina: è la prima cosa e deve pesare */
   body.scena .nome{font-size:clamp(56px,17.5vw,104px);line-height:.92;letter-spacing:-.025em}
