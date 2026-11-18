@@ -349,7 +349,10 @@
   /* ---- quello che entra scorrendo ---- */
   /* da qui in poi la pagina può nascondere le cose per poi mostrarle:
      se questo script non arriva, restano semplicemente visibili. */
-  document.documentElement.classList.add('moto');
+  /* La dissolvenza all'ingresso resta SPENTA: provata il 19 novembre in tre
+     versioni (brusca, gentile, ritardata) e nessuna convinceva. Il codice
+     resta: per riaccenderla basta togliere i due barrati sotto. */
+  // document.documentElement.classList.add('moto');
 
   var osservatore = new IntersectionObserver(function(voci){
     voci.forEach(function(v){ if (v.isIntersecting){ v.target.classList.add('dentro'); osservatore.unobserve(v.target); } });
