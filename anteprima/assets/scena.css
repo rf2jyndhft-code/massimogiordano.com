@@ -107,7 +107,7 @@ html.moto .entra.dentro{opacity:1;transform:none}
 
 /* --- i numeri che salgono ------------------------------------------- */
 .conti{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(26px,4vw,48px);
-  padding:clamp(48px,6vw,82px) 0}
+  padding:clamp(44px,5.4vw,70px) 0 clamp(20px,2.4vw,30px)}
 @media(min-width:860px){.conti{grid-template-columns:repeat(4,1fr)}}
 .conti div{text-align:center}
 .conti .k{font:400 clamp(40px,6vw,76px)/1 var(--display);font-variant-numeric:tabular-nums;color:var(--testo)}
@@ -486,3 +486,25 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
   body.scena .giu{display:none}
   body.scena .palco .dentro{padding-bottom:clamp(56px,8vh,86px)}
 }
+
+
+/* ── Il banner del consenso ───────────────────────────────────────────
+   Era la cosa peggiore del sito: i pulsanti grigi su fondo scuro, quasi
+   invisibili. Sono la prima cosa che tutti vedono, e vanno premuti. */
+body.scena .consenso,body.scena .cookie-banner,body.scena [class*="consenso"]{
+  background:var(--sfondo2);border-top:1px solid var(--bordo)}
+body.scena .consenso button,body.scena .cookie-banner button,
+body.scena [class*="consenso"] button{
+  border-radius:999px;padding:11px 24px;font-weight:600;letter-spacing:.03em;
+  border:1px solid var(--bordo);background:transparent;color:var(--testo);
+  transition:background .3s,color .3s,border-color .3s;cursor:pointer}
+body.scena .consenso button:first-of-type,
+body.scena [class*="consenso"] button:first-of-type{
+  background:var(--testo);color:var(--sfondo);border-color:var(--testo)}
+body.scena .consenso button:hover,body.scena [class*="consenso"] button:hover{
+  background:var(--oro);border-color:var(--oro);color:var(--su-oro)}
+body.scena .consenso a,body.scena [class*="consenso"] a{color:var(--oro)}
+
+/* il ritratto: niente striscia chiara a destra, e la faccia intera */
+body.scena .chi figure{background:transparent;overflow:hidden}
+body.scena .chi figure img{object-position:50% 18%}
