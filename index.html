@@ -14,6 +14,9 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#101a28">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Archivo:wght@200;300;400;500;600&display=swap">
 <link rel="stylesheet" href="assets/style.css?v=16ee0aa0">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Massimo Giordano — Official Website of the Italian Tenor">
@@ -187,8 +190,9 @@
   ]
 }
 </script>
+<link rel="stylesheet" href="assets/scena.css?v=07bc07b0">
 </head>
-<body>
+<body class="scena">
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="topbar">
@@ -209,354 +213,382 @@
   </div>
 </div>
 
-<header class="hero" data-slider role="group" aria-roledescription="carousel" aria-label="Photographs of Massimo Giordano">
-  <div class="hero-vista">
-    <div class="slides">
-    <picture>
-      <source media="(max-width:760px)"
-              srcset="assets/img/ritratti/papillon-v850.jpg 850w, assets/img/ritratti/papillon-v1500.jpg 1500w"
-              sizes="100vw" width="1006" height="1500">
-      <img src="assets/img/ritratti/papillon-o1600.jpg?v=cf0ea321"
-           srcset="assets/img/ritratti/papillon-o1600.jpg?v=cf0ea321 1264w"
-           sizes="100vw" alt="Massimo Giordano tying his bow tie, Rome" width="1600" height="1068" fetchpriority="high" aria-hidden="false">
-    </picture>
-    <picture>
-      <source media="(max-width:760px)"
-              srcset="assets/img/ritratti/cortile-v850.jpg 850w, assets/img/ritratti/cortile-v1500.jpg 1500w"
-              sizes="100vw" width="999" height="1500">
-      <img src="assets/img/ritratti/cortile-o1600.jpg"
-           srcset="assets/img/ritratti/cortile-o1600.jpg 1264w"
-           sizes="100vw" alt="Massimo Giordano in a Roman courtyard" class="f-cortile" width="1600" height="1067" loading="lazy" aria-hidden="true">
-    </picture>
-    <picture>
-      <source media="(max-width:760px)"
-              srcset="assets/img/ritratti/pincio-v850.jpg?v=m1794754213 850w, assets/img/ritratti/pincio-v1500.jpg?v=m1794754213 1500w"
-              sizes="100vw" width="1006" height="1500">
-      <img src="assets/img/ritratti/pincio-o1600.jpg?v=m1794754213"
-           srcset="assets/img/ritratti/pincio-o1600.jpg?v=m1794754213 1264w"
-           sizes="100vw" alt="Massimo Giordano at the Pincio, Rome" width="1600" height="1068" loading="lazy" aria-hidden="true">
-    </picture>
-    <picture>
-      <source media="(max-width:760px)"
-              srcset="assets/img/ritratti/denim-v850.jpg?v=n1794749237 850w, assets/img/ritratti/denim-v1500.jpg?v=n1794749237 1500w"
-              sizes="100vw" width="1006" height="1500">
-      <img src="assets/img/ritratti/denim-o1600.jpg?v=n1794749237"
-           srcset="assets/img/ritratti/denim-o1600.jpg?v=n1794749237 1264w"
-           sizes="100vw" alt="Massimo Giordano on a staircase, Rome" width="1600" height="1068" loading="lazy" aria-hidden="true">
-    </picture>
-    <picture>
-      <source media="(max-width:760px)"
-              srcset="assets/img/ritratti/borghese-v850.jpg?v=51d8d80c 850w, assets/img/ritratti/borghese-v1500.jpg?v=e377168f 1500w"
-              sizes="100vw" width="1000" height="1500">
-      <img src="assets/img/ritratti/borghese-o1600.jpg?v=8059e110"
-           srcset="assets/img/ritratti/borghese-o1600.jpg?v=8059e110 1264w"
-           sizes="100vw" alt="Massimo Giordano at Villa Borghese, Rome" width="1600" height="1067" loading="lazy" aria-hidden="true">
-    </picture>
-    <picture>
-      <source media="(max-width:760px)"
-              srcset="assets/img/ritratti/mani-v850.jpg 620w, assets/img/ritratti/mani-v1500.jpg 848w"
-              sizes="100vw" width="848" height="1264">
-      <img src="assets/img/ritratti/mani-o1600.jpg"
-           srcset="assets/img/ritratti/mani-o1600.jpg 1264w"
-           sizes="100vw" alt="Massimo Giordano, portrait in Rome" width="1264" height="848" loading="lazy" aria-hidden="true">
-    </picture>
-    </div>
-    <div class="hero-ctl">
-    <button type="button" data-pausa aria-label="Pause the images" aria-pressed="false" hidden>‖</button>
-    <button type="button" data-prev aria-label="Previous image">&#8592;</button>
-    <div class="hero-dots">
-      <button aria-current="true" type="button" aria-label="Go to image 1"></button>
-      <button type="button" aria-label="Go to image 2"></button>
-      <button type="button" aria-label="Go to image 3"></button>
-      <button type="button" aria-label="Go to image 4"></button>
-      <button type="button" aria-label="Go to image 5"></button>
-      <button type="button" aria-label="Go to image 6"></button>
-    </div>
-    <button type="button" data-next aria-label="Next image">&#8594;</button>
-    </div>
-  </div>
-  <div class="hero-testo"><div class="wrap">
-    <div class="rule"></div>
-    <div class="hero-titolo">
-      <h1>The Italian Tenor</h1>
-      <ul class="social social-hero" aria-label="Massimo Giordano on social media">
-              <li><a href="https://www.instagram.com/massimo__giordano/" rel="me noopener" target="_blank"><span class="sr-only">Instagram</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.6 2h8.8A5.6 5.6 0 0 1 22 7.6v8.8a5.6 5.6 0 0 1-5.6 5.6H7.6A5.6 5.6 0 0 1 2 16.4V7.6A5.6 5.6 0 0 1 7.6 2Zm0 1.9A3.7 3.7 0 0 0 3.9 7.6v8.8a3.7 3.7 0 0 0 3.7 3.7h8.8a3.7 3.7 0 0 0 3.7-3.7V7.6a3.7 3.7 0 0 0-3.7-3.7H7.6Zm4.4 3.2a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.1-2.7a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg></a></li>
-              <li><a href="https://www.threads.com/@massimo__giordano" rel="me noopener" target="_blank"><span class="sr-only">Threads</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.1 11.3c-.1-.05-.2-.1-.3-.14-.18-3.2-1.95-5.04-4.9-5.06h-.04c-1.77 0-3.24.75-4.15 2.12l1.63 1.1c.68-1.02 1.74-1.24 2.52-1.24h.03c.97 0 1.7.29 2.17.84.35.4.58.96.69 1.66a12.6 12.6 0 0 0-2.8-.13c-2.82.16-4.63 1.8-4.51 4.08.06 1.15.64 2.15 1.62 2.8.83.56 1.9.83 3.02.77 1.47-.08 2.63-.64 3.43-1.67.61-.78.99-1.79 1.16-3.06.7.42 1.21.97 1.5 1.63.48 1.13.51 2.98-1 4.49-1.32 1.32-2.91 1.89-5.31 1.9-2.66-.02-4.68-.87-5.98-2.54C4.65 17.3 4.03 15.1 4 12.3c.03-2.8.65-5 1.86-6.54C7.16 4.09 9.18 3.24 11.84 3.22c2.68.02 4.73.88 6.1 2.55.67.82 1.18 1.86 1.51 3.06l1.9-.5c-.4-1.48-1.04-2.76-1.9-3.82C17.7 2.37 15.1 1.25 11.85 1.23h-.01C8.6 1.25 6.03 2.37 4.3 4.53 2.75 6.44 1.96 9.1 1.93 12.3c.03 3.2.82 5.86 2.37 7.77 1.73 2.16 4.3 3.28 7.54 3.3h.01c2.88-.02 4.91-.77 6.58-2.44 2.19-2.18 2.12-4.92 1.4-6.6-.52-1.2-1.5-2.18-2.84-2.85Zm-4.95 5.03c-1.24.07-2.53-.49-2.59-1.66-.05-.87.62-1.84 2.67-1.96.23-.1.46-.2.69-.02.75 0 1.44.07 2.08.21-.24 2.97-1.63 3.37-2.85 3.43Z"/></svg></a></li>
-              <li><a href="https://www.facebook.com/tenor.massimogiordano/" rel="me noopener" target="_blank"><span class="sr-only">Facebook</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.6 22v-8.6h2.9l.44-3.37H13.6V7.88c0-.98.27-1.64 1.67-1.64h1.78V3.22A24 24 0 0 0 14.45 3C11.88 3 10.12 4.57 10.12 7.46v2.57H7.2v3.37h2.92V22h3.48Z"/></svg></a></li>
-              <li><a href="https://x.com/TheItalianTenor" rel="me noopener" target="_blank"><span class="sr-only">X</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.53 3h3.2l-6.99 7.99L22 21.6h-6.44l-5.04-6.6-5.77 6.6H1.54l7.48-8.55L1.6 3h6.6l4.56 6.03L17.53 3Zm-1.12 16.68h1.77L7.67 4.82H5.77l10.64 14.86Z"/></svg></a></li>
-              <li><a href="https://www.youtube.com/c/MassimoGiordano" rel="me noopener" target="_blank"><span class="sr-only">YouTube</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12c0 1.62.13 3.23.4 4.8a2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77c.27-1.57.4-3.18.4-4.8 0-1.62-.13-3.23-.4-4.8ZM10 15.1V8.9l5.2 3.1-5.2 3.1Z"/></svg></a></li>
-            
-          <li><a href="https://www.linkedin.com/in/massimo-giordano-20001035" rel="me noopener" target="_blank"><span class="sr-only">LinkedIn</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm6.5 0h3.8v1.5h.05c.53-.95 1.82-1.95 3.75-1.95 4.01 0 4.75 2.5 4.75 5.76v5.69h-4v-5.05c0-1.2-.02-2.75-1.75-2.75-1.75 0-2.02 1.31-2.02 2.66v5.14h-4v-11Z"/></svg></a></li>
-        </ul>
-    </div>
-    <p class="second"><span class="second-forte">Nearly thirty years on the great stages and now also on the other side of the curtain.</span><br>
-      Artistic Director, Minthis Music Festival, Cyprus · Conservatory Professor, Conservatorio “Giovanni Pierluigi da Palestrina”, Cagliari</p>
-    <ul class="social social-coda" aria-label="Massimo Giordano on social media">
-              <li><a href="https://www.instagram.com/massimo__giordano/" rel="me noopener" target="_blank"><span class="sr-only">Instagram</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.6 2h8.8A5.6 5.6 0 0 1 22 7.6v8.8a5.6 5.6 0 0 1-5.6 5.6H7.6A5.6 5.6 0 0 1 2 16.4V7.6A5.6 5.6 0 0 1 7.6 2Zm0 1.9A3.7 3.7 0 0 0 3.9 7.6v8.8a3.7 3.7 0 0 0 3.7 3.7h8.8a3.7 3.7 0 0 0 3.7-3.7V7.6a3.7 3.7 0 0 0-3.7-3.7H7.6Zm4.4 3.2a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.1-2.7a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg></a></li>
-              <li><a href="https://www.threads.com/@massimo__giordano" rel="me noopener" target="_blank"><span class="sr-only">Threads</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.1 11.3c-.1-.05-.2-.1-.3-.14-.18-3.2-1.95-5.04-4.9-5.06h-.04c-1.77 0-3.24.75-4.15 2.12l1.63 1.1c.68-1.02 1.74-1.24 2.52-1.24h.03c.97 0 1.7.29 2.17.84.35.4.58.96.69 1.66a12.6 12.6 0 0 0-2.8-.13c-2.82.16-4.63 1.8-4.51 4.08.06 1.15.64 2.15 1.62 2.8.83.56 1.9.83 3.02.77 1.47-.08 2.63-.64 3.43-1.67.61-.78.99-1.79 1.16-3.06.7.42 1.21.97 1.5 1.63.48 1.13.51 2.98-1 4.49-1.32 1.32-2.91 1.89-5.31 1.9-2.66-.02-4.68-.87-5.98-2.54C4.65 17.3 4.03 15.1 4 12.3c.03-2.8.65-5 1.86-6.54C7.16 4.09 9.18 3.24 11.84 3.22c2.68.02 4.73.88 6.1 2.55.67.82 1.18 1.86 1.51 3.06l1.9-.5c-.4-1.48-1.04-2.76-1.9-3.82C17.7 2.37 15.1 1.25 11.85 1.23h-.01C8.6 1.25 6.03 2.37 4.3 4.53 2.75 6.44 1.96 9.1 1.93 12.3c.03 3.2.82 5.86 2.37 7.77 1.73 2.16 4.3 3.28 7.54 3.3h.01c2.88-.02 4.91-.77 6.58-2.44 2.19-2.18 2.12-4.92 1.4-6.6-.52-1.2-1.5-2.18-2.84-2.85Zm-4.95 5.03c-1.24.07-2.53-.49-2.59-1.66-.05-.87.62-1.84 2.67-1.96.23-.1.46-.2.69-.02.75 0 1.44.07 2.08.21-.24 2.97-1.63 3.37-2.85 3.43Z"/></svg></a></li>
-              <li><a href="https://www.facebook.com/tenor.massimogiordano/" rel="me noopener" target="_blank"><span class="sr-only">Facebook</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.6 22v-8.6h2.9l.44-3.37H13.6V7.88c0-.98.27-1.64 1.67-1.64h1.78V3.22A24 24 0 0 0 14.45 3C11.88 3 10.12 4.57 10.12 7.46v2.57H7.2v3.37h2.92V22h3.48Z"/></svg></a></li>
-              <li><a href="https://x.com/TheItalianTenor" rel="me noopener" target="_blank"><span class="sr-only">X</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.53 3h3.2l-6.99 7.99L22 21.6h-6.44l-5.04-6.6-5.77 6.6H1.54l7.48-8.55L1.6 3h6.6l4.56 6.03L17.53 3Zm-1.12 16.68h1.77L7.67 4.82H5.77l10.64 14.86Z"/></svg></a></li>
-              <li><a href="https://www.youtube.com/c/MassimoGiordano" rel="me noopener" target="_blank"><span class="sr-only">YouTube</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12c0 1.62.13 3.23.4 4.8a2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77c.27-1.57.4-3.18.4-4.8 0-1.62-.13-3.23-.4-4.8ZM10 15.1V8.9l5.2 3.1-5.2 3.1Z"/></svg></a></li>
-            
-          <li><a href="https://www.linkedin.com/in/massimo-giordano-20001035" rel="me noopener" target="_blank"><span class="sr-only">LinkedIn</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm6.5 0h3.8v1.5h.05c.53-.95 1.82-1.95 3.75-1.95 4.01 0 4.75 2.5 4.75 5.76v5.69h-4v-5.05c0-1.2-.02-2.75-1.75-2.75-1.75 0-2.02 1.31-2.02 2.66v5.14h-4v-11Z"/></svg></a></li>
-        </ul>
-  </div></div>
-  <p class="skip" data-slider-live aria-live="polite"></p>
-</header>
 
 <main id="main">
+<div id="tenda"><div class="dentro-tenda"><p class="nome-tenda">Massimo Giordano</p><div class="filo-tenda"><i></i></div></div></div>
 
-<!-- ============ CHI È ============ -->
-<section>
-  <div class="wrap cols cols-side sez-aria">
-    <div class="prose">
-      <p class="label">Biography</p>
-      <h2>How it started</h2>
-      <p class="lede">Nearly three decades on the great stages of Europe and America, and a second act spent building the evenings instead of only singing them.</p>
-      <p>He grew up inside a conservatory, where his father was the caretaker, and trained as a flautist. He found his voice days before his flute diploma. The professional debut came in 1997, in Spoleto.</p>
-      <p>In 2006 came his Metropolitan Opera debut, Des Grieux in Massenet’s <em>Manon</em>. Then La Scala, the Vienna State Opera, Covent Garden, the Opéra national de Paris, the Bavarian State Opera: Rodolfo, Alfredo, Cavaradossi, Des Grieux, Don Carlo, Werther, Andrea Chénier, in houses where nothing can be fixed afterwards.</p>
-      <p>Today the stage is only part of it. He programmes a festival in Cyprus, produces concerts, and teaches a full singing class at the Conservatory in Cagliari, where what he passes on is what no recording can carry: how a role is actually built, and how it holds up night after night.</p>
-      <p class="nomi">Abbado · Chailly · Maazel · Rattle · Mehta · Pappano · Levine</p>
-      <p><a href="biography.html">Read the full biography</a> · <a href="repertoire.html">Repertoire</a></p>
+<!-- ======================= l'apertura ======================= -->
+<header class="palco">
+  <video autoplay muted loop playsinline preload="metadata"
+         poster="/assets/video/corridoio-hd.jpg">
+    <source src="/assets/video/corridoio-hd.mp4" type="video/mp4">
+  </video>
+  <div class="dentro in">
+    <p class="occhio occhio-apre">Tenor · since 1997</p>
+    <h1 class="nome">
+      <span class="riga"><span>Massimo</span></span>
+      <span class="riga"><span>Giordano</span></span>
+    </h1>
+    <p class="sotto-nome">Thirty years on the great stages of Europe and America. And a voice better heard than read.</p>
+
+    <div class="voce-riga">
+      <button type="button" class="ascolta" id="bottone-ascolta" aria-label="Listen to E lucean le stelle">
+      <span class="cerchio"><span class="tri"></span></span>
+      <span class="dice"><b>Listen</b><span>E lucean le stelle · Tosca</span></span>
+    </button>
+    <canvas id="onda" width="1120" height="132" aria-hidden="true"></canvas>
     </div>
+  </div>
+  <p class="giu">Scroll<i></i></p>
+</header>
+
+<audio id="suono" preload="none" src="/assets/audio/e-lucean-le-stelle.m4a"></audio>
+
+<!-- ======================= i teatri ======================= -->
+<div class="nastro"><div id="nastro-dentro">
+  <span>Metropolitan Opera</span><span class="oro">·</span><span>Teatro alla Scala</span><span class="oro">·</span>
+  <span>Wiener Staatsoper</span><span class="oro">·</span><span>Royal Opera House</span><span class="oro">·</span>
+  <span>Opéra national de Paris</span><span class="oro">·</span><span>Bayerische Staatsoper</span><span class="oro">·</span>
+  <span>Teatro Bol’šoj</span><span class="oro">·</span><span>Deutsche Oper Berlin</span><span class="oro">·</span>
+  <span>Semperoper Dresden</span><span class="oro">·</span><span>San Francisco Opera</span><span class="oro">·</span>
+</div></div>
+
+<!-- ======================= i numeri ======================= -->
+<div class="in"><div class="conti entra">
+  <div><div class="k">1997</div><div class="v">Debut in Spoleto</div></div>
+  <div><div class="k">2006</div><div class="v">Metropolitan Opera</div></div>
+  <div><div class="k" data-conta="30" data-coda="+">0</div><div class="v">Roles in repertoire</div></div>
+  <div><div class="k" data-conta="320">0</div><div class="v">Teaching hours a year</div></div>
+</div></div>
+
+<!-- ======================= chi è ======================= -->
+<section class="in"><div class="chi">
+  <div class="entra">
+    <p class="occhio">Biography</p>
+    <h2>How it started</h2>
+    <p>He grew up inside a conservatory, where his father was the caretaker, and trained as a flautist. He found his voice days before his flute diploma. The debut came in 1997, in Spoleto.</p>
+    <p>In 2006 came his Metropolitan Opera debut, Des Grieux in <em>Manon</em>. Then La Scala, Vienna, Covent Garden, Paris, Munich: Rodolfo, Cavaradossi, Des Grieux, Don Carlo, Werther, Andrea Chénier, in houses where nothing can be fixed afterwards.</p>
+    <p>Today the stage is only part of it: he programmes a festival in Cyprus and holds a singing chair at the Conservatory in Cagliari.</p>
+  </div>
+  <figure class="entra"><img src="/assets/img/ritratti/papillon-v1500.jpg" alt="Massimo Giordano"></figure>
+</div></section>
+
+<!-- ======================= le fotografie ======================= -->
+<section style="padding:clamp(40px,6vw,90px) 0">
+  <div class="in entra" style="margin-bottom:30px">
+    <p class="occhio">Photographs</p>
+    <h2 style="margin:16px 0 0;font:400 clamp(28px,4vw,48px)/1.06 var(--serif)">Thirty years on stage</h2>
+  </div>
+  <div class="treno" id="treno">
+    <figure><img src="/assets/img/gallery/tosca-bolshoi-1800.jpg" alt=""><figcaption>Tosca · Bolshoi</figcaption></figure>
+    <figure><img src="/assets/img/gallery/boheme-wien-1600.jpg" alt=""><figcaption>La bohème · Vienna</figcaption></figure>
+    <figure><img src="/assets/img/gallery/carmen-wien-2010-netrebko-1600.jpg" alt=""><figcaption>Carmen · Vienna, 2010</figcaption></figure>
+    <figure><img src="/assets/img/gallery/werther-monaco-2008-1600.jpg" alt=""><figcaption>Werther · Munich, 2008</figcaption></figure>
+    <figure><img src="/assets/img/ritratti/cortile-v1500.jpg" alt=""><figcaption>Portraits · Rome</figcaption></figure>
+  </div>
+</section>
+
+<!-- ======================= Instagram ======================= -->
+<section style="padding:clamp(50px,8vw,110px) 0">
+  <div class="in entra" style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:28px">
     <div>
-      <figure>
-        <img src="assets/img/roma/borghese-appoggiato-900.jpg"
-             srcset="assets/img/roma/borghese-appoggiato-900.jpg 900w, assets/img/roma/borghese-appoggiato-1800.jpg 1800w"
-             sizes="(min-width:900px) 40vw, 100vw"
-             alt="Massimo Giordano at Villa Borghese, Rome" loading="lazy" width="1199" height="1800">
-        <figcaption>Rome, Villa Borghese.</figcaption>
-      </figure>
+      <p class="occhio">Instagram</p>
+      <h2 style="margin:16px 0 0;font:400 clamp(28px,4vw,48px)/1.06 var(--serif)">Where he is, day by day</h2>
+    </div>
+    <a class="ig-vai" href="https://www.instagram.com/massimo__giordano/" target="_blank" rel="noopener">@massimo__giordano</a>
+  </div>
+  <div class="in"><div class="ig-griglia entra"><a class="ig-cella" href="https://www.instagram.com/p/DdtcN94oL6j/" target="_blank" rel="noopener"><img src="/assets/img/instagram/ig-18465477859184077.jpg" alt="" loading="lazy"><span class="ig-velo"><span class="ig-data">25 settembre 2026</span><span class="ig-testo">I would like to thank Cyprus for this incredible concert with romatreorchestra, christianm.kune…</span></span></a><a class="ig-cella" href="https://www.instagram.com/p/DcZFdydCHNk/" target="_blank" rel="noopener"><img src="/assets/img/instagram/ig-18064943222581955.jpg" alt="" loading="lazy"><span class="ig-velo"><span class="ig-data">23 agosto 2026</span><span class="ig-testo">A different side of Rome, and a different pace for me. No stage, no tuxedo, just a summer day,…</span></span></a><a class="ig-cella" href="https://www.instagram.com/p/DcO65BMkZxh/" target="_blank" rel="noopener"><img src="/assets/img/instagram/ig-17942577078084949.jpg" alt="" loading="lazy"><span class="ig-velo"><span class="ig-data">19 agosto 2026</span><span class="ig-testo">19.08 One month to go. There is always a moment before a concert when everything seems to becom…</span></span></a><a class="ig-cella" href="https://www.instagram.com/p/DcIyPZcCAff/" target="_blank" rel="noopener"><img src="/assets/img/instagram/ig-18622697992007966.jpg" alt="" loading="lazy"><span class="ig-velo"><span class="ig-data">17 agosto 2026</span><span class="ig-testo">There is something I never get tired of in Italy: taking a turn into a street I’ve never walked…</span></span></a><a class="ig-cella" href="https://www.instagram.com/p/Db8xNK2iFO4/" target="_blank" rel="noopener"><img src="/assets/img/instagram/ig-18116279627314048.jpg" alt="" loading="lazy"><span class="ig-velo"><span class="ig-data">12 agosto 2026</span><span class="ig-testo">As 19 September gets closer, I find myself looking forward to this evening more and more. There…</span></span></a><a class="ig-cella" href="https://www.instagram.com/p/Dbx7_huCF-e/" target="_blank" rel="noopener"><img src="/assets/img/instagram/ig-18101275427525033.jpg" alt="" loading="lazy"><span class="ig-velo"><span class="ig-testo">Two nights. Two different musical journeys. I’m looking forward to welcoming you to two special…</span></span></a><a class="ig-cella" href="https://www.instagram.com/p/Dblk6jWCAoc/" target="_blank" rel="noopener"><img src="/assets/img/instagram/ig-17916570321222294.jpg" alt="" loading="lazy"><span class="ig-velo"><span class="ig-testo">I’ll be very happy to welcome you on 19 September at the Ancient Theatre of Kourion. Together w…</span></span></a><a class="ig-cella" href="https://www.instagram.com/p/DbdXJvgCCKC/" target="_blank" rel="noopener"><img src="/assets/img/instagram/ig-18438584938126473.jpg" alt="" loading="lazy"><span class="ig-velo"><span class="ig-testo">Five unforgettable days. Five unique musical journeys. This year’s Minthis Music Festival broug…</span></span></a></div></div>
+</section>
+
+<!-- ======================= le date ======================= -->
+<section class="in" style="padding:clamp(50px,8vw,110px) 0">
+  <div class="entra" style="margin-bottom:34px">
+    <p class="occhio">Engagements</p>
+    <h2 style="margin:16px 0 0;font:400 clamp(28px,4vw,48px)/1.06 var(--serif)">Where he will be</h2>
+  </div>
+  <div class="date entra">
+    <div class="riga">
+      <div class="quando">17–18 November 2026</div>
+      <div class="cosa"><b>Singing class</b><span>“G. P. da Palestrina” Conservatory, Cagliari</span></div>
+      <div class="bot"><a href="/teaching.html">Details</a></div>
+    </div>
+    <div class="riga">
+      <div class="quando">Summer 2027</div>
+      <div class="cosa"><b>Minthis Music Festival</b><span>Paphos, Cyprus · fourth edition, artistic direction</span></div>
+      <div class="bot"><a href="https://minthismusicfestival.com" target="_blank" rel="noopener">The festival</a></div>
+    </div>
+    <div class="riga">
+      <div class="quando">On request</div>
+      <div class="cosa"><b>Parlami d’Amore</b><span>Recital programme · Verdi, Puccini, Gounod and Neapolitan song</span></div>
+      <div class="bot"><a href="mailto:info@massimogiordano.com">Write</a></div>
     </div>
   </div>
 </section>
 
-<!-- ============ I TRE PILASTRI ============ -->
-<section class="on-dark">
-  <div class="wrap">
-    <p class="label">Today</p>
-    <h2>Three things at once</h2>
-    <div class="cards cards-3" style="margin-top:34px">
-      <div class="card">
-        <h3>On stage</h3>
-        <p class="muted">Opera and concert. Cavaradossi, Don Carlo, Don José, Andrea Chénier, Des Grieux, pairing Verdi, Puccini and Gounod with Neapolitan song.</p>
-      </div>
-      <div class="card">
-        <h3>Festival &amp; production</h3>
-        <p class="muted">Artistic Director of the Minthis Music Festival in Paphos, Cyprus: three editions since 2024, a fourth confirmed for 2027.</p>
-      </div>
-      <div class="card">
-        <h3>Conservatory teaching</h3>
-        <p class="muted">Professor in the singing class at the Conservatorio Statale di Musica “Giovanni Pierluigi da Palestrina” in Cagliari. A full teaching post in a state institution, not an occasional masterclass.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ======================= iscrizione ======================= -->
+<section class="iscriviti"><div class="in entra">
+  <p class="occhio">Mailing list</p>
+  <h2>Know when he sings</h2>
+  <p>A short email a few times a year: new dates, a recording, the festival. Nothing else, and one click to stop.</p>
+  <form class="modulo" id="modulo-avvisi">
+    <input type="email" name="email" required placeholder="your email address" aria-label="Your email address">
+    <button type="submit">Subscribe</button>
+  </form>
+</div></section>
 
-<!-- ============ AGENDA ============ -->
+<script>
+(function(){
+  'use strict';
+  var fermo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* il sipario si alza quando la pagina e' pronta */
+  /* Il sipario si alza quando il video è pronto a partire — e comunque
+     dopo tre secondi, perché nessuno deve restare chiuso fuori per una
+     connessione lenta. */
+  (function(){
+    var tenda = document.getElementById('tenda');
+    if (!tenda) return;
+    var alzato = false;
+    function alza(){
+      if (alzato) return;
+      alzato = true;
+      tenda.classList.add('via');
+      var v = document.querySelector('.palco video');
+      if (v && v.paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); }
+    }
+    var video = document.querySelector('.palco video');
+    if (video){
+      if (video.readyState >= 3) setTimeout(alza, 700);
+      else video.addEventListener('canplay', function(){ setTimeout(alza, 450); });
+    }
+    window.addEventListener('load', function(){ setTimeout(alza, 1400); });
+    setTimeout(alza, 3000);
+  })();
 
-<!-- ============ REPERTORIO ============ -->
-<section class="tint">
-  <div class="wrap cols cols-side">
-    <div>
-      <p class="label">Repertoire</p>
-      <h2>Selected roles</h2>
-      <ul class="rep" style="margin-top:24px">
-        <li><span class="role">Cavaradossi</span> <span class="work">Tosca</span>
-          <span class="houses">Bavarian State Opera · Vienna State Opera · Covent Garden · Metropolitan Opera · Opéra national de Paris · San Francisco Opera · Bolshoi Theatre</span></li>
-        <li><span class="role">Rodolfo</span> <span class="work">La bohème</span>
-          <span class="houses">Metropolitan Opera · Opéra national de Paris · Covent Garden · Bavarian State Opera · Vienna State Opera · Semperoper Dresden</span></li>
-        <li><span class="role">Alfredo Germont</span> <span class="work">La traviata</span>
-          <span class="houses">Metropolitan Opera · La Scala · Vienna State Opera · Deutsche Oper Berlin · Bolshoi Theatre · Santa Fe Opera</span></li>
-        <li><span class="role">Des Grieux</span> <span class="work">Manon · Manon Lescaut</span>
-          <span class="houses">Metropolitan Opera · La Scala · Vienna State Opera · Covent Garden · Baden-Baden Easter Festival (Berliner Philharmoniker, Sir Simon Rattle)</span></li>
-        <li><span class="role">Don Carlo / Don Carlos</span> <span class="work">Verdi</span>
-          <span class="houses">Maggio Musicale Fiorentino (Zubin Mehta) · Deutsche Oper Berlin · Dutch National Opera · Stuttgart Opera (French version)</span></li>
-        <li><span class="role">Werther</span> <span class="work">Massenet</span>
-          <span class="houses">Bavarian State Opera · Opéra national du Rhin · Opernhaus Zürich · Théâtre du Capitole, Toulouse</span></li>
-        <li><span class="role">Andrea Chénier</span> <span class="work">Umberto Giordano</span>
-          <span class="houses">Vienna State Opera, Marco Armiliato, directed by Otto Schenk</span></li>
-      </ul>
-      <p style="margin-top:28px"><a class="btn" href="repertoire.html">Full repertoire</a></p>
-    </div>
-    <div class="foto-pila">
-      <figure>
-        <img src="assets/img/gallery/tosca-massimo-giordano-staatsoper-wien-2014-800.jpg"
-             srcset="assets/img/gallery/tosca-massimo-giordano-staatsoper-wien-2014-800.jpg 800w, assets/img/gallery/tosca-massimo-giordano-staatsoper-wien-2014-1800.jpg 1200w"
-             sizes="(min-width:900px) 40vw, 100vw"
-             alt="Cavaradossi in Tosca, Wiener Staatsoper, 2014" loading="lazy" width="1200" height="1800">
-        <figcaption>Cavaradossi, <em>Tosca</em>, Vienna State Opera, 2014.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/img/gallery/boheme-wien-900.jpg"
-             srcset="assets/img/gallery/boheme-wien-900.jpg 900w, assets/img/gallery/boheme-wien-1600.jpg 1600w"
-             sizes="(min-width:900px) 40vw, 100vw"
-             alt="Rodolfo in La boheme, Wiener Staatsoper" loading="lazy" width="1600" height="968">
-        <figcaption>Rodolfo, <em>La bohème</em>, Wiener Staatsoper.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/img/gallery/carmen-wien-2010-netrebko-900.jpg?v=f27fcc0e"
-             srcset="assets/img/gallery/carmen-wien-2010-netrebko-900.jpg?v=f27fcc0e 900w, assets/img/gallery/carmen-wien-2010-netrebko-1800.jpg?v=f27fcc0e 1800w"
-             sizes="(min-width:900px) 40vw, 100vw"
-             alt="Don José in Carmen with Anna Netrebko, Vienna State Opera, 2010" loading="lazy" width="1600" height="1131">
-        <figcaption>Don José, <em>Carmen</em>, with Anna Netrebko, Vienna State Opera, 2010.</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
+  /* ---- quello che entra scorrendo ---- */
+  /* da qui in poi la pagina può nascondere le cose per poi mostrarle:
+     se questo script non arriva, restano semplicemente visibili. */
+  /* La dissolvenza all'ingresso resta SPENTA: provata il 19 novembre in tre
+     versioni (brusca, gentile, ritardata) e nessuna convinceva. Il codice
+     resta: per riaccenderla basta togliere i due barrati sotto. */
+  // document.documentElement.classList.add('moto');
 
-<!-- ============ DIDATTICA ============ -->
+  var osservatore = new IntersectionObserver(function(voci){
+    voci.forEach(function(v){ if (v.isIntersecting){ v.target.classList.add('dentro'); osservatore.unobserve(v.target); } });
+  }, { threshold: .2, rootMargin: '0px 0px -14% 0px' });
+  document.querySelectorAll('.entra').forEach(function(e){ osservatore.observe(e); });
+  setTimeout(function(){                       /* se qualcosa va storto, si vede lo stesso */
+    document.querySelectorAll('.entra:not(.dentro)').forEach(function(e){ e.classList.add('dentro'); });
+  }, 3000);
 
+  /* ---- i numeri che salgono ---- */
+  function conta(el){
+    var meta = parseInt(el.dataset.conta, 10), coda = el.dataset.coda || '';
+    if (fermo){ el.textContent = meta + coda; return; }
+    var t0 = performance.now(), durata = 1400;
+    (function passo(t){
+      var p = Math.min(1, (t - t0) / durata);
+      var e = 1 - Math.pow(1 - p, 3);                 /* frena alla fine */
+      el.textContent = Math.round(meta * e) + (p === 1 ? coda : '');
+      if (p < 1) requestAnimationFrame(passo);
+    })(t0);
+  }
+  var occhioNumeri = new IntersectionObserver(function(voci){
+    voci.forEach(function(v){
+      if (v.isIntersecting){ v.target.querySelectorAll('[data-conta]').forEach(conta); occhioNumeri.unobserve(v.target); }
+    });
+  }, { threshold: .4 });
+  var blocco = document.querySelector('.conti');
+  if (blocco) occhioNumeri.observe(blocco);
 
-<!-- ============ STAMPA ============ -->
+  /* ---- la striscia di fotografie si trascina col mouse ---- */
+  var treno = document.getElementById('treno');
+  if (treno){
+    var giu = false, x0 = 0, s0 = 0;
+    treno.addEventListener('mousedown', function(e){ giu = true; treno.classList.add('tira'); x0 = e.pageX; s0 = treno.scrollLeft; });
+    ['mouseleave','mouseup'].forEach(function(ev){ treno.addEventListener(ev, function(){ giu = false; treno.classList.remove('tira'); }); });
+    treno.addEventListener('mousemove', function(e){ if (!giu) return; e.preventDefault(); treno.scrollLeft = s0 - (e.pageX - x0) * 1.25; });
+  }
 
+  /* ---- il suono, e la forma d'onda disegnata da quello che esce -----
+     Non e' un'animazione finta: legge davvero l'uscita audio. Un tenore
+     deve poter essere ascoltato dalla prima schermata, non cercato. */
+  var tasto = document.getElementById('bottone-ascolta'),
+      suono = document.getElementById('suono'),
+      tela  = document.getElementById('onda');
+  if (tasto && suono && tela){
+    var ctx = tela.getContext('2d'), gira = null;
+    /* il canvas alla risoluzione vera dello schermo: su un Mac le barre
+       altrimenti escono sfocate */
+    function misura(){
+      var r = tela.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
+      tela.width = Math.round(r.width * d); tela.height = Math.round(r.height * d);
+    }
+    misura();
+    window.addEventListener('resize', misura);
 
-<!-- ============ MEDIA ============ -->
-<section>
-  <div class="wrap">
-    <p class="label">Media</p>
-    <h2>Video</h2>
-    <div class="cards cards-2" style="margin-top:30px">
-      <figure>
-        <div class="ratio">
-          <video controls preload="metadata" playsinline
-                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--ink)">
-            <source src="assets/video/corridoio.mp4" type="video/mp4">
-          </video>
-        </div>
-        <figcaption>Minutes before going on: a concert in an ancient amphitheatre.</figcaption>
-      </figure>
-      <figure>
-        <div class="ratio">
-          <video controls preload="metadata" playsinline
-                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--ink)">
-            <source src="assets/video/dolce-notte.mp4" type="video/mp4">
-          </video>
-        </div>
-        <figcaption>&ldquo;Dolce notte misteriosa&rdquo;, from <em>Marcella</em> by Umberto Giordano. Music video shot on Capri, directed by Marisa Crawford.</figcaption>
-      </figure>
-      <figure>
-        <div class="ratio"><button type="button" class="video-fermo" data-video="XQGg6TczZjU" data-titolo="Massimo Giordano, interview"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5 20 12 7 19.5z" fill="currentColor"/></svg></span><b>Interview</b><span>Pompei, the flute, the first album · plays from YouTube</span><span class="sr-only">Play the video: Massimo Giordano, interview</span></button></div>
-        <figcaption>Interview: Pompei, the flute, and the making of a first album.</figcaption>
-      </figure>
-    </div>
-    <p style="margin-top:26px"><a class="btn" href="https://www.youtube.com/c/MassimoGiordano" rel="noopener">More on YouTube</a></p>
+    var oro = getComputedStyle(document.documentElement)
+                .getPropertyValue('--oro').trim() || '#b9924a';
 
-    <h2 style="margin-top:56px">Recording</h2>
-    <div class="cols cols-2" style="margin-top:24px">
-      <div class="prose">
-        <h3><em>Amore e Tormento</em></h3>
-          <figure style="margin:18px 0 0;max-width:340px">
-            <img src="assets/img/amore-e-tormento.jpg" alt="Amore e Tormento, album cover" loading="lazy" width="1200" height="1198">
-            <figcaption>Album cover. Photograph by Marisa Crawford.</figcaption>
-          </figure>
-        <p class="muted" style="font-family:var(--sans);font-size:15px">BMG Rights Management · released 6 May 2013 · Ensemble del Maggio Musicale Fiorentino, Carlo Goldstein</p>
-        <p>The debut solo album: celebrated Italian arias from <em>Tosca</em>, <em>Andrea Chénier</em>, <em>Turandot</em>, <em>L’Arlesiana</em> and <em>Adriana Lecouvreur</em>, alongside lesser-known pieces, among them “Dolce notte misteriosa” from Umberto Giordano’s <em>Marcella</em>.</p>
-                <h4 class="brani-tit">Three tracks from the album</h4>
-        <ul class="brani">
-        <li class="brano">
-          <div class="brano-testa"><b>E lucean le stelle</b> <span class="muted">Puccini &middot; Tosca &middot; 3:14</span></div>
-          <audio controls preload="none" src="assets/audio/e-lucean-le-stelle.m4a"></audio>
-        </li>
-        <li class="brano">
-          <div class="brano-testa"><b>Io l’ho perduta</b> <span class="muted">Verdi &middot; Don Carlo &middot; 4:23</span></div>
-          <audio controls preload="none" src="assets/audio/io-l-ho-perduta.m4a"></audio>
-        </li>
-        <li class="brano">
-          <div class="brano-testa"><b>La dolcissima effige</b> <span class="muted">Cilea &middot; Adriana Lecouvreur &middot; 2:28</span></div>
-          <audio controls preload="none" src="assets/audio/la-dolcissima-effige.m4a"></audio>
-        </li>
-        </ul>
-<p style="margin-top:20px"><a class="btn" href="https://open.spotify.com/album/6BiH16iKaZqnc2WpeG4Wkn" rel="noopener" target="_blank">Listen on Spotify</a></p>
-      </div>
-      <div class="prose">
-        <h3>Also on record</h3>
-        <ul class="facts">
-          <li><b>2000</b><span>Verdi gala, Berliner Philharmoniker New Year’s Eve Concert under Claudio Abbado, released as <em>Gala from Berlin 2000 · Tutto nel mondo</em>; the concert can be watched in the orchestra’s <a href="https://www.digitalconcerthall.com/en/concert/84" rel="noopener" target="_blank">Digital Concert Hall</a></span></li>
-          <li><b>2000</b><span>Massenet, <em>Le Jongleur de Notre-Dame</em>, Teatro dell’Opera di Roma, live recording</span></li>
-          <li><b>2001</b><span>Verdi, <em>I Lombardi alla prima crociata</em> (Oronte), Tiziano Severini, with Dimitra Theodossiou and Giorgio Surian, live from the Teatro Ponchielli, Cremona, Dynamic CDS390</span></li>
-          <li><b>2004</b><span>Puccini, <em>Gianni Schicchi</em> (Rinuccio), Glyndebourne Festival, DVD Opus Arte OA0918D</span></li>
-          <li><b>2006</b><span>Massenet, <em>Manon</em> (Des Grieux), the Act III duet with Renée Fleming, live at the Metropolitan Opera under Jesús López Cobos, 2006, released 2023 on <a href="https://www.deezer.com/album/393717087" rel="noopener" target="_blank"><em>Her Greatest Moments at the MET</em></a>, Decca</span></li>
-          <li><b>2007</b><span>Puccini, <em>Il trittico</em> (Rinuccio in <em>Gianni Schicchi</em>), Metropolitan Opera, James Levine, production Jack O&rsquo;Brien, broadcast live in cinemas worldwide on 28 April 2007 in the Met&rsquo;s first <em>Live in HD</em> season, then on PBS <em>Great Performances at the Met</em></span></li>
-          <li><b>2007</b><span>Verdi, <em>La traviata</em> (Alfredo), Teatro Regio di Parma, Festival Verdi, 9, 13 and 15 October 2007, <strong>Yuri Temirkanov</strong> in his Italian opera debut, production Karl-Ernst and Ursel Herrmann, with Svetla Vassileva and Vladimir Stoyanov, DVD C Major 723608</span></li>
-          <li><b>2008</b><span>Donizetti, <em>Imelda de’ Lambertazzi</em> (Lamberto), Orchestra of the Age of Enlightenment, Mark Elder, with Nicole Cabell and Frank Lopardo, recorded live at the Queen Elizabeth Hall, London, 10 March 2007, <a href="https://shop.opera-rara.com/product-tag/massimo-giordano" rel="noopener" target="_blank">Opera Rara</a></span></li>
-          <li><b>2010</b><span>Bizet, <em>Carmen</em> (Don José), Vienna State Opera, Zeffirelli production under Andris Nelsons, with Anna Netrebko; <a href="https://www.unitel.de/en/product/do/detail.html?id=2960" rel="noopener" target="_blank">filmed by Unitel</a></span></li>
-          <li><b>2015</b><span>Verdi, Puccini, Donizetti, Bellini, Mozart, <em>Bella Italia!</em>, New Year&rsquo;s Eve gala from the Festspielhaus Baden-Baden, SWR Sinfonieorchester Baden-Baden und Freiburg, Gérard Korsten, with Angel Blue and Erwin Schrott, produced for ARD, SWR and 3sat</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+    var ultimoIstante = 0;
+    function disegna(t){
+      gira = requestAnimationFrame(disegna);
+      var dt = ultimoIstante ? Math.min(.1, (t - ultimoIstante) / 1000) : .016;
+      ultimoIstante = t;
 
-<!-- ============ PER TEATRI E STAMPA ============ -->
+      var L = tela.width, A = tela.height, base = A - 2;
+      ctx.clearRect(0, 0, L, A);
+      var canta = !suono.paused && analizzatore && bordi;
 
+      if (canta){
+        analizzatore.getFloatFrequencyData(dati);
+        var MIN = analizzatore.minDecibels, MAX = analizzatore.maxDecibels;
+        for (var b = 0; b < BANDE; b++){
+          var da = bordi[b], a = Math.max(bordi[b + 1], da + 1), somma = 0, n = 0;
+          for (var k = da; k < a; k++){ var d = dati[k]; if (d > -Infinity){ somma += d; n++; } }
+          var dB = n ? somma / n : MIN;
+          var v = (dB - MIN) / (MAX - MIN);
+          v = Math.max(0, Math.min(1, v));
+          v = Math.pow(v, .78);                       /* un filo di guadagno sui deboli */
 
-<!-- ============ AVVISI ============ -->
+          /* salita immediata, discesa di circa 9 dB al secondo */
+          livelli[b] = v > livelli[b] ? v : Math.max(v, livelli[b] - dt * 1.9);
 
+          if (livelli[b] >= picchi[b]) { picchi[b] = livelli[b]; cadutaPicco[b] = -0.55; }
+          else { cadutaPicco[b] += dt * 2.3; picchi[b] = Math.max(livelli[b], picchi[b] - Math.max(0, cadutaPicco[b]) * dt * 2.4); }
+        }
+      } else {
+        for (var z = 0; z < BANDE; z++){
+          livelli[z] = Math.max(0, livelli[z] - dt * 2.6);
+          picchi[z] = Math.max(livelli[z], picchi[z] - dt * 2.0);
+        }
+      }
 
-<!-- ============ CONTATTI ============ -->
+      var largo = L / BANDE, w = Math.max(1.5, largo * .62);
+      for (var i = 0; i < BANDE; i++){
+        var h = livelli[i] * base;
+        var x = i * largo + (largo - w) / 2;
+        if (h > .5){
+          var g = ctx.createLinearGradient(0, base, 0, base - h);
+          g.addColorStop(0, 'rgba(185,146,74,.35)');
+          g.addColorStop(.55, oro);
+          g.addColorStop(1, '#f1e4c8');
+          ctx.fillStyle = g;
+          ctx.fillRect(x, base - h, w, h);
+        }
+        var hp = picchi[i] * base;
+        if (hp > 1.5){
+          ctx.fillStyle = 'rgba(241,228,200,.9)';
+          ctx.fillRect(x, base - hp - 1.5, w, 1.5);
+        }
+      }
+    }
 
+    /* L'audio NON passa da nessuna parte: esce dall'elemento e basta.
+       La versione di prima lo dirottava dentro il motore audio del browser
+       per disegnare la forma d'onda vera — e in quell'istante il suono si
+       zittiva. Meglio un'onda disegnata che una voce muta.
 
+       L'onda qui segue il tempo e un movimento suo: non è il suono vero,
+       ma si muove solo mentre si canta, e si ferma quando si ferma. */
+    var analizzatore = null, dati = null, motore = null;
+    var BANDE = 56, livelli = new Float32Array(BANDE), picchi = new Float32Array(BANDE),
+        cadutaPicco = new Float32Array(BANDE), bordi = null;
 
-<section class="on-dark" id="follow">
-  <div class="wrap">
-    <p class="label">Follow</p>
-    <h2>Where he is, every day</h2>
-    <p class="muted" style="max-width:52ch;margin-top:10px">Rehearsals, stages, cities. The things that do not end up in a biography.</p>
+    /* ── Analizzatore di spettro ──────────────────────────────────────
+       Fatto come lo fanno gli strumenti veri, non come un'animazione:
 
-    <div class="reti">
-        <a class="rete" href="https://www.instagram.com/massimo__giordano/" rel="me noopener" target="_blank">
-          <span class="rete-segno" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.6 2h8.8A5.6 5.6 0 0 1 22 7.6v8.8a5.6 5.6 0 0 1-5.6 5.6H7.6A5.6 5.6 0 0 1 2 16.4V7.6A5.6 5.6 0 0 1 7.6 2Zm0 1.9A3.7 3.7 0 0 0 3.9 7.6v8.8a3.7 3.7 0 0 0 3.7 3.7h8.8a3.7 3.7 0 0 0 3.7-3.7V7.6a3.7 3.7 0 0 0-3.7-3.7H7.6Zm4.4 3.2a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.1-2.7a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg></span>
-          <span class="rete-nome">Instagram</span>
-          <span class="rete-mano">@massimo__giordano</span>
-        </a>
-        <a class="rete" href="https://www.threads.com/@massimo__giordano" rel="me noopener" target="_blank">
-          <span class="rete-segno" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.1 11.3c-.1-.05-.2-.1-.3-.14-.18-3.2-1.95-5.04-4.9-5.06h-.04c-1.77 0-3.24.75-4.15 2.12l1.63 1.1c.68-1.02 1.74-1.24 2.52-1.24h.03c.97 0 1.7.29 2.17.84.35.4.58.96.69 1.66a12.6 12.6 0 0 0-2.8-.13c-2.82.16-4.63 1.8-4.51 4.08.06 1.15.64 2.15 1.62 2.8.83.56 1.9.83 3.02.77 1.47-.08 2.63-.64 3.43-1.67.61-.78.99-1.79 1.16-3.06.7.42 1.21.97 1.5 1.63.48 1.13.51 2.98-1 4.49-1.32 1.32-2.91 1.89-5.31 1.9-2.66-.02-4.68-.87-5.98-2.54C4.65 17.3 4.03 15.1 4 12.3c.03-2.8.65-5 1.86-6.54C7.16 4.09 9.18 3.24 11.84 3.22c2.68.02 4.73.88 6.1 2.55.67.82 1.18 1.86 1.51 3.06l1.9-.5c-.4-1.48-1.04-2.76-1.9-3.82C17.7 2.37 15.1 1.25 11.85 1.23h-.01C8.6 1.25 6.03 2.37 4.3 4.53 2.75 6.44 1.96 9.1 1.93 12.3c.03 3.2.82 5.86 2.37 7.77 1.73 2.16 4.3 3.28 7.54 3.3h.01c2.88-.02 4.91-.77 6.58-2.44 2.19-2.18 2.12-4.92 1.4-6.6-.52-1.2-1.5-2.18-2.84-2.85Zm-4.95 5.03c-1.24.07-2.53-.49-2.59-1.66-.05-.87.62-1.84 2.67-1.96.23-.1.46-.2.69-.02.75 0 1.44.07 2.08.21-.24 2.97-1.63 3.37-2.85 3.43Z"/></svg></span>
-          <span class="rete-nome">Threads</span>
-          <span class="rete-mano">@massimo__giordano</span>
-        </a>
-        <a class="rete" href="https://www.facebook.com/tenor.massimogiordano/" rel="me noopener" target="_blank">
-          <span class="rete-segno" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.6 22v-8.6h2.9l.44-3.37H13.6V7.88c0-.98.27-1.64 1.67-1.64h1.78V3.22A24 24 0 0 0 14.45 3C11.88 3 10.12 4.57 10.12 7.46v2.57H7.2v3.37h2.92V22h3.48Z"/></svg></span>
-          <span class="rete-nome">Facebook</span>
-          <span class="rete-mano">tenor.massimogiordano</span>
-        </a>
-        <a class="rete" href="https://x.com/TheItalianTenor" rel="me noopener" target="_blank">
-          <span class="rete-segno" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.53 3h3.2l-6.99 7.99L22 21.6h-6.44l-5.04-6.6-5.77 6.6H1.54l7.48-8.55L1.6 3h6.6l4.56 6.03L17.53 3Zm-1.12 16.68h1.77L7.67 4.82H5.77l10.64 14.86Z"/></svg></span>
-          <span class="rete-nome">X</span>
-          <span class="rete-mano">@TheItalianTenor</span>
-        </a>
-        <a class="rete" href="https://www.youtube.com/c/MassimoGiordano" rel="me noopener" target="_blank">
-          <span class="rete-segno" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12c0 1.62.13 3.23.4 4.8a2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77c.27-1.57.4-3.18.4-4.8 0-1.62-.13-3.23-.4-4.8ZM10 15.1V8.9l5.2 3.1-5.2 3.1Z"/></svg></span>
-          <span class="rete-nome">YouTube</span>
-          <span class="rete-mano">Massimo Giordano</span>
-        </a>
-    </div>
+       · le bande sono distribuite per OTTAVE, da 50 Hz a 14 kHz. Una scala
+         lineare schiaccerebbe tutta la voce nel primo decimo dello schermo:
+         un tenore vive fra i 130 Hz del do grave e i 523 del do acuto, più
+         le armoniche che gli danno il colore.
+       · l'ampiezza è in DECIBEL, da -82 a -18, perché l'orecchio sente così.
+       · salita immediata, discesa lenta: l'attacco di una nota si vede
+         tutto, la coda scende con la voce invece di sparire di colpo.
+       · il picco resta sospeso un istante e poi cade: è quello che permette
+         di leggere la dinamica di una frase mentre passa.                */
+    function preparaBande(ctxAudio){
+      var fMin = 50, fMax = Math.min(14000, ctxAudio.sampleRate / 2);
+      var nyquist = ctxAudio.sampleRate / 2, N = analizzatore.frequencyBinCount;
+      bordi = new Array(BANDE + 1);
+      for (var i = 0; i <= BANDE; i++){
+        var f = fMin * Math.pow(fMax / fMin, i / BANDE);
+        bordi[i] = Math.min(N - 1, Math.max(0, Math.round(f / nyquist * N)));
+      }
+    }
 
-    <div class="ig">
-      <div class="ig-testa">
-        <p class="label">Instagram</p>
-        <h3>The last nine</h3>
-      </div>
-      <!-- Le fotografie vengono scaricate da Instagram una volta al giorno e
-           salvate dentro il sito: si caricano all'istante, Google le legge come
-           contenuto di questo sito, e non entra in pagina nessun codice di Meta
-           (quindi nessun cookie e nessun banner da accettare). -->
-      <div class="ig-muro" data-ig>
-        <a href="https://www.instagram.com/p/DdtcN94oL6j/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-18465477859184077.jpg" alt="I would like to thank Cyprus for this incredible concert with romatreorchestra, christianm.kunert, tatiana_previati_soprano, jacopotaddei and…" width="640" height="640" loading="lazy" decoding="async"></a>
-        <a href="https://www.instagram.com/p/DcZFdydCHNk/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-18064943222581955.jpg" alt="A different side of Rome, and a different pace for me. No stage, no tuxedo, just a summer day, comfortable clothes, and time to enjoy the city…" width="640" height="640" loading="lazy" decoding="async"></a>
-        <a href="https://www.instagram.com/p/DcO65BMkZxh/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-17942577078084949.jpg" alt="19.08 One month to go. There is always a moment before a concert when everything seems to become quieter. The lights, the stage, the audience waiting…" width="640" height="640" loading="lazy" decoding="async"></a>
-        <a href="https://www.instagram.com/p/DcIyPZcCAff/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-18622697992007966.jpg" alt="There is something I never get tired of in Italy: taking a turn into a street I’ve never walked before and seeing where it leads. Even when you know…" width="640" height="640" loading="lazy" decoding="async"></a>
-        <a href="https://www.instagram.com/p/Db8xNK2iFO4/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-18116279627314048.jpg" alt="As 19 September gets closer, I find myself looking forward to this evening more and more. There is something truly special about performing in a…" width="640" height="640" loading="lazy" decoding="async"></a>
-        <a href="https://www.instagram.com/p/Dbx7_huCF-e/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-18101275427525033.jpg" alt="Two nights. Two different musical journeys. I’m looking forward to welcoming you to two special concerts in Cyprus this September. 19 September Opera…" width="640" height="640" loading="lazy" decoding="async"></a>
-        <a href="https://www.instagram.com/p/Dblk6jWCAoc/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-17916570321222294.jpg" alt="I’ll be very happy to welcome you on 19 September at the Ancient Theatre of Kourion. Together with the Roma Tre Orchestra, conducted by Christian…" width="640" height="640" loading="lazy" decoding="async"></a>
-        <a href="https://www.instagram.com/p/DbdXJvgCCKC/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-18438584938126473.jpg" alt="Five unforgettable days. Five unique musical journeys. This year’s Minthis Music Festival brought together extraordinary artists, wonderful…" width="640" height="640" loading="lazy" decoding="async"></a>
-        <a href="https://www.instagram.com/p/DbX-D1bCObG/" rel="noopener" target="_blank"><img src="assets/img/instagram/ig-17948538204246629.jpg" alt="Music always means something more when it’s shared. On 19 September, I’d love to welcome you to the Kourion ancient amphitheatre for a special night…" width="640" height="640" loading="lazy" decoding="async"></a>
-      </div>
-      <p><a class="btn" href="https://www.instagram.com/massimo__giordano/" rel="me noopener" target="_blank">See them on Instagram</a></p>
-    </div>
-  </div>
-</section>
+    function collega(){
+      if (analizzatore) return Promise.resolve();
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return Promise.resolve();
+      try {
+        motore = new AC();
+        var sorgente = motore.createMediaElementSource(suono);
+        var an = motore.createAnalyser();
+        an.fftSize = 4096;              /* risoluzione fine sui gravi */
+        an.minDecibels = -82;
+        an.maxDecibels = -18;
+        an.smoothingTimeConstant = 0;   /* il filtro lo faccio io, più fine */
+        dati = new Float32Array(an.frequencyBinCount);
+        sorgente.connect(an);
+        an.connect(motore.destination);
+        analizzatore = an;
+        preparaBande(motore);
+        return motore.resume ? motore.resume() : Promise.resolve();
+      } catch (e) { analizzatore = null; return Promise.resolve(); }
+    }
+
+    tasto.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      if (!suono.paused) {
+        suono.pause();
+        tasto.classList.remove('suona');
+        tela.classList.remove('viva');
+        return;
+      }
+      var acceso = function () { tasto.classList.add('suona'); tela.classList.add('viva'); };
+      collega().then(function () {
+        var p = suono.play();
+        if (p && p.then) p.then(acceso).catch(acceso); else acceso();
+      });
+    });
+    disegna();
+    suono.addEventListener('ended', function(){
+      tasto.classList.remove('suona'); tela.classList.remove('viva');
+    });
+  }
+
+  /* ---- l'iscrizione agli avvisi: quella vera, non una finta ---- */
+  var modulo = document.getElementById('modulo-avvisi');
+  if (modulo){
+    modulo.addEventListener('submit', function(e){
+      e.preventDefault();
+      var campo = modulo.querySelector('input[type=email]');
+      var dice  = document.getElementById('esito-avvisi');
+      var tasto = modulo.querySelector('button');
+      if (!campo.value || !campo.checkValidity()) { campo.focus(); return; }
+      tasto.disabled = true;
+      dice.hidden = false; dice.textContent = 'One moment…';
+      fetch('/api/modulo', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tipo:'avvisi', email: campo.value, consenso:true, lingua:'en', sito:'' })
+      }).then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){
+          dice.textContent = (d && d.ok)
+            ? 'Done — you are on the list. I\u2019ll write when there is something to say.'
+            : 'It didn’t work. Please write to info@massimogiordano.com';
+          if (d && d.ok) modulo.reset();
+        })
+        .catch(function(){ dice.textContent = 'It didn’t work. Please write to info@massimogiordano.com'; })
+        .then(function(){ tasto.disabled = false; });
+    });
+  }
+
+  /* ---- il nastro dei teatri scorre all'infinito: si duplica da solo ---- */
+  var nastro = document.getElementById('nastro-dentro');
+  if (nastro && !fermo) nastro.innerHTML += nastro.innerHTML;
+})();
+</script>
 </main>
 
 <footer>
@@ -612,12 +644,12 @@
     </div>
   </div>
 </footer>
+
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 <script src="assets/barra.js?v=1ac717b7" defer></script>
   <script src="assets/lingua.js?v=1a8eb832" defer></script>
   <script src="assets/menu.js?v=f86795ca" defer></script>
-<script src="assets/hero.js?v=2009b64a" defer></script>
-<script src="assets/colonne.js?v=daf27468" defer></script>
+<script src="assets/menu-voce.js?v=27ad521e" defer></script>
 <script src="assets/video.js?v=ab7dd108" defer></script>
 <script src="assets/redazione.js?v=ab3e9809" defer></script>
   <script src="assets/consenso.js?v=035731af" defer></script>
