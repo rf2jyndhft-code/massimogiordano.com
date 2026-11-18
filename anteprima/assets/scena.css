@@ -286,19 +286,40 @@ body.scena .topbar.topbar-fissa{
 body.scena .palco{padding-top:0}
 
 @media (max-width:900px){
-  /* Sul telefono la barra resta quella del sito, compatta.
-     ⚠️ NIENTE sfocatura dietro: un elemento sfocato diventa il riferimento
-     per tutto ciò che sta dentro, e il pannello del menu — che dovrebbe
-     coprire lo schermo intero — restava imprigionato dentro la barra alta
-     quattro dita. Fondo pieno, e il menu torna libero. */
+  /* Sul telefono vale lo stesso impianto del computer: il nome sopra, le
+     voci sotto, tutto trasparente sul video. Niente pannello a scomparsa:
+     le otto voci stanno su una riga che si trascina col dito, e chi arriva
+     vede subito dove può andare invece di dover aprire qualcosa. */
+  body.scena .menu-bot{display:none!important}
+  body.scena .menu-pan{display:none!important}
+
   body.scena .topbar:not(.topbar-fissa){
-    position:sticky;background:var(--sfondo);
-    -webkit-backdrop-filter:none;backdrop-filter:none;
-    border-bottom:1px solid var(--filo)}
-  body.scena .topbar:not(.topbar-fissa) .nav{border-top:0}
-  /* stessa ragione per la barra che scende scorrendo */
+    position:absolute;background:transparent;border-bottom:0;
+    -webkit-backdrop-filter:none;backdrop-filter:none}
+  body.scena .topbar:not(.topbar-fissa) .wrap{
+    display:block;padding-top:16px;padding-bottom:10px}
+  body.scena .topbar .brand{
+    display:block;text-align:center;font-size:13px;letter-spacing:.2em}
+
+  body.scena .topbar .nav{
+    display:flex!important;margin-top:12px;gap:22px;
+    justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;
+    padding:9px 18px 4px;scrollbar-width:none;
+    border-top:1px solid color-mix(in srgb,var(--oro) 20%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent)}
+  body.scena .topbar .nav::-webkit-scrollbar{display:none}
+  body.scena .topbar .nav a{
+    font-size:11.5px;letter-spacing:.14em;white-space:nowrap;padding:4px 0}
+
+  body.scena .topbar .tb-destra{
+    position:absolute;top:10px;right:14px}
+  body.scena .topbar .lang{font-size:11px}
+
+  /* la barra che scende scorrendo: lì serve il fondo, se no non si legge */
   body.scena .topbar.topbar-fissa{
-    background:var(--sfondo);-webkit-backdrop-filter:none;backdrop-filter:none}
+    background:color-mix(in srgb,var(--sfondo) 94%,transparent);
+    -webkit-backdrop-filter:none;backdrop-filter:none}
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -446,7 +467,7 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
    l'ingresso è ripensato per lo schermo stretto, non rimpicciolito.
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width:760px){
-  body.scena .palco .dentro{padding:clamp(86px,13vh,120px) 0 clamp(40px,7vh,70px)}
+  body.scena .palco .dentro{padding:clamp(124px,17vh,158px) 0 clamp(40px,7vh,70px)}
 
   /* il nome prende la pagina: è la prima cosa e deve pesare */
   body.scena .nome{font-size:clamp(56px,17.5vw,104px);line-height:.92;letter-spacing:-.025em}
