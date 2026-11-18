@@ -232,7 +232,7 @@
     <p class="sotto-nome">Trent’anni sui palcoscenici d’Europa e d’America. E una voce che si sente meglio che si legga.</p>
 
     <div class="voce-riga">
-      <button class="ascolta" id="bottone-ascolta" aria-label="Ascolta E lucean le stelle">
+      <button type="button" class="ascolta" id="bottone-ascolta" aria-label="Ascolta E lucean le stelle">
       <span class="cerchio"><span class="tri"></span></span>
       <span class="dice"><b>Ascolta</b><span>E lucean le stelle · Tosca</span></span>
     </button>
@@ -425,7 +425,8 @@
       ctx.globalAlpha = .2; ctx.lineWidth = 6; ctx.stroke(); ctx.globalAlpha = 1;
     }
 
-    tasto.addEventListener('click', function(){
+    tasto.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
       if (suono.paused){
         if (!analizzatore){
           try {
