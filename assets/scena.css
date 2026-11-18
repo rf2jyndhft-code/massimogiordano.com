@@ -407,3 +407,49 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   body.scena .menu-voci a{opacity:1;transform:none;animation:none}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   IL TELEFONO — dove il sito viene guardato davvero.
+   Le misure di sopra sono pensate su uno schermo largo: sul telefono
+   la stessa formula faceva diventare il nome un francobollo. Qui tutto
+   l'ingresso è ripensato per lo schermo stretto, non rimpicciolito.
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width:760px){
+  body.scena .palco .dentro{padding:clamp(86px,13vh,120px) 0 clamp(40px,7vh,70px)}
+
+  /* il nome prende la pagina: è la prima cosa e deve pesare */
+  body.scena .nome{font-size:clamp(52px,16.5vw,96px);line-height:.92;letter-spacing:-.025em}
+  body.scena .occhio-apre{margin:clamp(14px,3vh,28px) 0 clamp(16px,2.6vh,24px);
+    font-size:10px;letter-spacing:.38em}
+  body.scena .sotto-nome{margin-top:clamp(20px,3vh,30px);max-width:26ch;
+    font-size:clamp(15px,4.1vw,17.5px);line-height:1.72}
+
+  /* il comando della voce: più grande, si preme col pollice */
+  body.scena .ascolta{margin-top:clamp(26px,4vh,40px);gap:14px}
+  body.scena .ascolta .cerchio{width:66px;height:66px}
+  body.scena .ascolta .dice b{font-size:15px}
+  body.scena .ascolta .dice span{font-size:13px}
+  body.scena #onda{width:min(440px,82vw);height:46px;margin-top:20px}
+
+  body.scena .giu{bottom:20px;font-size:9.5px}
+  body.scena .giu i{height:30px}
+
+  /* il nastro dei teatri: più compatto, scorre più piano */
+  body.scena .nastro{padding:15px 0}
+  body.scena .nastro span{font-size:12.5px;margin:0 20px}
+  body.scena .nastro div{animation-duration:62s}
+
+  /* i numeri a due per riga, grandi */
+  body.scena .conti{gap:30px 20px;padding:clamp(44px,8vh,70px) 0}
+  body.scena .conti .k{font-size:clamp(38px,11vw,52px)}
+  body.scena .conti .v{font-size:11px;letter-spacing:.12em}
+
+  /* le voci del menu, su uno schermo stretto, respirano di più */
+  body.scena .menu-voci a{font-size:clamp(29px,8.6vw,38px);padding:9px 0}
+}
+
+@media (max-width:420px){
+  body.scena .nome{font-size:clamp(46px,17vw,66px)}
+  body.scena .ascolta .dice b{font-size:14.5px}
+  body.scena #onda{height:40px}
+}
