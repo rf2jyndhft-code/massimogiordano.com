@@ -14,6 +14,26 @@
     var elenco = pannello.querySelector('.menu-voci');
     if (!elenco || elenco.querySelector('.menu-cursore')) return;
 
+    /* La prima voce è la Home. Nella barra non c'è — lì il nome in alto fa
+       già da collegamento — ma dentro il pannello del telefono serve: senza,
+       l'unico modo per tornare alla prima pagina è chiudere il menu. */
+    if (!elenco.querySelector('[data-casa]')) {
+      var it = (document.documentElement.lang || 'en').slice(0, 2) === 'it';
+      var casa = document.createElement('a');
+      casa.setAttribute('data-casa', '');
+      casa.href = it ? '/it/' : '/';
+      casa.textContent = it ? 'Home' : 'Home';
+      /* il collegamento vero lo prende dal nome in alto, così funziona
+         anche nelle cartelle di prova */
+      var marchio = document.querySelector('.topbar .brand');
+      if (marchio && marchio.getAttribute('href')) casa.href = marchio.getAttribute('href');
+      if (location.pathname.replace(/index\.html$/, '').replace(/\/$/, '') ===
+          casa.getAttribute('href').replace(/index\.html$/, '').replace(/\/$/, '')) {
+        casa.setAttribute('aria-current', 'page');
+      }
+      elenco.insertBefore(casa, elenco.firstChild);
+    }
+
     var voci = Array.prototype.slice.call(elenco.querySelectorAll('a'));
     if (!voci.length) return;
 

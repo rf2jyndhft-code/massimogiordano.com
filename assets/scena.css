@@ -7,9 +7,12 @@ html{-webkit-text-size-adjust:100%}
    dopo due paragrafi; questo tiene il buio e lascia respirare il testo.
    ══════════════════════════════════════════════════════════════════ */
 :root{
-  --sfondo:#0e1014; --sfondo2:#14171c; --bordo:#262c36; --filo:#1e232b;
-  --testo:#eef1f4; --testo2:#b4bcc5; --testo3:#848e99; --testo4:#616a74;
-  --oro:#b9924a; --su-oro:#12161c;
+  /* Nero spostato sul bruno: il materiale di Massimo è caldo — pietra al
+     tramonto, legno, ottone, velluto, lo smoking in un corridoio di pietra.
+     Il blu notte lo raffreddava; questo lo accompagna. */
+  --sfondo:#100e0b; --sfondo2:#17140f; --bordo:#302820; --filo:#241f18;
+  --testo:#f3efe8; --testo2:#c4bbac; --testo3:#948b7c; --testo4:#6e665a;
+  --oro:#c09550; --su-oro:#14110c;
   --velo:.9;                     /* quanto si vede il video in apertura */
   --grigia:.30;                   /* quanto sono scolorite le fotografie */
   --display:"Bodoni Moda",Georgia,"Times New Roman",serif;
@@ -328,13 +331,13 @@ body.scena .palco{padding-top:0}
 
   /* il pannello: a tutto schermo, voci grandi */
   body.scena .menu-pan{display:flex!important;position:fixed;inset:0;height:100dvh;
-    justify-content:center;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;
     padding:clamp(84px,12vh,110px) clamp(24px,7vw,40px) clamp(28px,4.5vh,40px)}
   body.scena .menu-pan[hidden]{display:none!important}
   body.scena .menu-voci a{font-size:clamp(11px,2.9vw,12.5px)!important;letter-spacing:.2em!important;
     padding:clamp(14px,2.3vh,20px) 0;gap:16px}
   body.scena .menu-voci a::before{font-size:11px}
-  body.scena .menu-piede{margin-top:auto;padding-top:22px}
+  body.scena .menu-piede{margin-top:clamp(28px,5vh,52px);padding-top:clamp(18px,3vh,26px)}
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -460,7 +463,7 @@ body.scena .menu-pan.viva .menu-voci a:nth-child(8){animation-delay:.40s}
 body.scena .menu-voci a[aria-current]{color:var(--testo);font-style:normal}
 body.scena .menu-voci a:active{color:var(--oro)}
 
-body.scena .menu-piede{position:relative;z-index:2;flex-direction:row!important;
+body.scena .menu-piede{position:relative;z-index:2;flex-direction:row!important;margin-top:clamp(28px,5vh,52px);
   align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
   border-top:1px solid var(--filo)!important;padding-top:clamp(16px,2.6vh,24px);
   opacity:0;transition:opacity .5s ease .4s}
@@ -523,7 +526,7 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
   body.scena .menu-voci a{font-size:clamp(32px,9.6vw,46px);padding:clamp(9px,1.6vh,14px) 0;
     gap:14px}
   body.scena .menu-voci a::before{font-size:11px}
-  body.scena .menu-piede{margin-top:auto;padding-top:22px}
+  body.scena .menu-piede{margin-top:clamp(28px,5vh,52px);padding-top:clamp(18px,3vh,26px)}
 }
 
 @media (max-width:420px){

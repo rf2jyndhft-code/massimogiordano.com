@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il nastro che canta</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Archivo:wght@200;300;400;500&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --sfondo:#100e0b; --sfondo2:#17140f; --bordo:#302820; --filo:#241f18;
+  --testo:#f3efe8; --testo2:#c4bbac; --testo3:#948b7c; --testo4:#6e665a;
+  --oro:#c09550;
+  --display:"Bodoni Moda",Georgia,serif; --sans:"Archivo",system-ui,sans-serif;
+}
+html,body{margin:0;height:100%;background:var(--sfondo);color:var(--testo);
+  font-family:var(--sans);font-weight:300;overflow:hidden}
+img{display:block;-webkit-user-drag:none;user-select:none}
+
+.scena-nastro{position:relative;height:100dvh;display:flex;flex-direction:column;
+  justify-content:center;gap:clamp(18px,3vh,34px);padding:clamp(20px,4vh,40px) 0}
+
+/* ── il nastro ─────────────────────────────────────────────────── */
+.nastro-box{position:relative;overflow:hidden;cursor:grab;touch-action:pan-y}
+.nastro-box.tira{cursor:grabbing}
+.nastro{display:flex;align-items:center;gap:clamp(14px,2.4vw,28px);
+  will-change:transform}
+.pz{margin:0;flex:0 0 auto;position:relative;
+  transition:transform .45s cubic-bezier(.19,1,.22,1),
+             filter .45s ease, opacity .45s ease}
+.pz img{height:clamp(260px,52vh,520px);width:auto;max-width:none;
+  object-fit:cover;border-radius:2px}
+.pz{filter:grayscale(.72) brightness(.55);opacity:.62;transform:scale(.82)}
+.pz.al-centro{filter:none;opacity:1;transform:scale(1)}
+.pz.al-centro img{box-shadow:0 28px 70px rgba(0,0,0,.6)}
+
+/* la nota sulle foto che cantano */
+.nota{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;
+  display:grid;place-items:center;font:400 13px/1 var(--sans);
+  background:color-mix(in srgb,var(--oro) 85%,transparent);color:#14110c;opacity:0;
+  transition:opacity .4s}
+.pz.canta .nota{opacity:.9}
+.pz.al-centro.canta .nota{opacity:1;animation:batte 2.4s ease-in-out infinite}
+@keyframes batte{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+/* ── didascalia ───────────────────────────────────────────────── */
+.dida{text-align:center;padding:0 24px;min-height:clamp(86px,13vh,120px)}
+.dida .ruolo{margin:0;font:400 clamp(26px,4.4vw,46px)/1.08 var(--display);
+  transition:opacity .3s}
+.dida .opera{margin:7px 0 0;font:400 italic clamp(15px,1.9vw,20px)/1.4 var(--display);
+  color:var(--oro)}
+.dida .dove{margin:11px 0 0;font:300 11.5px/1.5 var(--sans);letter-spacing:.2em;
+  text-transform:uppercase;color:var(--testo3)}
+.dida.cambia .ruolo,.dida.cambia .opera,.dida.cambia .dove{opacity:0}
+
+/* ── la voce ──────────────────────────────────────────────────── */
+.voce{display:flex;flex-direction:column;align-items:center;gap:10px;
+  min-height:clamp(60px,9vh,86px);opacity:0;transition:opacity .5s}
+.voce.viva{opacity:1}
+.voce .titolo{font:400 italic 14px/1 var(--display);color:var(--oro)}
+#spettro{display:block;width:min(460px,78vw);height:clamp(34px,5vh,46px)}
+
+.aiuto{position:absolute;left:50%;bottom:clamp(14px,3vh,26px);transform:translateX(-50%);
+  font:300 10.5px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;
+  color:var(--testo4);transition:opacity .6s}
+.aiuto.via{opacity:0}
+
+.torna{position:absolute;top:18px;left:20px;z-index:5;
+  font:400 10.5px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--testo3);text-decoration:none}
+.torna:hover{color:var(--oro)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="torna" href="/it/galleria.html">&larr; Galleria</a>
+
+<div class="scena-nastro">
+  <div class="nastro-box" id="box">
+    <div class="nastro" id="nastro"><figure class="pz canta" data-i="0" data-aria="/assets/audio/e-lucean-le-stelle.m4a" data-titolo="E lucean le stelle"><img src="/assets/img/gallery/tosca-massimo-giordano-staatsoper-wien-2014-800.jpg?v=b3f07d2a" srcset="/assets/img/gallery/tosca-massimo-giordano-staatsoper-wien-2014-800.jpg?v=b3f07d2a 900w, /assets/img/gallery/tosca-massimo-giordano-staatsoper-wien-2014-1800.jpg 1800w" sizes="(min-width:900px) 46vw, 86vw" alt="Cavaradossi" loading="lazy" draggable="false"><span class="nota" aria-hidden="true">♪</span></figure><figure class="pz" data-i="1"><img src="/assets/img/gallery/jongleur-roma-2000-900.jpg" srcset="/assets/img/gallery/jongleur-roma-2000-900.jpg 900w, /assets/img/gallery/jongleur-roma-2000-1600.jpg 2368w" sizes="(min-width:900px) 46vw, 86vw" alt="Jean" loading="lazy" draggable="false"></figure><figure class="pz" data-i="2"><img src="/assets/img/gallery/romeo-santander-2003-900.jpg" srcset="/assets/img/gallery/romeo-santander-2003-900.jpg 900w, /assets/img/gallery/romeo-santander-2003-1600.jpg 1600w" sizes="(min-width:900px) 46vw, 86vw" alt="Roméo" loading="lazy" draggable="false"></figure><figure class="pz" data-i="3"><img src="/assets/img/gallery/manon-wien-2008-netrebko-900.jpg" srcset="/assets/img/gallery/manon-wien-2008-netrebko-900.jpg 900w, /assets/img/gallery/manon-wien-2008-netrebko-1600.jpg 2281w" sizes="(min-width:900px) 46vw, 86vw" alt="Des Grieux" loading="lazy" draggable="false"></figure><figure class="pz canta" data-i="4" data-aria="/assets/audio/e-lucean-le-stelle.m4a" data-titolo="E lucean le stelle"><img src="/assets/img/gallery/tosca-bolshoi-900.jpg" srcset="/assets/img/gallery/tosca-bolshoi-900.jpg 900w, /assets/img/gallery/tosca-bolshoi-1800.jpg 1800w" sizes="(min-width:900px) 46vw, 86vw" alt="Cavaradossi" loading="lazy" draggable="false"><span class="nota" aria-hidden="true">♪</span></figure><figure class="pz canta" data-i="5" data-aria="/assets/audio/e-lucean-le-stelle.m4a" data-titolo="E lucean le stelle"><img src="/assets/img/gallery/tosca-dallas-2008-900.jpg" srcset="/assets/img/gallery/tosca-dallas-2008-900.jpg 900w, /assets/img/gallery/tosca-dallas-2008-1600.jpg 1600w" sizes="(min-width:900px) 46vw, 86vw" alt="Cavaradossi" loading="lazy" draggable="false"><span class="nota" aria-hidden="true">♪</span></figure><figure class="pz" data-i="6"><img src="/assets/img/gallery/elisir-vienna-2003-abbraccio-900.jpg" srcset="/assets/img/gallery/elisir-vienna-2003-abbraccio-900.jpg 900w, /assets/img/gallery/elisir-vienna-2003-abbraccio-1600.jpg 2219w" sizes="(min-width:900px) 46vw, 86vw" alt="Nemorino" loading="lazy" draggable="false"></figure><figure class="pz" data-i="7"><img src="/assets/img/gallery/elisir-vienna-2003-scena-900.jpg" srcset="/assets/img/gallery/elisir-vienna-2003-scena-900.jpg 900w, /assets/img/gallery/elisir-vienna-2003-scena-1600.jpg 1600w" sizes="(min-width:900px) 46vw, 86vw" alt="Nemorino" loading="lazy" draggable="false"></figure><figure class="pz" data-i="8"><img src="/assets/img/gallery/werther-monaco-2008-900.jpg" srcset="/assets/img/gallery/werther-monaco-2008-900.jpg 900w, /assets/img/gallery/werther-monaco-2008-1600.jpg 1600w" sizes="(min-width:900px) 46vw, 86vw" alt="Werther" loading="lazy" draggable="false"></figure><figure class="pz" data-i="9"><img src="/assets/img/gallery/tenor-massimo-tenore-angela-gheorghiu-metropolitan-opera-new-york-elis-800.jpg" srcset="/assets/img/gallery/tenor-massimo-tenore-angela-gheorghiu-metropolitan-opera-new-york-elis-800.jpg 900w, /assets/img/gallery/tenor-massimo-tenore-angela-gheorghiu-metropolitan-opera-new-york-elis-800.jpg 1118w" sizes="(min-width:900px) 46vw, 86vw" alt="Nemorino" loading="lazy" draggable="false"></figure><figure class="pz" data-i="10"><img src="/assets/img/gallery/massimo-giordano-wiener-staatsoper-anna-netrebko-manon-des-grieux-wien-800.jpg?v=29902619" srcset="/assets/img/gallery/massimo-giordano-wiener-staatsoper-anna-netrebko-manon-des-grieux-wien-800.jpg?v=29902619 900w, /assets/img/gallery/massimo-giordano-wiener-staatsoper-anna-netrebko-manon-des-grieux-wien-800.jpg 1800w" sizes="(min-width:900px) 46vw, 86vw" alt="Des Grieux" loading="lazy" draggable="false"></figure><figure class="pz" data-i="11"><img src="/assets/img/gallery/manon-scala-2007-900.jpg" srcset="/assets/img/gallery/manon-scala-2007-900.jpg 900w, /assets/img/gallery/manon-scala-2007-1600.jpg 1600w" sizes="(min-width:900px) 46vw, 86vw" alt="Des Grieux" loading="lazy" draggable="false"></figure><figure class="pz" data-i="12"><img src="/assets/img/gallery/rome-la-boheme-rodolfo-tenor-tenore-opera-lirica-opera-singer-800.jpg?v=bb99e749" srcset="/assets/img/gallery/rome-la-boheme-rodolfo-tenor-tenore-opera-lirica-opera-singer-800.jpg?v=bb99e749 900w, /assets/img/gallery/rome-la-boheme-rodolfo-tenor-tenore-opera-lirica-opera-singer-800.jpg 1800w" sizes="(min-width:900px) 46vw, 86vw" alt="Rodolfo" loading="lazy" draggable="false"></figure><figure class="pz" data-i="13"><img src="/assets/img/gallery/boheme-wien-900.jpg" srcset="/assets/img/gallery/boheme-wien-900.jpg 900w, /assets/img/gallery/boheme-wien-1600.jpg 1600w" sizes="(min-width:900px) 46vw, 86vw" alt="Rodolfo" loading="lazy" draggable="false"></figure></div>
+  </div>
+
+  <div class="dida" id="dida">
+    <p class="ruolo">—</p>
+    <p class="opera"></p>
+    <p class="dove"></p>
+  </div>
+
+  <div class="voce" id="voce">
+    <canvas id="spettro" width="920" height="92" aria-hidden="true"></canvas>
+    <span class="titolo" id="titolo-aria"></span>
+  </div>
+
+  <p class="aiuto" id="aiuto">Trascina</p>
+</div>
+
+<audio id="suono" preload="none"></audio>
+
+<script>
+(function () {
+  'use strict';
+  var DATI = [{"ruolo": "Cavaradossi", "opera": "Tosca", "dove": "Wiener Staatsoper", "aria": "E lucean le stelle"}, {"ruolo": "Jean", "opera": "Le jongleur de Notre-Dame", "dove": "Teatro dell’Opera di Roma", "aria": null}, {"ruolo": "Roméo", "opera": "Roméo et Juliette", "dove": "dicembre 2003. Spagna", "aria": null}, {"ruolo": "Des Grieux", "opera": "Manon", "dove": "Staatsoper di Vienna", "aria": null}, {"ruolo": "Cavaradossi", "opera": "Tosca", "dove": "Teatro Bol’šoj", "aria": "E lucean le stelle"}, {"ruolo": "Cavaradossi", "opera": "Tosca", "dove": "The Dallas Opera", "aria": "E lucean le stelle"}, {"ruolo": "Nemorino", "opera": "L’elisir d’amore", "dove": "Staatsoper di Vienna", "aria": null}, {"ruolo": "Nemorino", "opera": "L’elisir d’amore", "dove": "Staatsoper di Vienna", "aria": null}, {"ruolo": "Werther", "opera": "Werther", "dove": "Bayerische Staatsoper", "aria": null}, {"ruolo": "Nemorino", "opera": "L’elisir d’amore", "dove": "Metropolitan Opera", "aria": null}, {"ruolo": "Des Grieux", "opera": "Manon", "dove": "Wiener Staatsoper. Vienna", "aria": null}, {"ruolo": "Des Grieux", "opera": "Manon", "dove": "Teatro alla Scala", "aria": null}, {"ruolo": "Rodolfo", "opera": "Bohème", "dove": "Teatro dell’Opera", "aria": null}, {"ruolo": "Rodolfo", "opera": "Bohème", "dove": "Staatsoper di Vienna", "aria": null}];
+
+  var box = document.getElementById('box'),
+      nastro = document.getElementById('nastro'),
+      pezzi = [].slice.call(nastro.querySelectorAll('.pz')),
+      dida = document.getElementById('dida'),
+      voce = document.getElementById('voce'),
+      titoloAria = document.getElementById('titolo-aria'),
+      suono = document.getElementById('suono'),
+      tela = document.getElementById('spettro'),
+      aiuto = document.getElementById('aiuto');
+
+  var x = 0, obiettivo = 0, velocita = 0, trascina = false, partenza = 0, xPartenza = 0;
+  var centro = -1, ultimoTocco = 0;
+
+  /* ─ il nastro si muove per conto suo, con inerzia, come un rullo ─ */
+  function limiti() {
+    var largo = nastro.scrollWidth, visibile = box.clientWidth;
+    return [Math.min(0, visibile - largo - 40), 40];
+  }
+
+  function muovi() {
+    if (!trascina) {
+      velocita *= 0.92;                      /* attrito */
+      obiettivo += velocita;
+      var l = limiti();
+      if (obiettivo < l[0]) { obiettivo += (l[0] - obiettivo) * .18; velocita = 0; }
+      if (obiettivo > l[1]) { obiettivo += (l[1] - obiettivo) * .18; velocita = 0; }
+    }
+    x += (obiettivo - x) * 0.14;              /* inseguimento morbido */
+    nastro.style.transform = 'translate3d(' + x + 'px,0,0)';
+    aggiornaCentro();
+    requestAnimationFrame(muovi);
+  }
+
+  /* ─ chi sta al centro comanda ─ */
+  function aggiornaCentro() {
+    var mezzo = box.clientWidth / 2, vicino = -1, minimo = 1e9;
+    for (var i = 0; i < pezzi.length; i++) {
+      var r = pezzi[i].getBoundingClientRect();
+      var d = Math.abs((r.left + r.width / 2) - mezzo);
+      if (d < minimo) { minimo = d; vicino = i; }
+    }
+    if (vicino === centro) return;
+    centro = vicino;
+    pezzi.forEach(function (p, i) { p.classList.toggle('al-centro', i === centro); });
+    mostra(DATI[centro], pezzi[centro]);
+  }
+
+  var attesa = null;
+  function mostra(d, pezzo) {
+    if (!d) return;
+    dida.classList.add('cambia');
+    clearTimeout(attesa);
+    attesa = setTimeout(function () {
+      dida.querySelector('.ruolo').textContent = d.ruolo || '';
+      dida.querySelector('.opera').textContent = d.opera || '';
+      dida.querySelector('.dove').textContent = d.dove || '';
+      dida.classList.remove('cambia');
+    }, 180);
+    canta(pezzo);
+  }
+
+  /* ─ la voce segue la foto al centro ─ */
+  var analizzatore = null, dati = null, motore = null, bordi = null, BANDE = 44;
+  var livelli = new Float32Array(BANDE), picchi = new Float32Array(BANDE);
+
+  function collega() {
+    if (analizzatore) return;
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      motore = new AC();
+      var s = motore.createMediaElementSource(suono);
+      var an = motore.createAnalyser();
+      an.fftSize = 4096; an.minDecibels = -82; an.maxDecibels = -20; an.smoothingTimeConstant = 0;
+      dati = new Float32Array(an.frequencyBinCount);
+      s.connect(an); an.connect(motore.destination);
+      analizzatore = an;
+      var ny = motore.sampleRate / 2, N = an.frequencyBinCount, fMin = 55, fMax = Math.min(13000, ny);
+      bordi = [];
+      for (var i = 0; i <= BANDE; i++)
+        bordi.push(Math.min(N - 1, Math.round(fMin * Math.pow(fMax / fMin, i / BANDE) / ny * N)));
+    } catch (e) { analizzatore = null; }
+  }
+
+  function canta(pezzo) {
+    var file = pezzo && pezzo.dataset.aria;
+    if (!file) {
+      if (!suono.paused) suono.pause();
+      voce.classList.remove('viva');
+      titoloAria.textContent = '';
+      return;
+    }
+    titoloAria.textContent = pezzo.dataset.titolo || '';
+    voce.classList.add('viva');
+    if (suono.getAttribute('src') !== file) { suono.setAttribute('src', file); }
+    /* parte solo dopo che si è toccato almeno una volta: lo vuole il browser */
+    if (ultimoTocco) {
+      collega();
+      if (motore && motore.state === 'suspended') motore.resume();
+      var pr = suono.play();
+      if (pr && pr.catch) pr.catch(function () {});
+    }
+  }
+
+  var ctx = tela.getContext('2d');
+  (function disegna(t) {
+    requestAnimationFrame(disegna);
+    var L = tela.width, A = tela.height, base = A - 2;
+    ctx.clearRect(0, 0, L, A);
+    var vivo = analizzatore && !suono.paused && bordi;
+    if (vivo) analizzatore.getFloatFrequencyData(dati);
+    var MIN = -82, MAX = -20, largo = L / BANDE, w = largo * .56;
+    for (var b = 0; b < BANDE; b++) {
+      var v = 0;
+      if (vivo) {
+        var da = bordi[b], a = Math.max(bordi[b + 1], da + 1), somma = 0, n = 0;
+        for (var k = da; k < a; k++) { var d = dati[k]; if (d > -Infinity) { somma += d; n++; } }
+        v = Math.max(0, Math.min(1, ((n ? somma / n : MIN) - MIN) / (MAX - MIN)));
+        v = Math.pow(v, .78);
+      }
+      livelli[b] = v > livelli[b] ? v : Math.max(v, livelli[b] - .028);
+      picchi[b] = livelli[b] >= picchi[b] ? livelli[b] : Math.max(livelli[b], picchi[b] - .012);
+      var h = livelli[b] * base, xx = b * largo + (largo - w) / 2;
+      if (h > .5) {
+        var g = ctx.createLinearGradient(0, base, 0, base - h);
+        g.addColorStop(0, 'rgba(192,149,80,.3)'); g.addColorStop(.6, '#c09550'); g.addColorStop(1, '#f3e3c4');
+        ctx.fillStyle = g; ctx.fillRect(xx, base - h, w, h);
+      }
+      if (picchi[b] * base > 1.5) {
+        ctx.fillStyle = 'rgba(243,227,196,.85)';
+        ctx.fillRect(xx, base - picchi[b] * base - 1.5, w, 1.5);
+      }
+    }
+  })();
+
+  /* ─ il dito ─ */
+  function giu(px) { trascina = true; box.classList.add('tira'); partenza = px; xPartenza = obiettivo; velocita = 0;
+    ultimoTocco = 1; aiuto.classList.add('via'); }
+  function muoviDito(px) { if (!trascina) return; var d = px - partenza; velocita = (xPartenza + d) - obiettivo; obiettivo = xPartenza + d; }
+  function su() { trascina = false; box.classList.remove('tira'); }
+
+  box.addEventListener('pointerdown', function (e) { giu(e.clientX); box.setPointerCapture(e.pointerId); });
+  box.addEventListener('pointermove', function (e) { muoviDito(e.clientX); });
+  box.addEventListener('pointerup', su);
+  box.addEventListener('pointercancel', su);
+  box.addEventListener('touchstart', function (e) { if (e.touches[0]) giu(e.touches[0].clientX); }, { passive: true });
+  box.addEventListener('touchmove', function (e) { if (e.touches[0]) muoviDito(e.touches[0].clientX); }, { passive: true });
+  box.addEventListener('touchend', su, { passive: true });
+  box.addEventListener('wheel', function (e) {
+    obiettivo -= (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) * 1.1;
+    velocita = 0; ultimoTocco = 1; aiuto.classList.add('via');
+  }, { passive: true });
+
+  /* al primo tocco in pagina la voce può partire */
+  document.addEventListener('pointerdown', function () {
+    if (ultimoTocco === 1 && centro >= 0) { canta(pezzi[centro]); ultimoTocco = 2; }
+  });
+
+  window.addEventListener('resize', function () { centro = -1; });
+  muovi();
+})();
+</script>
+</body>
+</html>
