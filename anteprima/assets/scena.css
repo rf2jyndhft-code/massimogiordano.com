@@ -613,3 +613,9 @@ body.scena .menu-pan{overscroll-behavior:contain;touch-action:pan-y}
 @media (max-width:900px) and (min-height:620px){
   body.scena .menu-pan{overflow:hidden}
 }
+
+/* Niente rimbalzo elastico: su iPhone, arrivando in cima o in fondo, la
+   pagina si staccava dal bordo e tornava indietro di scatto. Su un sito
+   con un video a tutto schermo si vede moltissimo e sembra un difetto. */
+html{overscroll-behavior-y:none}
+body.scena{overscroll-behavior-y:none}
