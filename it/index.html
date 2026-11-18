@@ -406,23 +406,41 @@
       gira = requestAnimationFrame(disegna);
       var L = tela.width, A = tela.height, mezzo = A / 2;
       ctx.clearRect(0, 0, L, A);
-      ctx.strokeStyle = oro;
-      ctx.lineWidth = 2.2;
-      ctx.beginPath();
+      var canta = !suono.paused;
 
-      var vera = analizzatore && !suono.paused;
-      if (vera) analizzatore.getByteTimeDomainData(dati);
-
-      for (var i = 0; i <= 170; i++){
-        var x = i / 170 * L, y = mezzo;
-        if (vera){
-          var k = Math.floor(i / 170 * (dati.length - 1));
-          y = mezzo + (dati[k] - 128) / 128 * (mezzo * .95);
-        }
-        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      var spettro = null;
+      if (canta && analizzatore){
+        analizzatore.getByteFrequencyData(dati);
+        var somma = 0;
+        for (var q = 0; q < dati.length; q++) somma += dati[q];
+        if (somma > 0){ spettro = dati; vuotoDa = 0; }
+        else if (!vuotoDa) vuotoDa = t || 1;
       }
-      ctx.stroke();
-      ctx.globalAlpha = .2; ctx.lineWidth = 6; ctx.stroke(); ctx.globalAlpha = 1;
+
+      var N = 48, largo = L / N;
+      ctx.fillStyle = oro;
+      for (var i = 0; i < N; i++){
+        var v;
+        if (spettro){
+          /* le frequenze basse sono le più piene: si comprime la scala */
+          var k = Math.floor(Math.pow(i / N, 1.6) * (spettro.length * .72));
+          v = spettro[k] / 255;
+        } else if (canta){
+          /* rete di sicurezza: un movimento che segue il tempo */
+          var f = (t || 0) / 1000;
+          v = (Math.sin(i * .5 + f * 6.2) * .5 + .5) * .55
+            + (Math.sin(i * .19 - f * 3.4) * .5 + .5) * .35;
+        } else {
+          v = 0;
+        }
+        var h = Math.max(2, v * (mezzo * 1.75));
+        var x = i * largo + largo * .22, w = largo * .56;
+        ctx.globalAlpha = .9;
+        ctx.fillRect(x, mezzo - h / 2, w, h);
+        ctx.globalAlpha = .22;
+        ctx.fillRect(x, mezzo - h / 2 - 3, w, h + 6);
+      }
+      ctx.globalAlpha = 1;
     }
 
     /* L'audio NON passa da nessuna parte: esce dall'elemento e basta.
@@ -432,42 +450,45 @@
 
        L'onda qui segue il tempo e un movimento suo: non è il suono vero,
        ma si muove solo mentre si canta, e si ferma quando si ferma. */
-    var analizzatore = null, dati = null, motore = null;
+    var analizzatore = null, dati = null, motore = null, vuotoDa = 0;
 
-    /* La forma d'onda vera si legge solo facendo passare l'audio dentro il
-       motore del browser. Quel motore nasce spento: se lo si collega senza
-       riaccenderlo, la voce diventa muta. Qui si accende PRIMA, dentro il
-       clic (l'unico momento in cui il browser lo permette), e solo dopo si
-       collega. Se qualcosa va storto, si resta senza onda ma con la voce. */
+    /* Lo spettro della voce.
+       Il motore audio del browser nasce spento e si riaccende solo dentro il
+       gesto di chi preme: per questo si accende PRIMA, si aspetta che sia
+       davvero acceso, e solo allora parte il canto. Se dopo un secondo non
+       arriva nessun dato — succede su qualche browser — si passa all'onda
+       disegnata, così non resta mai una riga morta. */
     function collega(){
-      if (analizzatore || !window.AudioContext && !window.webkitAudioContext) return;
+      if (analizzatore) return Promise.resolve();
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return Promise.resolve();
       try {
-        var AC = window.AudioContext || window.webkitAudioContext;
         motore = new AC();
-        if (motore.state === 'suspended') motore.resume();
         var sorgente = motore.createMediaElementSource(suono);
         var an = motore.createAnalyser();
-        an.fftSize = 1024;
+        an.fftSize = 256;                 /* 128 frequenze: barre leggibili */
+        an.smoothingTimeConstant = .72;   /* morbido, non nervoso */
         dati = new Uint8Array(an.frequencyBinCount);
         sorgente.connect(an);
         an.connect(motore.destination);
         analizzatore = an;
-      } catch (e) { analizzatore = null; }
+        return motore.resume ? motore.resume() : Promise.resolve();
+      } catch (e) { analizzatore = null; return Promise.resolve(); }
     }
 
     tasto.addEventListener('click', function (e) {
       e.preventDefault(); e.stopPropagation();
-      if (suono.paused) {
-        collega();
-        if (motore && motore.state === 'suspended') motore.resume();
-        var p = suono.play();
-        var acceso = function () { tasto.classList.add('suona'); tela.classList.add('viva'); };
-        if (p && p.then) p.then(acceso).catch(acceso); else acceso();
-      } else {
+      if (!suono.paused) {
         suono.pause();
         tasto.classList.remove('suona');
         tela.classList.remove('viva');
+        return;
       }
+      var acceso = function () { tasto.classList.add('suona'); tela.classList.add('viva'); };
+      collega().then(function () {
+        var p = suono.play();
+        if (p && p.then) p.then(acceso).catch(acceso); else acceso();
+      });
     });
     disegna();
     suono.addEventListener('ended', function(){
