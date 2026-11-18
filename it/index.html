@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="../assets/scena.css?v=53a91fbb">
+<link rel="stylesheet" href="../assets/scena.css?v=5cb92357">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -349,7 +349,7 @@
   /* ---- quello che entra scorrendo ---- */
   /* da qui in poi la pagina può nascondere le cose per poi mostrarle:
      se questo script non arriva, restano semplicemente visibili. */
-  document.documentElement.classList.add('moto');
+  // document.documentElement.classList.add('moto');   /* dissolvenza spenta: togliere i due barrati per riaccenderla */
 
   var osservatore = new IntersectionObserver(function(voci){
     voci.forEach(function(v){ if (v.isIntersecting){ v.target.classList.add('dentro'); osservatore.unobserve(v.target); } });
