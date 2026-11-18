@@ -286,13 +286,19 @@ body.scena .topbar.topbar-fissa{
 body.scena .palco{padding-top:0}
 
 @media (max-width:900px){
-  /* sul telefono la barra resta quella del sito: compatta, con il menu
-     che scorre di lato. Cambia solo il colore. */
+  /* Sul telefono la barra resta quella del sito, compatta.
+     ⚠️ NIENTE sfocatura dietro: un elemento sfocato diventa il riferimento
+     per tutto ciò che sta dentro, e il pannello del menu — che dovrebbe
+     coprire lo schermo intero — restava imprigionato dentro la barra alta
+     quattro dita. Fondo pieno, e il menu torna libero. */
   body.scena .topbar:not(.topbar-fissa){
-    position:sticky;background:color-mix(in srgb,var(--sfondo) 88%,transparent);
-    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    position:sticky;background:var(--sfondo);
+    -webkit-backdrop-filter:none;backdrop-filter:none;
     border-bottom:1px solid var(--filo)}
   body.scena .topbar:not(.topbar-fissa) .nav{border-top:0}
+  /* stessa ragione per la barra che scende scorrendo */
+  body.scena .topbar.topbar-fissa{
+    background:var(--sfondo);-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -472,8 +478,9 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
   /* IL MENU sul telefono: le voci riempiono lo schermo. Otto righe
      grandi, il numero d'oro davanti, e il pannello scorre se serve —
      meglio una voce sotto il bordo che otto voci piccole. */
-  body.scena .menu-pan{justify-content:flex-start;overflow-y:auto;
-    padding:clamp(76px,11vh,104px) clamp(22px,6.4vw,38px) clamp(24px,4vh,34px)}
+  body.scena .menu-pan{position:fixed;inset:0;height:100dvh;
+    justify-content:center;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:clamp(84px,12vh,110px) clamp(22px,6.4vw,38px) clamp(28px,4.5vh,40px)}
   body.scena .menu-voci a{font-size:clamp(32px,9.6vw,46px);padding:clamp(9px,1.6vh,14px) 0;
     gap:14px}
   body.scena .menu-voci a::before{font-size:11px}
