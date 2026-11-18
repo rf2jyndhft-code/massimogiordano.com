@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="assets/scena.css?v=d34c7e5a">
+<link rel="stylesheet" href="assets/scena.css?v=33e18534">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Skip to content</a>
@@ -353,7 +353,7 @@
 
   var osservatore = new IntersectionObserver(function(voci){
     voci.forEach(function(v){ if (v.isIntersecting){ v.target.classList.add('dentro'); osservatore.unobserve(v.target); } });
-  }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: .2, rootMargin: '0px 0px -14% 0px' });
   document.querySelectorAll('.entra').forEach(function(e){ osservatore.observe(e); });
   setTimeout(function(){                       /* se qualcosa va storto, si vede lo stesso */
     document.querySelectorAll('.entra:not(.dentro)').forEach(function(e){ e.classList.add('dentro'); });
@@ -414,9 +414,7 @@
           var k = Math.floor(i / 160 * dati.length);
           y = mezzo + (dati[k] - 128) / 128 * (mezzo * .92);
         } else {
-          var f = (t || 0) / 1000;
-          y = mezzo + Math.sin(i * .09 + f * 1.1) * (mezzo * .13)
-                    + Math.sin(i * .021 + f * .55) * (mezzo * .09);
+          y = mezzo;                    /* ferma: una linea sola, in attesa */
         }
         i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
