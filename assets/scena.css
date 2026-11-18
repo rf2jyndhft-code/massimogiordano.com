@@ -35,7 +35,7 @@ a{color:inherit;text-decoration:none}
 .palco::after{content:"";position:absolute;inset:0;z-index:1;
   background:radial-gradient(120% 80% at 50% 38%, color-mix(in srgb, var(--sfondo) 6%, transparent), color-mix(in srgb, var(--sfondo) 58%, transparent) 58%, var(--sfondo) 92%)}
 .palco .dentro{position:relative;z-index:2;width:100%;text-align:center;
-  padding:clamp(118px,15vh,160px) 0 clamp(104px,13vh,140px)}
+  padding:clamp(106px,13vh,146px) 0 clamp(128px,16vh,168px)}
 
 .nome{margin:0;font-family:var(--display);font-weight:400;line-height:.86;letter-spacing:-.02em;
   font-size:clamp(50px,12vw,164px)}
@@ -489,7 +489,7 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
 
 /* Su uno schermo basso il blocco d'apertura e la riga dello "scorri" si
    contendono gli stessi pixel: vince il blocco, e lo "scorri" si toglie. */
-@media (max-height:760px){
+@media (max-height:830px){
   body.scena .giu{display:none}
   body.scena .palco .dentro{padding-bottom:clamp(56px,8vh,86px)}
 }
