@@ -13,6 +13,15 @@
    ══════════════════════════════════════════════════════════════════ */
 
 /* ──────────────────────────────────────────────────────────────────
+   0. DIRLO AL BROWSER
+   I pallini, le caselle di spunta, la tendina del menu a scelta e la
+   barra di scorrimento non li disegna il foglio di stile: li disegna
+   il browser, e senza questa riga li disegnava in chiaro. Sul modulo
+   della didattica erano dieci grossi dischi bianchi su fondo notte.
+   ────────────────────────────────────────────────────────────────── */
+body.scena{color-scheme:dark}
+
+/* ──────────────────────────────────────────────────────────────────
    1. IL TESTO LUNGO
    Peso 300 su fondo scuro: le aste si assottigliano e il bianco
    sfarfalla sul nero. Su carta chiara 300 è elegante, sul notte è
