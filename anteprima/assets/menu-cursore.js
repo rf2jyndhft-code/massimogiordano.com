@@ -27,6 +27,7 @@
        resterebbe invisibile proprio dove lo si guarda per la prima volta. */
     var ferma = voci.filter(function (a) { return a.hasAttribute('aria-current'); })[0] || voci[0];
     var sopra = null;
+    var colDito = false;      /* se si sta usando il dito, il mouse non comanda */
 
     function porta(a, subito) {
       if (!a) { cursore.classList.remove('viva'); return; }
@@ -56,7 +57,13 @@
       a.addEventListener('pointerdown', function () { ferma = a; sopra = a; aggiorna(); }, { passive: true });
     });
 
-    elenco.addEventListener('pointerleave', function () { sopra = null; aggiorna(); }, { passive: true });
+    /* ⚠️ Col dito, appena si stacca, il telefono manda comunque un "il
+       puntatore è uscito": senza questo controllo il riquadro tornava
+       indietro di scatto proprio mentre la voce si apriva. */
+    elenco.addEventListener('pointerleave', function () {
+      if (colDito) return;
+      sopra = null; aggiorna();
+    }, { passive: true });
 
     /* COL DITO non esiste il passaggio del mouse: si segue il tocco mentre
        scivola sull'elenco, e quando il dito si stacca il riquadro resta
@@ -86,6 +93,7 @@
     }
 
     pannello.addEventListener('touchstart', function (ev) {
+      colDito = true;
       if (ev.touches[0]) segui(ev.touches[0].clientX, ev.touches[0].clientY);
     }, { passive: true });
 
@@ -94,12 +102,20 @@
     }, { passive: true });
 
     pannello.addEventListener('pointermove', function (ev) {
+      if (colDito && ev.pointerType === 'mouse') return;
       segui(ev.clientX, ev.clientY);
     }, { passive: true });
 
     pannello.addEventListener('touchend', function () {
-      if (sopra) ferma = sopra;          /* resta dove il dito si è staccato */
+      if (sopra) { ferma = sopra; }      /* resta dove il dito si è staccato */
       aggiorna();
+      /* un attimo di immunità: gli eventi del mouse che iOS manda dopo il
+         tocco non devono riportare indietro il riquadro */
+      setTimeout(function () { colDito = false; }, 900);
+    }, { passive: true });
+
+    pannello.addEventListener('touchcancel', function () {
+      setTimeout(function () { colDito = false; }, 900);
     }, { passive: true });
 
     /* quando il pannello si apre, il riquadro si mette a posto senza volare
