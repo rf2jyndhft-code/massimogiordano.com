@@ -22,8 +22,10 @@
     cursore.setAttribute('aria-hidden', 'true');
     elenco.appendChild(cursore);
 
-    /* la voce di partenza: quella della pagina aperta, se c'è */
-    var ferma = voci.filter(function (a) { return a.hasAttribute('aria-current'); })[0] || null;
+    /* La voce di partenza: quella della pagina aperta. Sulla home nessuna
+       voce è "corrente", e allora il riquadro si mette sulla prima — se no
+       resterebbe invisibile proprio dove lo si guarda per la prima volta. */
+    var ferma = voci.filter(function (a) { return a.hasAttribute('aria-current'); })[0] || voci[0];
     var sopra = null;
 
     function porta(a, subito) {
@@ -43,7 +45,9 @@
     function aggiorna(subito) { porta(sopra || ferma, subito); }
 
     voci.forEach(function (a) {
-      ['pointerenter', 'focus'].forEach(function (ev) {
+      /* mouseenter oltre a pointerenter: su qualche browser il secondo non
+         arriva mai, e il riquadro resterebbe fermo */
+      ['pointerenter', 'mouseenter', 'focus'].forEach(function (ev) {
         a.addEventListener(ev, function () { sopra = a; aggiorna(); }, { passive: true });
       });
       /* al tocco il riquadro resta lì: è la voce che si sta aprendo */
@@ -87,7 +91,15 @@
     osserva.observe(pannello, { attributes: true, attributeFilter: ['hidden', 'class'] });
 
     window.addEventListener('resize', function () { aggiorna(true); });
-    if (!pannello.hidden) aggiorna(true);
+
+    /* i caratteri arrivano dopo il resto: quando arrivano le righe cambiano
+       altezza, e il riquadro va rimesso a posto */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { aggiorna(true); });
+    }
+
+    aggiorna(true);
+    window.__cursoreOk = true;
   }
 
   function cerca() {
