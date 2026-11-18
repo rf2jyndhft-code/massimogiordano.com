@@ -337,71 +337,71 @@ body.scena .btn:hover{background:var(--oro);color:var(--su-oro)}
 :root{--serif-scena:"Bodoni Moda",Georgia,"Times New Roman",serif}
 
 /* ══════════════════════════════════════════════════════════════════
-   IL MENU DEL TELEFONO
-   Il pannello esiste già (lo costruisce menu.js dalle voci della barra):
-   qui prende il vestito della scena. Le voci entrano una dopo l'altra,
-   dal basso, come le righe di un cartellone che si scopre.
+   IL MENU DEL TELEFONO — rifatto, non ridipinto.
+   Prima era un elenco di voci piccole separate da filetti: lo stesso
+   menu di sempre con i colori rovesciati. Qui è un cartellone: le voci
+   grandi, numerate come i numeri di un programma di sala, e la pagina
+   in cui ti trovi dichiarata in corsivo d'oro.
    ══════════════════════════════════════════════════════════════════ */
 body.scena .menu-bot{color:var(--testo);width:46px;height:46px}
-body.scena .menu-bot .menu-righe i{background:currentColor;height:1.2px;
-  transition:transform .45s cubic-bezier(.19,1,.22,1),opacity .3s}
-body.scena .menu-bot[aria-expanded="true"]{color:var(--oro)}
+body.scena .menu-bot[aria-expanded="true"]{color:var(--oro);position:relative;z-index:70}
 
 body.scena .menu-pan{
-  position:fixed;inset:0;z-index:60;
-  background:color-mix(in srgb,var(--sfondo) 97%,transparent);
-  -webkit-backdrop-filter:blur(26px) saturate(130%);
-  backdrop-filter:blur(26px) saturate(130%);
-  padding:clamp(96px,16vh,150px) clamp(26px,8vw,54px) clamp(34px,6vh,54px);
-  opacity:0;transform:none;
-  transition:opacity .45s cubic-bezier(.19,1,.22,1)}
+  position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;
+  justify-content:center;gap:clamp(26px,5vh,44px);
+  background:var(--sfondo);
+  padding:clamp(80px,13vh,120px) clamp(26px,8vw,56px) clamp(30px,5vh,46px);
+  opacity:0;transition:opacity .4s ease}
 body.scena .menu-pan.viva{opacity:1}
 
-/* un velo d'oro appena accennato in alto, come una luce di scena */
+/* una luce di scena che scende dall'alto, come sul palco */
 body.scena .menu-pan::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(120% 55% at 50% 0%,
-    color-mix(in srgb,var(--oro) 13%,transparent),transparent 62%)}
+  background:radial-gradient(135% 62% at 50% -8%,
+    color-mix(in srgb,var(--oro) 16%,transparent),transparent 64%)}
 
-body.scena .menu-voci{display:flex;flex-direction:column;gap:clamp(4px,1.4vh,12px);
-  position:relative;z-index:2}
+body.scena .menu-voci{display:flex;flex-direction:column;gap:0;
+  position:relative;z-index:2;counter-reset:voce}
 body.scena .menu-voci a{
-  font-family:var(--serif-scena);font-weight:400;
-  font-size:clamp(30px,8.4vw,46px);line-height:1.18;letter-spacing:-.012em;
-  color:var(--testo);text-decoration:none;padding:5px 0;
-  opacity:0;transform:translateY(26px);
-  transition:color .3s}
-body.scena .menu-pan.viva .menu-voci a{
-  animation:voce-entra .62s cubic-bezier(.19,1,.22,1) forwards}
-@keyframes voce-entra{to{opacity:1;transform:none}}
-/* ognuna un soffio dopo quella sopra */
-body.scena .menu-pan.viva .menu-voci a:nth-child(1){animation-delay:.06s}
-body.scena .menu-pan.viva .menu-voci a:nth-child(2){animation-delay:.11s}
-body.scena .menu-pan.viva .menu-voci a:nth-child(3){animation-delay:.16s}
-body.scena .menu-pan.viva .menu-voci a:nth-child(4){animation-delay:.21s}
-body.scena .menu-pan.viva .menu-voci a:nth-child(5){animation-delay:.26s}
-body.scena .menu-pan.viva .menu-voci a:nth-child(6){animation-delay:.31s}
-body.scena .menu-pan.viva .menu-voci a:nth-child(7){animation-delay:.36s}
-body.scena .menu-pan.viva .menu-voci a:nth-child(8){animation-delay:.41s}
+  display:flex;align-items:baseline;gap:clamp(12px,3.4vw,20px);
+  font-family:var(--serif-scena)!important;font-weight:400;font-style:normal;
+  font-size:clamp(27px,7.6vw,40px);line-height:1.1;letter-spacing:-.015em!important;
+  text-transform:none!important;color:var(--testo);text-decoration:none;
+  border:0!important;padding:clamp(7px,1.5vh,11px) 0;
+  opacity:0;transform:translateY(18px)}
+/* il numero del programma di sala */
+body.scena .menu-voci a::before{
+  counter-increment:voce;content:counter(voce,decimal-leading-zero);
+  font:500 10.5px/1 var(--sans);letter-spacing:.2em;color:var(--oro);
+  flex:0 0 auto;opacity:.75;transform:translateY(-.35em)}
 
-/* la pagina in cui ti trovi: in corsivo e in oro, con un trattino davanti */
+body.scena .menu-pan.viva .menu-voci a{
+  animation:voce-su .58s cubic-bezier(.19,1,.22,1) forwards}
+@keyframes voce-su{to{opacity:1;transform:none}}
+body.scena .menu-pan.viva .menu-voci a:nth-child(1){animation-delay:.05s}
+body.scena .menu-pan.viva .menu-voci a:nth-child(2){animation-delay:.10s}
+body.scena .menu-pan.viva .menu-voci a:nth-child(3){animation-delay:.15s}
+body.scena .menu-pan.viva .menu-voci a:nth-child(4){animation-delay:.20s}
+body.scena .menu-pan.viva .menu-voci a:nth-child(5){animation-delay:.25s}
+body.scena .menu-pan.viva .menu-voci a:nth-child(6){animation-delay:.30s}
+body.scena .menu-pan.viva .menu-voci a:nth-child(7){animation-delay:.35s}
+body.scena .menu-pan.viva .menu-voci a:nth-child(8){animation-delay:.40s}
+
+/* dove sei adesso */
 body.scena .menu-voci a[aria-current]{color:var(--oro);font-style:italic}
-body.scena .menu-voci a[aria-current]::before{content:"— ";font-style:normal}
 body.scena .menu-voci a:active{color:var(--oro)}
 
-body.scena .menu-piede{position:relative;z-index:2;
-  border-top:1px solid var(--filo);padding-top:clamp(18px,3vh,26px);
-  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
-  opacity:0;transition:opacity .5s ease .42s}
+body.scena .menu-piede{position:relative;z-index:2;flex-direction:row!important;
+  align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  border-top:1px solid var(--filo)!important;padding-top:clamp(16px,2.6vh,24px);
+  opacity:0;transition:opacity .5s ease .4s}
 body.scena .menu-pan.viva .menu-piede{opacity:1}
-body.scena .menu-lingua{font:500 12px/1 var(--sans);letter-spacing:.2em;
-  text-transform:uppercase;color:var(--oro);text-decoration:none;
-  border:1px solid color-mix(in srgb,var(--oro) 40%,transparent);
-  border-radius:999px;padding:10px 17px}
-body.scena .menu-social{display:flex;gap:17px}
-body.scena .menu-social a{color:var(--testo3)}
-body.scena .menu-social svg{width:21px;height:21px;fill:currentColor}
+body.scena .menu-lingua{color:var(--oro)!important;font-size:12px;letter-spacing:.18em;
+  border:1px solid color-mix(in srgb,var(--oro) 40%,transparent)!important;
+  border-radius:999px;padding:9px 16px;align-self:auto!important}
+body.scena .menu-social{margin:0}
+body.scena .menu-social a{width:40px;height:40px;color:var(--testo3)}
+body.scena .menu-social a svg{width:20px;height:20px}
 
-/* dietro il pannello la pagina non deve scorrere */
 html.menu-aperto,html.menu-aperto body{overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
