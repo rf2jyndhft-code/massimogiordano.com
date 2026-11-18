@@ -68,17 +68,34 @@
       return null;
     }
 
-    elenco.addEventListener('touchstart', function (ev) {
-      var a = vociSotto(ev.touches[0]);
-      if (a) { sopra = a; aggiorna(); }
+    /* I gestori stanno sul PANNELLO, non sull'elenco: il dito può uscire di
+       un pelo dalle voci mentre scorre, e lì l'inseguimento si interromperebbe.
+       E si ascolta sia il tocco sia il puntatore, perché a seconda del
+       browser arriva l'uno o l'altro — mai dare per scontato quale. */
+    function segui(x, y) {
+      var e = document.elementFromPoint(x, y);
+      while (e && e !== pannello) {
+        if (e.tagName === 'A' && voci.indexOf(e) > -1) {
+          if (e !== sopra) { sopra = e; aggiorna(); }
+          return;
+        }
+        e = e.parentElement;
+      }
+    }
+
+    pannello.addEventListener('touchstart', function (ev) {
+      if (ev.touches[0]) segui(ev.touches[0].clientX, ev.touches[0].clientY);
     }, { passive: true });
 
-    elenco.addEventListener('touchmove', function (ev) {
-      var a = vociSotto(ev.touches[0]);
-      if (a && a !== sopra) { sopra = a; aggiorna(); }
+    pannello.addEventListener('touchmove', function (ev) {
+      if (ev.touches[0]) segui(ev.touches[0].clientX, ev.touches[0].clientY);
     }, { passive: true });
 
-    elenco.addEventListener('touchend', function () {
+    pannello.addEventListener('pointermove', function (ev) {
+      segui(ev.clientX, ev.clientY);
+    }, { passive: true });
+
+    pannello.addEventListener('touchend', function () {
       if (sopra) ferma = sopra;          /* resta dove il dito si è staccato */
       aggiorna();
     }, { passive: true });
