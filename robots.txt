@@ -11,3 +11,7 @@ Allow: /
 Disallow: /press-kit/
 
 Sitemap: https://www.massimogiordano.com/sitemap.xml
+
+# la cartella di lavorazione: non deve finire nei risultati
+Disallow: /anteprima/
+Disallow: /prove/
