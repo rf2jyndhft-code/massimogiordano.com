@@ -602,3 +602,25 @@ body.scena .menu-voci a:active::after,
 body.scena .menu-voci a:hover::after,
 body.scena .menu-voci a[aria-current]::after{transform:scaleX(1)}
 body.scena .menu-voci a[aria-current]::before{opacity:1}
+
+
+/* ── Il riquadro che segna la voce ───────────────────────────────────
+   Si posa sulla voce che tocchi e ci resta. Sta DIETRO il testo.
+   ⚠️ Qui NON si tocca né touch-action né overflow né overscroll: quelle
+   regole, messe per fermare il rimbalzo, bloccavano lo scorrimento della
+   pagina e si prendevano i tocchi destinati al pulsante della voce. */
+body.scena .menu-voci{position:relative}
+body.scena .menu-cursore{
+  position:absolute;left:-10px;right:-10px;top:0;height:0;
+  border:1px solid color-mix(in srgb,var(--oro) 70%,transparent);
+  border-radius:6px;
+  background:color-mix(in srgb,var(--oro) 7%,transparent);
+  box-shadow:0 0 22px color-mix(in srgb,var(--oro) 14%,transparent);
+  opacity:0;pointer-events:none;z-index:0;
+  transition:transform .4s cubic-bezier(.19,1,.22,1),
+             height .4s cubic-bezier(.19,1,.22,1),
+             opacity .3s ease}
+body.scena .menu-cursore.viva{opacity:1}
+body.scena .menu-voci a{position:relative;z-index:1}
+body.scena .menu-voci a:focus{outline:none}
+body.scena .menu-voci a:focus-visible{outline:none}
