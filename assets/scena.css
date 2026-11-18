@@ -457,7 +457,7 @@ body.scena .menu-pan.viva .menu-voci a:nth-child(7){animation-delay:.35s}
 body.scena .menu-pan.viva .menu-voci a:nth-child(8){animation-delay:.40s}
 
 /* dove sei adesso */
-body.scena .menu-voci a[aria-current]{color:var(--oro);font-style:italic}
+body.scena .menu-voci a[aria-current]{color:var(--testo);font-style:normal}
 body.scena .menu-voci a:active{color:var(--oro)}
 
 body.scena .menu-piede{position:relative;z-index:2;flex-direction:row!important;
@@ -583,25 +583,15 @@ body.scena .chi figure img{object-position:50% 18%}
 
 
 
-/* ══════════════════════════════════════════════════════════════════
-   IL MENU DEL TELEFONO — versione semplice
-   La voce che si tocca si accende: colore d'oro e un filetto che si
-   apre sotto. Tutto in CSS, senza nessuno script — così non c'è niente
-   che possa interferire con lo scorrimento o con la musica.
-   ══════════════════════════════════════════════════════════════════ */
-body.scena .menu-voci a{
-  position:relative;transition:color .25s ease}
-body.scena .menu-voci a::after{
-  content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;
-  background:var(--oro);transform:scaleX(0);transform-origin:left;
-  transition:transform .35s cubic-bezier(.19,1,.22,1)}
-body.scena .menu-voci a:active,
-body.scena .menu-voci a:hover,
-body.scena .menu-voci a[aria-current]{color:var(--oro)}
-body.scena .menu-voci a:active::after,
-body.scena .menu-voci a:hover::after,
-body.scena .menu-voci a[aria-current]::after{transform:scaleX(1)}
-body.scena .menu-voci a[aria-current]::before{opacity:1}
+/* La voce sotto il riquadro si accende: solo il colore, niente filetto —
+   il riquadro dice già dove sei, e due segni insieme fanno rumore. */
+body.scena .menu-voci a{transition:color .25s ease}
+/* Comanda il riquadro: si accende la voce che sta dentro, e nessun'altra.
+   Prima restava accesa la pagina corrente anche quando il riquadro era
+   altrove, e si vedevano due voci illuminate insieme. */
+body.scena .menu-voci a{color:var(--testo)!important;font-style:normal!important}
+body.scena .menu-voci a.dentro-box{color:var(--oro)!important}
+body.scena .menu-voci a.dentro-box::before{opacity:1}
 
 
 /* ── Il riquadro che segna la voce ───────────────────────────────────
