@@ -364,6 +364,13 @@ body.scena .btn:hover{background:var(--oro);color:var(--su-oro)}
 body.scena .menu-bot{color:var(--testo);width:46px;height:46px}
 body.scena .menu-bot[aria-expanded="true"]{color:var(--oro);position:relative;z-index:70}
 
+/* ⚠️ Il pannello resta CHIUSO finché non lo si apre.
+   La riga qui sotto diceva "display:flex" e vinceva su "[hidden]{display:none}"
+   del foglio principale: il pannello restava spalancato sopra tutta la pagina,
+   invisibile ma attivo, e si prendeva ogni clic. Il menu non si accendeva
+   perché il mouse non arrivava alle voci vere, e il pulsante della voce
+   mandava su Contatti perché sotto il dito c'era una voce nascosta. */
+body.scena .menu-pan[hidden]{display:none!important}
 body.scena .menu-pan{
   position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;
   justify-content:center;gap:clamp(26px,5vh,44px);
