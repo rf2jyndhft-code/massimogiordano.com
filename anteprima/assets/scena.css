@@ -23,8 +23,7 @@ a{color:inherit;text-decoration:none}
 .occhio{font:400 10.5px/1 var(--sans);letter-spacing:.44em;text-transform:uppercase;color:var(--oro);margin:0}
 
 /* --- l'ingresso: il sipario si alza una volta sola ------------------- */
-#tenda{position:fixed;inset:0;z-index:90;background:var(--sfondo);
-  display:grid;place-items:center;transition:opacity .9s ease,visibility .9s}
+#tenda{display:none}
 #tenda.via{opacity:0;visibility:hidden}
 #tenda p{font:400 11px/1 var(--sans);letter-spacing:.5em;text-transform:uppercase;color:var(--testo4);margin:0}
 
@@ -36,25 +35,25 @@ a{color:inherit;text-decoration:none}
 .palco::after{content:"";position:absolute;inset:0;z-index:1;
   background:radial-gradient(120% 80% at 50% 38%, color-mix(in srgb, var(--sfondo) 6%, transparent), color-mix(in srgb, var(--sfondo) 58%, transparent) 58%, var(--sfondo) 92%)}
 .palco .dentro{position:relative;z-index:2;width:100%;text-align:center;
-  padding:clamp(130px,17vh,180px) 0 clamp(56px,8vh,86px)}
+  padding:clamp(118px,15vh,160px) 0 clamp(104px,13vh,140px)}
 
 .nome{margin:0;font-family:var(--serif);font-weight:400;line-height:.86;letter-spacing:-.02em;
-  font-size:clamp(52px,13.2vw,184px)}
+  font-size:clamp(50px,12vw,164px)}
 .nome .riga{display:block;overflow:hidden}
 .nome .riga span{display:inline-block;transform:translateY(105%);
   animation:sale 1.15s cubic-bezier(.19,1,.22,1) forwards}
 .nome .riga:nth-child(2) span{animation-delay:.14s;font-style:italic}
 @keyframes sale{to{transform:translateY(0)}}
 
-.sotto-nome{margin:clamp(18px,2.6vh,30px) auto 0;max-width:30ch;opacity:0;
+.sotto-nome{margin:clamp(18px,2.6vh,30px) auto 0;max-width:30ch;
   font:300 clamp(14px,1.5vw,17px)/1.8 var(--sans);color:var(--testo2);
-  animation:appare 1.1s ease .62s forwards}
-.occhio-apre{opacity:0;animation:appare 1s ease .3s forwards;
+  }
+.occhio-apre{
   margin:0 0 clamp(26px,4vh,40px)}
 @keyframes appare{to{opacity:1}}
 
 /* --- il pulsante che fa cantare la pagina --------------------------- */
-.ascolta{margin:clamp(24px,3.4vh,42px) auto 0;opacity:0;animation:appare 1s ease .9s forwards;
+.ascolta{margin:clamp(24px,3.4vh,42px) auto 0;
   display:inline-flex;align-items:center;gap:16px;cursor:pointer;background:none;border:0;color:inherit;
   padding:0;font-family:inherit}
 .ascolta .cerchio{position:relative;display:grid;place-items:center;width:62px;height:62px;border-radius:50%;
@@ -83,8 +82,8 @@ a{color:inherit;text-decoration:none}
 
 /* "Scorri" non è una decorazione: è l'unica cosa che dice a chi arriva che
    sotto c'è dell'altro. Prima era un grigio quasi invisibile. */
-.giu{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;opacity:0;
-  animation:appare 1s ease 1.5s forwards;font:400 10px/1 var(--sans);letter-spacing:.34em;
+.giu{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;
+  font:400 10px/1 var(--sans);letter-spacing:.34em;
   text-transform:uppercase;color:var(--testo4)}
 .giu i{display:block;width:1px;height:38px;margin:12px auto 0;
   background:linear-gradient(var(--oro),transparent);
@@ -472,4 +471,12 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
   body.scena .nome{font-size:clamp(46px,17vw,66px)}
   body.scena .ascolta .dice b{font-size:14.5px}
   body.scena #onda{height:40px}
+}
+
+
+/* Su uno schermo basso il blocco d'apertura e la riga dello "scorri" si
+   contendono gli stessi pixel: vince il blocco, e lo "scorri" si toglie. */
+@media (max-height:760px){
+  body.scena .giu{display:none}
+  body.scena .palco .dentro{padding-bottom:clamp(56px,8vh,86px)}
 }
