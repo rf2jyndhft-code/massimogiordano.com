@@ -35,10 +35,10 @@ a{color:inherit;text-decoration:none}
 .palco::after{content:"";position:absolute;inset:0;z-index:1;
   background:radial-gradient(120% 80% at 50% 38%, color-mix(in srgb, var(--sfondo) 6%, transparent), color-mix(in srgb, var(--sfondo) 58%, transparent) 58%, var(--sfondo) 92%)}
 .palco .dentro{position:relative;z-index:2;width:100%;text-align:center;
-  padding:clamp(130px,17vh,180px) 0 clamp(56px,8vh,86px)}
+  padding:clamp(118px,15vh,160px) 0 clamp(104px,13vh,140px)}
 
 .nome{margin:0;font-family:var(--serif);font-weight:400;line-height:.86;letter-spacing:-.02em;
-  font-size:clamp(52px,13.2vw,184px)}
+  font-size:clamp(50px,12vw,164px)}
 .nome .riga{display:block;overflow:hidden}
 .nome .riga span{display:inline-block;transform:translateY(105%);
   animation:sale 1.15s cubic-bezier(.19,1,.22,1) forwards}
@@ -471,4 +471,12 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
   body.scena .nome{font-size:clamp(46px,17vw,66px)}
   body.scena .ascolta .dice b{font-size:14.5px}
   body.scena #onda{height:40px}
+}
+
+
+/* Su uno schermo basso il blocco d'apertura e la riga dello "scorri" si
+   contendono gli stessi pixel: vince il blocco, e lo "scorri" si toglie. */
+@media (max-height:760px){
+  body.scena .giu{display:none}
+  body.scena .palco .dentro{padding-bottom:clamp(56px,8vh,86px)}
 }
