@@ -578,44 +578,27 @@ body.scena .consenso a,body.scena [class*="consenso"] a{color:var(--oro)}
 body.scena .chi figure{background:transparent;overflow:hidden}
 body.scena .chi figure img{object-position:50% 18%}
 
-/* ── Il riquadro che segue la voce ───────────────────────────────────
-   Scivola da una voce all'altra sotto il dito e si ferma su quella che
-   si sta per aprire. Sta DIETRO le voci, così il testo resta nitido. */
-body.scena .menu-voci{position:relative}
-body.scena .menu-cursore{
-  position:absolute;left:-10px;right:-10px;top:0;height:0;
-  border:1px solid color-mix(in srgb,var(--oro) 70%,transparent);
-  border-radius:6px;
-  background:color-mix(in srgb,var(--oro) 7%,transparent);
-  box-shadow:0 0 22px color-mix(in srgb,var(--oro) 14%,transparent);
-  opacity:0;pointer-events:none;z-index:0;
-  transition:transform .42s cubic-bezier(.19,1,.22,1),
-             height .42s cubic-bezier(.19,1,.22,1),
-             opacity .3s ease}
-body.scena .menu-cursore.viva{opacity:1}
-body.scena .menu-voci a{position:relative;z-index:1}
-/* la voce sotto il riquadro si accende */
-body.scena .menu-voci a:hover,body.scena .menu-voci a:active{color:var(--oro)}
-@media (prefers-reduced-motion:reduce){
-  body.scena .menu-cursore{transition:opacity .2s}
-}
 
-/* Il browser disegna un suo contorno sull'ultima voce toccata: insieme al
-   riquadro che segue il dito se ne vedevano due. Resta solo il nostro —
-   che indica anche il fuoco della tastiera, quindi non si perde niente. */
-body.scena .menu-voci a:focus{outline:none}
-body.scena .menu-voci a:focus-visible{outline:none}
-body.scena .menu-voci a{-webkit-tap-highlight-color:transparent}
 
-/* Il pannello non deve rimbalzare: le otto voci ci stanno tutte, e il
-   rimbalzo di iOS faceva ballare il riquadro mentre il dito scorreva. */
-body.scena .menu-pan{overscroll-behavior:contain;touch-action:pan-y}
-@media (max-width:900px) and (min-height:620px){
-  body.scena .menu-pan{overflow:hidden}
-}
 
-/* Niente rimbalzo elastico: su iPhone, arrivando in cima o in fondo, la
-   pagina si staccava dal bordo e tornava indietro di scatto. Su un sito
-   con un video a tutto schermo si vede moltissimo e sembra un difetto. */
-html{overscroll-behavior-y:none}
-body.scena{overscroll-behavior-y:none}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   IL MENU DEL TELEFONO — versione semplice
+   La voce che si tocca si accende: colore d'oro e un filetto che si
+   apre sotto. Tutto in CSS, senza nessuno script — così non c'è niente
+   che possa interferire con lo scorrimento o con la musica.
+   ══════════════════════════════════════════════════════════════════ */
+body.scena .menu-voci a{
+  position:relative;transition:color .25s ease}
+body.scena .menu-voci a::after{
+  content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;
+  background:var(--oro);transform:scaleX(0);transform-origin:left;
+  transition:transform .35s cubic-bezier(.19,1,.22,1)}
+body.scena .menu-voci a:active,
+body.scena .menu-voci a:hover,
+body.scena .menu-voci a[aria-current]{color:var(--oro)}
+body.scena .menu-voci a:active::after,
+body.scena .menu-voci a:hover::after,
+body.scena .menu-voci a[aria-current]::after{transform:scaleX(1)}
+body.scena .menu-voci a[aria-current]::before{opacity:1}
