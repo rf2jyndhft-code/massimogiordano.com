@@ -15,8 +15,13 @@ html{-webkit-text-size-adjust:100%}
   --oro:#c09550; --su-oro:#14110c;
   --velo:.9;                     /* quanto si vede il video in apertura */
   --grigia:.30;                   /* quanto sono scolorite le fotografie */
+  /* DUE CARATTERI, E BASTA — quelli della prima pagina.
+     Bodoni Moda per i titoli e i nomi; Archivo per tutto il resto.
+     Prima i testi lunghi usavano un carattere di sistema (Iowan Old Style)
+     che su ogni computer diventava un'altra cosa. */
   --display:"Bodoni Moda",Georgia,"Times New Roman",serif;
   --sans:"Archivo",system-ui,-apple-system,sans-serif;
+  --serif:"Archivo",system-ui,-apple-system,sans-serif;
 }
 body{margin:0;background:var(--sfondo);color:var(--testo);font-family:var(--sans);font-weight:300;
   overflow-x:hidden}
@@ -226,7 +231,7 @@ footer nav a:hover{color:var(--testo)}
    lingua e il menu continuano a funzionare esattamente come prima.
    ══════════════════════════════════════════════════════════════════ */
 body.scena{background:var(--sfondo);color:var(--testo);
-  font-family:var(--serif);font-weight:400}
+  font-family:var(--sans);font-weight:300}
 /* il bastone resta dove serve: etichette, menu, numeri, didascalie */
 body.scena .label,body.scena .occhio,body.scena .nomi,body.scena .topbar,
 body.scena .conti .v,body.scena figcaption,body.scena .btn,
