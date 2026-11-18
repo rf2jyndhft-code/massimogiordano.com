@@ -39,7 +39,7 @@ a{color:inherit;text-decoration:none}
   padding:clamp(96px,13vh,132px) 0 clamp(72px,10vh,104px)}
 
 .nome{margin:0;font-family:var(--serif);font-weight:400;line-height:.86;letter-spacing:-.02em;
-  font-size:clamp(52px,13.5vw,190px)}
+  font-size:clamp(46px,10.6vw,138px)}
 .nome .riga{display:block;overflow:hidden}
 .nome .riga span{display:inline-block;transform:translateY(105%);
   animation:sale 1.15s cubic-bezier(.19,1,.22,1) forwards}
