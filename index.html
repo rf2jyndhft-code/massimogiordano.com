@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="assets/scena.css?v=52c3230b">
+<link rel="stylesheet" href="assets/scena.css?v=d34c7e5a">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Skip to content</a>
@@ -349,11 +349,11 @@
   /* ---- quello che entra scorrendo ---- */
   /* da qui in poi la pagina può nascondere le cose per poi mostrarle:
      se questo script non arriva, restano semplicemente visibili. */
-  // document.documentElement.classList.add('moto');   /* dissolvenza spenta: togliere i due barrati per riaccenderla */
+  document.documentElement.classList.add('moto');
 
   var osservatore = new IntersectionObserver(function(voci){
     voci.forEach(function(v){ if (v.isIntersecting){ v.target.classList.add('dentro'); osservatore.unobserve(v.target); } });
-  }, { threshold: .18 });
+  }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.entra').forEach(function(e){ osservatore.observe(e); });
   setTimeout(function(){                       /* se qualcosa va storto, si vede lo stesso */
     document.querySelectorAll('.entra:not(.dentro)').forEach(function(e){ e.classList.add('dentro'); });
