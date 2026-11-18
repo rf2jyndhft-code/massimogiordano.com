@@ -425,31 +425,49 @@
       ctx.globalAlpha = .2; ctx.lineWidth = 6; ctx.stroke(); ctx.globalAlpha = 1;
     }
 
+    var motore = null;
+
+    /* Prima suona, poi disegna.
+       Collegare l'audio al disegno lo fa passare dentro il motore audio del
+       browser, che nasce SPENTO: finché non lo si riaccende, l'audio avanza
+       ma dalle casse non esce niente. Qui il canto parte per primo, da solo;
+       l'onda si attacca dopo, e se non riesce ad attaccarsi la voce si sente
+       lo stesso. */
+    function attaccaOnda(){
+      if (analizzatore) { if (motore && motore.state === 'suspended') motore.resume(); return; }
+      try {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        motore = new AC();
+        var sorgente = motore.createMediaElementSource(suono);
+        analizzatore = motore.createAnalyser();
+        analizzatore.fftSize = 2048;
+        dati = new Uint8Array(analizzatore.frequencyBinCount);
+        sorgente.connect(analizzatore);
+        analizzatore.connect(motore.destination);
+        if (motore.state === 'suspended') motore.resume();
+      } catch (e) {
+        analizzatore = null;            /* resta la linea ferma: pazienza */
+      }
+    }
+
     tasto.addEventListener('click', function(e){
       e.preventDefault(); e.stopPropagation();
-      if (suono.paused){
-        if (!analizzatore){
-          try {
-            var AC = window.AudioContext || window.webkitAudioContext;
-            var ac = new AC();
-            var sorgente = ac.createMediaElementSource(suono);
-            analizzatore = ac.createAnalyser();
-            analizzatore.fftSize = 2048;
-            dati = new Uint8Array(analizzatore.frequencyBinCount);
-            sorgente.connect(analizzatore); analizzatore.connect(ac.destination);
-            if (ac.state === 'suspended') ac.resume();
-          } catch (e) {
-            analizzatore = null;          /* resta il respiro, il canto parte lo stesso */
-          }
-        }
-        suono.play();
-        tasto.classList.add('suona');
-        tela.classList.add('viva');
-      } else {
+
+      if (!suono.paused){
         suono.pause();
         tasto.classList.remove('suona');
         tela.classList.remove('viva');
+        return;
       }
+
+      var partito = suono.play();
+      function acceso(){
+        tasto.classList.add('suona');
+        tela.classList.add('viva');
+        attaccaOnda();
+      }
+      if (partito && partito.then) partito.then(acceso).catch(function(){ acceso(); });
+      else acceso();
     });
     disegna();
     suono.addEventListener('ended', function(){
