@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/anteprima/assets/scena.css?v=04a55b46">
+<link rel="stylesheet" href="/anteprima/assets/scena.css?v=7b1a4192">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Skip to content</a>
@@ -399,48 +399,70 @@
       tela  = document.getElementById('onda');
   if (tasto && suono && tela){
     var ctx = tela.getContext('2d'), gira = null;
+    /* il canvas alla risoluzione vera dello schermo: su un Mac le barre
+       altrimenti escono sfocate */
+    function misura(){
+      var r = tela.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
+      tela.width = Math.round(r.width * d); tela.height = Math.round(r.height * d);
+    }
+    misura();
+    window.addEventListener('resize', misura);
+
     var oro = getComputedStyle(document.documentElement)
                 .getPropertyValue('--oro').trim() || '#b9924a';
 
+    var ultimoIstante = 0;
     function disegna(t){
       gira = requestAnimationFrame(disegna);
-      var L = tela.width, A = tela.height, mezzo = A / 2;
+      var dt = ultimoIstante ? Math.min(.1, (t - ultimoIstante) / 1000) : .016;
+      ultimoIstante = t;
+
+      var L = tela.width, A = tela.height, base = A - 2;
       ctx.clearRect(0, 0, L, A);
-      var canta = !suono.paused;
+      var canta = !suono.paused && analizzatore && bordi;
 
-      var spettro = null;
-      if (canta && analizzatore){
-        analizzatore.getByteFrequencyData(dati);
-        var somma = 0;
-        for (var q = 0; q < dati.length; q++) somma += dati[q];
-        if (somma > 0){ spettro = dati; vuotoDa = 0; }
-        else if (!vuotoDa) vuotoDa = t || 1;
-      }
+      if (canta){
+        analizzatore.getFloatFrequencyData(dati);
+        var MIN = analizzatore.minDecibels, MAX = analizzatore.maxDecibels;
+        for (var b = 0; b < BANDE; b++){
+          var da = bordi[b], a = Math.max(bordi[b + 1], da + 1), somma = 0, n = 0;
+          for (var k = da; k < a; k++){ var d = dati[k]; if (d > -Infinity){ somma += d; n++; } }
+          var dB = n ? somma / n : MIN;
+          var v = (dB - MIN) / (MAX - MIN);
+          v = Math.max(0, Math.min(1, v));
+          v = Math.pow(v, .78);                       /* un filo di guadagno sui deboli */
 
-      var N = 48, largo = L / N;
-      ctx.fillStyle = oro;
-      for (var i = 0; i < N; i++){
-        var v;
-        if (spettro){
-          /* le frequenze basse sono le più piene: si comprime la scala */
-          var k = Math.floor(Math.pow(i / N, 1.6) * (spettro.length * .72));
-          v = spettro[k] / 255;
-        } else if (canta){
-          /* rete di sicurezza: un movimento che segue il tempo */
-          var f = (t || 0) / 1000;
-          v = (Math.sin(i * .5 + f * 6.2) * .5 + .5) * .55
-            + (Math.sin(i * .19 - f * 3.4) * .5 + .5) * .35;
-        } else {
-          v = 0;
+          /* salita immediata, discesa di circa 9 dB al secondo */
+          livelli[b] = v > livelli[b] ? v : Math.max(v, livelli[b] - dt * 1.9);
+
+          if (livelli[b] >= picchi[b]) { picchi[b] = livelli[b]; cadutaPicco[b] = -0.55; }
+          else { cadutaPicco[b] += dt * 2.3; picchi[b] = Math.max(livelli[b], picchi[b] - Math.max(0, cadutaPicco[b]) * dt * 2.4); }
         }
-        var h = Math.max(2, v * (mezzo * 1.75));
-        var x = i * largo + largo * .22, w = largo * .56;
-        ctx.globalAlpha = .9;
-        ctx.fillRect(x, mezzo - h / 2, w, h);
-        ctx.globalAlpha = .22;
-        ctx.fillRect(x, mezzo - h / 2 - 3, w, h + 6);
+      } else {
+        for (var z = 0; z < BANDE; z++){
+          livelli[z] = Math.max(0, livelli[z] - dt * 2.6);
+          picchi[z] = Math.max(livelli[z], picchi[z] - dt * 2.0);
+        }
       }
-      ctx.globalAlpha = 1;
+
+      var largo = L / BANDE, w = Math.max(1.5, largo * .62);
+      for (var i = 0; i < BANDE; i++){
+        var h = livelli[i] * base;
+        var x = i * largo + (largo - w) / 2;
+        if (h > .5){
+          var g = ctx.createLinearGradient(0, base, 0, base - h);
+          g.addColorStop(0, 'rgba(185,146,74,.35)');
+          g.addColorStop(.55, oro);
+          g.addColorStop(1, '#f1e4c8');
+          ctx.fillStyle = g;
+          ctx.fillRect(x, base - h, w, h);
+        }
+        var hp = picchi[i] * base;
+        if (hp > 1.5){
+          ctx.fillStyle = 'rgba(241,228,200,.9)';
+          ctx.fillRect(x, base - hp - 1.5, w, 1.5);
+        }
+      }
     }
 
     /* L'audio NON passa da nessuna parte: esce dall'elemento e basta.
@@ -450,14 +472,32 @@
 
        L'onda qui segue il tempo e un movimento suo: non è il suono vero,
        ma si muove solo mentre si canta, e si ferma quando si ferma. */
-    var analizzatore = null, dati = null, motore = null, vuotoDa = 0;
+    var analizzatore = null, dati = null, motore = null;
+    var BANDE = 56, livelli = new Float32Array(BANDE), picchi = new Float32Array(BANDE),
+        cadutaPicco = new Float32Array(BANDE), bordi = null;
 
-    /* Lo spettro della voce.
-       Il motore audio del browser nasce spento e si riaccende solo dentro il
-       gesto di chi preme: per questo si accende PRIMA, si aspetta che sia
-       davvero acceso, e solo allora parte il canto. Se dopo un secondo non
-       arriva nessun dato — succede su qualche browser — si passa all'onda
-       disegnata, così non resta mai una riga morta. */
+    /* ── Analizzatore di spettro ──────────────────────────────────────
+       Fatto come lo fanno gli strumenti veri, non come un'animazione:
+
+       · le bande sono distribuite per OTTAVE, da 50 Hz a 14 kHz. Una scala
+         lineare schiaccerebbe tutta la voce nel primo decimo dello schermo:
+         un tenore vive fra i 130 Hz del do grave e i 523 del do acuto, più
+         le armoniche che gli danno il colore.
+       · l'ampiezza è in DECIBEL, da -82 a -18, perché l'orecchio sente così.
+       · salita immediata, discesa lenta: l'attacco di una nota si vede
+         tutto, la coda scende con la voce invece di sparire di colpo.
+       · il picco resta sospeso un istante e poi cade: è quello che permette
+         di leggere la dinamica di una frase mentre passa.                */
+    function preparaBande(ctxAudio){
+      var fMin = 50, fMax = Math.min(14000, ctxAudio.sampleRate / 2);
+      var nyquist = ctxAudio.sampleRate / 2, N = analizzatore.frequencyBinCount;
+      bordi = new Array(BANDE + 1);
+      for (var i = 0; i <= BANDE; i++){
+        var f = fMin * Math.pow(fMax / fMin, i / BANDE);
+        bordi[i] = Math.min(N - 1, Math.max(0, Math.round(f / nyquist * N)));
+      }
+    }
+
     function collega(){
       if (analizzatore) return Promise.resolve();
       var AC = window.AudioContext || window.webkitAudioContext;
@@ -466,12 +506,15 @@
         motore = new AC();
         var sorgente = motore.createMediaElementSource(suono);
         var an = motore.createAnalyser();
-        an.fftSize = 256;                 /* 128 frequenze: barre leggibili */
-        an.smoothingTimeConstant = .72;   /* morbido, non nervoso */
-        dati = new Uint8Array(an.frequencyBinCount);
+        an.fftSize = 4096;              /* risoluzione fine sui gravi */
+        an.minDecibels = -82;
+        an.maxDecibels = -18;
+        an.smoothingTimeConstant = 0;   /* il filtro lo faccio io, più fine */
+        dati = new Float32Array(an.frequencyBinCount);
         sorgente.connect(an);
         an.connect(motore.destination);
         analizzatore = an;
+        preparaBande(motore);
         return motore.resume ? motore.resume() : Promise.resolve();
       } catch (e) { analizzatore = null; return Promise.resolve(); }
     }
