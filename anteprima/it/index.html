@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/anteprima/assets/scena.css?v=2f17acdf">
+<link rel="stylesheet" href="/anteprima/assets/scena.css?v=cacd0694">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -215,7 +215,7 @@
 
 
 <main id="main">
-<div id="tenda"><p>Un momento</p></div>
+<div id="tenda"><div class="dentro-tenda"><p class="nome-tenda">Massimo Giordano</p><div class="filo-tenda"><i></i></div></div></div>
 
 <!-- ======================= l'apertura ======================= -->
 <header class="palco">
@@ -342,9 +342,28 @@
   var fermo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* il sipario si alza quando la pagina e' pronta */
-  window.addEventListener('load', function(){
-    setTimeout(function(){ document.getElementById('tenda').classList.add('via'); }, 260);
-  });
+  /* Il sipario si alza quando il video è pronto a partire — e comunque
+     dopo tre secondi, perché nessuno deve restare chiuso fuori per una
+     connessione lenta. */
+  (function(){
+    var tenda = document.getElementById('tenda');
+    if (!tenda) return;
+    var alzato = false;
+    function alza(){
+      if (alzato) return;
+      alzato = true;
+      tenda.classList.add('via');
+      var v = document.querySelector('.palco video');
+      if (v && v.paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); }
+    }
+    var video = document.querySelector('.palco video');
+    if (video){
+      if (video.readyState >= 3) setTimeout(alza, 700);
+      else video.addEventListener('canplay', function(){ setTimeout(alza, 450); });
+    }
+    window.addEventListener('load', function(){ setTimeout(alza, 1400); });
+    setTimeout(alza, 3000);
+  })();
 
   /* ---- quello che entra scorrendo ---- */
   /* da qui in poi la pagina può nascondere le cose per poi mostrarle:
