@@ -265,3 +265,62 @@ body.scena .palco{padding-top:0}
     border-bottom:1px solid var(--filo)}
   body.scena .topbar:not(.topbar-fissa) .nav{border-top:0}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   LE PAGINE INTERNE
+   Il sito era già costruito su variabili: --paper era l'avorio del
+   fondo, --ink il blu quasi nero del testo. Qui si scambiano di posto.
+   Nessun HTML cambia, nessuna classe si tocca: cambia la tavolozza e
+   biografia, repertorio, fotografie, locandine, stampa e didattica
+   prendono lo stesso vestito della home.
+
+   Il carattere dei testi lunghi resta quello di prima — un serif da
+   lettura. Bodoni è bellissimo nei titoli e faticoso in un paragrafo
+   di quaranta righe: nel repertorio ce ne sono a centinaia.
+   ══════════════════════════════════════════════════════════════════ */
+body.scena{
+  --paper:#0e1014;        /* il fondo: non più avorio, la notte */
+  --paper-2:#14171c;
+  --ink:#eef1f4;          /* il testo: non più blu scuro, chiaro */
+  --ink-soft:#d8dde3;
+  --muted:#8b949e;        /* grigio leggibile sul fondo scuro */
+  --muted-dark:#8b949e;
+  --gold:#b9924a;
+  --gold-light:#d2a862;
+  --rule:rgba(238,241,244,.13);
+  --rule-dark:rgba(185,146,74,.26);
+}
+
+/* le sezioni che prima erano "scure dentro al chiaro" adesso sarebbero
+   invisibili: diventano un gradino appena più chiaro del fondo */
+body.scena .on-dark{background:var(--sfondo2);color:var(--testo)}
+body.scena .on-dark .label{color:var(--oro)}
+
+/* i titoli parlano la lingua della home */
+body.scena h1,body.scena h2,body.scena h3,
+body.scena .pie-nome,body.scena .brand{
+  font-family:var(--serif-scena);font-weight:400;letter-spacing:-.005em}
+
+/* le fotografie non devono galleggiare su un bianco che non c'è più */
+body.scena .shot,body.scena .card,body.scena figure{background:var(--sfondo2)}
+body.scena .card{border:1px solid var(--filo)}
+body.scena .locandina img{background:var(--sfondo2)}
+
+/* le righe del repertorio: stesso trattamento della home */
+body.scena .rep li{border-bottom:1px solid var(--filo)}
+body.scena .rep .role{color:var(--testo)}
+body.scena .rep .work{color:var(--oro)}
+body.scena .rep .houses{color:var(--testo3)}
+body.scena .year{color:var(--oro)}
+
+/* i campi dei moduli, che erano scuri su chiaro */
+body.scena input,body.scena textarea,body.scena select{
+  background:var(--sfondo2);color:var(--testo);border-color:var(--bordo)}
+body.scena input:focus,body.scena textarea:focus{border-color:var(--oro);outline:0}
+body.scena ::placeholder{color:var(--testo4)}
+
+/* i pulsanti chiari su fondo scuro */
+body.scena .btn{background:var(--testo);color:var(--sfondo);border:0}
+body.scena .btn:hover{background:var(--oro);color:var(--su-oro)}
+
+:root{--serif-scena:"Bodoni Moda",Georgia,"Times New Roman",serif}
