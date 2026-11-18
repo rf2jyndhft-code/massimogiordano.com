@@ -10,7 +10,7 @@ html{-webkit-text-size-adjust:100%}
   --sfondo:#0e1014; --sfondo2:#14171c; --bordo:#262c36; --filo:#1e232b;
   --testo:#eef1f4; --testo2:#b4bcc5; --testo3:#848e99; --testo4:#616a74;
   --oro:#b9924a; --su-oro:#12161c;
-  --velo:.78;                     /* quanto si vede il video in apertura */
+  --velo:.9;                     /* quanto si vede il video in apertura */
   --grigia:.30;                   /* quanto sono scolorite le fotografie */
   --display:"Bodoni Moda",Georgia,"Times New Roman",serif;
   --sans:"Archivo",system-ui,-apple-system,sans-serif;
@@ -33,7 +33,7 @@ a{color:inherit;text-decoration:none}
   opacity:var(--velo);transform:scale(1.06);animation:respiro 26s ease-in-out infinite alternate}
 @keyframes respiro{to{transform:scale(1.16)}}
 .palco::after{content:"";position:absolute;inset:0;z-index:1;
-  background:radial-gradient(120% 80% at 50% 38%, color-mix(in srgb, var(--sfondo) 6%, transparent), color-mix(in srgb, var(--sfondo) 58%, transparent) 58%, var(--sfondo) 92%)}
+  background:color-mix(in srgb, var(--sfondo) 34%, transparent)}
 .palco .dentro{position:relative;z-index:2;width:100%;text-align:center;
   padding:clamp(106px,13vh,146px) 0 clamp(128px,16vh,168px)}
 
@@ -491,7 +491,11 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
    contendono gli stessi pixel: vince il blocco, e lo "scorri" si toglie. */
 @media (max-height:830px){
   body.scena .giu{display:none}
-  body.scena .palco .dentro{padding-bottom:clamp(56px,8vh,86px)}
+  body.scena .palco .dentro{padding:clamp(80px,11vh,110px) 0 clamp(40px,6vh,60px)}
+  body.scena .nome{font-size:clamp(46px,9vw,110px)}
+  body.scena .sotto-nome{margin-top:clamp(14px,2vh,22px);font-size:15px;line-height:1.65}
+  body.scena .ascolta{margin-top:clamp(18px,2.6vh,28px)}
+  body.scena #onda{height:clamp(44px,6vh,60px);margin-top:14px}
 }
 
 
