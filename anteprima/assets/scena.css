@@ -489,13 +489,27 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
 
 /* Su uno schermo basso il blocco d'apertura e la riga dello "scorri" si
    contendono gli stessi pixel: vince il blocco, e lo "scorri" si toglie. */
-@media (max-height:830px){
+/* Schermo di un portatile (la finestra utile è circa 750 px): il nome resta
+   grande e lo "scorri" resta al suo posto. Si stringe tutto il resto — gli
+   spazi, non il nome, che è la prima cosa che si guarda.
+   Conto: 88 sopra + 26 occhiello + 2 righe di nome a 140 (258) + 84 di frase
+   + 72 del comando + 58 di spettro + 58 sotto + 56 dello scorri = 700. */
+@media (max-height:860px){
+  body.scena .palco .dentro{padding:clamp(80px,11vh,104px) 0 clamp(74px,9vh,92px)}
+  body.scena .nome{font-size:clamp(48px,10.4vw,140px)}
+  body.scena .occhio-apre{margin-bottom:clamp(16px,2.4vh,26px)}
+  body.scena .sotto-nome{margin-top:clamp(14px,2vh,22px);font-size:15.5px;line-height:1.66;max-width:28ch}
+  body.scena .ascolta{margin-top:clamp(16px,2.4vh,26px)}
+  body.scena .ascolta .cerchio{width:56px;height:56px}
+  body.scena #onda{height:clamp(44px,5.6vh,58px);margin-top:14px}
+  body.scena .giu{bottom:18px}
+}
+
+/* solo su uno schermo davvero basso lo "scorri" si toglie */
+@media (max-height:660px){
   body.scena .giu{display:none}
-  body.scena .palco .dentro{padding:clamp(80px,11vh,110px) 0 clamp(40px,6vh,60px)}
-  body.scena .nome{font-size:clamp(46px,9vw,110px)}
-  body.scena .sotto-nome{margin-top:clamp(14px,2vh,22px);font-size:15px;line-height:1.65}
-  body.scena .ascolta{margin-top:clamp(18px,2.6vh,28px)}
-  body.scena #onda{height:clamp(44px,6vh,60px);margin-top:14px}
+  body.scena .nome{font-size:clamp(44px,9vw,104px)}
+  body.scena .palco .dentro{padding:clamp(72px,10vh,92px) 0 clamp(36px,5vh,52px)}
 }
 
 
