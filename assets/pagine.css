@@ -1,0 +1,306 @@
+/* ══════════════════════════════════════════════════════════════════
+   LE PAGINE INTERNE — le rifiniture della scena
+   18 novembre 2026
+
+   scena.css scambia l'avorio col notte scambiando le variabili. Il
+   trucco regge quasi tutto, ma non i colori scritti a mano nel foglio
+   principale (#fff, rgba(16,26,40,…)) né i punti dove --paper era un
+   COLORE DI TESTO su fondo scuro: lì lo scambio lo rende nero su nero.
+
+   Qui si chiudono quei buchi, uno per uno, con il contrasto misurato
+   sul fondo vero. Solo le pagine interne: index.html non carica
+   questo foglio.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────────────────
+   1. IL TESTO LUNGO
+   Peso 300 su fondo scuro: le aste si assottigliano e il bianco
+   sfarfalla sul nero. Su carta chiara 300 è elegante, sul notte è
+   sbiadito. Torna a 400, con un filo d'interlinea in più.
+   ────────────────────────────────────────────────────────────────── */
+body.scena,
+body.scena p,
+body.scena li,
+body.scena .prose,
+body.scena blockquote,
+body.scena dd,
+body.scena dt{font-weight:400}
+body.scena .prose p,
+body.scena .prose li{line-height:1.72;color:var(--testo)}
+body.scena .lede{color:var(--testo);font-weight:400}
+body.scena .muted{color:var(--testo2)}
+
+/* ──────────────────────────────────────────────────────────────────
+   2. IL PIÈ DI PAGINA
+   I titolini delle colonne e l'etichetta della posta stavano a
+   3,47:1 — sotto la soglia di leggibilità per un testo di 10,5px.
+   ────────────────────────────────────────────────────────────────── */
+body.scena footer h3,
+body.scena .pie h3,
+body.scena .pie-mail-eti,
+body.scena footer .pie-mail-eti{color:var(--testo3)}
+body.scena .pie-prof,
+body.scena .pie-diritti,
+body.scena footer .colophon{color:var(--testo2)}
+body.scena .pie-ruolo{color:var(--oro)}
+
+/* ──────────────────────────────────────────────────────────────────
+   3. IL BANNER DEL CONSENSO
+   I due pulsanti erano scritti color:var(--paper) su fondo
+   trasparente: a scambio avvenuto, 1,06:1. Invisibili — e sono i
+   pulsanti con cui si accetta o si rifiuta, su ogni pagina.
+   ────────────────────────────────────────────────────────────────── */
+body.scena .consenso-scelte button{color:var(--testo);
+  border-color:color-mix(in srgb,var(--oro) 62%,transparent)}
+body.scena .consenso-scelte button:hover{background:var(--oro);color:var(--su-oro);
+  border-color:var(--oro)}
+body.scena .consenso-scelte .consenso-terzo{color:var(--testo2);border-color:transparent}
+body.scena .consenso-scelte .consenso-terzo:hover{background:transparent;color:var(--oro)}
+body.scena .consenso-piede,
+body.scena .consenso-stato,
+body.scena .consenso-voce-testo{color:var(--testo2)}
+/* la pallina dell'interruttore: era "color carta", cioè ora nera */
+body.scena .consenso-pista{background:rgba(238,241,244,.16);
+  border-color:rgba(238,241,244,.34)}
+body.scena .consenso-pista::after{background:var(--testo)}
+body.scena .consenso-switch input:checked + .consenso-pista::after{background:var(--su-oro)}
+body.scena .consenso-dettaglio{border-top-color:var(--bordo)}
+body.scena .consenso-voce{border-bottom-color:var(--filo)}
+
+/* ──────────────────────────────────────────────────────────────────
+   4. LA TENDINA DELLE LINGUE
+   Un pannello blu (#16243a) fisso nel foglio, estraneo alla notte;
+   e la voce sotto il cursore scriveva bianco su oro (2,9:1).
+   ────────────────────────────────────────────────────────────────── */
+body.scena .lang-pannello{background:var(--sfondo2);border-color:var(--bordo);
+  box-shadow:0 18px 44px rgba(0,0,0,.6)}
+body.scena .lang-voce{color:var(--testo)}
+@media (hover:hover){
+  body.scena a.lang-voce:hover{background:var(--oro);color:var(--su-oro)}
+}
+body.scena .lang-voce.adesso{background:rgba(185,146,74,.16);color:var(--oro)}
+body.scena .lang-bot{color:var(--testo2);border-color:var(--bordo)}
+body.scena .lang-sigla{opacity:.8}
+
+/* ──────────────────────────────────────────────────────────────────
+   5. LA LENTE DELLA GALLERIA — il difetto più grave
+   102 fotografie, e la croce per chiudere più le due frecce erano
+   color:var(--paper): nero su nero, 1,3:1. Si apriva una fotografia
+   a schermo pieno e non si vedeva come uscirne.
+   ────────────────────────────────────────────────────────────────── */
+body.scena .lente-x,
+body.scena .lente-freccia{color:var(--testo);
+  background:rgba(238,241,244,.09);
+  border-color:color-mix(in srgb,var(--oro) 46%,transparent)}
+body.scena .lente-x svg,
+body.scena .lente-freccia svg{fill:currentColor;stroke:currentColor}
+@media (hover:hover){
+  body.scena .lente-x:hover,
+  body.scena .lente-freccia:hover{background:var(--oro);border-color:var(--oro);
+    color:var(--su-oro)}
+}
+body.scena .lente-did{color:var(--testo2)}
+body.scena .lente-did em{color:var(--testo)}
+body.scena .lente-conta{color:var(--oro)}
+body.scena .lente-sfondo{background:rgba(6,8,11,.97)}
+
+/* le fotografie della galleria: il riquadro sotto e la didascalia */
+body.scena .gal button.shot{background:var(--sfondo2)}
+body.scena .gal figcaption,
+body.scena .on-dark .gal figcaption{color:var(--testo2)}
+body.scena .gal-count{color:var(--testo3)}
+
+/* ──────────────────────────────────────────────────────────────────
+   6. LE LOCANDINE
+   Le ha disegnate lui e vanno appese, non incollate: l'ombra era
+   rgba(16,26,40,.16), cioè notte su notte — invisibile. Al suo posto
+   un filo chiarissimo che stacca la carta dal fondo, e un'ombra vera.
+   ────────────────────────────────────────────────────────────────── */
+body.scena .locandine img,
+body.scena .locandina img{background:var(--sfondo2);
+  border:1px solid rgba(238,241,244,.12);
+  box-shadow:0 18px 44px rgba(0,0,0,.55)}
+body.scena .locandine figcaption{color:var(--testo2)}
+body.scena .locandine figcaption strong{color:var(--testo)}
+body.scena .locandine figcaption a{color:var(--oro)}
+
+/* ──────────────────────────────────────────────────────────────────
+   7. LA PAGINA STAMPA
+   I provini in alta risoluzione stavano in un riquadro rgba(0,0,0,.05):
+   più scuro del fondo, quindi niente. Diventa un gradino più chiaro.
+   ────────────────────────────────────────────────────────────────── */
+body.scena .hd-foto > a:first-child{background:var(--sfondo2);
+  border:1px solid var(--filo)}
+body.scena .hd-foto figcaption{color:var(--testo2)}
+body.scena .hd-foto figcaption a{color:var(--oro)}
+body.scena .hd-foto figcaption .muted{color:var(--testo3)}
+body.scena .og-pagine figcaption{color:var(--testo3)}
+body.scena .facts li{border-top-color:var(--filo)}
+body.scena .facts b{color:var(--testo3)}
+body.scena .on-dark .facts b{color:var(--oro)}
+body.scena blockquote cite,
+body.scena .on-dark blockquote cite{color:var(--oro)}
+body.scena figcaption,
+body.scena .on-dark figcaption{color:var(--testo2)}
+
+/* ──────────────────────────────────────────────────────────────────
+   8. GLI IMPEGNI
+   .ora b era color:var(--paper) dentro una sezione scura: 1,06:1.
+   È il nome del ruolo — "Direttore artistico" — e non si leggeva.
+   ────────────────────────────────────────────────────────────────── */
+body.scena .ora b,
+body.scena .on-dark .ora b{color:var(--testo);font-weight:500}
+body.scena .ora li,
+body.scena .on-dark .ora li{color:var(--testo2)}
+body.scena .timeline li{border-top-color:var(--filo)}
+body.scena .nomi{color:var(--testo2);border-color:var(--filo)}
+body.scena .on-dark .nomi{color:var(--oro);border-color:var(--bordo)}
+
+/* ──────────────────────────────────────────────────────────────────
+   9. LE SEZIONI SCURE E I COLLEGAMENTI
+   .on-dark a:hover era color:var(--paper) — passando sopra un link
+   dentro una sezione scura il link SPARIVA. Succedeva in galleria,
+   locandine, impegni, stampa, contatti, didattica.
+   ────────────────────────────────────────────────────────────────── */
+body.scena .on-dark{background:var(--sfondo2);color:var(--testo)}
+body.scena .on-dark a{color:var(--oro);border-bottom-color:var(--bordo)}
+body.scena .on-dark a:hover{color:var(--testo);border-bottom-color:var(--oro)}
+body.scena .on-dark .muted{color:var(--testo2)}
+body.scena .on-dark .label{color:var(--oro)}
+body.scena .on-dark h2,
+body.scena .on-dark h3{color:var(--testo)}
+body.scena a{border-bottom-color:color-mix(in srgb,var(--oro) 55%,transparent)}
+body.scena a:hover{color:var(--oro)}
+body.scena .label{color:var(--oro)}
+body.scena section{border-top-color:var(--filo)}
+body.scena .tint{background:var(--sfondo2)}
+
+/* le schede: su una sezione già grigia sparivano dentro il fondo.
+   Un velo chiaro le solleva qualunque sia la sezione sotto. */
+body.scena .card{background:rgba(238,241,244,.045);border:1px solid var(--bordo)}
+body.scena .on-dark .card{background:rgba(238,241,244,.065);border-color:var(--bordo)}
+
+/* ──────────────────────────────────────────────────────────────────
+   10. DIDATTICA — il modulo lungo
+   Il peggiore della serie: .lez aveva background:#fff scritto a mano.
+   Una scheda BIANCA, e dentro tutte le domande scritte in #eef1f4 —
+   bianco su bianco, 1,13:1. Dieci gruppi di opzioni illeggibili.
+   ────────────────────────────────────────────────────────────────── */
+body.scena .lez{background:rgba(238,241,244,.045);
+  border:1px solid var(--bordo)}
+body.scena .on-dark .lez{background:rgba(238,241,244,.065);border-color:var(--bordo)}
+body.scena .lez-dom,
+body.scena .on-dark .lez-dom{color:var(--testo);font-weight:500}
+body.scena .lez-eti{color:var(--testo3)}
+body.scena .lez-intro{color:var(--testo2)}
+body.scena .occhiello-lez{color:var(--oro)}
+body.scena .lez-linea{background:var(--bordo)}
+body.scena .lez-linea i{background:var(--oro)}
+
+/* le caselle da spuntare: il filo era rgba quasi invisibile su dieci
+   opzioni in fila. Si vede il riquadro, e quella scelta si accende. */
+body.scena .scelta,
+body.scena .on-dark .scelta{border-color:rgba(238,241,244,.16);color:var(--testo)}
+@media (hover:hover){
+  body.scena .scelta:hover{border-color:var(--oro);background:rgba(185,146,74,.07)}
+}
+body.scena .scelta:has(input:checked){border-color:var(--oro);
+  background:rgba(185,146,74,.13)}
+body.scena .scelta input,
+body.scena .avvisi input[type="checkbox"]{accent-color:var(--oro)}
+
+/* i campi di testo: input[type=text] e input[type=url] battevano la
+   regola di scena per specificità e restavano con il fondo chiaro */
+body.scena .lez input[type="text"],
+body.scena .lez input[type="email"],
+body.scena .lez input[type="tel"],
+body.scena .lez input[type="url"],
+body.scena .lez select,
+body.scena .lez textarea,
+body.scena .avvisi input[type="email"],
+body.scena .on-dark .avvisi input[type="email"]{
+  background:var(--sfondo);color:var(--testo);
+  border:1px solid var(--bordo)}
+body.scena .lez input:focus-visible,
+body.scena .lez select:focus-visible,
+body.scena .lez textarea:focus-visible,
+body.scena .avvisi input:focus-visible{border-color:var(--oro);
+  outline:2px solid var(--oro);outline-offset:1px}
+body.scena .lez ::placeholder,
+body.scena .avvisi ::placeholder{color:var(--testo3);opacity:1}
+/* la tendina di sistema: su alcuni browser le voci restano bianche */
+body.scena .lez select option{background:var(--sfondo2);color:var(--testo)}
+
+body.scena .lez-riepilogo,
+body.scena .on-dark .lez-riepilogo{background:rgba(0,0,0,.34);
+  border-color:var(--bordo);color:var(--testo)}
+body.scena .lez-nota,
+body.scena .on-dark .lez-nota{color:var(--testo2)}
+body.scena .lez-comandi,
+body.scena .on-dark .lez-comandi{border-top-color:var(--bordo)}
+body.scena .lez-indietro{color:var(--testo2)}
+body.scena .lez-indietro:hover{color:var(--oro)}
+
+/* gli avvisi di errore erano in un rosso da carta chiara (#b24a2e):
+   sul notte 2,5:1. Un rosso chiarito si legge e resta un rosso. */
+body.scena .lez-avviso{color:#ef9a84}
+body.scena .lez-gruppo.manca .scelta,
+body.scena .lez-gruppo.manca input,
+body.scena .lez-gruppo.manca select,
+body.scena .lez-gruppo.manca textarea{border-color:#d4654a}
+body.scena .todo{background:rgba(212,101,74,.14);color:#ef9a84;border-color:#d4654a}
+
+/* ──────────────────────────────────────────────────────────────────
+   11. I PULSANTI D'ORO
+   Bianco su oro fa 2,9:1 — sotto la soglia. L'oro è chiaro: ci vuole
+   il testo scuro sopra, non bianco. Vale per "Iscrivimi", "Manda la
+   richiesta", i biglietti e tutti i passaggi sotto il cursore.
+   ────────────────────────────────────────────────────────────────── */
+body.scena .avvisi button,
+body.scena .btn-manda{background:var(--oro);color:var(--su-oro);border-color:var(--oro)}
+body.scena .avvisi button:hover,
+body.scena .btn-manda:hover{background:#d2a862;border-color:#d2a862;color:var(--su-oro)}
+body.scena .btn-tickets{color:var(--testo);border-color:var(--oro)}
+body.scena .btn-tickets:hover{background:var(--oro);color:var(--su-oro)}
+/* .btn resta la pasticca chiara scelta in scena.css: qui si assicura
+   solo che il testo sopra non torni bianco su oro passandoci sopra */
+body.scena .btn:hover,
+body.scena .on-dark .btn:hover{background:var(--oro);color:var(--su-oro);
+  border-color:var(--oro)}
+body.scena .avvisi .nota,
+body.scena .on-dark .avvisi .nota,
+body.scena .avvisi .consenso-riga,
+body.scena .nota{color:var(--testo2)}
+
+/* ──────────────────────────────────────────────────────────────────
+   12. IL REPERTORIO — centinaia di righe in fila
+   ────────────────────────────────────────────────────────────────── */
+body.scena .rep li{border-top:1px solid var(--filo);border-bottom:0}
+body.scena .rep li:first-child{border-top:0}
+body.scena .rep .role{color:var(--testo)}
+body.scena .rep .work{color:var(--oro)}
+body.scena .rep .houses{color:var(--testo2)}
+body.scena .year,
+body.scena .timeline .year{color:var(--oro)}
+
+/* ──────────────────────────────────────────────────────────────────
+   13. DOVE CADE IL FUOCO DELLA TASTIERA
+   Si naviga anche senza mouse, e il contorno deve vedersi sul notte.
+   ────────────────────────────────────────────────────────────────── */
+body.scena :focus-visible{outline:3px solid var(--oro);outline-offset:3px}
+body.scena .skip:focus{background:var(--oro);color:var(--su-oro)}
+
+/* ──────────────────────────────────────────────────────────────────
+   14. SULLA CARTA
+   Chi stampa una biografia o un repertorio la vuole su carta bianca,
+   non venti pagine di nero. Il foglio principale lo prevede già: qui
+   si disfa anche il vestito della scena.
+   ────────────────────────────────────────────────────────────────── */
+@media print{
+  body.scena{background:#fff;color:#000}
+  body.scena .card,body.scena .lez,body.scena .tint,
+  body.scena .on-dark,body.scena figure,body.scena .shot{background:#fff;color:#000}
+  body.scena h1,body.scena h2,body.scena h3,
+  body.scena .rep .role,body.scena .ora b{color:#000}
+  body.scena .locandine img,body.scena .locandina img{box-shadow:none;border-color:#ccc}
+}
