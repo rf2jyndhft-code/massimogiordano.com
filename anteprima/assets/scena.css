@@ -606,3 +606,10 @@ body.scena .menu-voci a:hover,body.scena .menu-voci a:active{color:var(--oro)}
 body.scena .menu-voci a:focus{outline:none}
 body.scena .menu-voci a:focus-visible{outline:none}
 body.scena .menu-voci a{-webkit-tap-highlight-color:transparent}
+
+/* Il pannello non deve rimbalzare: le otto voci ci stanno tutte, e il
+   rimbalzo di iOS faceva ballare il riquadro mentre il dito scorreva. */
+body.scena .menu-pan{overscroll-behavior:contain;touch-action:pan-y}
+@media (max-width:900px) and (min-height:620px){
+  body.scena .menu-pan{overflow:hidden}
+}
