@@ -398,7 +398,7 @@
       suono = document.getElementById('suono'),
       tela  = document.getElementById('onda');
   if (tasto && suono && tela){
-    var ctx = tela.getContext('2d'), analizzatore = null, dati = null, gira = null;
+    var ctx = tela.getContext('2d'), gira = null;
     var oro = getComputedStyle(document.documentElement)
                 .getPropertyValue('--oro').trim() || '#b9924a';
 
@@ -409,15 +409,19 @@
       ctx.strokeStyle = oro;
       ctx.lineWidth = 2.2;
       ctx.beginPath();
-      var vive = analizzatore && !suono.paused;
-      if (vive) analizzatore.getByteTimeDomainData(dati);
-      for (var i = 0; i <= 160; i++){
-        var x = i / 160 * L, y;
-        if (vive){
-          var k = Math.floor(i / 160 * dati.length);
-          y = mezzo + (dati[k] - 128) / 128 * (mezzo * .92);
-        } else {
-          y = mezzo;                    /* ferma: una linea sola, in attesa */
+      var canta = !suono.paused;
+      var f = (t || 0) / 1000;
+      for (var i = 0; i <= 170; i++){
+        var x = i / 170 * L, y = mezzo;
+        if (canta){
+          /* tre onde di passo diverso: non si ripete mai uguale */
+          var ampiezza = mezzo * .82;
+          y = mezzo
+            + Math.sin(i * .26 + f * 7.1) * ampiezza * .42
+            + Math.sin(i * .11 - f * 4.3) * ampiezza * .30
+            + Math.sin(i * .63 + f * 11.7) * ampiezza * .16;
+          /* si stringe ai bordi, come una vera forma d'onda */
+          y = mezzo + (y - mezzo) * Math.sin(i / 170 * Math.PI);
         }
         i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
@@ -425,49 +429,24 @@
       ctx.globalAlpha = .2; ctx.lineWidth = 6; ctx.stroke(); ctx.globalAlpha = 1;
     }
 
-    var motore = null;
+    /* L'audio NON passa da nessuna parte: esce dall'elemento e basta.
+       La versione di prima lo dirottava dentro il motore audio del browser
+       per disegnare la forma d'onda vera — e in quell'istante il suono si
+       zittiva. Meglio un'onda disegnata che una voce muta.
 
-    /* Prima suona, poi disegna.
-       Collegare l'audio al disegno lo fa passare dentro il motore audio del
-       browser, che nasce SPENTO: finché non lo si riaccende, l'audio avanza
-       ma dalle casse non esce niente. Qui il canto parte per primo, da solo;
-       l'onda si attacca dopo, e se non riesce ad attaccarsi la voce si sente
-       lo stesso. */
-    function attaccaOnda(){
-      if (analizzatore) { if (motore && motore.state === 'suspended') motore.resume(); return; }
-      try {
-        var AC = window.AudioContext || window.webkitAudioContext;
-        motore = new AC();
-        var sorgente = motore.createMediaElementSource(suono);
-        analizzatore = motore.createAnalyser();
-        analizzatore.fftSize = 2048;
-        dati = new Uint8Array(analizzatore.frequencyBinCount);
-        sorgente.connect(analizzatore);
-        analizzatore.connect(motore.destination);
-        if (motore.state === 'suspended') motore.resume();
-      } catch (e) {
-        analizzatore = null;            /* resta la linea ferma: pazienza */
-      }
-    }
-
-    tasto.addEventListener('click', function(e){
+       L'onda qui segue il tempo e un movimento suo: non è il suono vero,
+       ma si muove solo mentre si canta, e si ferma quando si ferma. */
+    tasto.addEventListener('click', function (e) {
       e.preventDefault(); e.stopPropagation();
-
-      if (!suono.paused){
+      if (suono.paused) {
+        var p = suono.play();
+        var acceso = function () { tasto.classList.add('suona'); tela.classList.add('viva'); };
+        if (p && p.then) p.then(acceso).catch(acceso); else acceso();
+      } else {
         suono.pause();
         tasto.classList.remove('suona');
         tela.classList.remove('viva');
-        return;
       }
-
-      var partito = suono.play();
-      function acceso(){
-        tasto.classList.add('suona');
-        tela.classList.add('viva');
-        attaccaOnda();
-      }
-      if (partito && partito.then) partito.then(acceso).catch(function(){ acceso(); });
-      else acceso();
     });
     disegna();
     suono.addEventListener('ended', function(){
