@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La fascia dei numeri · proposte</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Archivo:wght@200;300;400;500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --sfondo:#0e1014; --sfondo2:#14171c; --bordo:#262c36; --filo:#1e232b;
+  --testo:#eef1f4; --testo2:#b4bcc5; --testo3:#848e99; --testo4:#616a74;
+  --oro:#b9924a;
+  --serif:"Bodoni Moda",Georgia,serif; --sans:"Archivo",system-ui,sans-serif;
+}
+body{margin:0;background:var(--sfondo);color:var(--testo);font-family:var(--sans);font-weight:300}
+img{display:block;max-width:100%}
+a{color:inherit}
+.in{max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
+.eti{position:sticky;top:0;z-index:9;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;
+  padding:13px clamp(20px,5vw,72px);background:#07080b;border-block:1px solid var(--filo)}
+.eti b{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--oro)}
+.eti span{font:300 13px/1.5 var(--sans);color:var(--testo3)}
+.guida{padding:52px clamp(20px,5vw,72px) 10px;max-width:780px}
+.guida h1{font:400 clamp(25px,4vw,34px)/1.2 var(--serif);margin:0 0 14px}
+.guida p{font:300 15.5px/1.75 var(--sans);color:var(--testo3);margin:0 0 10px}
+.nota{padding:16px clamp(20px,5vw,72px) 54px;font:300 13.5px/1.7 var(--sans);color:var(--testo4);max-width:760px}
+
+/* ═════════ 1 · COM'È ADESSO ═════════ */
+.v1{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(26px,4vw,48px);padding:clamp(48px,7vw,96px) 0}
+@media(min-width:860px){.v1{grid-template-columns:repeat(4,1fr)}}
+.v1 div{text-align:center}
+.v1 .k{font:400 clamp(40px,6vw,76px)/1 var(--serif);font-variant-numeric:tabular-nums}
+.v1 .v{margin-top:12px;font:300 12.5px/1.5 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--testo3)}
+
+/* ═════════ 2 · LA RIGA DEL TEMPO ═════════ */
+.v2{padding:clamp(48px,7vw,96px) 0}
+.v2 .linea{position:relative;display:grid;grid-template-columns:1fr;gap:34px}
+@media(min-width:900px){.v2 .linea{grid-template-columns:repeat(4,1fr);gap:0}
+  .v2 .linea::before{content:"";position:absolute;left:0;right:0;top:46px;height:1px;
+    background:linear-gradient(90deg,transparent,var(--bordo) 12%,var(--bordo) 88%,transparent)}}
+.v2 .t{position:relative;padding-right:24px}
+.v2 .anno{font:400 clamp(28px,3.6vw,44px)/1 var(--serif);font-variant-numeric:tabular-nums;color:var(--testo)}
+.v2 .punto{display:block;width:9px;height:9px;border-radius:50%;background:var(--oro);
+  margin:26px 0 22px;position:relative;z-index:2;box-shadow:0 0 0 6px var(--sfondo)}
+.v2 .che{font:300 15px/1.6 var(--sans);color:var(--testo2);max-width:22ch}
+.v2 .che b{display:block;font-weight:500;color:var(--testo);margin-bottom:4px;font-size:16px}
+
+/* ═════════ 3 · I NOMI, NON I NUMERI ═════════ */
+.v3{padding:clamp(48px,7vw,96px) 0;text-align:center}
+.v3 .occhio{font:400 10.5px/1 var(--sans);letter-spacing:.44em;text-transform:uppercase;color:var(--oro);margin:0 0 30px}
+.v3 .nomi{font:400 clamp(26px,4.4vw,56px)/1.35 var(--serif);margin:0 auto;max-width:17ch}
+.v3 .nomi span{white-space:nowrap}
+.v3 .nomi i{font-style:normal;color:var(--testo4);padding:0 .25em}
+.v3 .coda{margin:34px 0 0;font:300 14.5px/1.7 var(--sans);color:var(--testo3)}
+
+/* ═════════ 4 · LE SCHEDE ═════════ */
+.v4{display:grid;grid-template-columns:1fr;gap:1px;background:var(--filo);
+  border-block:1px solid var(--filo);margin:clamp(40px,6vw,80px) 0}
+@media(min-width:760px){.v4{grid-template-columns:repeat(3,1fr)}}
+.v4 article{background:var(--sfondo);padding:clamp(28px,3.4vw,44px);transition:background .5s}
+.v4 article:hover{background:var(--sfondo2)}
+.v4 .k{font:400 clamp(34px,4.6vw,56px)/1 var(--serif);font-variant-numeric:tabular-nums}
+.v4 .k em{font-style:italic;font-size:.55em;color:var(--oro);margin-left:.15em}
+.v4 h3{margin:16px 0 9px;font:500 13px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--testo)}
+.v4 p{margin:0;font:300 14.5px/1.72 var(--sans);color:var(--testo3)}
+
+/* ═════════ 5 · LA FRASE ═════════ */
+.v5{padding:clamp(54px,8vw,110px) 0}
+.v5 p{margin:0 auto;max-width:21ch;text-align:center;
+  font:400 clamp(26px,4.2vw,52px)/1.42 var(--serif)}
+.v5 b{font-weight:400;color:var(--oro);font-variant-numeric:tabular-nums}
+.v5 .sotto{margin:34px auto 0;max-width:52ch;font:300 15px/1.8 var(--sans);color:var(--testo3)}
+
+/* ═════════ 6 · IL PESO GIUSTO ═════════ */
+.v6{display:grid;grid-template-columns:1fr;gap:clamp(24px,3vw,40px);padding:clamp(48px,7vw,96px) 0;
+  align-items:end}
+@media(min-width:900px){.v6{grid-template-columns:1.5fr 1fr 1fr 1fr}}
+.v6 .grande .k{font:400 clamp(56px,9vw,124px)/.95 var(--serif);font-variant-numeric:tabular-nums}
+.v6 .grande .v{margin-top:14px;font:300 14px/1.6 var(--sans);color:var(--testo2);max-width:24ch}
+.v6 .piccolo{border-top:1px solid var(--bordo);padding-top:16px}
+.v6 .piccolo .k{font:400 clamp(26px,3vw,38px)/1 var(--serif);font-variant-numeric:tabular-nums}
+.v6 .piccolo .v{margin-top:9px;font:300 12.5px/1.5 var(--sans);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--testo4)}
+</style>
+</head>
+<body>
+
+<div class="guida">
+  <h1>Sei modi di dire gli stessi fatti</h1>
+  <p>I numeri sono gli stessi e sono tutti veri. Cambia cosa metti in evidenza e quanto spazio prende.</p>
+  <p>Una cosa da decidere mentre guardi: <strong>«320 ore di classe all’anno»</strong> dice molto a te e poco
+  a chi arriva sul sito. Nelle proposte sotto trovi al suo posto altre cose vere — i direttori, il festival,
+  i continenti.</p>
+</div>
+
+<!-- 1 -->
+<div class="eti"><b>1 · com’è adesso</b><span>Quattro numeri in fila, tutti dello stesso peso.</span></div>
+<div class="in"><div class="v1">
+  <div><div class="k">1997</div><div class="v">Debutto a Spoleto</div></div>
+  <div><div class="k">2000</div><div class="v">Metropolitan Opera</div></div>
+  <div><div class="k">30+</div><div class="v">Ruoli in repertorio</div></div>
+  <div><div class="k">320</div><div class="v">Ore di classe all’anno</div></div>
+</div></div>
+
+<!-- 2 -->
+<div class="eti"><b>2 · la riga del tempo</b><span>Gli stessi anni, ma si capisce che è una carriera che cammina.</span></div>
+<div class="in"><div class="v2"><div class="linea">
+  <div class="t"><div class="anno">1997</div><span class="punto"></span>
+    <div class="che"><b>Spoleto</b>Il debutto, pochi giorni dopo il diploma di flauto</div></div>
+  <div class="t"><div class="anno">2000</div><span class="punto"></span>
+    <div class="che"><b>Metropolitan</b>Tre anni dopo, New York</div></div>
+  <div class="t"><div class="anno">2015</div><span class="punto"></span>
+    <div class="che"><b>Vienna, Scala, Covent Garden</b>Gli anni dei grandi teatri</div></div>
+  <div class="t"><div class="anno">2024</div><span class="punto"></span>
+    <div class="che"><b>Minthis e Cagliari</b>Il festival e la cattedra di canto</div></div>
+</div></div></div>
+
+<!-- 3 -->
+<div class="eti"><b>3 · i nomi, non i numeri</b><span>Nessuna cifra: i direttori con cui ha cantato.</span></div>
+<div class="in"><div class="v3">
+  <p class="occhio">Ha cantato con</p>
+  <p class="nomi"><span>Abbado</span><i>·</i><span>Chailly</span><i>·</i><span>Maazel</span><i>·</i><span>Rattle</span><i>·</i><span>Mehta</span><i>·</i><span>Pappano</span><i>·</i><span>Levine</span></p>
+  <p class="coda">Debutto nel 1997 a Spoleto · Metropolitan Opera dal 2000 · oltre trenta ruoli in repertorio</p>
+</div></div>
+
+<!-- 4 -->
+<div class="eti"><b>4 · le schede</b><span>Tre fatti, ciascuno con una frase che lo spiega.</span></div>
+<div class="in"><div class="v4">
+  <article><div class="k">29<em>anni</em></div><h3>Sul palcoscenico</h3>
+    <p>Dal debutto di Spoleto nel 1997 a oggi, senza interruzioni.</p></article>
+  <article><div class="k">30<em>+</em></div><h3>Ruoli in repertorio</h3>
+    <p>Rodolfo, Cavaradossi, Des Grieux, Don Carlo, Werther, Andrea Chénier.</p></article>
+  <article><div class="k">7</div><h3>Direttori</h3>
+    <p>Abbado, Chailly, Maazel, Rattle, Mehta, Pappano, Levine.</p></article>
+</div></div>
+
+<!-- 5 -->
+<div class="eti"><b>5 · la frase</b><span>Niente fascia: una frase sola, grande, con i numeri dentro.</span></div>
+<div class="in"><div class="v5">
+  <p>Dal <b>1997</b>, oltre <b>trenta</b> ruoli nei teatri dove dopo non si aggiusta niente.</p>
+  <p class="sotto">Metropolitan Opera · Teatro alla Scala · Staatsoper di Vienna · Covent Garden · Opéra national de Paris</p>
+</div></div>
+
+<!-- 6 -->
+<div class="eti"><b>6 · il peso giusto</b><span>Un numero comanda, gli altri lo accompagnano.</span></div>
+<div class="in"><div class="v6">
+  <div class="grande"><div class="k">2000</div>
+    <div class="v">L’anno del debutto al Metropolitan Opera, tre anni dopo la prima recita in assoluto.</div></div>
+  <div class="piccolo"><div class="k">1997</div><div class="v">Debutto a Spoleto</div></div>
+  <div class="piccolo"><div class="k">30+</div><div class="v">Ruoli in repertorio</div></div>
+  <div class="piccolo"><div class="k">7</div><div class="v">Direttori</div></div>
+</div></div>
+
+<p class="nota">Tutti i dati sono verificati. L’unico che ho tolto dalle proposte è «320 ore di classe
+all’anno»: è vero, ma è un dato da contratto, e accanto al Metropolitan sembra piccolo.
+Se ci tieni sta benissimo nella pagina Didattica, dove chi legge sta già cercando quello.</p>
+
+<div class="barra-prove">
+  <span>Numeri</span>
+  <a href="/prove/home-w.html">home</a><a href="/" class="vero">il sito</a>
+</div>
+<style>
+.barra-prove{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:50;
+ display:flex;align-items:center;gap:7px;padding:8px 10px 8px 16px;border-radius:999px;
+ background:rgba(18,18,22,.94);backdrop-filter:blur(10px);box-shadow:0 10px 32px rgba(0,0,0,.45)}
+.barra-prove span{font:400 12px/1 ui-sans-serif,system-ui,sans-serif;color:#8a847d}
+.barra-prove a{padding:6px 13px;border-radius:999px;background:#35343c;color:#ddd9d3;
+ font:500 12px/1 ui-sans-serif,system-ui,sans-serif;text-decoration:none}
+.barra-prove a:hover{background:#4d4b57;color:#fff}
+.barra-prove a.vero{background:transparent;color:#8a847d}
+</style>
+</body>
+</html>
