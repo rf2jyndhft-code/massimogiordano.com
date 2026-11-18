@@ -577,3 +577,25 @@ body.scena .consenso a,body.scena [class*="consenso"] a{color:var(--oro)}
 /* il ritratto: niente striscia chiara a destra, e la faccia intera */
 body.scena .chi figure{background:transparent;overflow:hidden}
 body.scena .chi figure img{object-position:50% 18%}
+
+/* ── Il riquadro che segue la voce ───────────────────────────────────
+   Scivola da una voce all'altra sotto il dito e si ferma su quella che
+   si sta per aprire. Sta DIETRO le voci, così il testo resta nitido. */
+body.scena .menu-voci{position:relative}
+body.scena .menu-cursore{
+  position:absolute;left:-10px;right:-10px;top:0;height:0;
+  border:1px solid color-mix(in srgb,var(--oro) 70%,transparent);
+  border-radius:6px;
+  background:color-mix(in srgb,var(--oro) 7%,transparent);
+  box-shadow:0 0 22px color-mix(in srgb,var(--oro) 14%,transparent);
+  opacity:0;pointer-events:none;z-index:0;
+  transition:transform .42s cubic-bezier(.19,1,.22,1),
+             height .42s cubic-bezier(.19,1,.22,1),
+             opacity .3s ease}
+body.scena .menu-cursore.viva{opacity:1}
+body.scena .menu-voci a{position:relative;z-index:1}
+/* la voce sotto il riquadro si accende */
+body.scena .menu-voci a:hover,body.scena .menu-voci a:active{color:var(--oro)}
+@media (prefers-reduced-motion:reduce){
+  body.scena .menu-cursore{transition:opacity .2s}
+}
