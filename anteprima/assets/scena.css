@@ -319,16 +319,19 @@ body.scena .palco{padding-top:0}
   body.scena .topbar .brand{
     display:block;text-align:center;font-size:13px;letter-spacing:.2em}
 
+  /* Due righe, quattro voci per riga, tutte intere.
+     Una riga sola lasciava l'ultima voce tagliata a metà — e una parola
+     spezzata sul bordo è la cosa che fa sembrare un sito fatto in casa.
+     Qui non si scorre e non si indovina: si vede tutto. */
   body.scena .topbar .nav{
-    display:flex!important;margin-top:12px;gap:22px;
-    justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;
-    padding:9px 18px 4px;scrollbar-width:none;
-    border-top:1px solid color-mix(in srgb,var(--oro) 20%,transparent);
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent)}
-  body.scena .topbar .nav::-webkit-scrollbar{display:none}
+    display:grid!important;grid-template-columns:repeat(4,1fr);
+    margin-top:11px;gap:7px 4px;padding:10px 6px 3px;overflow:visible;
+    border-top:1px solid color-mix(in srgb,var(--oro) 20%,transparent)}
   body.scena .topbar .nav a{
-    font-size:11.5px;letter-spacing:.14em;white-space:nowrap;padding:4px 0}
+    font-size:10.5px;letter-spacing:.1em;white-space:nowrap;padding:3px 0;
+    text-align:center;border-bottom:0}
+  body.scena .topbar .nav a[aria-current]{
+    border-bottom:0;color:var(--oro)}
 
   body.scena .topbar .tb-destra{
     position:absolute;top:10px;right:14px}
@@ -485,7 +488,7 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
    l'ingresso è ripensato per lo schermo stretto, non rimpicciolito.
    ══════════════════════════════════════════════════════════════════ */
 @media (max-width:760px){
-  body.scena .palco .dentro{padding:clamp(124px,17vh,158px) 0 clamp(40px,7vh,70px)}
+  body.scena .palco .dentro{padding:clamp(142px,19vh,176px) 0 clamp(40px,7vh,70px)}
 
   /* il nome prende la pagina: è la prima cosa e deve pesare */
   body.scena .nome{font-size:clamp(56px,17.5vw,104px);line-height:.92;letter-spacing:-.025em}
