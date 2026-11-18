@@ -409,19 +409,15 @@
       ctx.strokeStyle = oro;
       ctx.lineWidth = 2.2;
       ctx.beginPath();
-      var canta = !suono.paused;
-      var f = (t || 0) / 1000;
+
+      var vera = analizzatore && !suono.paused;
+      if (vera) analizzatore.getByteTimeDomainData(dati);
+
       for (var i = 0; i <= 170; i++){
         var x = i / 170 * L, y = mezzo;
-        if (canta){
-          /* tre onde di passo diverso: non si ripete mai uguale */
-          var ampiezza = mezzo * .82;
-          y = mezzo
-            + Math.sin(i * .26 + f * 7.1) * ampiezza * .42
-            + Math.sin(i * .11 - f * 4.3) * ampiezza * .30
-            + Math.sin(i * .63 + f * 11.7) * ampiezza * .16;
-          /* si stringe ai bordi, come una vera forma d'onda */
-          y = mezzo + (y - mezzo) * Math.sin(i / 170 * Math.PI);
+        if (vera){
+          var k = Math.floor(i / 170 * (dati.length - 1));
+          y = mezzo + (dati[k] - 128) / 128 * (mezzo * .95);
         }
         i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
@@ -436,9 +432,34 @@
 
        L'onda qui segue il tempo e un movimento suo: non è il suono vero,
        ma si muove solo mentre si canta, e si ferma quando si ferma. */
+    var analizzatore = null, dati = null, motore = null;
+
+    /* La forma d'onda vera si legge solo facendo passare l'audio dentro il
+       motore del browser. Quel motore nasce spento: se lo si collega senza
+       riaccenderlo, la voce diventa muta. Qui si accende PRIMA, dentro il
+       clic (l'unico momento in cui il browser lo permette), e solo dopo si
+       collega. Se qualcosa va storto, si resta senza onda ma con la voce. */
+    function collega(){
+      if (analizzatore || !window.AudioContext && !window.webkitAudioContext) return;
+      try {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        motore = new AC();
+        if (motore.state === 'suspended') motore.resume();
+        var sorgente = motore.createMediaElementSource(suono);
+        var an = motore.createAnalyser();
+        an.fftSize = 1024;
+        dati = new Uint8Array(an.frequencyBinCount);
+        sorgente.connect(an);
+        an.connect(motore.destination);
+        analizzatore = an;
+      } catch (e) { analizzatore = null; }
+    }
+
     tasto.addEventListener('click', function (e) {
       e.preventDefault(); e.stopPropagation();
       if (suono.paused) {
+        collega();
+        if (motore && motore.state === 'suspended') motore.resume();
         var p = suono.play();
         var acceso = function () { tasto.classList.add('suona'); tela.classList.add('viva'); };
         if (p && p.then) p.then(acceso).catch(acceso); else acceso();
