@@ -795,3 +795,36 @@ body.scena .social-fila a:hover .social-mano{color:var(--testo3)}
   body.scena .pie-menu{columns:2;column-gap:clamp(24px,3vw,46px)}
   body.scena .pie-menu li{break-inside:avoid}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   IL PIE' DI PAGINA SUL TELEFONO — un colophon, non tre colonne
+   impilate. Blocchi separati da un filo, ognuno con la sua etichetta:
+   chi e', come scrivergli, il sito, altrove. I collegamenti vanno a
+   capo come un testo invece di stare in due colonne mezze vuote, e i
+   social spariscono perche' la fascia ALTROVE li ha gia' dati.
+   ══════════════════════════════════════════════════════════════════ */
+@media(max-width:719px){
+  body.scena footer .pie{gap:0}
+  body.scena footer .pie-primo,
+  body.scena footer .pie-col{padding:clamp(22px,4vh,30px) 0;
+    border-top:1px solid var(--filo)}
+  body.scena footer .pie-primo{border-top:0;padding-top:0}
+
+  body.scena footer .pie-nome{margin-bottom:10px}
+  body.scena footer .pie-prof{max-width:34ch;margin:0}
+  body.scena footer .pie-mail{display:inline-block;margin-top:18px;font-size:16px}
+  body.scena footer .pie-mail-eti{display:block;margin-top:6px}
+
+  /* i collegamenti scorrono come un testo, separati da un punto */
+  body.scena footer .pie-menu{columns:1;display:flex;flex-wrap:wrap;
+    gap:0 4px;margin-top:4px}
+  body.scena footer .pie-menu li{display:inline;font-size:14.5px}
+  body.scena footer .pie-menu li:not(:last-child)::after{
+    content:"·";color:var(--testo4);margin:0 7px 0 5px}
+  body.scena footer .pie-menu a{display:inline;padding:3px 0}
+
+  /* le icone no: la fascia ALTROVE sopra le ha gia' mostrate col nome
+     e con l'indirizzo. Restano i tre archivi, che quelli non ci sono. */
+  body.scena.home-vera footer .pie-col .social{display:none}
+  body.scena.home-vera footer .pie-col .social+p{margin-top:0}
+}
