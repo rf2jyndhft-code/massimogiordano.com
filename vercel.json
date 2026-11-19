@@ -29,5 +29,482 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/it",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/startseite",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/bio.htm",
+      "destination": "/it/biografia.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/bio_2.htm",
+      "destination": "/it/biografia.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/biografia",
+      "destination": "/it/biografia.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/biographie",
+      "destination": "/it/biografia.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/biographie-slider/:p*",
+      "destination": "/it/biografia.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/galleria",
+      "destination": "/it/galleria.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/gallery",
+      "destination": "/it/galleria.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/gallery/:p*",
+      "destination": "/it/galleria.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/galleria/:p*",
+      "destination": "/it/galleria.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/stampa",
+      "destination": "/it/stampa.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/press",
+      "destination": "/it/stampa.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/press/:p*",
+      "destination": "/it/stampa.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/stampa/:p*",
+      "destination": "/it/stampa.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/agenda",
+      "destination": "/it/calendario.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/agenda/:p*",
+      "destination": "/it/calendario.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/shows",
+      "destination": "/it/calendario.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/shows/:p*",
+      "destination": "/it/calendario.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/contatto",
+      "destination": "/it/contatti.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/contatto/:p*",
+      "destination": "/it/contatti.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/contact",
+      "destination": "/it/contatti.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/kontakt",
+      "destination": "/it/contatti.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/music",
+      "destination": "/it/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/music/:p*",
+      "destination": "/it/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/musica",
+      "destination": "/it/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/musica/:p*",
+      "destination": "/it/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/news",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/news/:p*",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/video",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/video/:p*",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/slideshome/:p*",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/search/:p*",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/various/:p*",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/biography",
+      "destination": "/biography.html",
+      "permanent": true
+    },
+    {
+      "source": "/biographie",
+      "destination": "/biography.html",
+      "permanent": true
+    },
+    {
+      "source": "/Biographie-Slider",
+      "destination": "/biography.html",
+      "permanent": true
+    },
+    {
+      "source": "/biographie-slider/:p*",
+      "destination": "/biography.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/biographie",
+      "destination": "/biography.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/biographie-slider/:p*",
+      "destination": "/biography.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/slideshome/biography",
+      "destination": "/biography.html",
+      "permanent": true
+    },
+    {
+      "source": "/gallery",
+      "destination": "/gallery.html",
+      "permanent": true
+    },
+    {
+      "source": "/gallery/:p*",
+      "destination": "/gallery.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/gallery",
+      "destination": "/gallery.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/gallery/:p*",
+      "destination": "/gallery.html",
+      "permanent": true
+    },
+    {
+      "source": "/press",
+      "destination": "/press.html",
+      "permanent": true
+    },
+    {
+      "source": "/press/:p*",
+      "destination": "/press.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/press",
+      "destination": "/press.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/press/:p*",
+      "destination": "/press.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/kontakt",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/contact",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/kontakt",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/shows",
+      "destination": "/calendar.html",
+      "permanent": true
+    },
+    {
+      "source": "/shows/:p*",
+      "destination": "/calendar.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/shows",
+      "destination": "/calendar.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/shows/:p*",
+      "destination": "/calendar.html",
+      "permanent": true
+    },
+    {
+      "source": "/impressum",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/imprint",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/impressum",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/imprint",
+      "destination": "/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/music",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/music/:p*",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/musik",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/musik/:p*",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/music",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/music/:p*",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/musik",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/de/musik/:p*",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/news",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/news/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/news",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/news/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/video",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/video/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/video",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/video/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/slideshome/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/slideshome/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/english/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/various/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/various/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/search/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/search/:p*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/shop",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/warenkorb",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/versandkosten",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/shipping-costs",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/shop",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/versandkosten",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Allgemein",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/startseite",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/startseite",
+      "destination": "/",
+      "permanent": true
+    }
   ]
 }
