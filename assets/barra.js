@@ -17,6 +17,15 @@
   var fissa = alta.cloneNode(true);
   fissa.classList.add('topbar-fissa', 'compatta');
   fissa.setAttribute('aria-hidden', 'true');
+
+  /* La copia non deve portarsi dietro il menu del telefono. menu.js
+     appende il pannello dentro la barra: se quando cloniamo c'e' gia',
+     la copia diventa alta quanto lo schermo e, pur essendo invisibile,
+     stende la sua sfocatura sopra il video in apertura. Era la 'tendina'
+     che Massimo vedeva il 19 novembre 2026. */
+  Array.prototype.forEach.call(
+    fissa.querySelectorAll('.menu-pan, .menu-bot, .menu-cursore'),
+    function (e) { e.parentNode.removeChild(e); });
   /* da tastiera si usa quella vera, in cima: la copia non intercetta il giro */
   Array.prototype.forEach.call(fissa.querySelectorAll('a,button'), function (e) {
     e.setAttribute('tabindex', '-1');
