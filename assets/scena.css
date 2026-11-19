@@ -823,8 +823,21 @@ body.scena .social-fila a:hover .social-mano{color:var(--testo3)}
     content:"·";color:var(--testo4);margin:0 7px 0 5px}
   body.scena footer .pie-menu a{display:inline;padding:3px 0}
 
-  /* le icone no: la fascia ALTROVE sopra le ha gia' mostrate col nome
-     e con l'indirizzo. Restano i tre archivi, che quelli non ci sono. */
-  body.scena.home-vera footer .pie-col .social{display:none}
-  body.scena.home-vera footer .pie-col .social+p{margin-top:0}
+  /* Le icone restano anche qui. Le avevo tolte perche' la fascia ALTROVE
+     le da' poco sopra, ma in fondo alla pagina uno le cerca: e se le
+     cerca, devono esserci. (Massimo, 19 novembre 2026) */
+}
+
+/* ── pie-equilibrio ─────────────────────────────────────────────────
+   Sul computer la colonna dei collegamenti era la piu' stretta ma
+   quella con piu' roba, e in basso a destra restava un buco. Qui le
+   tre colonne si riequilibrano e il piede si alza da terra. */
+@media(min-width:720px){
+  body.scena footer .pie{grid-template-columns:1.05fr 1fr .95fr;
+    gap:clamp(28px,4vw,60px)}
+}
+/* Sul telefono, dopo aver tolto le icone, sotto «Operabase» restava
+   una spanna di vuoto prima del filo di chiusura. */
+@media(max-width:719px){
+  body.scena footer .pie-col:last-child{padding-bottom:6px}
 }
