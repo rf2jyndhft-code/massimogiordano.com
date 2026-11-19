@@ -618,3 +618,13 @@ body.scena .menu-cursore.viva{opacity:1}
 body.scena .menu-voci a{position:relative;z-index:1}
 body.scena .menu-voci a:focus{outline:none}
 body.scena .menu-voci a:focus-visible{outline:none}
+
+/* LE PAGINE INTERNE TENGONO LA BARRA COM'ERA PRIMA
+   Sulla home .scena .topbar e' in posizione assoluta, e va bene: sotto c'e'
+   la fotografia grande e la barra ci galleggia sopra. Sulle pagine interne
+   non c'e' nessuna fotografia, quindi il contenuto partiva da zero e finiva
+   nascosto dietro la barra. Qui torna 'sticky', come nella versione che
+   funzionava: occupa il suo spazio e il contenuto comincia sotto. */
+body.scena.pagina-interna .topbar{position:sticky;top:0;
+  background:var(--sfondo);border-bottom:1px solid var(--filo)}
+body.scena.pagina-interna .topbar.posata{position:sticky}
