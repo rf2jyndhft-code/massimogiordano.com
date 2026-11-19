@@ -841,3 +841,34 @@ body.scena .social-fila a:hover .social-mano{color:var(--testo3)}
 @media(max-width:719px){
   body.scena footer .pie-col:last-child{padding-bottom:6px}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   IG-RIVISTA — la griglia di Instagram con il ritmo di una pagina
+   Otto riquadri uguali fanno un muro: l'occhio non sa dove posarsi.
+   Qui una fotografia comanda, due stanno in piedi accanto a lei, una
+   si corica, e le altre chiudono in basso. Il filo fra l'una e l'altra
+   si allarga: non e' un mosaico, e' una pagina stampata.
+   ══════════════════════════════════════════════════════════════════ */
+@media(min-width:900px){
+  body.scena .ig-griglia{grid-template-columns:repeat(4,1fr);gap:clamp(8px,0.9vw,14px)}
+  /* Le proporzioni comandano, non le righe: una cella che occupa due
+     colonne resta quadrata e quindi alta quanto due righe; una che si
+     corica e' larga il doppio dell'altezza. Cosi' il mosaico si chiude
+     da solo invece di stirarsi. */
+  body.scena .ig-cella:nth-child(1){grid-column:span 2;grid-row:span 2;aspect-ratio:1}
+  body.scena .ig-cella:nth-child(6){grid-column:span 2;aspect-ratio:2/1}
+}
+/* fra 680 e 900 un ritmo piu' semplice: la prima grande, le altre in fila */
+@media(min-width:680px) and (max-width:899px){
+  body.scena .ig-griglia{gap:clamp(6px,0.8vw,10px)}
+  body.scena .ig-cella:nth-child(1){grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+}
+/* sul telefono due colonne, ma la prima a tutta larghezza: anche li'
+   una fotografia apre, non otto francobolli tutti uguali */
+@media(max-width:679px){
+  body.scena .ig-griglia{gap:6px}
+  body.scena .ig-cella:nth-child(1){grid-column:span 2;aspect-ratio:4/3}
+}
+/* la didascalia non si stampa piu' su una sola: si legge su tutte,
+   passandoci sopra o toccandola */
+body.scena .ig-velo{padding:clamp(14px,1.6vw,22px)}
