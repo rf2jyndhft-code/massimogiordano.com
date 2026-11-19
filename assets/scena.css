@@ -25,27 +25,9 @@ a{color:inherit;text-decoration:none}
 .occhio{font:400 10.5px/1 var(--sans);letter-spacing:.44em;text-transform:uppercase;color:var(--oro);margin:0}
 
 /* --- l'ingresso: il sipario si alza una volta sola ------------------- */
-/* ── Il sipario ───────────────────────────────────────────────────────
-   Resta finché il video non è pronto a partire, poi si alza. Serve a non
-   mostrare un fotogramma fermo o uno schermo nero mentre il filmato
-   carica: chi arriva vede una cosa sola, e quando la vede è già viva. */
-#tenda{position:fixed;inset:0;z-index:90;background:var(--sfondo);
-  display:grid;place-items:center;gap:0;
-  transition:opacity .85s cubic-bezier(.22,.61,.36,1),visibility .85s}
-#tenda.via{opacity:0;visibility:hidden;pointer-events:none}
-#tenda .dentro-tenda{text-align:center}
-#tenda .nome-tenda{font:400 clamp(19px,2.4vw,26px)/1 var(--display);
-  letter-spacing:.3em;text-transform:uppercase;color:var(--testo);margin:0}
-#tenda .filo-tenda{position:relative;width:min(220px,46vw);height:1px;
-  margin:26px auto 0;background:color-mix(in srgb,var(--testo) 14%,transparent);
-  overflow:hidden}
-#tenda .filo-tenda i{position:absolute;inset:0;background:var(--oro);
-  transform:scaleX(0);transform-origin:left;
-  animation:carica 2.6s cubic-bezier(.3,.7,.4,1) forwards}
-@keyframes carica{0%{transform:scaleX(0)}70%{transform:scaleX(.82)}100%{transform:scaleX(1)}}
-#tenda.via .filo-tenda i{transform:scaleX(1);animation:none}
-#tenda.via{opacity:0;visibility:hidden}
-#tenda p{font:400 11px/1 var(--sans);letter-spacing:.5em;text-transform:uppercase;color:var(--testo4);margin:0}
+/* Il sipario e' stato tolto il 19 novembre 2026: Massimo lo voleva via.
+   Il video parte da solo, e se iPhone lo blocca riparte al primo tocco. */
+
 
 /* --- apertura a schermo pieno --------------------------------------- */
 .palco{position:relative;height:100svh;min-height:600px;display:grid;align-items:center;overflow:hidden}

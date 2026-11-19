@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="../assets/scena.css?v=429d3187">
+<link rel="stylesheet" href="../assets/scena.css?v=53ded1ab">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -215,7 +215,7 @@
 
 
 <main id="main">
-<div id="tenda"><div class="dentro-tenda"><p class="nome-tenda">Massimo Giordano</p><div class="filo-tenda"><i></i></div></div></div>
+</div>
 
 <!-- ======================= l'apertura ======================= -->
 <header class="palco">
@@ -374,13 +374,12 @@
      dopo tre secondi, perché nessuno deve restare chiuso fuori per una
      connessione lenta. */
   (function(){
-    var tenda = document.getElementById('tenda');
-    if (!tenda) return;
+    /* Il sipario non c'e' piu': Massimo lo voleva via. Resta solo
+       l'avvio del video, che prima stava dentro la stessa funzione. */
     var alzato = false;
     function alza(){
       if (alzato) return;
       alzato = true;
-      tenda.classList.add('via');
       var v = document.querySelector('.palco video');
       /* Su iPhone l'avvio automatico viene bloccato in parecchi casi: durante
          una telefonata, con il Risparmio energetico acceso, o quando un'altra
