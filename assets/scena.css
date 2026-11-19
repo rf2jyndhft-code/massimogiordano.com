@@ -628,3 +628,17 @@ body.scena .menu-voci a:focus-visible{outline:none}
 body.scena.pagina-interna .topbar{position:sticky;top:0;
   background:var(--sfondo);border-bottom:1px solid var(--filo)}
 body.scena.pagina-interna .topbar.posata{position:sticky}
+
+/* L'INVITO AL MAPPAMONDO, DENTRO LA GALLERIA
+   Un riquadro solo, che si accende al passaggio: le fotografie stanno
+   sotto, questo e' un'altra strada per arrivarci. */
+body.scena .globo-invito{display:block;text-decoration:none;color:inherit;
+  border:1px solid var(--filo);background:var(--sfondo2);
+  padding:clamp(20px,3vw,30px) clamp(20px,3vw,32px);transition:border-color .2s ease}
+body.scena .globo-invito:hover,body.scena .globo-invito:focus-visible{border-color:var(--oro)}
+body.scena .globo-invito-tit{display:block;font-family:var(--display);font-weight:400;
+  font-size:clamp(21px,2.6vw,27px);line-height:1.2;margin-bottom:9px}
+body.scena .globo-invito-testo{display:block;color:var(--testo3);font-size:14.5px;
+  line-height:1.65;max-width:62ch}
+body.scena .globo-invito-vai{display:block;margin-top:14px;color:var(--oro);
+  font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}

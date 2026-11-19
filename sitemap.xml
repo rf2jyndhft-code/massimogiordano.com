@@ -161,4 +161,13 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://www.massimogiordano.com/it/locandine.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.massimogiordano.com/posters.html"/>
   </url>
+
+  <url>
+    <loc>https://www.massimogiordano.com/theatres.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.massimogiordano.com/it/teatri.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
