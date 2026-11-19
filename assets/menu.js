@@ -37,6 +37,16 @@
            (a.hasAttribute('aria-current') ? ' aria-current="page"' : '') +
            '>' + a.textContent.trim() + '</a>';
   }).join('');
+
+  /* Home in cima: nella barra non c'e' perche' il nome a sinistra fa da
+     ritorno alla home, ma dentro il pannello quel nome non si vede piu'.
+     Senza questa voce, da una pagina interna non si torna indietro. */
+  var casa = IT ? 'it/' : '';
+  var qui = location.pathname.replace(/\/index\.html$/, '/');
+  var inCasa = qui === '/' || qui === '/it/' || /\/index\.html$/.test(location.pathname);
+  var radice = /^\/it\//.test(location.pathname) ? '/it/' : '/';
+  voci = '<a href="' + radice + '"' + (inCasa ? ' aria-current="page"' : '') + '>' +
+         (IT ? 'Home' : 'Home') + '</a>' + voci;
   var profili = document.querySelector('.social-hero, footer .social');
 
   /* L'altra lingua sta QUI, non nella barra: li' galleggiava fra il nome e il

@@ -406,6 +406,12 @@ body.scena .btn:hover{background:var(--oro);color:var(--su-oro)}
 body.scena .menu-bot{color:var(--testo);width:46px;height:46px}
 body.scena .menu-bot[aria-expanded="true"]{color:var(--oro);position:relative;z-index:70}
 
+/* Col pannello aperto il nome sparisce dietro: era l'unico punto di
+   riferimento in cima, e senza non si capisce piu' dove si e'.
+   Resta sopra, come il comando di chiusura. */
+html.menu-aperto body.scena .topbar .brand{position:relative;z-index:70;color:var(--testo)}
+html.menu-aperto body.scena .topbar{z-index:70}
+
 /* ⚠️ Il pannello resta CHIUSO finché non lo si apre.
    La riga qui sotto diceva "display:flex" e vinceva su "[hidden]{display:none}"
    del foglio principale: il pannello restava spalancato sopra tutta la pagina,
