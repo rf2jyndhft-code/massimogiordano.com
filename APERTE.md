@@ -5,7 +5,8 @@ Serve a non perdere più niente fra una richiesta e l'altra.
 
 ## Da fare
 
-- [ ] **La parte bassa della home** — «sotto tutto ammassato con foto che non si capisce» (19 nov)
+- [ ] **I social su una linea lunga**, come nell'altro sito — lì stavano accanto al titolo
+
 - [ ] **La home non è bella come il primo sito** — da capire cosa manca, guardando i due accanto (19 nov)
 - [ ] **I crediti fotografici** — 12 attribuzioni poggiano solo sul nome della cartella, segnate nel mappamondo
 - [ ] **Le 55 istantanee del vecchio sito** a 400 px: non esiste l'originale, vanno sostituite o tolte
@@ -23,3 +24,9 @@ Serve a non perdere più niente fra una richiesta e l'altra.
 - [x] Teatro Regio di Torino e Staatsoper Stuttgart aggiunti
 - [x] Le tre registrazioni tornate nella home
 - [x] Il sipario tolto dalla home
+- [x] La «tendina»: era la barra sottile che si allungava a 739px per una collisione di nomi
+- [x] Le tre registrazioni, con un lettore su misura e le dieci altre incisioni
+- [x] La sezione del disco in tre colonne, non più un papiro
+- [x] Via dalla home la sezione degli impegni
+- [x] Il fotogramma fisso del video: il mare, non il corridoio
+- [x] Il video non si ferma più: sentinella ogni due secondi
