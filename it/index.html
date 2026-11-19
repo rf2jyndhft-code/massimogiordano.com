@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="../assets/scena.css?v=d9eda98f">
+<link rel="stylesheet" href="../assets/scena.css?v=429d3187">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -273,6 +273,34 @@
   <figure class="entra"><img src="/assets/img/ritratti/papillon-v1500.jpg" alt="Massimo Giordano"></figure>
 </div></section>
 
+
+<!-- ======================= il disco ======================= -->
+<section class="in disco entra">
+  <p class="occhio">Il disco</p>
+  <h2 class="disco-tit">Amore e Tormento</h2>
+  <div class="disco-dentro">
+    <img class="disco-copertina" src="/assets/img/amore-e-tormento.jpg" alt="Amore e Tormento" width="1200" height="1198" loading="lazy">
+    <div>
+      <p class="disco-testo">Il primo disco da solista, uscito il 6 maggio 2013 con l’Ensemble del Maggio Musicale Fiorentino diretto da Carlo Goldstein. Tre brani per intero, non trenta secondi.</p>
+      <ul class="brani">
+      <li class="brano">
+        <div class="brano-testa"><b>E lucean le stelle</b><span>Puccini · Tosca · 3:14</span></div>
+        <audio controls preload="none" src="/assets/audio/e-lucean-le-stelle.m4a"></audio>
+      </li>
+      <li class="brano">
+        <div class="brano-testa"><b>Io l’ho perduta</b><span>Verdi · Don Carlo · 4:23</span></div>
+        <audio controls preload="none" src="/assets/audio/io-l-ho-perduta.m4a"></audio>
+      </li>
+      <li class="brano">
+        <div class="brano-testa"><b>La dolcissima effige</b><span>Cilea · Adriana Lecouvreur · 2:28</span></div>
+        <audio controls preload="none" src="/assets/audio/la-dolcissima-effige.m4a"></audio>
+      </li>
+      </ul>
+      <p class="disco-vai"><a href="https://open.spotify.com/album/6BiH16iKaZqnc2WpeG4Wkn" rel="noopener" target="_blank">Ascolta su Spotify &rarr;</a></p>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= le fotografie ======================= -->
 <section style="padding:clamp(40px,6vw,90px) 0">
   <div class="in entra" style="margin-bottom:30px">
@@ -354,7 +382,29 @@
       alzato = true;
       tenda.classList.add('via');
       var v = document.querySelector('.palco video');
-      if (v && v.paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); }
+      /* Su iPhone l'avvio automatico viene bloccato in parecchi casi: durante
+         una telefonata, con il Risparmio energetico acceso, o quando un'altra
+         app sta suonando. Allora riproviamo al primo tocco sulla pagina,
+         qualunque esso sia: un tocco e' un gesto, e il gesto sblocca. */
+      if (v) {
+        var avvia = function () {
+          if (!v.paused) return;
+          var pr = v.play();
+          if (pr && pr.catch) pr.catch(function () {});
+        };
+        avvia();
+        var unaVolta = function () {
+          avvia();
+          document.removeEventListener('touchstart', unaVolta);
+          document.removeEventListener('click', unaVolta);
+        };
+        document.addEventListener('touchstart', unaVolta, { passive: true });
+        document.addEventListener('click', unaVolta);
+        /* e quando si torna sulla scheda dopo esserne usciti */
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden) avvia();
+        });
+      }
     }
     var video = document.querySelector('.palco video');
     if (video){
