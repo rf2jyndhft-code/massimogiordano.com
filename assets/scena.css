@@ -662,7 +662,14 @@ body.scena .disco-dentro{display:grid;grid-template-columns:1fr;
 body.scena .disco-copertina{width:100%;max-width:240px;height:auto;border:1px solid var(--filo)}
 body.scena .disco-testo{color:var(--testo3);font-size:13.5px;line-height:1.7;
   max-width:40ch;margin:16px 0 0}
+/* Il collegamento a Spotify e' figlio della griglia, non della prima
+   colonna: sul telefono le colonne si impilano e cosi' finisce dopo i
+   tre brani, dove uno ci arriva dopo aver ascoltato. Sul computer
+   torna sotto la copertina, a sinistra. */
 body.scena .disco-vai{margin:16px 0 0}
+@media(min-width:800px){
+  body.scena .disco-vai{grid-column:1;grid-row:2;margin-top:-6px}
+}
 body.scena .disco-vai a{color:var(--oro);font:500 10.5px/1 var(--sans);
   letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid transparent;padding-bottom:3px}
 body.scena .disco-vai a:hover{border-bottom-color:var(--oro)}
