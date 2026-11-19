@@ -190,7 +190,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="assets/scena.css?v=ced81cec">
+<link rel="stylesheet" href="assets/scena.css?v=77291b3c">
 </head>
 <body class="scena">
 <a class="skip" href="#main">Skip to content</a>
@@ -219,7 +219,7 @@
 
 <!-- ======================= l'apertura ======================= -->
 <header class="palco">
-  <video autoplay muted loop playsinline preload="metadata"
+  <video autoplay muted loop playsinline preload="auto"
          poster="/assets/video/corridoio-hd.jpg">
     <source src="/assets/video/corridoio-hd.mp4" type="video/mp4">
   </video>
@@ -279,9 +279,12 @@
   <p class="occhio">The record</p>
   <h2 class="disco-tit">Amore e Tormento</h2>
   <div class="disco-dentro">
-    <img class="disco-copertina" src="/assets/img/amore-e-tormento.jpg" alt="Amore e Tormento" width="1200" height="1198" loading="lazy">
-    <div>
+    <div class="disco-sx">
+      <img class="disco-copertina" src="/assets/img/amore-e-tormento.jpg" alt="Amore e Tormento" width="1200" height="1198" loading="lazy">
       <p class="disco-testo">The first solo album, released on 6 May 2013 with the Ensemble of the Maggio Musicale Fiorentino conducted by Carlo Goldstein. Three tracks in full, not thirty seconds.</p>
+      <p class="disco-vai"><a href="https://open.spotify.com/album/6BiH16iKaZqnc2WpeG4Wkn" rel="noopener" target="_blank">Listen on Spotify &rarr;</a></p>
+    </div>
+    <div class="disco-cx">
       <ul class="brani">
       <li class="brano">
         <div class="brano-testa"><b>E lucean le stelle</b><span>Puccini · Tosca · 3:14</span></div>
@@ -296,7 +299,8 @@
         <audio controls preload="none" src="/assets/audio/la-dolcissima-effige.m4a"></audio>
       </li>
       </ul>
-      
+    </div>
+    <div class="disco-dx">
       <p class="incisioni-tit">Also on record</p>
       <ul class="incisioni">
           <li><b>2000</b><span>Verdi gala, Berliner Philharmoniker New Year’s Eve Concert under Claudio Abbado, released as <em>Gala from Berlin 2000 · Tutto nel mondo</em>; the concert can be watched in the orchestra’s <a href="https://www.digitalconcerthall.com/en/concert/84" rel="noopener" target="_blank">Digital Concert Hall</a></span></li>
@@ -310,7 +314,6 @@
           <li><b>2010</b><span>Bizet, <em>Carmen</em> (Don José), Vienna State Opera, Zeffirelli production under Andris Nelsons, with Anna Netrebko; <a href="https://www.unitel.de/en/product/do/detail.html?id=2960" rel="noopener" target="_blank">filmed by Unitel</a></span></li>
           <li><b>2015</b><span>Verdi, Puccini, Donizetti, Bellini, Mozart, <em>Bella Italia!</em>, New Year&rsquo;s Eve gala from the Festspielhaus Baden-Baden, SWR Sinfonieorchester Baden-Baden und Freiburg, Gérard Korsten, with Angel Blue and Erwin Schrott, produced for ARD, SWR and 3sat</span></li>
         </ul>
-      <p class="disco-vai"><a href="https://open.spotify.com/album/6BiH16iKaZqnc2WpeG4Wkn" rel="noopener" target="_blank">Listen on Spotify &rarr;</a></p>
     </div>
   </div>
 </section>
@@ -392,6 +395,17 @@
         document.addEventListener('visibilitychange', function () {
           if (!document.hidden) avvia();
         });
+        /* la sentinella: ogni due secondi, se il video si e' fermato senza
+           essere finito, lo rimette in moto. Massimo lo vuole continuo, mai
+           fermo su un fotogramma. */
+        setInterval(function () {
+          if (document.hidden) return;
+          if (v.paused && !v.ended) avvia();
+        }, 2000);
+        /* e se per qualunque motivo arriva in fondo senza ripartire */
+        v.addEventListener('ended', function () { v.currentTime = 0; avvia(); });
+        v.addEventListener('stalled', avvia);
+        v.addEventListener('suspend', function () { if (v.paused) avvia(); });
       }
     }
     var video = document.querySelector('.palco video');
