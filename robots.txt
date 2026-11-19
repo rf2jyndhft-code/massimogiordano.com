@@ -12,3 +12,5 @@ Disallow: /press-kit/
 
 Sitemap: https://www.massimogiordano.com/sitemap.xml
 Disallow: /v2/
+Disallow: /prove/
+Disallow: /anteprima/
