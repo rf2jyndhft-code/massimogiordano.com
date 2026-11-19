@@ -2,14 +2,16 @@
 html{-webkit-text-size-adjust:100%}
 /* ══════════════════════════════════════════════════════════════════
    LA SCENA — il vestito del sito.
-   Fondo "notte": un nero spostato sul blu, come la sala prima che si
-   alzi il sipario. Il nero assoluto spegneva le fotografie e stancava
-   dopo due paragrafi; questo tiene il buio e lascia respirare il testo.
+   Fondo "notte": il buio di una sala prima che si alzi il sipario, con
+   un filo di caldo dentro. Era quasi al nero assoluto, e sul nero le
+   aste sottili del Bodoni si assottigliano ancora: sul telefono al sole
+   sparivano. Alzato il fondo di un gradino, il testo si regge e l'oro
+   si stacca invece di confondersi.   (Massimo, 19 novembre 2026)
    ══════════════════════════════════════════════════════════════════ */
 :root{
-  --sfondo:#0e1014; --sfondo2:#14171c; --bordo:#262c36; --filo:#1e232b;
-  --testo:#eef1f4; --testo2:#b4bcc5; --testo3:#848e99; --testo4:#616a74;
-  --oro:#b9924a; --su-oro:#12161c;
+  --sfondo:#1e1a15; --sfondo2:#27221b; --bordo:#443a2f; --filo:#352e25;
+  --testo:#f1eee8; --testo2:#c6bdae; --testo3:#b3a897; --testo4:#8a8071;
+  --oro:#c3994f; --su-oro:#1a1711;
   --velo:.9;                     /* quanto si vede il video in apertura */
   --grigia:.30;                   /* quanto sono scolorite le fotografie */
   --display:"Bodoni Moda",Georgia,"Times New Roman",serif;
