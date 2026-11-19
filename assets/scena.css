@@ -16,6 +16,14 @@ html{-webkit-text-size-adjust:100%}
   --grigia:.30;                   /* quanto sono scolorite le fotografie */
   --display:"Bodoni Moda",Georgia,"Times New Roman",serif;
   --sans:"Archivo",system-ui,-apple-system,sans-serif;
+  /* ⚠️ DUE CARATTERI, NON TRE. Il foglio di base definiva --serif come
+     'Iowan Old Style', che non e' caricato dal sito: e' un font di
+     sistema, quindi il testo si vedeva Iowan su Mac e iPhone, Palatino
+     su Windows, Georgia altrove. Qui --serif diventa lo stesso Bodoni
+     Moda del titolo: e' una variabile a misura ottica, disegnata anche
+     per il testo piccolo. Cosi' il sito e' uguale su ogni schermo.
+     (Massimo, 19 novembre 2026: «senza avere cose diverse») */
+  --serif:"Bodoni Moda",Georgia,"Times New Roman",serif;
 }
 body{margin:0;background:var(--sfondo);color:var(--testo);font-family:var(--sans);font-weight:300;
   overflow-x:hidden}
@@ -916,3 +924,6 @@ body.scena .bio-apre-foto img{width:100%;height:auto;display:block;
 body.scena .bio-apre-foto::after{content:"";position:absolute;inset:0;
   background:linear-gradient(transparent 62%, color-mix(in srgb,var(--sfondo) 55%,transparent));
   pointer-events:none}
+
+/* la misura ottica fa il lavoro: titoli affilati, testo piu' robusto */
+body.scena{font-optical-sizing:auto}
