@@ -872,3 +872,22 @@ body.scena .social-fila a:hover .social-mano{color:var(--testo3)}
 /* la didascalia non si stampa piu' su una sola: si legge su tutte,
    passandoci sopra o toccandola */
 body.scena .ig-velo{padding:clamp(14px,1.6vw,22px)}
+
+/* Via il filetto d'oro sotto le fotografie: lo prendevano dalla regola
+   generale dei collegamenti, e ogni cella e' un collegamento. Otto righe
+   d'oro che tagliavano otto immagini. Una fotografia non si sottolinea. */
+body.scena a.ig-cella,body.scena a.ig-cella:hover{border-bottom:0}
+
+/* Sul telefono la prima apre a tutta larghezza e le altre vanno a due a
+   due: con otto, l'ultima restava spaiata. Anche l'ultima prende tutta
+   la riga, e la pagina si chiude come si e' aperta. */
+@media(max-width:679px){
+  body.scena .ig-cella:last-child{grid-column:span 2;aspect-ratio:4/3}
+}
+
+/* La didascalia solo dove c'e' un mouse vero. Sul telefono il
+   «passaggio sopra» resta appiccicato dopo il tocco, e una fotografia
+   a caso restava con il testo stampato addosso: sembrava un errore. */
+@media(hover:none){
+  body.scena .ig-velo{display:none}
+}
