@@ -642,7 +642,10 @@ body.scena .globo-invito-vai{display:block;margin-top:14px;color:var(--oro);
    Si ascoltano per intero: chi arriva qui vuole sentire la voce, non
    leggerne la descrizione.
    ══════════════════════════════════════════════════════════════════ */
-body.scena .disco{padding:clamp(52px,8vh,88px) 0 clamp(44px,7vh,76px)}
+/* ⚠️ solo sopra e sotto: 'padding' per intero cancellava anche i
+   margini laterali che .in da' alla sezione, e sul telefono testo e
+   copertina finivano attaccati al bordo dello schermo. */
+body.scena .disco{padding-top:clamp(52px,8vh,88px);padding-bottom:clamp(44px,7vh,76px)}
 body.scena .disco-tit{font-family:var(--display);font-weight:400;
   font-size:clamp(28px,4.4vw,44px);line-height:1.05;margin:12px 0 0}
 
