@@ -708,6 +708,29 @@ body.scena .incisioni li b{font:500 11px/1.55 var(--sans);letter-spacing:.09em;c
 body.scena .incisioni li em{font-style:italic;color:var(--testo2)}
 body.scena .incisioni li a{color:var(--testo2);border-bottom:1px solid var(--filo)}
 body.scena .incisioni li a:hover{border-bottom-color:var(--oro);color:var(--testo)}
+
+/* La colonna delle incisioni era alta il triplo delle altre due e la
+   sezione restava sbilanciata. Da 1180px in su si chiude all'altezza
+   delle altre e scorre per conto suo, con una dissolvenza in fondo che
+   dice che sotto continua. Sul telefono resta libera: lì le colonne
+   sono impilate e un riquadro che scorre dentro una pagina che scorre
+   è una trappola per il dito. */
+@media(min-width:1180px){
+  body.scena .disco-dx{position:relative}
+  body.scena .disco-dx .incisioni{
+    max-height:clamp(360px,52vh,560px);overflow-y:auto;padding-right:14px;
+    scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--oro) 50%,transparent) transparent;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 46px),transparent 100%);
+    mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 46px),transparent 100%)}
+  body.scena .disco-dx .incisioni::-webkit-scrollbar{width:3px}
+  body.scena .disco-dx .incisioni::-webkit-scrollbar-track{background:transparent}
+  body.scena .disco-dx .incisioni::-webkit-scrollbar-thumb{
+    background:color-mix(in srgb,var(--oro) 45%,transparent)}
+  body.scena .disco-dx .incisioni:hover::-webkit-scrollbar-thumb{
+    background:color-mix(in srgb,var(--oro) 75%,transparent)}
+  /* l'ultima voce non deve restare mangiata dalla dissolvenza */
+  body.scena .disco-dx .incisioni li:last-child{padding-bottom:40px}
+}
 body.scena .disco-vai{margin:clamp(22px,3vh,30px) 0 0}
 body.scena .disco-vai a{color:var(--oro);font:500 11px/1 var(--sans);
   letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid transparent;padding-bottom:3px}
@@ -722,9 +745,9 @@ body.scena .disco-vai a:hover{border-bottom-color:var(--oro)}
    ══════════════════════════════════════════════════════════════════ */
 body.scena .social-lunga{padding:clamp(48px,7vh,86px) 0;
   border-top:1px solid var(--filo);border-bottom:1px solid var(--filo)}
-body.scena .social-testa{margin-bottom:clamp(24px,3.4vh,38px)}
-body.scena .social-tit{font-family:var(--display);font-weight:400;
-  font-size:clamp(26px,4vw,40px);line-height:1.08;margin:12px 0 0}
+/* Niente titolo: le sei colonne dicono gia' tutto, e una riga sopra che
+   annuncia «dove seguirlo» ripeteva a parole quello che si vede. */
+body.scena .social-testa{margin-bottom:clamp(16px,2.2vh,24px)}
 
 body.scena .social-fila{list-style:none;margin:0;padding:0;display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -753,3 +776,12 @@ body.scena .social-nome{font:500 11px/1 var(--sans);letter-spacing:.2em;text-tra
 body.scena .social-mano{font:400 12px/1.4 var(--sans);color:var(--testo4);
   word-break:break-word;transition:color .3s ease}
 body.scena .social-fila a:hover .social-mano{color:var(--testo3)}
+
+/* IL PIE' DI PAGINA — i collegamenti su due colonne
+   Nove voci in fila facevano una colonna alta il doppio delle altre, e
+   a destra restava un vuoto largo mezzo schermo. Su due colonne il
+   piede torna basso e il peso si distribuisce. */
+@media(min-width:900px){
+  body.scena .pie-menu{columns:2;column-gap:clamp(24px,3vw,46px)}
+  body.scena .pie-menu li{break-inside:avoid}
+}
