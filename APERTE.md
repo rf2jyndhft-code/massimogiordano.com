@@ -5,12 +5,11 @@ Serve a non perdere più niente fra una richiesta e l'altra.
 
 ## Da fare
 
-- [ ] **I social su una linea lunga**, come nell'altro sito — lì stavano accanto al titolo
+- [ ] **Fra due o tre giorni**: Search Console → Indicizzazione → riga «Non trovata (404)» → CONVALIDA CORREZIONE
 
 - [ ] **La home non è bella come il primo sito** — da capire cosa manca, guardando i due accanto (19 nov)
 - [ ] **I crediti fotografici** — 12 attribuzioni poggiano solo sul nome della cartella, segnate nel mappamondo
 - [ ] **Le 55 istantanee del vecchio sito** a 400 px: non esiste l'originale, vanno sostituite o tolte
-- [ ] **Google mostra la pagina Contatti** al posto della home: cambiare la riga sotto il nome lì dentro
 - [ ] **Il fotografo del Werther di Monaco** e quello delle foto di Stoccarda: non sono nei file
 
 ## Fatte oggi, 19 novembre
@@ -30,3 +29,7 @@ Serve a non perdere più niente fra una richiesta e l'altra.
 - [x] Via dalla home la sezione degli impegni
 - [x] Il fotogramma fisso del video: il mare, non il corridoio
 - [x] Il video non si ferma più: sentinella ogni due secondi
+- [x] I social su una fascia lunga, con nome e indirizzo di ognuno
+- [x] Indicizzazione: 190 reindirizzamenti dai vecchi indirizzi, copie duplicate
+      cancellate, lingue alternative corrette, dati strutturati su tutte le pagine
+- [x] I link di Wikipedia e Operabase non finiscono più su un errore
