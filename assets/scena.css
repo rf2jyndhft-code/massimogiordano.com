@@ -891,3 +891,28 @@ body.scena a.ig-cella,body.scena a.ig-cella:hover{border-bottom:0}
 @media(hover:none){
   body.scena .ig-velo{display:none}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   L'APERTURA DELLA BIOGRAFIA
+   Una biografia che comincia con un muro di testo chiede fiducia
+   prima di darla. Qui si apre con un ritratto: conferma chi e', da
+   all'occhio dove posarsi, e dice che la pagina parla di una persona.
+   Sul computer due colonne, sul telefono la fotografia sopra il testo.
+   ══════════════════════════════════════════════════════════════════ */
+body.scena .bio-apre-dentro{display:grid;grid-template-columns:1fr;
+  gap:clamp(26px,4vw,56px);align-items:center}
+@media(min-width:860px){
+  body.scena .bio-apre-dentro{grid-template-columns:1.05fr .95fr}
+  body.scena .bio-apre-testo{order:1}
+  body.scena .bio-apre-foto{order:2}
+}
+body.scena .bio-apre-foto{margin:0;position:relative;overflow:hidden}
+body.scena .bio-apre-foto img{width:100%;height:auto;display:block;
+  aspect-ratio:3/4;object-fit:cover;object-position:50% 22%}
+@media(min-width:860px){
+  body.scena .bio-apre-foto img{aspect-ratio:4/5;max-height:72vh}
+}
+/* un velo appena accennato dal basso, come sul palco */
+body.scena .bio-apre-foto::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(transparent 62%, color-mix(in srgb,var(--sfondo) 55%,transparent));
+  pointer-events:none}
