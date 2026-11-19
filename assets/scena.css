@@ -714,20 +714,42 @@ body.scena .disco-vai a{color:var(--oro);font:500 11px/1 var(--sans);
 body.scena .disco-vai a:hover{border-bottom-color:var(--oro)}
 
 /* ══════════════════════════════════════════════════════════════════
-   I SOCIAL SU UNA LINEA LUNGA
-   Prendono il posto della fascia «Trent'anni di scena»: le fotografie
-   hanno già una pagina loro, e il mappamondo. Qui resta una riga sola
-   che attraversa lo schermo da parte a parte, come il nastro dei teatri.
+   ALTROVE — la fascia dei social
+   Sei icone grigie in fila non dicono niente. Qui ogni voce porta il
+   nome e l'indirizzo vero: si legge come un elenco, non come una
+   pulsantiera, e chi guarda sa dove sta andando prima di cliccare.
+   Le celle sono separate da un filo, come le colonne di un programma.
    ══════════════════════════════════════════════════════════════════ */
-body.scena .social-lunga{padding:clamp(40px,6vh,70px) 0;
+body.scena .social-lunga{padding:clamp(48px,7vh,86px) 0;
   border-top:1px solid var(--filo);border-bottom:1px solid var(--filo)}
-body.scena .social-lunga .social{list-style:none;margin:0;padding:0;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:clamp(10px,3vw,40px);flex-wrap:nowrap}
-body.scena .social-lunga .social li{flex:0 0 auto}
-body.scena .social-lunga .social a{display:grid;place-items:center;
-  width:clamp(40px,5vw,58px);height:clamp(40px,5vw,58px);
-  color:var(--testo3);transition:color .25s ease,transform .25s ease}
-body.scena .social-lunga .social a:hover,
-body.scena .social-lunga .social a:focus-visible{color:var(--oro);transform:translateY(-3px)}
-body.scena .social-lunga .social svg{width:clamp(20px,2.5vw,27px);height:auto;fill:currentColor}
+body.scena .social-testa{margin-bottom:clamp(24px,3.4vh,38px)}
+body.scena .social-tit{font-family:var(--display);font-weight:400;
+  font-size:clamp(26px,4vw,40px);line-height:1.08;margin:12px 0 0}
+
+body.scena .social-fila{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  border-top:1px solid var(--filo)}
+@media(min-width:640px){body.scena .social-fila{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1020px){body.scena .social-fila{grid-template-columns:repeat(6,minmax(0,1fr));border-top:0}}
+
+body.scena .social-fila li{border-bottom:1px solid var(--filo)}
+body.scena .social-fila li+li{border-left:1px solid var(--filo)}
+@media(max-width:639px){body.scena .social-fila li:nth-child(odd)+li{border-left:1px solid var(--filo)}
+  body.scena .social-fila li:nth-child(odd){border-left:0}}
+@media(min-width:640px) and (max-width:1019px){
+  body.scena .social-fila li:nth-child(3n+1){border-left:0}}
+@media(min-width:1020px){body.scena .social-fila li{border-bottom:0;
+  border-top:1px solid var(--filo)}}
+
+body.scena .social-fila a{display:flex;flex-direction:column;align-items:flex-start;
+  gap:11px;padding:clamp(20px,2.6vw,28px) clamp(14px,1.8vw,22px);
+  color:var(--testo2);transition:background .3s ease,color .3s ease}
+body.scena .social-fila a:hover,body.scena .social-fila a:focus-visible{
+  background:color-mix(in srgb,var(--oro) 7%,transparent);color:var(--testo)}
+body.scena .social-segno{display:block;color:var(--testo3);transition:color .3s ease,transform .3s ease}
+body.scena .social-fila a:hover .social-segno{color:var(--oro);transform:translateY(-2px)}
+body.scena .social-segno svg{width:22px;height:22px;fill:currentColor;display:block}
+body.scena .social-nome{font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+body.scena .social-mano{font:400 12px/1.4 var(--sans);color:var(--testo4);
+  word-break:break-word;transition:color .3s ease}
+body.scena .social-fila a:hover .social-mano{color:var(--testo3)}
