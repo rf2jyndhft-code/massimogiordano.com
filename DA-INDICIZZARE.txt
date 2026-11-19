@@ -1,0 +1,31 @@
+Pagine da chiedere a Google, in ordine di importanza.
+Search Console accetta circa dieci richieste al giorno.
+Barra in cima -> incolla -> RICHIEDI INDICIZZAZIONE.
+
+--- giorno 1 ---
+https://www.massimogiordano.com/
+https://www.massimogiordano.com/it/
+https://www.massimogiordano.com/biography.html
+https://www.massimogiordano.com/it/biografia.html
+https://www.massimogiordano.com/repertoire.html
+https://www.massimogiordano.com/it/repertorio.html
+https://www.massimogiordano.com/theatres.html
+https://www.massimogiordano.com/it/teatri.html
+https://www.massimogiordano.com/gallery.html
+https://www.massimogiordano.com/it/galleria.html
+
+--- giorno 2 ---
+https://www.massimogiordano.com/posters.html
+https://www.massimogiordano.com/it/locandine.html
+https://www.massimogiordano.com/calendar.html
+https://www.massimogiordano.com/it/calendario.html
+https://www.massimogiordano.com/teaching.html
+https://www.massimogiordano.com/it/didattica.html
+https://www.massimogiordano.com/press.html
+https://www.massimogiordano.com/it/stampa.html
+https://www.massimogiordano.com/contact.html
+https://www.massimogiordano.com/it/contatti.html
+
+--- giorno 3 ---
+https://www.massimogiordano.com/privacy.html
+https://www.massimogiordano.com/it/privacy.html
