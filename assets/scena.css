@@ -659,7 +659,36 @@ body.scena .brano-testa b{font-family:var(--display);font-weight:400;font-size:c
 body.scena .brano-testa span{color:var(--testo3);font-size:13px;letter-spacing:.02em}
 /* Il lettore lo disegna il telefono, non noi: un filtro lo rendeva
    slavato e su iPhone i comandi sparivano. Meglio quello di sistema. */
-body.scena .brano audio{width:100%;max-width:520px;height:40px}
+/* il lettore di sistema sparisce: lo rifà dischi.js, con i segni del sito */
+body.scena .brano audio{display:none}
+body.scena .suona{display:flex;align-items:center;gap:clamp(14px,2vw,20px);max-width:560px}
+body.scena .suona-bot{width:46px;height:46px;flex:0 0 auto;border-radius:50%;cursor:pointer;
+  background:transparent;border:1px solid color-mix(in srgb,var(--oro) 55%,transparent);
+  display:grid;place-items:center;transition:border-color .25s ease,background .25s ease,transform .25s ease}
+body.scena .suona-bot:hover{border-color:var(--oro);transform:scale(1.05)}
+body.scena .suona-tri{width:0;height:0;margin-left:3px;
+  border-left:11px solid var(--oro);border-top:7px solid transparent;border-bottom:7px solid transparent}
+body.scena .brano.suonando .suona-bot{background:color-mix(in srgb,var(--oro) 14%,transparent);border-color:var(--oro)}
+body.scena .brano.suonando .suona-tri{width:11px;height:14px;margin-left:0;border:0;
+  background:linear-gradient(to right,var(--oro) 0 4px,transparent 4px 7px,var(--oro) 7px 11px)}
+body.scena .suona-riga{flex:1 1 auto;height:22px;display:flex;align-items:center;cursor:pointer;position:relative}
+body.scena .suona-riga::before{content:"";position:absolute;left:0;right:0;height:1px;
+  background:color-mix(in srgb,var(--testo) 16%,transparent)}
+body.scena .suona-fatta{position:absolute;left:0;height:1px;width:0;background:var(--oro);
+  transition:width .12s linear}
+body.scena .suona-riga:hover .suona-fatta,body.scena .brano.suonando .suona-fatta{height:2px}
+body.scena .suona-tempo{flex:0 0 auto;font:400 12px/1 var(--sans);letter-spacing:.06em;
+  color:var(--testo3);font-variant-numeric:tabular-nums;min-width:82px;text-align:right}
+
+/* le altre incisioni, in fila per anno */
+body.scena .incisioni{list-style:none;margin:clamp(26px,4vh,38px) 0 0;padding:0;max-width:62ch}
+body.scena .incisioni li{display:grid;grid-template-columns:62px 1fr;gap:4px 16px;
+  padding:13px 0;border-top:1px solid var(--filo);font-size:14.5px;line-height:1.65;color:var(--testo2)}
+body.scena .incisioni li b{font:500 12px/1.6 var(--sans);letter-spacing:.1em;color:var(--oro)}
+body.scena .incisioni li a{color:var(--testo);border-bottom:1px solid var(--filo)}
+body.scena .incisioni li a:hover{border-bottom-color:var(--oro)}
+body.scena .incisioni-tit{font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--testo4);margin:clamp(34px,5vh,50px) 0 0}
 body.scena .disco-vai{margin:clamp(22px,3vh,30px) 0 0}
 body.scena .disco-vai a{color:var(--oro);font:500 11px/1 var(--sans);
   letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid transparent;padding-bottom:3px}
