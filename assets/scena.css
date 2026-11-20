@@ -966,3 +966,8 @@ body.scena .timeline-vista{position:relative}
   /* l'ultima voce non deve restare mangiata dalla dissolvenza */
   body.scena .timeline-vista .timeline li:last-child{padding-bottom:48px}
 }
+
+/* Il credito sotto il ritratto che apre la biografia: piccolo e quieto,
+   come quello nella lente della galleria. */
+body.scena .bio-apre-cr{margin-top:8px;font-family:var(--sans);font-size:11.5px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--testo4)}
