@@ -161,7 +161,15 @@
     }
     /* etichette: prima il teatro scelto, poi i piu' centrali, saltando
        quelle che si sovrappongono a una gia' scritta (l'Europa e' fitta) */
-    var cand = vis.slice().sort(function (p, q) { return q.a - p.a; });
+    /* L'ordine delle etichette era dato da 'a', cioe' da quanto il puntino e'
+       vicino al centro: un valore che cambia a ogni fotogramma, quindi l'ordine
+       si ribaltava di continuo e i nomi si accendevano e si spegnevano. Ora
+       l'ordine e' fisso - prima i teatri con piu' ruoli - e cambia solo quando
+       un punto passa davvero dietro al globo. */
+    var cand = vis.slice().sort(function (p, q) {
+      var d = T[q.i].r.length - T[p.i].r.length;
+      return d || (p.i - q.i);
+    });
     if (scelto >= 0) {
       var s = vis.filter(function (p) { return p.i === scelto; })[0];
       if (s) { cand = cand.filter(function (p) { return p.i !== scelto; }); cand.unshift(s); }
@@ -170,6 +178,8 @@
     var corpo = Math.max(13, Math.round(L * .0235)), presi = [], scritte = 0;
     for (i = 0; i < cand.length && scritte < 7; i++) {
       var o = cand[i], t2 = T[o.i], ac = o.i === scelto;
+      /* troppo di taglio sul bordo: niente nome, altrimenti lampeggia */
+      if (!ac && o.a < 0.5) continue;
       cx.font = (ac ? '600 ' : '500 ') + corpo + 'px Archivo, system-ui, sans-serif';
       var w = cx.measureText(t2.c).width, bx = o.x - w / 2 - 4, by = o.y + o.r + 4;
       var box = [bx, by, bx + w + 8, by + corpo + 5], urta = false;
@@ -203,7 +213,7 @@
       lam = anim.l0 + anim.dl * k; phi = anim.p0 + anim.dp * k;
       if (anim.t >= 1) anim = null;
     } else if (gira && !sopra) {
-      lam += dt * .0062;
+      lam += dt * .0094;   /* un giro in poco piu' di sei minuti era troppo: ora ~38 secondi */
     }
     if (Math.abs(mira - zoom) > 0.0008) {
       var passoZ = 1 - Math.pow(1 - 0.135, dt / 16.7);   /* stesso freno a ogni cadenza */
