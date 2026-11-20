@@ -12,7 +12,7 @@ html{-webkit-text-size-adjust:100%}
   --sfondo:#1e1a15; --sfondo2:#27221b; --bordo:#443a2f; --filo:#352e25;
   --testo:#f1eee8; --testo2:#c6bdae; --testo3:#b3a897; --testo4:#8a8071;
   --oro:#c3994f; --su-oro:#1a1711;
-  --velo:.9;                     /* quanto si vede il video in apertura */
+  --velo:1;                      /* il video in apertura si vede intero */
   --grigia:.30;                   /* quanto sono scolorite le fotografie */
   --display:"Bodoni Moda",Georgia,"Times New Roman",serif;
   --sans:"Archivo",system-ui,-apple-system,sans-serif;
@@ -42,8 +42,12 @@ a{color:inherit;text-decoration:none}
 .palco video,.palco .sfondo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   opacity:var(--velo);transform:scale(1.06);animation:respiro 26s ease-in-out infinite alternate}
 @keyframes respiro{to{transform:scale(1.16)}}
+/* Il velo sopra il video serve solo a far leggere il nome: dev'essere
+   NEUTRO. Era fatto col colore del fondo, e da quando il fondo e'
+   caldo tingeva il filmato di marrone. (Massimo, 20 novembre 2026) */
 .palco::after{content:"";position:absolute;inset:0;z-index:1;
-  background:color-mix(in srgb, var(--sfondo) 34%, transparent)}
+  background:linear-gradient(to bottom,
+    rgba(8,8,9,.26) 0%, rgba(8,8,9,.18) 42%, rgba(8,8,9,.42) 100%)}
 .palco .dentro{position:relative;z-index:2;width:100%;text-align:center;
   padding:clamp(92px,12.5vh,146px) 0 clamp(96px,13vh,150px)}
 
