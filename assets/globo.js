@@ -459,7 +459,8 @@
     if (conta[t.c] < 2) return t.c;
     var corti = { 'Wiener Staatsoper': 'Staatsoper', 'Musikverein': 'Musikverein',
                   'Deutsche Oper Berlin': 'Deutsche Oper', 'Philharmonie': 'Philharmonie',
-                  'Metropolitan Opera': 'Metropolitan', 'Carnegie Hall': 'Carnegie' };
+                  'Metropolitan Opera': 'Metropolitan', 'Carnegie Hall': 'Carnegie',
+                  'Salle Pleyel': 'Pleyel', 'Op\u00e9ra national de Paris': 'Op\u00e9ra' };
     return t.c + ' · ' + (corti[t.n] || t.n.split(/[\s,]/)[0]);
   }
 
