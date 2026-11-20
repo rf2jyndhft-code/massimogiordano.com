@@ -118,12 +118,14 @@
     '<figure class="lente-corpo">' +
       '<div class="lente-palco"><img alt=""></div>' +
       '<figcaption class="lente-did"><span class="lente-testo"></span>' +
+        '<span class="lente-cr"></span>' +
         '<span class="lente-conta"></span></figcaption>' +
     '</figure>';
   document.body.appendChild(lente);
 
   var im = lente.querySelector('img');
   var testo = lente.querySelector('.lente-testo');
+  var cred = lente.querySelector('.lente-cr');
   var conta = lente.querySelector('.lente-conta');
   var palco = lente.querySelector('.lente-palco');
   var dove = 0, tornaA = null;
@@ -148,6 +150,10 @@
     im.src = fonte(b);
     var did = b.getAttribute('data-cap') || '';
     testo.innerHTML = did;
+    /* il credito del fotografo, quando lo sappiamo */
+    var cr = b.getAttribute('data-cr') || '';
+    cred.textContent = cr ? '\u00a9 ' + cr : '';
+    cred.hidden = !cr;
     im.alt = did.replace(/<[^>]+>/g, '');
     conta.textContent = (dove + 1) + ' ' + T.di + ' ' + scatti.length;
     lente.querySelector('.lente-prima').disabled = false;

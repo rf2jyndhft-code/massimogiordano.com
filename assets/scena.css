@@ -933,3 +933,10 @@ body.scena .bio-apre-foto::after{content:"";position:absolute;inset:0;
 
 /* la misura ottica fa il lavoro: titoli affilati, testo piu' robusto */
 body.scena{font-optical-sizing:auto}
+
+/* IL CREDITO DEL FOTOGRAFO NELLA LENTE
+   Sta sotto la didascalia, piu' piccolo e piu' quieto: si legge se lo cerchi,
+   non ruba la scena alla fotografia. */
+body.scena .lente-cr{display:block;margin-top:6px;font-family:var(--sans);
+  font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--testo4)}
+body.scena .lente-cr[hidden]{display:none}
