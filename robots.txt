@@ -13,7 +13,9 @@ Disallow: /press-kit/
 Sitemap: https://www.massimogiordano.com/sitemap.xml
 
 # Le prove vivono sul Mac e sul ramo di lavoro, non qui.
-# /v2/ e /anteprima/ sono state cancellate il 19 novembre 2026:
-# erano 42 pagine copia del sito, senza canonical, e Google le
-# contava come duplicati.
-Disallow: /prove/
+# /v2/ e /anteprima/ cancellate il 19 novembre 2026, /prove/ il 20:
+# erano copie del sito senza canonical, e Google le contava come
+# duplicati. NON vanno bloccate qui: un indirizzo bloccato non viene
+# piu' letto, quindi Google non vede mai che e' sparito e se lo tiene
+# in archivio. Deve poterci arrivare, trovare il 404 e lasciarlo
+# cadere da solo.
