@@ -915,10 +915,12 @@ body.scena .bio-apre-dentro{display:grid;grid-template-columns:1fr;
   body.scena .bio-apre-foto{order:2}
 }
 body.scena .bio-apre-foto{margin:0;position:relative;overflow:hidden}
-body.scena .bio-apre-foto img{width:100%;height:auto;display:block;
+body.scena .bio-apre-foto img,
+body.scena .bio-apre-foto video{width:100%;height:auto;display:block;
   aspect-ratio:3/4;object-fit:cover;object-position:50% 22%}
 @media(min-width:860px){
-  body.scena .bio-apre-foto img{aspect-ratio:4/5;max-height:72vh}
+  body.scena .bio-apre-foto img,
+  body.scena .bio-apre-foto video{aspect-ratio:4/5;max-height:72vh}
 }
 /* un velo appena accennato dal basso, come sul palco */
 body.scena .bio-apre-foto::after{content:"";position:absolute;inset:0;
