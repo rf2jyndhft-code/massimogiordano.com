@@ -73,3 +73,14 @@ canvas.presa{cursor:grabbing}
 @media(max-width:620px){.globo-lente{padding:14px 10px 56px}
   .prec,.succ{top:auto;bottom:8px;margin-top:0}.prec{left:28%}.succ{right:28%}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* GLI ALTRI LUOGHI DELLA STESSA CITTA'
+   Due teatri nella stessa citta' si sovrappongono sul globo e dal puntino se
+   ne apre sempre uno solo: a Parigi l'Opera copriva la Salle Pleyel. Qui
+   sotto compaiono gli altri, e ci si clicca sopra. */
+.globo-vicini{margin:0 0 20px}
+.globo-vicini button{display:inline-block;margin:0 8px 8px 0;padding:6px 12px;
+  border:1px solid var(--filo);background:transparent;color:var(--testo2);
+  font:500 12px/1.2 var(--sans);letter-spacing:.04em;cursor:pointer;transition:.18s}
+.globo-vicini button:hover,.globo-vicini button:focus-visible{
+  border-color:var(--oro);color:var(--testo)}

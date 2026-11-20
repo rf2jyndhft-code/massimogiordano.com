@@ -10,7 +10,7 @@
     tutte:'tutte', una:' fotografia', molte:' fotografie',
     credito:'Fotografie: ', haUna:' fotografia ha', hannoMolte:' fotografie hanno',
     daCartella:' l\u2019attribuzione presa dal nome della cartella, non dal file: da confermare.',
-    daConfermare:'attribuzione da confermare', diCui:' di '
+    daConfermare:'attribuzione da confermare', diCui:' di ', stessaCitta:'Anche qui, nella stessa citt\u00e0'
   } : {
     tutti:'All the theatres', unRuolo:'Role sung here', ruoli:' roles sung here',
     inScena:'On stage', nessuna:'Photographs not yet chosen for this theatre.',
@@ -18,7 +18,7 @@
     tutte:'all', una:' photograph', molte:' photographs',
     credito:'Photographs: ', haUna:' photograph has', hannoMolte:' photographs have',
     daCartella:' its attribution taken from the folder name, not from the file: to be confirmed.',
-    daConfermare:'attribution to be confirmed', diCui:' of '
+    daConfermare:'attribution to be confirmed', diCui:' of ', stessaCitta:'Also here, in the same city'
   };
   var D = JSON.parse(document.getElementById('dati').textContent);
   var T = D.teatri, TERRE = D.terre;
@@ -300,7 +300,19 @@
       h += '<li' + (n ? ' class="conFoto" tabindex="0" role="button"' : '') + '><b>' + t.r[k].r + '</b><span>' + t.r[k].o + '</span>' +
            (n ? '<i class="n">' + n + '</i>' : '') + '</li>';
     }
-    h += '</ul></div><div class="globo-fotos-posto"></div>';
+    h += '</ul></div>';
+    /* Due teatri nella stessa citta' si pestano sul globo: dal puntino se ne
+       apre sempre e solo uno. Qui sotto compaiono gli altri, cliccabili. */
+    var vicini = [];
+    for (var v = 0; v < T.length; v++) if (v !== i && T[v].c === t.c) vicini.push(v);
+    if (vicini.length) {
+      h += '<div class="globo-vicini"><p class="eti">' + P.stessaCitta + '</p>';
+      for (var v2 = 0; v2 < vicini.length; v2++) {
+        h += '<button type="button" data-vai="' + vicini[v2] + '">' + T[vicini[v2]].n + '</button>';
+      }
+      h += '</div>';
+    }
+    h += '<div class="globo-fotos-posto"></div>';
     scheda.innerHTML = h;
     var voci = scheda.querySelectorAll('.globo-ruoli li');
     (function (tt) {
@@ -314,6 +326,10 @@
         })(z, voci[z]);
       }
     })(t);
+    var vic = scheda.querySelectorAll('.globo-vicini button');
+    for (var q = 0; q < vic.length; q++) {
+      (function (bb) { bb.addEventListener('click', function () { vai(+bb.getAttribute('data-vai'), true); }); })(vic[q]);
+    }
     fotografie(t);
     var b = chips.children;
     for (k = 0; k < b.length; k++) {
