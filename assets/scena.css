@@ -940,3 +940,29 @@ body.scena{font-optical-sizing:auto}
 body.scena .lente-cr{display:block;margin-top:6px;font-family:var(--sans);
   font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--testo4)}
 body.scena .lente-cr[hidden]{display:none}
+
+/* ══════════════════════════════════════════════════════════════════
+   LA CRONOLOGIA DENTRO UNA FINESTRA
+   Trentadue anni in fila facevano una colonna che non finiva mai e
+   spingeva tutto il resto della biografia fuori dallo schermo. Qui si
+   chiude in una finestra che scorre per conto suo, con la stessa
+   dissolvenza in fondo delle incisioni: si capisce che sotto continua.
+   Sul telefono resta libera — un riquadro che scorre dentro una pagina
+   che scorre e' una trappola per il dito, come per le incisioni.
+   ══════════════════════════════════════════════════════════════════ */
+body.scena .timeline-vista{position:relative}
+@media(min-width:860px){
+  body.scena .timeline-vista .timeline{
+    max-height:clamp(420px,62vh,660px);overflow-y:auto;padding-right:18px;
+    scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--oro) 50%,transparent) transparent;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 54px),transparent 100%);
+    mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 54px),transparent 100%)}
+  body.scena .timeline-vista .timeline::-webkit-scrollbar{width:3px}
+  body.scena .timeline-vista .timeline::-webkit-scrollbar-track{background:transparent}
+  body.scena .timeline-vista .timeline::-webkit-scrollbar-thumb{
+    background:color-mix(in srgb,var(--oro) 45%,transparent)}
+  body.scena .timeline-vista .timeline:hover::-webkit-scrollbar-thumb{
+    background:color-mix(in srgb,var(--oro) 75%,transparent)}
+  /* l'ultima voce non deve restare mangiata dalla dissolvenza */
+  body.scena .timeline-vista .timeline li:last-child{padding-bottom:48px}
+}
