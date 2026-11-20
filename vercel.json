@@ -970,6 +970,266 @@
       "source": "/de/startseite/",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/page15/page15.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page15/page15.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page15/page64/page64.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page15/page64/page64.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page32/page32.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page32/page32.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page51/page51.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page51/page51.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page53/page53.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page53/page53.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/page57.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/page57.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page60/page60.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page60/page60.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page65/page65.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page65/page65.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/files/rec_gala2.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/files/rec_gala2.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/files/rec_imelda.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/files/rec_imelda.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/files/rec_lombardi.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/files/rec_lombardi.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/files/rec_schicchi.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/page57/files/rec_schicchi.html/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/massimo-giordano-home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/massimo-giordano-home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/it/bio_3.htm",
+      "destination": "/it/biografia.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/bio_3.htm/",
+      "destination": "/it/biografia.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/calend.htm",
+      "destination": "/it/calendario.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/calend.htm/",
+      "destination": "/it/calendario.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/contact.htm",
+      "destination": "/it/contatti.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/contact.htm/",
+      "destination": "/it/contatti.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/photo.htm",
+      "destination": "/it/galleria.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/photo.htm/",
+      "destination": "/it/galleria.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/photo_studio.htm",
+      "destination": "/it/galleria.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/photo_studio.htm/",
+      "destination": "/it/galleria.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/rep_full.htm",
+      "destination": "/it/repertorio.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/rep_full.htm/",
+      "destination": "/it/repertorio.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/colophon/",
+      "destination": "/it/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/colophon",
+      "destination": "/it/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/imprint/",
+      "destination": "/it/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/imprint",
+      "destination": "/it/privacy.html",
+      "permanent": true
+    },
+    {
+      "source": "/it/shop/",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/shop",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/carrello/",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/carrello",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/costi-di-spedizione/",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/costi-di-spedizione",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
+      "source": "/it/versandkosten/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/it/versandkosten",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/warenkorb/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/de/warenkorb",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
