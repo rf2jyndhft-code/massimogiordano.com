@@ -30,6 +30,11 @@
   /* --------------------------------------------------- stato */
   var lam = 10, phi = 20;        // centro del globo, in gradi
   var gira = true, scelto = -1, toccato = false;
+  /* Il globo gira da solo e si ferma solo quando qualcuno ci passa sopra:
+     appena il mouse se ne va, riprende. Prima il giro era legato a 'scelto',
+     e siccome all'avvio apriamo la scheda del primo teatro per non lasciare
+     la colonna vuota, non partiva mai. Le due cose ora sono separate. */
+  var sopra = false;
   var anim = null;
   var L = 900, R = 0, ox = 0, oy = 0, dpr = 1;
   var zoom = 1, mira = 1, ZMIN = 1, ZMAX = 4.5;
@@ -197,7 +202,7 @@
       var k = anim.t >= 1 ? 1 : 1 - Math.pow(1 - anim.t, 3);
       lam = anim.l0 + anim.dl * k; phi = anim.p0 + anim.dp * k;
       if (anim.t >= 1) anim = null;
-    } else if (gira && scelto < 0) {
+    } else if (gira && !sopra) {
       lam += dt * .0062;
     }
     if (Math.abs(mira - zoom) > 0.0008) {
@@ -392,6 +397,14 @@
     ultimoTocco = t;
   }, { passive: true });
 
+  /* col mouse: si ferma quando ci entri sopra, riparte quando esci */
+  cv.addEventListener('mouseenter', function () { sopra = true; });
+  cv.addEventListener('mousemove',  function () { sopra = true; });
+  cv.addEventListener('mouseleave', function () { sopra = false; });
+  /* col dito: si ferma mentre lo tieni, riparte quando lo stacchi */
+  cv.addEventListener('touchstart', function () { sopra = true; }, { passive: true });
+  cv.addEventListener('touchend',   function () { sopra = false; }, { passive: true });
+  cv.addEventListener('touchcancel',function () { sopra = false; }, { passive: true });
   cv.addEventListener('mousedown', giu);
   window.addEventListener('mousemove', muovi);
   window.addEventListener('mouseup', su);
@@ -474,7 +487,7 @@
 
   window.addEventListener('resize', function () { misura(); });
   /* spioncino di sola lettura: serve a verificare la pagina da fuori */
-  window.__globo = { stato: function () { return { lam: lam, phi: phi, zoom: zoom, mira: mira, R: R }; } };
+  window.__globo = { stato: function () { return { lam: lam, phi: phi, zoom: zoom, mira: mira, R: R, sopra: sopra, gira: gira }; } };
 
   misura(); vai(0, false); lam = T[0].lo - 40; phi = 24;
   requestAnimationFrame(battito);

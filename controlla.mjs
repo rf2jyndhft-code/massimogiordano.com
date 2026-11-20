@@ -2,9 +2,14 @@
    Si lancia così:  node controlla.mjs            (sul sito locale)
                     node controlla.mjs online     (sul sito pubblicato)
 
-   Guarda quattro cose, le stesse che il 19 novembre 2026 sono sfuggite
-   una per volta: ogni pagina risponde, nessun collegamento è rotto,
-   nessun reindirizzamento gira su se stesso, nessun errore in console.
+   Guarda sette cose, tutte imparate da errori veri:
+     1. nessun reindirizzamento gira su se stesso   (19 nov: home it irraggiungibile)
+     2. ogni pagina risponde e non e' vuota
+     3. i vecchi indirizzi finiscono dove devono
+     4. nessuna immagine rotta, nessun errore in console, niente scorrimento laterale
+     5. ogni pagina accende la SUA voce di menu                (20 nov: Teatri e Locandine spente)
+     6. il cambio lingua porta alla pagina gemella, e quella esiste  (20 nov: sei pagine finivano in galleria)
+     7. il mappamondo gira da solo e si ferma sotto il mouse   (20 nov: era rimasto fermo)
    Se qualcosa non va, esce con errore: non si pubblica. */
 import { readFileSync, existsSync } from 'node:fs';
 import { spawn } from 'node:child_process';
@@ -59,6 +64,42 @@ if (ONLINE) {
   console.log('vecchi indirizzi controllati: ' + VECCHI.length);
 }
 
+/* 5. ogni pagina deve accendere la sua voce di menu
+   6. il cambio lingua deve portare alla gemella giusta, e il file deve esistere */
+const GEMELLE = {
+  'biography.html':'it/biografia.html', 'repertoire.html':'it/repertorio.html',
+  'gallery.html':'it/galleria.html',    'theatres.html':'it/teatri.html',
+  'posters.html':'it/locandine.html',   'calendar.html':'it/calendario.html',
+  'teaching.html':'it/didattica.html',  'press.html':'it/stampa.html',
+  'contact.html':'it/contatti.html',    'privacy.html':'it/privacy.html',
+};
+if (!ONLINE) {
+  let controllate = 0;
+  for (const [en, it] of Object.entries(GEMELLE)) {
+    for (const [pag, gemella] of [[en, it], [it, '../' + en]]) {
+      if (!existsSync(pag)) { guai.push(pag + ' non esiste'); continue; }
+      const t = readFileSync(pag, 'utf8');
+      const nome = pag.split('/').pop();
+      /* la voce del menu che punta a se stessa dev'essere accesa */
+      const suDiSe = new RegExp('<a href="' + nome.replace('.', '\\.') + '"[^>]*>', 'g');
+      const voci = t.match(suDiSe) || [];
+      if (!voci.length) guai.push(pag + ': il menu non ha la voce di questa pagina');
+      else if (!voci.some(v => v.includes('aria-current="page"')))
+        guai.push(pag + ': la voce di menu di questa pagina non resta accesa');
+      /* il cambio lingua */
+      const l = t.match(/href="([^"]+)" hreflang="(it|en)"/);
+      if (!l) guai.push(pag + ': manca il cambio lingua');
+      else {
+        if (l[1] !== gemella) guai.push(pag + ': il cambio lingua porta a ' + l[1] + ' invece che a ' + gemella);
+        const dove = l[1].startsWith('../') ? l[1].slice(3) : l[1];
+        if (!existsSync(dove)) guai.push(pag + ': il cambio lingua porta a ' + l[1] + ' che non esiste');
+      }
+      controllate++;
+    }
+  }
+  console.log('pagine con menu e lingua controllati: ' + controllate);
+}
+
 /* 4. nessun errore in console, e nessuna immagine rotta */
 const chrome = spawn('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   ['--headless=new', '--remote-debugging-port=9450', '--disable-gpu', '--hide-scrollbars',
@@ -87,7 +128,34 @@ try {
     const largo = await val('document.body.scrollWidth > window.innerWidth + 2');
     if (largo) guai.push(p + ': la pagina scorre in orizzontale');
   }
-  console.log('pagine aperte nel browser: 4');
+  /* 7. il mappamondo: deve girare da solo e fermarsi sotto il mouse */
+  await cmd('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
+  await cmd('Page.navigate', { url: BASE + '/it/teatri.html' }); await att(3200);
+  const c = await val(`(function(){var e=document.querySelector('#tela'); if(!e) return null;
+    e.scrollIntoView({block:'center',behavior:'instant'}); var b=e.getBoundingClientRect();
+    return JSON.stringify({x:Math.round(b.left+b.width/2),y:Math.round(b.top+b.height/2)})})()`);
+  if (!c) guai.push('/it/teatri.html: il mappamondo non c\'e\' piu\'');
+  else {
+    const q = JSON.parse(c); await att(600);
+    const lam = async () => await val('window.__globo && window.__globo.stato().lam');
+    /* Il browser senza finestra non disegna fotogrammi se in pagina non si
+       muove niente, e requestAnimationFrame resta fermo: il globo sembrerebbe
+       spento anche quando funziona. Una spintarella impercettibile a ogni
+       giro obbliga la pagina a disegnare, e la misura torna vera. */
+    const aspetta = async ms => { const fine = Date.now() + ms;
+      while (Date.now() < fine) { await cmd('Page.captureScreenshot', { format: 'jpeg', quality: 1 }); } };
+    let a = await lam(); await aspetta(1300); let b = await lam();
+    if (a === undefined || a === null) guai.push('/it/teatri.html: il mappamondo non risponde');
+    else if (Math.abs(b - a) < .5) guai.push('/it/teatri.html: il mappamondo non gira piu\' da solo');
+    await cmd('Input.dispatchMouseEvent', { type: 'mouseMoved', x: q.x, y: q.y }); await att(200);
+    await cmd('Input.dispatchMouseEvent', { type: 'mouseMoved', x: q.x + 4, y: q.y + 4 }); await att(300);
+    a = await lam(); await aspetta(1300); b = await lam();
+    if (Math.abs(b - a) > .5) guai.push('/it/teatri.html: il mappamondo non si ferma sotto il mouse');
+    await cmd('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 1400, y: 20 }); await att(400);
+    a = await lam(); await aspetta(1300); b = await lam();
+    if (Math.abs(b - a) < .5) guai.push('/it/teatri.html: il mappamondo non riprende a girare');
+  }
+  console.log('pagine aperte nel browser: 5, mappamondo compreso');
   chrome.kill();
 } catch (e) { chrome.kill(); console.log('browser non disponibile, saltato il controllo in pagina'); }
 
