@@ -2,7 +2,7 @@
    Si lancia così:  node controlla.mjs            (sul sito locale)
                     node controlla.mjs online     (sul sito pubblicato)
 
-   Guarda sette cose, tutte imparate da errori veri:
+   Guarda otto cose, tutte imparate da errori veri:
      1. nessun reindirizzamento gira su se stesso   (19 nov: home it irraggiungibile)
      2. ogni pagina risponde e non e' vuota
      3. i vecchi indirizzi finiscono dove devono
@@ -10,6 +10,7 @@
      5. ogni pagina accende la SUA voce di menu                (20 nov: Teatri e Locandine spente)
      6. il cambio lingua porta alla pagina gemella, e quella esiste  (20 nov: sei pagine finivano in galleria)
      7. il mappamondo gira da solo e si ferma sotto il mouse   (20 nov: era rimasto fermo)
+     8. la sitemap non dichiara date piu' vecchie della modifica vera
    Se qualcosa non va, esce con errore: non si pubblica. */
 import { readFileSync, existsSync } from 'node:fs';
 import { spawn } from 'node:child_process';
@@ -98,6 +99,24 @@ if (!ONLINE) {
     }
   }
   console.log('pagine con menu e lingua controllati: ' + controllate);
+}
+
+/* 8. la sitemap non deve dichiarare date vecchie: se dice che una pagina
+      non si tocca da giorni, Google non ha motivo di tornare a leggerla */
+if (!ONLINE && existsSync('sitemap.xml')) {
+  const { execSync } = await import('node:child_process');
+  const sm = readFileSync('sitemap.xml', 'utf8');
+  let vecchie = 0;
+  for (const m of sm.matchAll(/<loc>([^<]+)<\/loc>\s*<lastmod>([\d-]+)<\/lastmod>/g)) {
+    let pag = m[1].replace('https://www.massimogiordano.com/', '') || 'index.html';
+    if (pag.endsWith('/')) pag += 'index.html';
+    if (!existsSync(pag)) continue;
+    let vera = '';
+    try { vera = execSync(`git log -1 --format=%cs -- "${pag}"`, { encoding: 'utf8' }).trim(); } catch (e) {}
+    if (vera && vera > m[2]) { vecchie++; if (vecchie === 1) guai.push('la sitemap dice ' + m[2] + ' per ' + pag + ', ma e\' stata cambiata il ' + vera); }
+  }
+  if (vecchie > 1) guai.push('e altre ' + (vecchie - 1) + ' pagine con la data vecchia nella sitemap');
+  console.log('date della sitemap controllate: ' + (sm.match(/<loc>/g) || []).length);
 }
 
 /* 4. nessun errore in console, e nessuna immagine rotta */
