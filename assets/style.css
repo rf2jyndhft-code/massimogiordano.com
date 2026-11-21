@@ -913,19 +913,28 @@ footer h3{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-trans
 .menu-bot{display:none}
 .menu-pan{display:none}
 
+/* Il DISEGNO del pulsante vive fuori da ogni media query, il suo
+   APPARIRE dentro. Stavano insieme sotto i 760px, ma scena.css mostra
+   il pulsante gia' da 900px in giu': fra 761 e 900 - cioe' un iPhone
+   coricato, che e' largo 844 o 896 punti - il pulsante c'era e le due
+   lineette no. Restava un quadrato vuoto su tutte le pagine.
+   (Massimo, 21 novembre 2026: «sull'orizzontale spariscono le lineette
+   del menu su tutte le pagine») */
+.menu-bot{place-items:center;flex:0 0 auto;
+  width:44px;height:44px;margin-right:-8px;
+  appearance:none;background:transparent;border:0;cursor:pointer;color:var(--paper)}
+.menu-bot:focus-visible{outline:2px solid var(--gold-light);outline-offset:-2px}
+.menu-righe{display:block;width:22px;height:12px;position:relative}
+.menu-righe i{position:absolute;left:0;right:0;height:1.5px;background:currentColor;
+  transition:transform .26s cubic-bezier(.3,0,.2,1),opacity .18s ease}
+.menu-righe i:first-child{top:0}
+.menu-righe i:last-child{bottom:0}
+.menu-bot[aria-expanded="true"]{color:var(--gold-light)}
+.menu-bot[aria-expanded="true"] .menu-righe i:first-child{transform:translateY(5px) rotate(45deg)}
+.menu-bot[aria-expanded="true"] .menu-righe i:last-child{transform:translateY(-5px) rotate(-45deg)}
+
 @media (max-width:760px){
-  .menu-bot{display:grid;place-items:center;flex:0 0 auto;
-    width:44px;height:44px;margin-right:-8px;
-    appearance:none;background:transparent;border:0;cursor:pointer;color:var(--paper)}
-  .menu-bot:focus-visible{outline:2px solid var(--gold-light);outline-offset:-2px}
-  .menu-righe{display:block;width:22px;height:12px;position:relative}
-  .menu-righe i{position:absolute;left:0;right:0;height:1.5px;background:currentColor;
-    transition:transform .26s cubic-bezier(.3,0,.2,1),opacity .18s ease}
-  .menu-righe i:first-child{top:0}
-  .menu-righe i:last-child{bottom:0}
-  .menu-bot[aria-expanded="true"]{color:var(--gold-light)}
-  .menu-bot[aria-expanded="true"] .menu-righe i:first-child{transform:translateY(5px) rotate(45deg)}
-  .menu-bot[aria-expanded="true"] .menu-righe i:last-child{transform:translateY(-5px) rotate(-45deg)}
+  .menu-bot{display:grid}
 
   html.menu-aperto{overflow:hidden}
 

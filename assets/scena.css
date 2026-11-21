@@ -947,6 +947,10 @@ body.scena .bio-fascia-testo{max-width:min(640px,46vw);
 @media(min-width:1320px){
   body.scena .bio-fascia-testo{padding-left:calc((100vw - 1320px)/2 + 72px)}
 }
+/* La presentazione in corpo minore del solito: qui sta in colonna
+   stretta accanto al ritratto, e a 25px faceva righe di cinque parole.
+   (Massimo: «riduci questo testo» - la grandezza, non le parole) */
+body.scena .bio-fascia-testo .lede{font-size:clamp(17px,1.5vw,20px);line-height:1.58}
 body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:clamp(12px,2vh,20px);
   margin:0;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;
   text-transform:uppercase;color:rgba(241,238,232,.5);text-shadow:0 1px 10px rgba(0,0,0,.85)}
