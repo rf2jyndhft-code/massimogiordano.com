@@ -952,17 +952,56 @@ body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:cl
   text-transform:uppercase;color:rgba(241,238,232,.5);text-shadow:0 1px 10px rgba(0,0,0,.85)}
 /* Sul telefono non c'e' spazio per due colonne: fotografia sopra,
    testo sotto, come in ogni altra pagina. */
+/* ── SUL TELEFONO ──────────────────────────────────────────────────
+   Le due colonne non ci stanno, e messe una sopra l'altra - foto, poi
+   testo - la pagina diventava onesta e piatta. Massimo: «sul telefono
+   ti guardano piu' che dal Mac». Quindi li' ha una composizione sua:
+   la fotografia riempie lo schermo, il nome e le due righe stanno
+   DENTRO, in basso, con l'ombra che sale dal fondo. E' il taglio
+   delle copertine dei dischi, e sul telefono regge meglio che sul
+   Mac. Il credito finisce sotto il testo, sull'ombra, non sulla
+   camicia bianca dove spariva. */
 @media(max-width:860px){
-  body.scena .bio-fascia{display:block;min-height:0}
+  body.scena .bio-fascia{display:block;position:relative;min-height:0;overflow:hidden}
+  body.scena .bio-fascia-sfondo{display:none}
   body.scena .bio-fascia-foto{position:relative;inset:auto;width:100%;
-    aspect-ratio:auto;max-height:none;overflow:visible}
-  body.scena .bio-fascia-foto img{width:100%;height:auto;aspect-ratio:4/5;max-height:70vh;
-    object-fit:cover;-webkit-mask-image:none;mask-image:none}
-  body.scena .bio-fascia-sfondo,body.scena .bio-fascia::after{display:none}
-  /* Il credito finiva sulla camicia bianca e spariva: qui scende
-     sotto la fotografia, come una didascalia qualsiasi. */
-  body.scena .bio-fascia-cr{position:static;right:auto;bottom:auto;
-    margin:9px clamp(20px,5vw,72px) 0;color:var(--testo4);text-shadow:none}
-  body.scena .bio-fascia-testo{max-width:none;
-    padding:clamp(22px,4vh,34px) clamp(20px,5vw,72px) clamp(40px,7vh,64px)}
+    aspect-ratio:2/3;max-height:86vh;overflow:hidden}
+  body.scena .bio-fascia-foto img{width:100%;height:100%;object-fit:cover;
+    object-position:56% 14%;-webkit-mask-image:none;mask-image:none}
+  body.scena .bio-fascia::after{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;
+    height:76%;z-index:0;pointer-events:none;
+    background:linear-gradient(to top,var(--sfondo) 0,var(--sfondo) 10%,
+      rgba(22,19,15,.97) 34%,rgba(22,19,15,.86) 52%,rgba(22,19,15,.45) 76%,transparent 100%)}
+  body.scena .bio-fascia-testo{position:absolute;left:0;right:0;bottom:0;z-index:1;
+    max-width:none;padding:0 clamp(20px,5vw,40px) clamp(58px,7.5vh,76px)}
+  body.scena .bio-fascia-testo .rule{margin-bottom:12px}
+  body.scena .bio-fascia-cr{position:absolute;z-index:1;
+    left:clamp(20px,5vw,40px);right:auto;bottom:clamp(14px,2vh,20px);
+    color:var(--testo4);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LA CRONOLOGIA DENTRO UNA FINESTRA
+   Trentadue anni in fila facevano una colonna che non finiva mai e
+   spingeva tutto il resto della biografia fuori dallo schermo. Qui si
+   chiude in una finestra che scorre per conto suo, con la stessa
+   dissolvenza in fondo delle incisioni: si capisce che sotto continua.
+   Sul telefono resta libera — un riquadro che scorre dentro una pagina
+   che scorre e' una trappola per il dito, come per le incisioni.
+   ══════════════════════════════════════════════════════════════════ */
+body.scena .timeline-vista{position:relative}
+@media(min-width:860px){
+  body.scena .timeline-vista .timeline{
+    max-height:clamp(420px,62vh,660px);overflow-y:auto;padding-right:18px;
+    scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--oro) 50%,transparent) transparent;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 54px),transparent 100%);
+    mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 54px),transparent 100%)}
+  body.scena .timeline-vista .timeline::-webkit-scrollbar{width:3px}
+  body.scena .timeline-vista .timeline::-webkit-scrollbar-track{background:transparent}
+  body.scena .timeline-vista .timeline::-webkit-scrollbar-thumb{
+    background:color-mix(in srgb,var(--oro) 45%,transparent)}
+  body.scena .timeline-vista .timeline:hover::-webkit-scrollbar-thumb{
+    background:color-mix(in srgb,var(--oro) 75%,transparent)}
+  /* l'ultima voce non deve restare mangiata dalla dissolvenza */
+  body.scena .timeline-vista .timeline li:last-child{padding-bottom:48px}
 }
