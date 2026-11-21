@@ -991,12 +991,11 @@ body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:cl
   body.scena .bio-fascia-testo{position:relative;z-index:1;max-width:none;
     margin-top:-7svh;padding:0 clamp(20px,5vw,40px) clamp(34px,5vh,48px)}
   body.scena .bio-fascia-testo .rule{margin-bottom:12px}
-  /* Dentro la figura, in basso a destra sull'ombra: li' e' scuro e si
-     legge, e non ruba la riga d'oro a sinistra. Fuori dalla figura
-     verrebbe tagliato via, perche' la figura ha un'altezza fissa. */
-  body.scena .bio-fascia-cr{position:absolute;left:auto;top:auto;
-    right:clamp(20px,5vw,40px);bottom:clamp(8px,1.2vh,12px);z-index:2;
-    color:rgba(241,238,232,.42);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  /* In fondo a tutto, sotto la presentazione. Sopra il nome era «in
+     quel posto brutto»: tagliava la composizione a meta'. */
+  body.scena .bio-fascia-cr{position:static;left:auto;right:auto;top:auto;bottom:auto;
+    margin:0 clamp(20px,5vw,40px) clamp(30px,4.5vh,44px);
+    color:var(--testo4);text-shadow:none}
 }
 
 
