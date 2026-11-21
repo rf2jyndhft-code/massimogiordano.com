@@ -969,21 +969,32 @@ body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:cl
 @media(max-width:860px) and (orientation:portrait){
   body.scena .bio-fascia{display:block;position:relative;min-height:0;overflow:hidden}
   body.scena .bio-fascia-sfondo{display:none}
+  /* La fotografia prende due terzi dello schermo: il viso e la mano
+     restano interi e non ci va niente sopra. */
   body.scena .bio-fascia-foto{position:relative;inset:auto;width:100%;
-    aspect-ratio:2/3;max-height:86vh;overflow:hidden}
+    aspect-ratio:auto;height:64svh;max-height:none;overflow:hidden}
   body.scena .bio-fascia-foto img{width:100%;height:100%;object-fit:cover;
-    object-position:56% 14%;-webkit-mask-image:none;mask-image:none}
-  body.scena .bio-fascia::after{content:"";position:absolute;left:0;right:0;bottom:0;top:auto;
-    height:76%;z-index:0;pointer-events:none;
-    background:linear-gradient(to top,var(--sfondo) 0,var(--sfondo) 10%,
-      rgba(22,19,15,.97) 34%,rgba(22,19,15,.86) 52%,rgba(22,19,15,.45) 76%,transparent 100%)}
-  body.scena .bio-fascia-testo{position:absolute;left:0;right:0;bottom:0;z-index:1;
-    max-width:none;padding:0 clamp(20px,5vw,40px) clamp(58px,7.5vh,76px)}
+    object-position:58% 12%;-webkit-mask-image:none;mask-image:none}
+  /* L'ombra sale dentro il terzo basso della fotografia: il testo che
+     comincia subito sotto non sembra incollato, sembra la continuazione
+     dell'immagine. Sta DENTRO la figura, se no il bordo della foto
+     resta un taglio netto in mezzo alla mano. */
+  body.scena .bio-fascia::after{display:none}
+  body.scena .bio-fascia-foto::after{content:"";position:absolute;inset:auto 0 0 0;
+    height:46%;pointer-events:none;
+    background:linear-gradient(to top,var(--sfondo) 0,rgba(22,19,15,.9) 32%,
+      rgba(22,19,15,.45) 66%,transparent 100%)}
+  body.scena .bio-fascia-testo{position:relative;z-index:1;max-width:none;
+    margin-top:-7svh;padding:0 clamp(20px,5vw,40px) clamp(34px,5vh,48px)}
   body.scena .bio-fascia-testo .rule{margin-bottom:12px}
-  body.scena .bio-fascia-cr{position:absolute;z-index:1;
-    left:clamp(20px,5vw,40px);right:auto;bottom:clamp(14px,2vh,20px);
-    color:var(--testo4);text-shadow:0 1px 8px rgba(0,0,0,.7)}
+  /* Dentro la figura, in basso a destra sull'ombra: li' e' scuro e si
+     legge, e non ruba la riga d'oro a sinistra. Fuori dalla figura
+     verrebbe tagliato via, perche' la figura ha un'altezza fissa. */
+  body.scena .bio-fascia-cr{position:absolute;left:auto;top:auto;
+    right:clamp(20px,5vw,40px);bottom:clamp(8px,1.2vh,12px);z-index:2;
+    color:rgba(241,238,232,.42);text-shadow:0 1px 8px rgba(0,0,0,.7)}
 }
+
 
 /* ══════════════════════════════════════════════════════════════════
    LA CRONOLOGIA DENTRO UNA FINESTRA
