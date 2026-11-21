@@ -378,7 +378,14 @@ body.scena .pie-nome,body.scena .brand{
   font-family:var(--display);font-weight:400;letter-spacing:-.005em}
 
 /* le fotografie non devono galleggiare su un bianco che non c'è più */
-body.scena .shot,body.scena .card,body.scena figure{background:var(--sfondo2)}
+/* Le schede delle citazioni tengono il loro fondo chiaro: sono riquadri, e
+   devono sembrarlo. Le FOTOGRAFIE no. Una figure e' sempre piu' alta della
+   sua immagine di quanto serve alla didascalia, e quel fondo piu' chiaro
+   spuntava da sotto la foto come una fascia: ventisette pixel sul ritratto
+   che apre la biografia. Da fuori sembrava una scatola appiccicata sopra la
+   pagina invece di una fotografia appoggiata dentro. */
+body.scena .card{background:var(--sfondo2)}
+body.scena .shot,body.scena figure{background:transparent}
 body.scena .card{border:1px solid var(--filo)}
 body.scena .locandina img{background:var(--sfondo2)}
 
