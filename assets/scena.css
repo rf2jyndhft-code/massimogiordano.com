@@ -913,109 +913,34 @@ body.scena a.ig-cella,body.scena a.ig-cella:hover{border-bottom:0}
 
 /* ══════════════════════════════════════════════════════════════════
    L'APERTURA DELLA BIOGRAFIA
-   Una biografia che comincia con un muro di testo chiede fiducia
-   prima di darla. Qui si apre con un ritratto: conferma chi e', da
-   all'occhio dove posarsi, e dice che la pagina parla di una persona.
-   Sul computer due colonne, sul telefono la fotografia sopra il testo.
-   ══════════════════════════════════════════════════════════════════ */
-body.scena .bio-apre-dentro{display:grid;grid-template-columns:1fr;
-  gap:clamp(26px,4vw,56px);align-items:center}
-@media(min-width:860px){
-  body.scena .bio-apre-dentro{grid-template-columns:1.05fr .95fr}
-  body.scena .bio-apre-testo{order:1}
-  body.scena .bio-apre-foto{order:2}
-}
-body.scena .bio-apre-foto{margin:0;position:relative;overflow:hidden}
-body.scena .bio-apre-foto img,
-body.scena .bio-apre-foto video{width:100%;height:auto;display:block;
-  aspect-ratio:3/4;object-fit:cover;object-position:50% 22%}
-@media(min-width:860px){
-  body.scena .bio-apre-foto img,
-  body.scena .bio-apre-foto video{aspect-ratio:4/5;max-height:72vh}
-}
-/* un velo appena accennato dal basso, come sul palco */
-body.scena .bio-apre-foto::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(transparent 62%, color-mix(in srgb,var(--sfondo) 55%,transparent));
-  pointer-events:none}
-
-/* la misura ottica fa il lavoro: titoli affilati, testo piu' robusto */
-body.scena{font-optical-sizing:auto}
-
-/* IL CREDITO DEL FOTOGRAFO NELLA LENTE
-   Sta sotto la didascalia, piu' piccolo e piu' quieto: si legge se lo cerchi,
-   non ruba la scena alla fotografia. */
-body.scena .lente-cr{display:block;margin-top:6px;font-family:var(--sans);
-  font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--testo4)}
-body.scena .lente-cr[hidden]{display:none}
-
-/* ══════════════════════════════════════════════════════════════════
-   LA CRONOLOGIA DENTRO UNA FINESTRA
-   Trentadue anni in fila facevano una colonna che non finiva mai e
-   spingeva tutto il resto della biografia fuori dallo schermo. Qui si
-   chiude in una finestra che scorre per conto suo, con la stessa
-   dissolvenza in fondo delle incisioni: si capisce che sotto continua.
-   Sul telefono resta libera — un riquadro che scorre dentro una pagina
-   che scorre e' una trappola per il dito, come per le incisioni.
-   ══════════════════════════════════════════════════════════════════ */
-body.scena .timeline-vista{position:relative}
-@media(min-width:860px){
-  body.scena .timeline-vista .timeline{
-    max-height:clamp(420px,62vh,660px);overflow-y:auto;padding-right:18px;
-    scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--oro) 50%,transparent) transparent;
-    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 54px),transparent 100%);
-    mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 54px),transparent 100%)}
-  body.scena .timeline-vista .timeline::-webkit-scrollbar{width:3px}
-  body.scena .timeline-vista .timeline::-webkit-scrollbar-track{background:transparent}
-  body.scena .timeline-vista .timeline::-webkit-scrollbar-thumb{
-    background:color-mix(in srgb,var(--oro) 45%,transparent)}
-  body.scena .timeline-vista .timeline:hover::-webkit-scrollbar-thumb{
-    background:color-mix(in srgb,var(--oro) 75%,transparent)}
-  /* l'ultima voce non deve restare mangiata dalla dissolvenza */
-  body.scena .timeline-vista .timeline li:last-child{padding-bottom:48px}
-}
-
-/* Il credito sotto il ritratto che apre la biografia: piccolo e quieto,
-   come quello nella lente della galleria. */
-body.scena .bio-apre-cr{margin-top:8px;font-family:var(--sans);font-size:11.5px;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--testo4)}
-
-
-/* ══════════════════════════════════════════════════════════════════
-   L'APERTURA DELLA BIOGRAFIA
    Prima: testo a sinistra, fotografia a destra, dentro i margini —
-   la stessa griglia di tutte le altre sezioni, e il ritratto finiva
-   per valere quanto una figura qualsiasi. Ora e' una fascia sola a
-   tutta pagina: il ritratto dietro, spostato a destra perche' il
-   testo non gli finisca addosso, e il nome sopra. Il velo scuro
-   copre la colonna del testo e si apre sul viso.
+   la stessa griglia di ogni altra sezione, e il ritratto valeva quanto
+   una figura qualsiasi. Ora e' una fascia sola a tutta pagina: il
+   nome a sinistra sul fondo scuro, la fotografia a destra fino al
+   bordo dello schermo.
+
+   Massimo, guardandola: «togli il marrone dalla foto, non mi piace,
+   nessun velo, lascia la foto come sta originale». Quindi niente
+   sfumature e niente veli sopra l'immagine: il testo non ci finisce
+   mai sopra perche' la fotografia comincia dopo la sua colonna.
    ══════════════════════════════════════════════════════════════════ */
-body.scena .bio-fascia{position:relative;isolation:isolate;overflow:hidden;
-  min-height:clamp(520px,80vh,820px);display:flex;align-items:center}
-body.scena .bio-fascia-foto{position:absolute;inset:0 0 0 20%;z-index:-2;margin:0;overflow:hidden}
+body.scena .bio-fascia{position:relative;overflow:hidden;
+  min-height:clamp(560px,88vh,920px);display:flex;align-items:center}
+body.scena .bio-fascia-foto{position:absolute;inset:0 0 0 42%;margin:0;overflow:hidden}
 body.scena .bio-fascia-foto img{width:100%;height:100%;object-fit:cover;
-  object-position:72% 18%;display:block}
-body.scena .bio-fascia::before{content:"";position:absolute;inset:0;z-index:-1;
-  background:
-    linear-gradient(to right,var(--sfondo) 0,var(--sfondo) 20%,rgba(24,20,16,.9) 30%,rgba(24,20,16,.4) 48%,rgba(24,20,16,.12) 70%,rgba(24,20,16,.08) 100%),
-    linear-gradient(to bottom,var(--sfondo) 0,transparent 18%,transparent 86%,var(--sfondo) 100%)}
-body.scena .bio-fascia-testo{max-width:min(560px,44vw);
-  padding:clamp(56px,9vh,110px) clamp(20px,5vw,72px)}
+  object-position:46% 18%;display:block}
+body.scena .bio-fascia-testo{max-width:min(520px,40vw);
+  padding:clamp(56px,9vh,110px) clamp(20px,4vw,48px) clamp(56px,9vh,110px) clamp(20px,5vw,72px)}
 @media(min-width:1320px){
   body.scena .bio-fascia-testo{padding-left:calc((100vw - 1320px)/2 + 72px)}
 }
-body.scena .bio-fascia-testo h1{font-size:clamp(38px,6.4vw,76px);line-height:1;
-  letter-spacing:-.02em;margin:14px 0 0}
-body.scena .bio-fascia-testo .lede{margin-top:22px;max-width:46ch}
-body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:clamp(14px,2.4vh,26px);
+body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:clamp(12px,2vh,20px);
   margin:0;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(241,238,232,.45);text-shadow:0 1px 10px rgba(0,0,0,.8);z-index:1}
-/* Sul telefono la colonna non esiste: la foto sta sotto tutta la
-   fascia e il velo scende dall'alto, se no il nome non si legge. */
+  text-transform:uppercase;color:rgba(241,238,232,.5);text-shadow:0 1px 10px rgba(0,0,0,.85)}
+/* Sul telefono non c'e' spazio per due colonne: la fotografia sta
+   sopra e il testo sotto, come in ogni altra pagina. */
 @media(max-width:860px){
-  body.scena .bio-fascia-foto{inset:0}
-  body.scena .bio-fascia-foto img{object-position:60% 14%}
-  body.scena .bio-fascia::before{background:
-    linear-gradient(to bottom,rgba(24,20,16,.55) 0,rgba(24,20,16,.92) 48%,rgba(24,20,16,.97) 100%),
-    linear-gradient(to bottom,var(--sfondo) 0,transparent 16%)}
-  body.scena .bio-fascia-testo{max-width:none}
+  body.scena .bio-fascia{display:block;min-height:0}
+  body.scena .bio-fascia-foto{position:relative;inset:auto;aspect-ratio:4/5;max-height:70vh}
+  body.scena .bio-fascia-testo{max-width:none;padding:clamp(28px,5vh,44px) clamp(20px,5vw,72px) clamp(40px,7vh,64px)}
 }
