@@ -955,9 +955,14 @@ body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:cl
 @media(max-width:860px){
   body.scena .bio-fascia{display:block;min-height:0}
   body.scena .bio-fascia-foto{position:relative;inset:auto;width:100%;
-    aspect-ratio:4/5;max-height:70vh}
-  body.scena .bio-fascia-foto img{-webkit-mask-image:none;mask-image:none}
+    aspect-ratio:auto;max-height:none;overflow:visible}
+  body.scena .bio-fascia-foto img{width:100%;height:auto;aspect-ratio:4/5;max-height:70vh;
+    object-fit:cover;-webkit-mask-image:none;mask-image:none}
   body.scena .bio-fascia-sfondo,body.scena .bio-fascia::after{display:none}
+  /* Il credito finiva sulla camicia bianca e spariva: qui scende
+     sotto la fotografia, come una didascalia qualsiasi. */
+  body.scena .bio-fascia-cr{position:static;right:auto;bottom:auto;
+    margin:9px clamp(20px,5vw,72px) 0;color:var(--testo4);text-shadow:none}
   body.scena .bio-fascia-testo{max-width:none;
-    padding:clamp(28px,5vh,44px) clamp(20px,5vw,72px) clamp(40px,7vh,64px)}
+    padding:clamp(22px,4vh,34px) clamp(20px,5vw,72px) clamp(40px,7vh,64px)}
 }
