@@ -960,8 +960,13 @@ body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:cl
    DENTRO, in basso, con l'ombra che sale dal fondo. E' il taglio
    delle copertine dei dischi, e sul telefono regge meglio che sul
    Mac. Il credito finisce sotto il testo, sull'ombra, non sulla
-   camicia bianca dove spariva. */
-@media(max-width:860px){
+   camicia bianca dove spariva.
+
+   Solo in VERTICALE pero': girando il telefono l'altezza crolla a
+   400 punti, il ritaglio 2/3 mostrava una fessura con la sommita'
+   dei capelli e il testo usciva dall'ombra. In orizzontale torna la
+   composizione a due colonne, che a 900 punti di larghezza ci sta. */
+@media(max-width:860px) and (orientation:portrait){
   body.scena .bio-fascia{display:block;position:relative;min-height:0;overflow:hidden}
   body.scena .bio-fascia-sfondo{display:none}
   body.scena .bio-fascia-foto{position:relative;inset:auto;width:100%;
