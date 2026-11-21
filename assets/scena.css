@@ -915,32 +915,49 @@ body.scena a.ig-cella,body.scena a.ig-cella:hover{border-bottom:0}
    L'APERTURA DELLA BIOGRAFIA
    Prima: testo a sinistra, fotografia a destra, dentro i margini —
    la stessa griglia di ogni altra sezione, e il ritratto valeva quanto
-   una figura qualsiasi. Ora e' una fascia sola a tutta pagina: il
-   nome a sinistra sul fondo scuro, la fotografia a destra fino al
-   bordo dello schermo.
+   una figura qualsiasi. Ora e' una fascia sola a tutta pagina.
 
-   Massimo, guardandola: «togli il marrone dalla foto, non mi piace,
-   nessun velo, lascia la foto come sta originale». Quindi niente
-   sfumature e niente veli sopra l'immagine: il testo non ci finisce
-   mai sopra perche' la fotografia comincia dopo la sua colonna.
+   La fotografia tiene la sua forma vera, verticale, alta quanto la
+   fascia e attaccata al bordo destro: non viene ritagliata e non viene
+   ingrandita. Il fondo scuro continua a sinistra sotto il testo, e il
+   bordo sinistro dell'immagine sfuma per pochi punti — solo il bordo,
+   mai il viso: Massimo l'aveva chiesto due volte («nessun velo»,
+   «attenzione a non farla gigante»).
    ══════════════════════════════════════════════════════════════════ */
-body.scena .bio-fascia{position:relative;overflow:hidden;
-  min-height:clamp(560px,88vh,920px);display:flex;align-items:center}
-body.scena .bio-fascia-foto{position:absolute;inset:0 0 0 42%;margin:0;overflow:hidden}
+body.scena .bio-fascia{position:relative;overflow:hidden;isolation:isolate;
+  min-height:clamp(540px,80vh,880px);display:flex;align-items:center}
+/* Il fondo e' la fotografia stessa, sfocata e spenta: cosi' dietro al
+   testo c'e' l'immagine e non un campo marrone vuoto, e il viso
+   nitido puo' restare a destra della sua misura vera invece di essere
+   ingrandito per coprire tutta la fascia. */
+body.scena .bio-fascia-sfondo{position:absolute;inset:0;z-index:-2;overflow:hidden}
+body.scena .bio-fascia-sfondo img{width:100%;height:100%;object-fit:cover;
+  object-position:50% 26%;transform:scale(1.22);
+  filter:blur(46px) saturate(.72) brightness(.46)}
+body.scena .bio-fascia::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to right,rgba(22,19,15,.86) 0,rgba(22,19,15,.6) 42%,rgba(22,19,15,.2) 72%,transparent 100%)}
+body.scena .bio-fascia-foto{position:absolute;top:0;right:0;bottom:0;left:auto;
+  aspect-ratio:1000/1500;margin:0;overflow:hidden}
 body.scena .bio-fascia-foto img{width:100%;height:100%;object-fit:cover;
-  object-position:46% 18%;display:block}
-body.scena .bio-fascia-testo{max-width:min(520px,40vw);
-  padding:clamp(56px,9vh,110px) clamp(20px,4vw,48px) clamp(56px,9vh,110px) clamp(20px,5vw,72px)}
+  object-position:50% 20%;display:block;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 18%);
+  mask-image:linear-gradient(to right,transparent 0,#000 18%)}
+body.scena .bio-fascia-testo{max-width:min(640px,46vw);
+  padding:clamp(56px,9vh,110px) clamp(20px,3vw,40px) clamp(56px,9vh,110px) clamp(20px,5vw,72px)}
 @media(min-width:1320px){
   body.scena .bio-fascia-testo{padding-left:calc((100vw - 1320px)/2 + 72px)}
 }
 body.scena .bio-fascia-cr{position:absolute;right:clamp(14px,2vw,26px);bottom:clamp(12px,2vh,20px);
   margin:0;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;
   text-transform:uppercase;color:rgba(241,238,232,.5);text-shadow:0 1px 10px rgba(0,0,0,.85)}
-/* Sul telefono non c'e' spazio per due colonne: la fotografia sta
-   sopra e il testo sotto, come in ogni altra pagina. */
+/* Sul telefono non c'e' spazio per due colonne: fotografia sopra,
+   testo sotto, come in ogni altra pagina. */
 @media(max-width:860px){
   body.scena .bio-fascia{display:block;min-height:0}
-  body.scena .bio-fascia-foto{position:relative;inset:auto;aspect-ratio:4/5;max-height:70vh}
-  body.scena .bio-fascia-testo{max-width:none;padding:clamp(28px,5vh,44px) clamp(20px,5vw,72px) clamp(40px,7vh,64px)}
+  body.scena .bio-fascia-foto{position:relative;inset:auto;width:100%;
+    aspect-ratio:4/5;max-height:70vh}
+  body.scena .bio-fascia-foto img{-webkit-mask-image:none;mask-image:none}
+  body.scena .bio-fascia-sfondo,body.scena .bio-fascia::after{display:none}
+  body.scena .bio-fascia-testo{max-width:none;
+    padding:clamp(28px,5vh,44px) clamp(20px,5vw,72px) clamp(40px,7vh,64px)}
 }
