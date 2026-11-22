@@ -11,6 +11,14 @@
   var alta = document.querySelector('.topbar');
   if (!alta || alta.classList.contains('topbar-fissa')) return;
 
+  /* Sulle pagine interne la barra vera e' gia' incollata in alto e non
+     se ne va mai: la copia compatta non serve, e restava appesa in
+     fondo al body sotto il piede, come una seconda barra in coda alla
+     pagina. (Massimo, 22 novembre 2026: «questo succede nel footer»)
+     La copia serve solo dove la barra alta esce davvero di scena:
+     in home, sopra il video. */
+  if (document.body.classList.contains('pagina-interna')) return;
+
   var telefono = window.matchMedia('(max-width:760px)');
 
   /* la copia sottile: stessa barra, gia' in forma compatta */

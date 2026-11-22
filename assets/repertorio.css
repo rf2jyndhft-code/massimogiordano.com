@@ -1,0 +1,120 @@
+/* IL REPERTORIO CHE SI INTERROGA
+   Una tabella non è una lista: si ordina, si filtra, risponde a una domanda.
+   Chi guarda questa pagina — agenti, direttori di casting, teatri — cerca
+   sempre la stessa cosa: ha fatto questo ruolo? dove? quante volte? quando
+   l'ultima? Qui la risposta arriva in due secondi. */
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+
+/* --- i comandi ------------------------------------------------------- */
+body.scena .rep-comandi{margin:clamp(26px,4vh,40px) 0 clamp(18px,2.6vh,26px)}
+body.scena .rep-cerca input{width:100%;max-width:560px;padding:13px 16px;
+  background:var(--sfondo2);border:1px solid var(--bordo);color:var(--testo);
+  font:400 15px/1.3 var(--sans);transition:border-color .18s}
+body.scena .rep-cerca input::placeholder{color:var(--testo4)}
+body.scena .rep-cerca input:focus{outline:none;border-color:var(--oro)}
+
+body.scena .rep-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+body.scena .rep-chip{padding:6px 13px;border:1px solid var(--filo);background:transparent;
+  color:var(--testo3);font:500 11.5px/1.2 var(--sans);letter-spacing:.06em;
+  text-transform:uppercase;cursor:pointer;transition:.18s}
+body.scena .rep-chip:hover{border-color:var(--bordo);color:var(--testo2)}
+body.scena .rep-chip.viva{border-color:var(--oro);color:var(--su-oro);background:var(--oro)}
+
+body.scena .rep-conta{margin:16px 0 0;font:400 13px/1.4 var(--sans);color:var(--testo4)}
+
+/* --- la tavola ------------------------------------------------------- */
+body.scena .rep-tavola{overflow-x:auto;-webkit-overflow-scrolling:touch}
+body.scena .rep-tavola table{width:100%;border-collapse:collapse;
+  font-variant-numeric:tabular-nums}
+body.scena .rep-tavola th{text-align:left;padding:10px 14px 10px 0;
+  border-bottom:1px solid var(--bordo);
+  font:500 10.5px/1.2 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--testo4);cursor:pointer;white-space:nowrap;user-select:none}
+body.scena .rep-tavola th:hover{color:var(--testo2)}
+body.scena .rep-tavola th.su::after{content:" ↑";color:var(--oro)}
+body.scena .rep-tavola th.giu::after{content:" ↓";color:var(--oro)}
+body.scena .rep-tavola th.num,body.scena .rep-tavola td.r-n,
+body.scena .rep-tavola td.r-anni{text-align:right;padding-right:0}
+
+body.scena .rep-tavola td{padding:13px 14px 13px 0;border-top:1px solid var(--filo);
+  font-size:15px;vertical-align:baseline}
+body.scena .rep-tavola tbody tr{cursor:pointer;transition:background .14s}
+body.scena .rep-tavola tbody tr:hover,
+body.scena .rep-tavola tbody tr:focus-visible{background:var(--sfondo2);outline:none}
+body.scena .rep-tavola td.r-ruolo{font-weight:600;color:var(--testo);white-space:nowrap}
+body.scena .rep-tavola td.r-opera{color:var(--testo2)}
+body.scena .rep-tavola td.r-comp{color:var(--testo4);font:400 13px/1.3 var(--sans)}
+body.scena .rep-tavola td.r-n,body.scena .rep-tavola td.r-anni{
+  color:var(--testo3);font:400 13px/1.3 var(--sans);white-space:nowrap}
+body.scena .rep-vuoto{margin:30px 0;color:var(--testo4);font-style:italic}
+
+/* Sul telefono la colonna del compositore se ne va: resta nella scheda. */
+@media(max-width:700px){
+  body.scena .rep-tavola td.r-comp,body.scena .rep-tavola th:nth-child(3){display:none}
+  body.scena .rep-tavola td{padding:11px 10px 11px 0;font-size:14px}
+  body.scena .rep-tavola td.r-ruolo{white-space:normal}
+}
+
+/* --- la scheda che si apre ------------------------------------------- */
+body.scena .rep-tenda{position:fixed;inset:0;z-index:60;display:flex;
+  align-items:center;justify-content:center;padding:clamp(14px,3vw,40px);
+  background:rgba(10,9,7,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+body.scena .rep-tenda[hidden]{display:none}
+body.scena .rep-foglio{position:relative;max-width:760px;width:100%;
+  max-height:86vh;overflow-y:auto;background:var(--sfondo2);
+  border:1px solid var(--bordo);padding:clamp(26px,4vw,44px)}
+body.scena .rep-foglio h2{font-family:var(--display);font-weight:400;
+  font-size:clamp(26px,4vw,38px);line-height:1.1;margin:0 0 6px}
+body.scena .rep-opera{margin:0 0 22px;font-family:var(--serif);font-style:italic;
+  font-size:clamp(17px,2.4vw,21px);color:var(--testo2)}
+body.scena .rep-case{font-size:15px;line-height:1.72;color:var(--testo2)}
+body.scena .rep-case strong{color:var(--testo);font-weight:600}
+body.scena .rep-case em{font-style:italic}
+body.scena .rep-chiudi{position:absolute;top:10px;right:14px;width:38px;height:38px;
+  border:0;background:transparent;color:var(--testo3);font-size:26px;line-height:1;
+  cursor:pointer;transition:color .18s}
+body.scena .rep-chiudi:hover{color:var(--oro)}
+
+/* ── le fotografie che girano dietro ────────────────────────────── */
+body.scena .rep-con-foto{position:relative;isolation:isolate}
+/* Una fascia in alto, non tutta la sezione: la tavola e' alta tremila
+   punti e larga milleduecento, e una fotografia 16:10 tirata a coprirla
+   diventava un primo piano di naso. */
+/* La fascia comincia dopo la colonna della ricerca: dentro il ritaglio
+   16:10 di quegli scatti non c'e' margine laterale da spostare, quindi
+   si sposta la fascia. (Massimo: «le prime tre sono coperte dal box di
+   ricerca, sarebbe da spostarle un po' a destra») */
+body.scena .rep-sfondo{position:absolute;inset:0 0 auto 30%;height:min(760px,76vh);
+  z-index:0;overflow:hidden;pointer-events:none}
+@media(max-width:899px){body.scena .rep-sfondo{inset:0 0 auto 0}}
+body.scena .rep-sfondo img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 4%;opacity:0;transition:opacity 1.6s ease;
+  filter:grayscale(.06) brightness(.78)}
+body.scena .rep-sfondo img.viva{opacity:1}
+body.scena .rep-sfondo::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to right,var(--sfondo) 0,rgba(24,20,16,.78) 16%,rgba(24,20,16,.46) 48%,rgba(24,20,16,.3) 100%),
+    linear-gradient(to bottom,var(--sfondo) 0,transparent 18%,rgba(24,20,16,.5) 72%,var(--sfondo) 100%)}
+body.scena .rep-con-foto>.wrap{position:relative;z-index:1}
+
+/* ── la tavola scorre dentro una finestra ───────────────────────── */
+/* La fotografia resta in alto e il testo le scorre davanti, invece di
+   portarsi via tutta la pagina. L'intestazione delle colonne resta
+   incollata in cima alla finestra, se no scorrendo non si sa piu'
+   cosa sia ogni colonna. (Massimo: «fai scorrere il testo, perche' la
+   fotografia resta in alto e scorre la pagina») */
+@media(min-width:900px){
+  body.scena .rep-tavola{max-height:min(560px,58vh);overflow-y:auto;
+    scrollbar-width:thin;
+    scrollbar-color:color-mix(in srgb,var(--oro) 45%,transparent) transparent;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 46px),transparent 100%);
+    mask-image:linear-gradient(to bottom,#000 0,#000 calc(100% - 46px),transparent 100%)}
+  body.scena .rep-tavola::-webkit-scrollbar{width:3px}
+  body.scena .rep-tavola::-webkit-scrollbar-track{background:transparent}
+  body.scena .rep-tavola::-webkit-scrollbar-thumb{
+    background:color-mix(in srgb,var(--oro) 45%,transparent)}
+  body.scena .rep-tavola thead th{position:sticky;top:0;z-index:2;
+    background:var(--sfondo);backdrop-filter:blur(8px)}
+  body.scena .rep-tavola tbody tr:last-child td{padding-bottom:34px}
+}
