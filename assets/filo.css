@@ -267,3 +267,35 @@ body.scena .bio-scarica-vai a:hover{background:color-mix(in srgb,var(--oro) 12%,
   body.scena .filo-conti{margin:4px 0 14px}
   body.scena .filo-anno{scroll-margin-top:150px}
 }
+
+/* ── telefono coricato: il quadrante di lato ────────────────────── */
+/* Unica aggiunta per l'orizzontale, chiesta da Massimo il 22 novembre:
+   «sull'orizzontale mettila al lato». Stesse due colonne del Mac, con
+   le misure che stanno in 430 punti d'altezza. Solo stile: il
+   javascript non si tocca. */
+@media(min-width:760px) and (max-width:999px) and (orientation:landscape){
+  body.scena .filo-in{display:grid;
+    grid-template-columns:minmax(0,1fr) clamp(240px,34vw,340px);
+    gap:clamp(16px,2.4vw,30px);align-items:stretch;
+    /* la barra coricata e' alta 92 e sta sopra: il contenuto comincia
+       sotto di lei, se no il quadrante nasce tagliato */
+    height:100vh;padding-top:92px;box-sizing:border-box}
+  body.scena .filo-racconti{height:100%;overflow-y:auto;padding-right:14px;
+    scrollbar-width:thin;
+    scrollbar-color:color-mix(in srgb,var(--oro) 45%,transparent) transparent;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 32px),transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 32px),transparent 100%)}
+  body.scena .filo-racconti::before,
+  body.scena .filo-racconti::after{content:"";display:block;height:30vh}
+  body.scena .filo-scena{order:0;position:static;height:100%;margin:0;padding:10px 0 6px;
+    box-sizing:border-box;background:none;
+    display:flex;flex-direction:column;justify-content:center}
+  body.scena .filo-scena::after{display:none}
+  body.scena .filo-quadrante{width:100%;height:auto;aspect-ratio:1/1;
+    max-height:calc(100% - 64px);margin:0 auto}
+  body.scena .filo-conti{margin:6px 0 0;gap:18px}
+  body.scena .filo-conti b{font-size:20px}
+  body.scena .filo-conti span{font-size:9px;margin-top:2px}
+  body.scena .filo-liste{display:none}
+  body.scena .filo-anno{scroll-margin-top:0}
+}
