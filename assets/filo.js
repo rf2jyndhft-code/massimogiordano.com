@@ -221,6 +221,7 @@
      racconto lo segue. Lasciando, si incastra sull'anno piu' vicino.
      Il centro resta libero: li' c'e' il mappamondo, che non si tocca. */
   var trascino = false, angPrec = 0, mosso = 0;
+  var blocchi = [], dentro = null;
 
   function angoloDi(ev) {
     var r = cv.getBoundingClientRect();
@@ -253,18 +254,42 @@
     var a = angoloDi(e), d = a - angPrec;
     while (d > Math.PI) d -= TAU;
     while (d < -Math.PI) d += TAU;
-    giro += d; giroVuole = giro; angPrec = a; mosso += Math.abs(d);
+    /* meno di mezzo giro di ghiera per ogni giro di dito: con il
+       rapporto uno a uno bastava un gesto corto per attraversare
+       trent'anni. (Massimo: «e' solo troppo veloce la ghiera nel
+       girare tutto») */
+    /* Piano: con il rapporto uno a uno un movimento del polso
+       attraversava vent'anni. E non si scavalca: oltre il 1989 e oltre
+       il 2027 la ghiera si ferma, se no girando appena all'indietro si
+       finiva dall'altra parte del quadrante, nel 2027.
+       (Massimo: «e' solo troppo veloce la ghiera nel girare tutto») */
+    giro = Math.max(-ARCO, Math.min(0, giro + d * .3));
+    giroVuole = giro; angPrec = a; mosso += Math.abs(d);
     var i = annoInCima();
     if (i >= 0 && i !== attivo) {
       vai(i, true);
-      if (blocchi[i]) blocchi[i].scrollIntoView({ block: 'center' });
+      /* NON scrollIntoView: quello scorre anche la pagina, la ghiera
+         si sposta sotto il dito e ogni misura dell'angolo salta - il
+         giro diventava tre volte piu' veloce di quanto si muoveva la
+         mano. Qui si muove solo la finestra del racconto, che sta
+         ferma rispetto al quadrante. Dove la finestra non c'e' (sul
+         telefono in verticale) il testo si allinea quando lasci. */
+      if (dentro && blocchi[i]) {
+        dentro.scrollTop = blocchi[i].offsetTop - dentro.clientHeight / 2
+                         + blocchi[i].offsetHeight / 2;
+      }
     }
     e.preventDefault();
   });
   function lascia() {
     if (!trascino) return;
     trascino = false;
-    if (attivo >= 0) giroVuole = -Math.PI / 2 - POS[attivo];   /* si incastra */
+    if (attivo >= 0) {
+      giroVuole = -Math.PI / 2 - POS[attivo];                  /* si incastra */
+      if (!dentro && blocchi[attivo]) {
+        blocchi[attivo].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
   }
   window.addEventListener('pointerup', lascia);
   window.addEventListener('pointercancel', lascia);
@@ -281,17 +306,17 @@
   });
 
   var finestra = document.querySelector('.filo-racconti');
-  var dentro = finestra && getComputedStyle(finestra).overflowY === 'auto' ? finestra : null;
-  var blocchi = [].slice.call(document.querySelectorAll('.filo-anno'));
-  new IntersectionObserver(function (voci) {
-    voci.forEach(function (v) { if (v.isIntersecting) vai(blocchi.indexOf(v.target)); });
-  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 }).observe
-    ? blocchi.forEach(function (b, i) {
-        new IntersectionObserver(function (voci) {
-          voci.forEach(function (v) { if (v.isIntersecting) vai(i); });
-        }, { root: dentro, rootMargin: '-45% 0px -45% 0px', threshold: 0 }).observe(b);
-      })
-    : null;
+  dentro = finestra && getComputedStyle(finestra).overflowY === 'auto' ? finestra : null;
+  blocchi = [].slice.call(document.querySelectorAll('.filo-anno'));
+  blocchi.forEach(function (b, i) {
+    new IntersectionObserver(function (voci) {
+      /* mentre si gira la ghiera comanda lei: se no lo scorrimento che
+         la ghiera stessa provoca le rimette mano, e il giro finisce
+         dove dice l'osservatore invece che dove l'hai lasciata */
+      if (trascino) return;
+      voci.forEach(function (v) { if (v.isIntersecting) vai(i); });
+    }, { root: dentro, rootMargin: '-45% 0px -45% 0px', threshold: 0 }).observe(b);
+  });
 
   window.addEventListener('resize', function () { dim(); disegna(); });
   dim(); vai(0); muovi();
