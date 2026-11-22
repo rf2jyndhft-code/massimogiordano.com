@@ -119,7 +119,12 @@ body.scena .filo-racconto em{font-style:italic;color:var(--testo)}
 body.scena .filo-racconto strong{font-weight:500;color:var(--testo)}
 
 /* ── la colonna di destra, che resta ferma ───────────────────────── */
-body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px)}
+/* Tutto il riquadro del mappamondo, non solo la tela: passandoci il
+   dito sopra la pagina non deve scorrere. La pinza a due dita resta
+   al browser. (Massimo: «tutta la finestra del mappamondo non deve
+   essere scrollabile») */
+body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px);
+  touch-action:pinch-zoom}
 /* La colonna di destra non deve crescere con l'anno: se le liste sono
    lunghe diventava piu' alta dello schermo e copriva quello che c'e'
    sotto (Massimo: «salta da qua a qua e viene coperto il resto»).
