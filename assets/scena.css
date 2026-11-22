@@ -317,10 +317,17 @@ body.scena .palco{padding-top:0}
     position:absolute;background:transparent;border-bottom:0;
     -webkit-backdrop-filter:none;backdrop-filter:none}
   body.scena .topbar:not(.topbar-fissa) .wrap{
-    display:flex;align-items:center;justify-content:space-between;
+    display:flex;align-items:center;justify-content:flex-end;position:relative;
     gap:12px;padding-top:14px;padding-bottom:14px;min-height:54px}
+  /* Il nome sta al centro esatto dello schermo anche sul telefono, come
+     sul Mac: messo nel flusso restava a sinistra, spinto dal gruppo di
+     destra. Qui e' fuori dal flusso e centrato sulla barra, e lingua e
+     menu gli restano a destra. (Massimo, 22 novembre 2026: «va centrato
+     esatto anche sul telefono») */
   body.scena .topbar .brand{
-    font-size:12.5px;letter-spacing:.2em;text-align:left;flex:1 1 auto}
+    position:absolute;left:50%;transform:translateX(-50%);
+    font-size:12.5px;letter-spacing:.2em;text-align:center;
+    white-space:nowrap;flex:0 0 auto;max-width:calc(100% - 150px)}
   body.scena .topbar .nav{display:none!important}
   body.scena .topbar .tb-destra{position:static;flex:0 0 auto;margin-right:4px}
   body.scena .topbar .lang{font-size:11px}
