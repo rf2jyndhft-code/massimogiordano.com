@@ -258,13 +258,19 @@
     var i = annoInCima();
     if (i >= 0 && i !== attivo) {
       vai(i, true);
-      if (blocchi[i]) blocchi[i].scrollIntoView({ block: 'center' });
+      /* Mentre giri, la pagina non si muove: scorrerla sotto il dito
+         e' proprio quello che non deve succedere. Il racconto si
+         allinea quando lasci. (Massimo: «se sono sul mappamondo non
+         deve scrollare») */
     }
     e.preventDefault();
   });
   function lascia() {
     if (!trascino) return;
     trascino = false;
+    if (attivo >= 0 && blocchi[attivo]) {
+      blocchi[attivo].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
     if (attivo >= 0) giroVuole = -Math.PI / 2 - POS[attivo];   /* si incastra */
   }
   window.addEventListener('pointerup', lascia);
