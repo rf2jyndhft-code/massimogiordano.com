@@ -87,7 +87,21 @@ body.scena .rep-con-foto{position:relative;isolation:isolate}
    ricerca, sarebbe da spostarle un po' a destra») */
 body.scena .rep-sfondo{position:absolute;inset:0 0 auto 30%;height:min(760px,76vh);
   z-index:0;overflow:hidden;pointer-events:none}
-@media(max-width:899px){body.scena .rep-sfondo{inset:0 0 auto 0}}
+/* Sul telefono la fotografia resta ferma e la tavola le passa sopra.
+   Non puo' essere 'fixed' - sborderebbe sul piede, lezione della
+   biografia - quindi e' il primo blocco della sezione, incollato in
+   alto, e il contenuto viene tirato su sopra di lei.
+   (Massimo: «meglio avere le foto che girano come adesso, ma il testo
+   scorre sopra») */
+@media(max-width:899px){
+  body.scena .rep-sfondo{position:sticky;inset:auto;top:134px;
+    width:100%;height:62vh;margin:0}
+  body.scena .rep-con-foto>.wrap{margin-top:-62vh}
+  body.scena .rep-sfondo::after{
+    background:
+      linear-gradient(to bottom,rgba(24,20,16,.55) 0,rgba(24,20,16,.4) 34%,
+        rgba(24,20,16,.72) 72%,var(--sfondo) 100%)}
+}
 body.scena .rep-sfondo img{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:50% 4%;opacity:0;transition:opacity 1.6s ease;
   filter:grayscale(.06) brightness(.78)}
