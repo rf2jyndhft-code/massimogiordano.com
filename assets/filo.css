@@ -131,7 +131,8 @@ body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px)}
      piu' niente. Misurato, non stimato. */
   body.scena .filo-scena{position:sticky;top:150px;margin:0;
     height:calc(100vh - 182px);display:flex;flex-direction:column;overflow:hidden}
-  body.scena .filo-quadrante{flex:0 0 auto}
+  body.scena .filo-quadrante{flex:0 1 auto;min-height:0;
+    max-height:min(620px,62vh,calc(100% - 92px))}
   body.scena .filo-conti{flex:0 0 auto}
   body.scena .filo-liste{flex:1 1 auto;min-height:0;overflow-y:auto;
     scrollbar-width:thin;
@@ -148,9 +149,11 @@ body.scena .filo-quadrante{display:block;width:100%;aspect-ratio:1/1;
      poter ingrandire. (Massimo: «non funziona la ghiera per girarlo»,
      poi «se tento di ingrandirlo diventa un casino») */
   touch-action:pinch-zoom;cursor:grab;
-  /* quadrato sempre: con width:100% e solo il max-height la tela
-     restava larga e bassa, e il globo dentro si rimpiccioliva */
-  width:auto;height:min(620px,62vh);max-height:none;margin:0 auto}
+  /* La tela prende la larghezza che c'e' e non supera mai l'altezza
+     disponibile: su uno schermo coricato usciva sopra e sotto e
+     veniva tagliata. Non deve essere quadrata - il disegno si centra
+     sul lato corto da solo. (Massimo: «questo succede in orizzontale») */
+  width:100%;height:auto;max-height:min(620px,62vh);margin:0 auto}
 body.scena .filo-quadrante:active{cursor:grabbing}
 body.scena .filo-conti{display:flex;gap:clamp(18px,2.4vw,30px);
   margin:clamp(10px,1.6vh,16px) 0 clamp(16px,2.4vh,24px)}
@@ -271,4 +274,20 @@ body.scena .bio-scarica-vai a:hover{background:color-mix(in srgb,var(--oro) 12%,
   body.scena .filo-anno{scroll-margin-top:150px}
 }
 
+}
+
+/* Su uno schermo basso - telefono coricato - le liste di lato non ci
+   stanno: i teatri e i ruoli dell'anno sono gia' nel racconto. E il
+   quadrante deve avere l'altezza che resta, se no con 430 punti di
+   schermo gliene restavano 188 e i trentanove anni si schiacciavano
+   in una corona illeggibile. */
+@media(max-height:620px){
+  body.scena .filo-liste{display:none}
+  body.scena .filo-conti{margin:4px 0 0;gap:18px}
+  body.scena .filo-conti b{font-size:20px}
+  body.scena .filo-conti span{font-size:9px;margin-top:2px}
+}
+@media(min-width:760px) and (max-height:620px) and (orientation:landscape){
+  body.scena .filo-in{height:calc(100vh - 104px)}
+  body.scena .filo-quadrante{max-height:calc(100% - 58px)}
 }
