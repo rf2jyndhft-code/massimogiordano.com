@@ -2,7 +2,7 @@
    Si lancia così:  node controlla.mjs            (sul sito locale)
                     node controlla.mjs online     (sul sito pubblicato)
 
-   Guarda otto cose, tutte imparate da errori veri:
+   Guarda nove cose, tutte imparate da errori veri:
      1. nessun reindirizzamento gira su se stesso   (19 nov: home it irraggiungibile)
      2. ogni pagina risponde e non e' vuota
      3. i vecchi indirizzi finiscono dove devono
@@ -11,6 +11,7 @@
      6. il cambio lingua porta alla pagina gemella, e quella esiste  (20 nov: sei pagine finivano in galleria)
      7. il mappamondo gira da solo e si ferma sotto il mouse   (20 nov: era rimasto fermo)
      8. la sitemap non dichiara date piu' vecchie della modifica vera
+     9. nessuna pagina chiede fogli, copioni o foto a /.prova/   (22 nov: repertorio nudo online)
    Se qualcosa non va, esce con errore: non si pubblica. */
 import { readFileSync, existsSync } from 'node:fs';
 import { spawn } from 'node:child_process';
@@ -177,6 +178,28 @@ try {
   console.log('pagine aperte nel browser: 5, mappamondo compreso');
   chrome.kill();
 } catch (e) { chrome.kill(); console.log('browser non disponibile, saltato il controllo in pagina'); }
+
+/* 9. nessuna pagina pubblicata deve chiedere qualcosa a /.prova/
+   22 nov: il repertorio chiedeva /.prova/repertorio.css e le otto foto
+   dei ruoli. In locale esistono, quindi tutto sembrava a posto; online
+   la cartella non c'e' e la pagina usciva nuda, tabella e basta.
+   Si guarda il file, non il server: e' l'unico modo di vederlo. */
+{
+  const { readdirSync } = await import('node:fs');
+  const file = ['.', 'it'].flatMap(d =>
+    readdirSync(d).filter(f => f.endsWith('.html')).map(f => d === '.' ? f : d + '/' + f));
+  let sporche = 0;
+  for (const f of file) {
+    const t = readFileSync(f, 'utf8');
+    const m = t.match(/\/\.prova\/[^"'\s>]+/g);
+    if (m) {
+      sporche++;
+      if (sporche <= 3) guai.push(f + ' chiede ' + m[0] + ' — in .prova, che online non esiste');
+    }
+  }
+  if (sporche > 3) guai.push('e altre ' + (sporche - 3) + ' pagine che chiedono roba da .prova');
+  console.log('pagine controllate per i riferimenti a .prova: ' + file.length);
+}
 
 console.log();
 if (guai.length) {
