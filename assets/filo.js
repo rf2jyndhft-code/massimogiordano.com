@@ -265,12 +265,38 @@
     }
     e.preventDefault();
   });
+  /* Il testo si accosta piano. Con lo scorrimento del browser arrivava
+     di scatto e l'occhio non faceva in tempo a seguire l'anno.
+     (Massimo: «rallenta il caricamento delle date, in caso vada su un
+     anno non deve andare sul testo troppo velocemente») */
+  function accosta(el) {
+    if (!el) return;
+    var finestra = document.querySelector('.filo-racconti');
+    var dentro = finestra && getComputedStyle(finestra).overflowY === 'auto';
+    var chi = dentro ? finestra : (document.scrollingElement || document.documentElement);
+    var da = dentro ? finestra.scrollTop : window.scrollY;
+    var a = dentro
+      ? el.offsetTop - finestra.clientHeight / 2 + el.offsetHeight / 2
+      : window.scrollY + el.getBoundingClientRect().top
+        - (window.innerHeight - el.offsetHeight) / 2;
+    var salto = a - da;
+    if (Math.abs(salto) < 2) return;
+    var durata = 1100, inizio = 0;
+    function morbido(t) { return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }
+    function passo(ora) {
+      if (!inizio) inizio = ora;
+      var t = Math.min(1, (ora - inizio) / durata);
+      var y = da + salto * morbido(t);
+      if (dentro) chi.scrollTop = y; else window.scrollTo(0, y);
+      if (t < 1) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
+  }
+
   function lascia() {
     if (!trascino) return;
     trascino = false;
-    if (attivo >= 0 && blocchi[attivo]) {
-      blocchi[attivo].scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    if (attivo >= 0) accosta(blocchi[attivo]);
     if (attivo >= 0) giroVuole = -Math.PI / 2 - POS[attivo];   /* si incastra */
   }
   window.addEventListener('pointerup', lascia);
@@ -284,7 +310,7 @@
   cv.addEventListener('click', function (e) {
     if (mosso > .05) { mosso = 0; return; }   /* era un giro, non un clic */
     var i = quale(e);
-    if (i >= 0) blocchi[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (i >= 0) accosta(blocchi[i]);
   });
 
   var finestra = document.querySelector('.filo-racconti');
