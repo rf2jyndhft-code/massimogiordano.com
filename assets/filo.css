@@ -131,7 +131,7 @@ body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px)}
      piu' niente. Misurato, non stimato. */
   body.scena .filo-scena{position:sticky;top:150px;margin:0;
     height:calc(100vh - 182px);display:flex;flex-direction:column;overflow:hidden}
-  body.scena .filo-quadrante{flex:0 0 auto;max-height:min(620px,62vh)}
+  body.scena .filo-quadrante{flex:0 0 auto}
   body.scena .filo-conti{flex:0 0 auto}
   body.scena .filo-liste{flex:1 1 auto;min-height:0;overflow-y:auto;
     scrollbar-width:thin;
@@ -142,13 +142,15 @@ body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px)}
 }
 /* il quadrante: gli anni in cerchio, il mappamondo dentro */
 body.scena .filo-quadrante{display:block;width:100%;aspect-ratio:1/1;
-  /* 'none' e non 'pan-y': con pan-y il browser si prende il dito per
-     scorrere appena il movimento ha una componente verticale, e la
-     rotazione non parte mai - girare una ghiera e' un gesto curvo.
-     Qui il quadrante e' tutto suo; la pagina si scorre sul testo.
-     (Massimo: «non funziona la ghiera per girarlo») */
-  touch-action:none;cursor:grab;
-  max-height:min(620px,62vh);margin:0 auto}
+  /* pinch-zoom: il dito solo gira la ghiera (con 'pan-y' il browser se
+     lo prendeva per scorrere appena il gesto curvava, e la rotazione
+     non partiva), ma la pinza a due dita resta al browser, che deve
+     poter ingrandire. (Massimo: «non funziona la ghiera per girarlo»,
+     poi «se tento di ingrandirlo diventa un casino») */
+  touch-action:pinch-zoom;cursor:grab;
+  /* quadrato sempre: con width:100% e solo il max-height la tela
+     restava larga e bassa, e il globo dentro si rimpiccioliva */
+  width:auto;height:min(620px,62vh);max-height:none;margin:0 auto}
 body.scena .filo-quadrante:active{cursor:grabbing}
 body.scena .filo-conti{display:flex;gap:clamp(18px,2.4vw,30px);
   margin:clamp(10px,1.6vh,16px) 0 clamp(16px,2.4vh,24px)}

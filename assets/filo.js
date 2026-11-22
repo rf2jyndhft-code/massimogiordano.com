@@ -220,7 +220,7 @@
      gira: l'anno che arriva in cima diventa quello che leggi, e il
      racconto lo segue. Lasciando, si incastra sull'anno piu' vicino.
      Il centro resta libero: li' c'e' il mappamondo, che non si tocca. */
-  var trascino = false, angPrec = 0, mosso = 0;
+  var trascino = false, angPrec = 0, mosso = 0, dita = 0;
   var blocchi = [], dentro = null;
 
   function angoloDi(ev) {
@@ -244,6 +244,11 @@
   }
 
   cv.addEventListener('pointerdown', function (e) {
+    dita++;
+    /* due dita sono una pinza per ingrandire, non una ghiera: lasciamo
+       fare al browser. (Massimo: «se tento di ingrandirlo diventa un
+       casino») */
+    if (dita > 1) { trascino = false; return; }
     if (!sullAnello(e)) return;
     trascino = true; mosso = 0; angPrec = angoloDi(e);
     if (cv.setPointerCapture) cv.setPointerCapture(e.pointerId);
@@ -282,6 +287,7 @@
     e.preventDefault();
   });
   function lascia() {
+    dita = Math.max(0, dita - 1);
     if (!trascino) return;
     trascino = false;
     if (attivo >= 0) {
