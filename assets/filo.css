@@ -41,7 +41,7 @@ body.scena .filo-sfondo::after{content:"";position:absolute;inset:0;pointer-even
     linear-gradient(to bottom,var(--sfondo) 0,transparent 14%,transparent 84%,var(--sfondo) 100%)}
 
 body.scena .filo-in{display:grid;grid-template-columns:1fr;gap:0}
-@media(min-width:1000px){
+@media(min-width:1000px),(min-width:760px) and (orientation:landscape){
   /* La sezione e' alta UNA schermata e le due colonne la riempiono.
      Niente 'sticky': cosi' il quadrante non puo' saltare, perche' non
      si incolla e non si scolla mai. (Massimo: «fissalo, perche' ancora
@@ -89,7 +89,7 @@ body.scena .filo-capitolo a:hover{color:var(--testo);border-bottom-color:var(--o
    entrambi globo e bio dentro una finestra a scorrimento... il blocco
    deve essere piccolo non grande») */
 body.scena .filo-racconti{max-height:none}
-@media(min-width:1000px){
+@media(min-width:1000px),(min-width:760px) and (orientation:landscape){
   body.scena .filo-racconti{height:100%;overflow-y:auto;
     padding-right:clamp(16px,2vw,30px);scrollbar-width:thin;
     scrollbar-color:color-mix(in srgb,var(--oro) 45%,transparent) transparent;
@@ -125,7 +125,7 @@ body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px)}
    sotto (Massimo: «salta da qua a qua e viene coperto il resto»).
    Qui ha un'altezza fissa - quella dello schermo - e dentro sono le
    liste a scorrere. */
-@media(min-width:1000px){
+@media(min-width:1000px),(min-width:760px) and (orientation:landscape){
   /* La barra del menu finisce a 134 punti: la colonna si ferma sotto,
      a 150, se no il mappamondo scivola sotto il menu e non si vede
      piu' niente. Misurato, non stimato. */
@@ -142,11 +142,12 @@ body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px)}
 }
 /* il quadrante: gli anni in cerchio, il mappamondo dentro */
 body.scena .filo-quadrante{display:block;width:100%;aspect-ratio:1/1;
-  /* pan-y e non 'none': scorrendo in su e in giu' la pagina scorre
-     come sempre, mentre il movimento circolare gira la ghiera. Con
-     'none' il quadrante sul telefono avrebbe rubato lo scorrimento a
-     meta' schermo. */
-  touch-action:pan-y;cursor:grab;
+  /* 'none' e non 'pan-y': con pan-y il browser si prende il dito per
+     scorrere appena il movimento ha una componente verticale, e la
+     rotazione non parte mai - girare una ghiera e' un gesto curvo.
+     Qui il quadrante e' tutto suo; la pagina si scorre sul testo.
+     (Massimo: «non funziona la ghiera per girarlo») */
+  touch-action:none;cursor:grab;
   max-height:min(620px,62vh);margin:0 auto}
 body.scena .filo-quadrante:active{cursor:grabbing}
 body.scena .filo-conti{display:flex;gap:clamp(18px,2.4vw,30px);
@@ -170,7 +171,7 @@ body.scena .filo-lista li:first-child{border-top:0}
 body.scena .filo-lista b{font-family:var(--display);font-weight:400;font-size:15px;color:var(--testo)}
 body.scena .filo-lista span{font-size:11.5px;color:var(--testo4);letter-spacing:.02em}
 
-@media(max-width:999px){
+@media(max-width:999px) and (orientation:portrait),(max-width:759px){
   body.scena .filo-anno{min-height:0;padding:clamp(22px,4vh,38px) 0;
     border-top:1px solid var(--filo)}
   body.scena .filo-anno:first-child{border-top:0}
@@ -226,7 +227,7 @@ body.scena .bio-scarica-vai a:hover{background:color-mix(in srgb,var(--oro) 12%,
    inutile. Qui sta in cima e resta incollato mentre scorri gli anni,
    piccolo. Niente finestra che scorre dentro la pagina — un riquadro
    che scorre dentro un altro che scorre e' una trappola per il dito. */
-@media(max-width:999px){
+@media(max-width:999px) and (orientation:portrait),(max-width:759px){
   body.scena .filo-in{display:flex;flex-direction:column}
   /* Il quadrante si prendeva piu' di meta' schermo e l'anno restava
      tagliato di netto sul suo bordo: non si capiva se passava sotto o
@@ -260,10 +261,12 @@ body.scena .bio-scarica-vai a:hover{background:color-mix(in srgb,var(--oro) 12%,
 /* Con lo schermo alto 400 punti un quadrante incollato in cima non
    lascia spazio a niente: li' si stacca, si rimpicciolisce e sta in
    fila col testo. (Massimo: «e non funziona in orizzontale») */
-@media(max-width:999px) and (max-height:560px){
+@media(max-width:759px) and (max-height:560px){
   body.scena .filo-scena{position:static;padding:0;background:none}
   body.scena .filo-scena::after{display:none}
   body.scena .filo-quadrante{height:min(210px,62vh)}
   body.scena .filo-conti{margin:4px 0 14px}
   body.scena .filo-anno{scroll-margin-top:150px}
+}
+
 }
