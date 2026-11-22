@@ -104,7 +104,8 @@ body.scena .filo-racconti{max-height:none}
   body.scena .filo-racconti::before,
   body.scena .filo-racconti::after{content:"";display:block;height:34vh}
 }
-body.scena .filo-anno{min-height:0;display:block;padding:clamp(14px,2vh,22px) 0}
+body.scena .filo-anno{min-height:0;display:block;padding:clamp(14px,2vh,22px) 0;
+  scroll-margin-top:clamp(200px,40vh,340px)}
 /* gli anni ancora senza racconto passano in fretta e non gridano */
 body.scena .filo-anno.vuoto{min-height:0;padding:10px 0}
 body.scena .filo-anno.vuoto .filo-numero{color:var(--testo4);
@@ -221,19 +222,36 @@ body.scena .bio-scarica-vai a:hover{background:color-mix(in srgb,var(--oro) 12%,
    che scorre dentro un altro che scorre e' una trappola per il dito. */
 @media(max-width:999px){
   body.scena .filo-in{display:flex;flex-direction:column}
+  /* Il quadrante si prendeva piu' di meta' schermo e l'anno restava
+     tagliato di netto sul suo bordo: non si capiva se passava sotto o
+     se era un errore. Ora e' piu' piccolo e sotto ha una sfumatura,
+     cosi' il testo ci scivola dentro invece di essere tranciato.
+     (Massimo: «l'anno tagliato a meta'... il quadrante si prende piu'
+     di meta' schermo... c'e' troppo marrone») */
   body.scena .filo-scena{order:-1;position:sticky;top:134px;z-index:2;
-    margin:0 0 clamp(14px,2vh,22px);
-    /* fondo pieno: con la sfumatura il testo che scorre sotto si
-       vedeva attraverso il quadrante */
-    background:var(--sfondo);padding:6px 0 10px;
-    box-shadow:0 14px 20px -14px rgba(0,0,0,.95)}
+    margin:0;padding:2px 0 0;background:var(--sfondo)}
+  body.scena .filo-scena::after{content:"";display:block;height:26px;
+    background:linear-gradient(to bottom,var(--sfondo) 0,transparent 100%)}
   /* quadrato vero: con la sola altezza limitata la tela restava larga
      e il globo dentro diventava un bottone */
-  body.scena .filo-quadrante{width:auto;height:min(310px,34vh);max-height:none;
+  body.scena .filo-quadrante{width:auto;height:min(268px,30vh);max-height:none;
     aspect-ratio:1/1;margin:0 auto}
-  body.scena .filo-conti{margin:6px 0 0;gap:26px}
-  body.scena .filo-conti b{font-size:24px}
+  body.scena .filo-conti{margin:2px 0 0;gap:24px}
+  body.scena .filo-conti b{font-size:20px}
+  body.scena .filo-conti span{font-size:9px;margin-top:3px}
   /* le liste di lato non servono: i teatri e i ruoli dell'anno sono
      gia' nel racconto, e qui ruberebbero mezzo schermo */
   body.scena .filo-liste{display:none}
+}
+
+/* ── telefono coricato ──────────────────────────────────────────── */
+/* Con lo schermo alto 400 punti un quadrante incollato in cima non
+   lascia spazio a niente: li' si stacca, si rimpicciolisce e sta in
+   fila col testo. (Massimo: «e non funziona in orizzontale») */
+@media(max-width:999px) and (max-height:560px){
+  body.scena .filo-scena{position:static;order:-1;padding:0;background:none}
+  body.scena .filo-scena::after{display:none}
+  body.scena .filo-quadrante{height:min(210px,62vh)}
+  body.scena .filo-conti{margin:4px 0 14px}
+  body.scena .filo-anno{scroll-margin-top:150px}
 }

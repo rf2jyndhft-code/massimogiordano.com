@@ -59,8 +59,12 @@
     /* Il margine per i numeri si MISURA, non si indovina: l'etichetta
        piu' lunga e' «1992-95» e su una colonna stretta, con un margine
        fisso, finiva mezza fuori dallo schermo. */
-    cx.font = '400 9.5px "Archivo",system-ui,sans-serif';
-    var margine = Math.ceil(cx.measureText('1992\u201395').width) + 22;
+    /* Su un quadrante piccolo i numeri si accavallano: il carattere
+       scende e, se lo spazio per ciascuno resta sotto i dodici punti,
+       si scrive solo un anno ogni cinque. Le tacche restano tutte. */
+    var corpo = S < 420 ? 8 : 9.5;
+    cx.font = '400 ' + corpo + 'px "Archivo",system-ui,sans-serif';
+    var margine = Math.ceil(cx.measureText('1992\u201395').width) + (S < 420 ? 14 : 22);
     /* Se la tela e' piu' stretta del doppio del margine, i raggi
        vengono negativi e il disegno va in errore a ogni fotogramma.
        Succedeva su una finestra piccola, dove il controllo apre le
@@ -124,17 +128,20 @@
       cx.stroke();
       cx.restore();
 
+      var spazio = 2 * Math.PI * Rt / ANNI.length;
+      if (!qui && !hov && spazio < 12 && ANNI[i].anno % 5 !== 0) { continue; }
       cx.save();
       cx.rotate(ang);
       cx.fillStyle = qui ? '#c3994f' : (hov ? 'rgba(241,238,232,.95)' : 'rgba(241,238,232,.62)');
-      cx.font = (qui ? '500 12px ' : '400 9.5px ') + '"Archivo",system-ui,sans-serif';
+      cx.font = (qui ? '500 ' + (corpo + 2.5) + 'px ' : '400 ' + corpo + 'px ')
+              + '"Archivo",system-ui,sans-serif';
       if (Math.cos(ang) < 0) {           /* meta' sinistra: si ribalta */
         cx.rotate(Math.PI);
         cx.textAlign = 'right';
-        cx.fillText(ANNI[i].etichetta, -(Rt + 14), 0);
+        cx.fillText(ANNI[i].etichetta, -(Rt + 10), 0);
       } else {
         cx.textAlign = 'left';
-        cx.fillText(ANNI[i].etichetta, Rt + 14, 0);
+        cx.fillText(ANNI[i].etichetta, Rt + 10, 0);
       }
       cx.restore();
     }
