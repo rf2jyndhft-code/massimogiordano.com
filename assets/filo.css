@@ -105,7 +105,7 @@ body.scena .filo-racconti{max-height:none}
   body.scena .filo-racconti::after{content:"";display:block;height:34vh}
 }
 body.scena .filo-anno{min-height:0;display:block;padding:clamp(14px,2vh,22px) 0;
-  scroll-margin-top:clamp(200px,40vh,340px)}
+  scroll-margin-top:150px}
 /* gli anni ancora senza racconto passano in fretta e non gridano */
 body.scena .filo-anno.vuoto{min-height:0;padding:10px 0}
 body.scena .filo-anno.vuoto .filo-numero{color:var(--testo4);
@@ -228,9 +228,15 @@ body.scena .bio-scarica-vai a:hover{background:color-mix(in srgb,var(--oro) 12%,
      cosi' il testo ci scivola dentro invece di essere tranciato.
      (Massimo: «l'anno tagliato a meta'... il quadrante si prende piu'
      di meta' schermo... c'e' troppo marrone») */
-  body.scena .filo-scena{order:-1;position:sticky;top:134px;z-index:2;
-    margin:0;padding:2px 0 0;background:var(--sfondo)}
-  body.scena .filo-scena::after{content:"";display:block;height:26px;
+  /* Incollato SOTTO la barra del nome, non piu' in basso: la barra sul
+     telefono e' alta 75 punti, misurata. Cosi' fra il nome e il
+     quadrante non resta una striscia di testo a meta', e il racconto
+     scorre pulito sotto. Staccarlo non si puo': «altrimenti non ha
+     senso di esistere». (Massimo: «alzare il box fino a Massimo
+     Giordano e lasciare scorrere il testo sotto») */
+  body.scena .filo-scena{order:-1;position:sticky;top:75px;z-index:3;
+    margin:0;padding:8px 0 0;background:var(--sfondo)}
+  body.scena .filo-scena::after{content:"";display:block;height:22px;
     background:linear-gradient(to bottom,var(--sfondo) 0,transparent 100%)}
   /* quadrato vero: con la sola altezza limitata la tela restava larga
      e il globo dentro diventava un bottone */
@@ -249,7 +255,7 @@ body.scena .bio-scarica-vai a:hover{background:color-mix(in srgb,var(--oro) 12%,
    lascia spazio a niente: li' si stacca, si rimpicciolisce e sta in
    fila col testo. (Massimo: «e non funziona in orizzontale») */
 @media(max-width:999px) and (max-height:560px){
-  body.scena .filo-scena{position:static;order:-1;padding:0;background:none}
+  body.scena .filo-scena{position:static;padding:0;background:none}
   body.scena .filo-scena::after{display:none}
   body.scena .filo-quadrante{height:min(210px,62vh)}
   body.scena .filo-conti{margin:4px 0 14px}
