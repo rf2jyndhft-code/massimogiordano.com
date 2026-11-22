@@ -255,7 +255,16 @@
   });
 
   cv.addEventListener('pointermove', function (ev) {
-    if (!mano.giu) { sopra = quale(ev); cv.style.cursor = sopra >= 0 ? 'pointer' : 'grab'; return; }
+    if (!mano.giu) { sopra = quale(ev); cv.style.cursor = sopra >= 0 ? 'pointer' : 'grab'; }
+  });
+
+  /* Il movimento si ascolta su TUTTA la finestra, non solo sopra la
+     tela: il quadrante e' piccolo e il dito ne esce dopo pochi gradi.
+     Ascoltandolo solo sulla tela la rotazione si fermava li'.
+     (Massimo: «era meglio la prima versione» - la prima ascoltava
+     proprio su window, ed era quello il motivo) */
+  window.addEventListener('pointermove', function (ev) {
+    if (!mano.giu) return;
     var a = polare(ev).ang, d = a - mano.ang;
     while (d > Math.PI) d -= TAU;
     while (d < -Math.PI) d += TAU;
@@ -277,8 +286,8 @@
       if (!scorreDaSola()) mostra(anno, true);
     }
   }
-  cv.addEventListener('pointerup', molla);
-  cv.addEventListener('pointercancel', molla);
+  window.addEventListener('pointerup', molla);
+  window.addEventListener('pointercancel', molla);
   cv.addEventListener('pointerleave', function () { if (!mano.giu) sopra = -1; });
 
   /* ── un anno si puo' anche cliccare ──────────────────────────── */
