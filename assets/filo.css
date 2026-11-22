@@ -142,7 +142,13 @@ body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px)}
 }
 /* il quadrante: gli anni in cerchio, il mappamondo dentro */
 body.scena .filo-quadrante{display:block;width:100%;aspect-ratio:1/1;
+  /* pan-y e non 'none': scorrendo in su e in giu' la pagina scorre
+     come sempre, mentre il movimento circolare gira la ghiera. Con
+     'none' il quadrante sul telefono avrebbe rubato lo scorrimento a
+     meta' schermo. */
+  touch-action:pan-y;cursor:grab;
   max-height:min(620px,62vh);margin:0 auto}
+body.scena .filo-quadrante:active{cursor:grabbing}
 body.scena .filo-conti{display:flex;gap:clamp(18px,2.4vw,30px);
   margin:clamp(10px,1.6vh,16px) 0 clamp(16px,2.4vh,24px)}
 body.scena .filo-conti div{flex:1 1 0}

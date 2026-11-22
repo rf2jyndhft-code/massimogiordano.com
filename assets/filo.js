@@ -62,7 +62,7 @@
     /* Su un quadrante piccolo i numeri si accavallano: il carattere
        scende e, se lo spazio per ciascuno resta sotto i dodici punti,
        si scrive solo un anno ogni cinque. Le tacche restano tutte. */
-    var corpo = S < 420 ? 8 : 9.5;
+    var corpo = S < 300 ? 6.5 : (S < 420 ? 7.5 : 9.5);
     cx.font = '400 ' + corpo + 'px "Archivo",system-ui,sans-serif';
     var margine = Math.ceil(cx.measureText('1992\u201395').width) + (S < 420 ? 14 : 22);
     /* Se la tela e' piu' stretta del doppio del margine, i raggi
@@ -128,8 +128,10 @@
       cx.stroke();
       cx.restore();
 
-      var spazio = 2 * Math.PI * Rt / ANNI.length;
-      if (!qui && !hov && spazio < 12 && ANNI[i].anno % 5 !== 0) { continue; }
+      /* Tutti e trentanove gli anni, sempre: diradarli faceva sparire
+         il senso della ghiera. (Massimo: «lascia lo stesso globo con
+         le date e gli anni che aveva prima») Se stanno stretti, a
+         stringersi e' il carattere, non il numero di anni. */
       cx.save();
       cx.rotate(ang);
       cx.fillStyle = qui ? '#c3994f' : (hov ? 'rgba(241,238,232,.95)' : 'rgba(241,238,232,.62)');
@@ -149,6 +151,7 @@
   }
 
   function muovi() {
+    if (trascino) { disegna(); requestAnimationFrame(muovi); return; }
     var dg = giroVuole - giro;
     while (dg > Math.PI) dg -= TAU; while (dg < -Math.PI) dg += TAU;
     giro += Math.abs(dg) > .002 ? dg * .09 : dg;
@@ -166,11 +169,11 @@
   var elRuoli = document.getElementById('filo-ruoli');
   var sfondi = [].slice.call(document.querySelectorAll('.filo-sfondo img'));
 
-  function vai(i) {
+  function vai(i, tenendoFermaLaGhiera) {
     if (i === attivo || !ANNI[i]) return;
     attivo = i;
     var a = ANNI[i];
-    giroVuole = -Math.PI / 2 - POS[i];
+    if (!tenendoFermaLaGhiera) giroVuole = -Math.PI / 2 - POS[i];
     acceso = a.teatri;
     if (a.teatri.length) {
       var sx = 0, sy = 0, sz = 0;
@@ -211,12 +214,68 @@
     }
     return meglio < 5 * RAD ? vicino : -1;
   }
+  /* ── LA GHIERA SI GIRA COL DITO ─────────────────────────────────
+     Massimo: «fai in modo che posso girare sul mappamondo per gli anni
+     come una ghiera». Si prende dal bordo, dove stanno i numeri, e si
+     gira: l'anno che arriva in cima diventa quello che leggi, e il
+     racconto lo segue. Lasciando, si incastra sull'anno piu' vicino.
+     Il centro resta libero: li' c'e' il mappamondo, che non si tocca. */
+  var trascino = false, angPrec = 0, mosso = 0;
+
+  function angoloDi(ev) {
+    var r = cv.getBoundingClientRect();
+    return Math.atan2(ev.clientY - r.top - r.height / 2,
+                      ev.clientX - r.left - r.width / 2);
+  }
+  function sullAnello(ev) {
+    var r = cv.getBoundingClientRect();
+    var x = ev.clientX - r.left - r.width / 2, y = ev.clientY - r.top - r.height / 2;
+    var d = Math.sqrt(x * x + y * y), S = Math.min(r.width, r.height);
+    return d > S * .26 && d < S / 2 + 8;
+  }
+  function annoInCima() {
+    var meglio = 1e9, vinto = -1;
+    for (var k = 0; k < POS.length; k++) {
+      var d = Math.abs(((POS[k] + giro + Math.PI / 2 + Math.PI) % TAU + TAU) % TAU - Math.PI);
+      if (d < meglio) { meglio = d; vinto = k; }
+    }
+    return vinto;
+  }
+
+  cv.addEventListener('pointerdown', function (e) {
+    if (!sullAnello(e)) return;
+    trascino = true; mosso = 0; angPrec = angoloDi(e);
+    if (cv.setPointerCapture) cv.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!trascino) return;
+    var a = angoloDi(e), d = a - angPrec;
+    while (d > Math.PI) d -= TAU;
+    while (d < -Math.PI) d += TAU;
+    giro += d; giroVuole = giro; angPrec = a; mosso += Math.abs(d);
+    var i = annoInCima();
+    if (i >= 0 && i !== attivo) {
+      vai(i, true);
+      if (blocchi[i]) blocchi[i].scrollIntoView({ block: 'center' });
+    }
+    e.preventDefault();
+  });
+  function lascia() {
+    if (!trascino) return;
+    trascino = false;
+    if (attivo >= 0) giroVuole = -Math.PI / 2 - POS[attivo];   /* si incastra */
+  }
+  window.addEventListener('pointerup', lascia);
+  window.addEventListener('pointercancel', lascia);
+
   cv.addEventListener('mousemove', function (e) {
     var i = quale(e); sopra = i;
     cv.style.cursor = i >= 0 ? 'pointer' : 'default';
   });
   cv.addEventListener('mouseleave', function () { sopra = -1; });
   cv.addEventListener('click', function (e) {
+    if (mosso > .05) { mosso = 0; return; }   /* era un giro, non un clic */
     var i = quale(e);
     if (i >= 0) blocchi[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
