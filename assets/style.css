@@ -113,11 +113,17 @@ p{margin:0 0 1.1em}
 }
 
 /* ---------- la barra richiusa ---------- */
-.topbar.compatta .wrap{display:flex;align-items:center;gap:20px;min-height:50px}
-.topbar.compatta .brand{display:inline-block;text-align:left;padding:0;
-  font-size:15.5px;letter-spacing:.09em;flex:0 0 auto}
-.topbar.compatta .nav{border-top:0;padding:0;margin-left:auto;flex-wrap:nowrap}
-.topbar.compatta .tb-destra{position:static;top:auto;flex:0 0 auto}
+/* Anche nella barra compatta il nome sta al centro esatto, come in
+   tutte le altre pagine: nel flusso restava a sinistra e il menu gli
+   scorreva accanto. (Massimo, 22 novembre 2026: «lo stesso sul
+   desktop») */
+.topbar.compatta .wrap{display:block;position:relative;min-height:0;
+  padding:10px 0 2px}
+.topbar.compatta .brand{display:block;text-align:center;padding:0 0 7px;
+  font-size:15.5px;letter-spacing:.09em}
+.topbar.compatta .nav{border-top:0;display:flex;justify-content:center;
+  flex-wrap:nowrap;gap:22px;margin:0;padding:0 0 8px}
+.topbar.compatta .tb-destra{position:absolute;right:0;top:6px;flex:0 0 auto}
 
 .nav{display:flex;gap:4px 20px;flex-wrap:wrap;font-family:var(--sans);font-size:13.5px;
   letter-spacing:.06em}
