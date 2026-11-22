@@ -213,18 +213,30 @@ body.scena .bio-stampa-dentro{display:grid;gap:clamp(24px,4vw,56px);
     background:color-mix(in srgb,var(--oro) 45%,transparent)}
 }
 
-/* ── le tre biografie da scaricare ──────────────────────────────── */
-body.scena .bio-scarica-tit{font-family:var(--display);font-weight:400;
-  font-size:clamp(26px,3vw,40px);line-height:1.1;margin:12px 0 14px}
-body.scena .bio-scarica-testo{color:var(--testo2);font-size:clamp(14px,1.1vw,16px);
-  line-height:1.75;max-width:54ch;margin:0}
-body.scena .bio-scarica-vai{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,26px);
-  margin:clamp(22px,3vh,32px) 0 0}
-body.scena .bio-scarica-vai a{color:var(--oro);font:500 11px/1 var(--sans);
-  letter-spacing:.2em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--oro) 38%,transparent);
-  padding:13px 20px;transition:background .25s ease,border-color .25s ease}
-body.scena .bio-scarica-vai a:hover{background:color-mix(in srgb,var(--oro) 12%,transparent);
-  border-color:var(--oro)}
+/* ── le tre biografie da scaricare, in una riga ────────────────────
+   Era una sezione alta una schermata intera, con mezza larghezza
+   vuota: chi apre la Biografia vuole sapere chi e', e trovava per
+   seconda cosa un bottone per scaricare un PDF. Serve ai giornalisti
+   e ai teatri, che sono pochi e sanno cercare. Qui e' una riga sola,
+   alta sessanta punti invece di settecento, e in due secondi sei
+   dentro il racconto. (Massimo, 22 novembre 2026, guardandola:
+   «a te piace questa sistemazione?») */
+body.scena .bio-scarica{border-bottom:1px solid var(--filo)}
+body.scena .bio-scarica .wrap{display:flex;align-items:baseline;
+  flex-wrap:wrap;gap:6px 18px;padding-top:16px;padding-bottom:16px}
+body.scena .bio-scarica-eti{font:500 10.5px/1 var(--sans);letter-spacing:.2em;
+  text-transform:uppercase;color:var(--oro);margin:0}
+body.scena .bio-scarica-testo{color:var(--testo4);font-size:12.5px;
+  letter-spacing:.02em;margin:0;margin-right:auto}
+body.scena .bio-scarica-vai{display:flex;gap:16px;margin:0}
+body.scena .bio-scarica-vai a{color:var(--testo2);font:500 10.5px/1 var(--sans);
+  letter-spacing:.18em;text-transform:uppercase;
+  border-bottom:1px solid color-mix(in srgb,var(--oro) 40%,transparent);
+  padding-bottom:3px;transition:color .25s ease,border-color .25s ease}
+body.scena .bio-scarica-vai a:hover{color:var(--oro);border-bottom-color:var(--oro)}
+@media(max-width:600px){
+  body.scena .bio-scarica-testo{margin-right:0;width:100%}
+}
 
 /* ── il filo sul telefono ───────────────────────────────────────── */
 /* Senza griglia il quadrante finiva in fondo, dopo trentanove anni:
