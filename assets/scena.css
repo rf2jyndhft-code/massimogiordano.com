@@ -135,7 +135,15 @@ html.moto .entra.dentro{opacity:1;transform:none}
 /* --- chi è ----------------------------------------------------------- */
 .chi{display:grid;grid-template-columns:1fr;gap:clamp(30px,5vw,80px);align-items:center;
   padding:clamp(50px,8vw,120px) 0}
-@media(min-width:960px){.chi{grid-template-columns:1.15fr .85fr;justify-items:stretch}}
+/* Senza la fotografia accanto la colonna resta una sola: sopra c'e' gia'
+   il video dell'apertura, e Massimo non voleva un ritratto subito sotto.
+   Il testo si allarga su due colonne di lettura invece di stare stretto
+   in meta' pagina. */
+@media(min-width:960px){
+  .chi{grid-template-columns:1.15fr .85fr;justify-items:stretch}
+  .chi:not(:has(figure)){grid-template-columns:1fr;max-width:none}
+  .chi:not(:has(figure)) p{max-width:72ch}
+}
 .chi h2{margin:18px 0 26px;font:400 clamp(30px,4.6vw,58px)/1.06 var(--display)}
 .chi p{margin:0 0 1.3em;font-size:16.5px;line-height:1.86;color:var(--testo2);max-width:50ch}
 .chi figure{margin:0;position:relative;overflow:hidden}
