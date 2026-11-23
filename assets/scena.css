@@ -1073,3 +1073,11 @@ body.scena .timeline-vista{position:relative}
    sinistra: lì c'era molto vuoto e in fondo alla colonna destra si
    perdeva. Massimo: «si, mettici full bio sotto». */
 body.scena .rac-in > div:first-child .rac-vai{margin-top:clamp(22px,3vw,34px)}
+
+/* Fra i numeri e la biografia non c'era niente: solo un vuoto grande,
+   e Massimo l'ha notato subito — «dove sta la linea divisoria?».
+   Il filo sta dentro la fascia di testo, non a tutto schermo, come le
+   altre separazioni del sito. */
+body.scena .rac{position:relative}
+body.scena .rac::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(1320px,calc(100% - 2*clamp(20px,5vw,72px)));height:1px;background:var(--filo)}
