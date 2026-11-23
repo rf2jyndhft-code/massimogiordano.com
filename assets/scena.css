@@ -1059,3 +1059,12 @@ body.scena .timeline-vista{position:relative}
   font:400 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
   border-bottom:1px solid color-mix(in srgb,var(--oro) 45%,transparent);padding-bottom:4px}
 .rac-vai:hover{color:var(--oro)}
+
+/* Sul telefono le due colonne non ci stanno: il racconto finiva in una
+   striscia da quattro parole per riga. Una colonna sola, titolo sopra. */
+@media(max-width:860px){
+  body.scena .rac{padding:clamp(44px,8vw,70px) 0}
+  body.scena .rac-in{grid-template-columns:1fr;gap:18px}
+  body.scena .rac-apre{font-size:clamp(23px,6.4vw,30px);line-height:1.2;margin-top:10px}
+  body.scena .rac-corpo p{font-size:15.5px;line-height:1.72;max-width:none}
+}
