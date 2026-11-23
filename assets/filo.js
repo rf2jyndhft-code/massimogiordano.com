@@ -197,7 +197,13 @@
       return '<li><b>' + r.r + '</b><span>' + r.o + '</span></li>'; }).join('');
     document.getElementById('filo-dove').hidden = !a.teatri.length;
     document.getElementById('filo-nuovi').hidden = !a.ruoli.length;
-    sfondi.forEach(function (im, k) { im.classList.toggle('visto', k === i); });
+    sfondi.forEach(function (im, k) {
+      var mio = k === i;
+      /* la fotografia dell'anno si scarica solo quando serve: sono 39 da
+         300 KB, caricarle tutte voleva dire dodici mega per una pagina sola. */
+      if (mio && !im.src && im.dataset.src) im.src = im.dataset.src;
+      im.classList.toggle('visto', mio);
+    });
   }
 
   /* ── il quadrante si tocca ──────────────────────────────────────── */

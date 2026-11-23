@@ -10,7 +10,7 @@ html{-webkit-text-size-adjust:100%}
    ══════════════════════════════════════════════════════════════════ */
 :root{
   --sfondo:#1e1a15; --sfondo2:#27221b; --bordo:#443a2f; --filo:#352e25;
-  --testo:#f1eee8; --testo2:#c6bdae; --testo3:#b3a897; --testo4:#8a8071;
+  --testo:#f1eee8; --testo2:#c6bdae; --testo3:#b3a897; --testo4:#8f8576;   /* 4,77 contro il fondo: AA. Era #8a8071, 4,45 */
   --oro:#c3994f; --su-oro:#1a1711;
   --velo:1;                      /* il video in apertura si vede intero */
   --grigia:.30;                   /* quanto sono scolorite le fotografie */

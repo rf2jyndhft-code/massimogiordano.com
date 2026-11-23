@@ -13,6 +13,9 @@
   --muted-dark:#a7b0bd;   /* grigio leggibile su blu notte */
   --gold:#b8893f;         /* oro scurito: regge il contrasto */
   --gold-light:#d9b273;
+  --gold-ink:#8f6424;     /* oro per il TESTO su carta: 4,69, cioe' AA.
+                             Il --gold normale ne fa 2,81: regge come filo
+                             o come bordo, non come parola da leggere. */
   --rule:rgba(16,26,40,.14);
   --rule-dark:rgba(217,178,115,.28);
   --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
@@ -32,7 +35,7 @@ img{max-width:100%;height:auto;display:block}
 
 a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gold);
   transition:color .15s ease,border-color .15s ease}
-a:hover{color:var(--gold)}
+a:hover{color:var(--gold-ink)}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:2px}
 
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
@@ -608,7 +611,7 @@ footer h3{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-trans
 @media (hover:hover){ .social a:hover{opacity:1;color:var(--gold)} }
 .social a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;opacity:1}
 .social a svg{width:24px;height:24px;display:block;flex:none;fill:currentColor}
-.social a:hover{color:var(--gold)}
+.social a:hover{color:var(--gold-ink)}
 @media (hover:hover){ footer .social a:hover,.on-dark .social a:hover{color:var(--gold-light)} }
 
 .altrove{font-family:var(--sans);font-size:13.5px;line-height:2;margin:4px 0 0}
