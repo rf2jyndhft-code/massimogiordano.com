@@ -125,7 +125,9 @@ html.moto .entra.dentro{opacity:1;transform:none}
 
 /* --- i numeri che salgono ------------------------------------------- */
 .conti{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(26px,4vw,48px);
-  padding:clamp(44px,5.4vw,70px) 0 clamp(20px,2.4vw,30px)}
+  /* stesso respiro sopra e sotto: i numeri devono stare in mezzo fra la
+     riga dei teatri e il filo della biografia, non appoggiati in alto */
+  padding:clamp(40px,5vw,64px) 0}
 @media(min-width:860px){.conti{grid-template-columns:repeat(4,1fr)}}
 .conti div{text-align:center}
 .conti .k{font:400 clamp(40px,6vw,76px)/1 var(--display);font-variant-numeric:tabular-nums;color:var(--testo)}
@@ -543,7 +545,7 @@ html.menu-aperto,html.menu-aperto body{overflow:hidden}
   body.scena .nastro div{animation-duration:62s}
 
   /* i numeri a due per riga, grandi */
-  body.scena .conti{gap:30px 20px;padding:clamp(44px,8vh,70px) 0}
+  body.scena .conti{gap:30px 20px;padding:clamp(38px,6vh,56px) 0}
   body.scena .conti .k{font-size:clamp(38px,11vw,52px)}
   body.scena .conti .v{font-size:11px;letter-spacing:.12em}
 
