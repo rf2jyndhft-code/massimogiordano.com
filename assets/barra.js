@@ -24,16 +24,13 @@
   /* la copia sottile: stessa barra, gia' in forma compatta */
   var fissa = alta.cloneNode(true);
   fissa.classList.add('topbar-fissa', 'compatta');
-  fissa.setAttribute('aria-hidden', 'true');
-  /* aria-hidden da solo non basta: dentro la copia ci sono i link del menu,
-     e un ramo nascosto che contiene cose raggiungibili col tasto Tab rende
-     l'albero di accessibilita' contraddittorio (lo segnala anche PageSpeed).
-     inert lo toglie del tutto dalla navigazione; dove non e' ancora
-     riconosciuto, ci pensa il tabindex. */
-  fissa.inert = true;
-  Array.prototype.forEach.call(
-    fissa.querySelectorAll('a, button, input, select, textarea, [tabindex]'),
-    function (e) { e.setAttribute('tabindex', '-1'); });
+  /* NIENTE aria-hidden e NIENTE inert su questa copia: quando si scende,
+     questa E' la barra che si usa, e inert spegne anche i clic. Il 23
+     novembre il menu della home era diventato inservibile per quel motivo.
+     Per non avere due menu identici letti due volte, la copia porta la sua
+     etichetta: chi legge con la voce sente «menu, barra fissa». */
+  var navFissa = fissa.querySelector('.nav');
+  if (navFissa) navFissa.setAttribute('aria-label', 'Menu, barra fissa');
 
   /* La copia non deve portarsi dietro il menu del telefono. menu.js
      appende il pannello dentro la barra: se quando cloniamo c'e' gia',
