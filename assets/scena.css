@@ -914,12 +914,10 @@ body.scena .ig-velo{padding:clamp(14px,1.6vw,22px)}
    d'oro che tagliavano otto immagini. Una fotografia non si sottolinea. */
 body.scena a.ig-cella,body.scena a.ig-cella:hover{border-bottom:0}
 
-/* Sul telefono la prima apre a tutta larghezza e le altre vanno a due a
-   due: con otto, l'ultima restava spaiata. Anche l'ultima prende tutta
-   la riga, e la pagina si chiude come si e' aperta. */
-@media(max-width:679px){
-  body.scena .ig-cella:last-child{grid-column:span 2;aspect-ratio:4/3}
-}
+/* Questa regola faceva prendere all'ultima cella tutta la riga: serviva
+   quando la prima era grande e l'ultima restava spaiata. Tolta quella,
+   le otto celle fanno quattro righe piene da sole, e questa lasciava
+   invece un buco a meta' griglia. */
 
 /* La didascalia solo dove c'e' un mouse vero. Sul telefono il
    «passaggio sopra» resta appiccicato dopo il tocco, e una fotografia
@@ -1070,3 +1068,8 @@ body.scena .timeline-vista{position:relative}
   body.scena .rac-apre{font-size:clamp(23px,6.4vw,30px);line-height:1.2;margin-top:10px}
   body.scena .rac-corpo p{font-size:15.5px;line-height:1.72;max-width:none}
 }
+
+/* Il collegamento alla biografia sta sotto il titolo, nella colonna di
+   sinistra: lì c'era molto vuoto e in fondo alla colonna destra si
+   perdeva. Massimo: «si, mettici full bio sotto». */
+body.scena .rac-in > div:first-child .rac-vai{margin-top:clamp(22px,3vw,34px)}
