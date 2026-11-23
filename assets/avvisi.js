@@ -10,6 +10,7 @@
    programma di posta: meglio un giro in piu' che un messaggio perso. */
 
 (function () {
+  var aperta = Date.now();   /* quando la pagina e' stata caricata */
   'use strict';
 
   var POSTA = 'info@massimogiordano.com';
@@ -96,7 +97,9 @@
           email: indirizzo,
           consenso: !!ok.checked,
           lingua: document.documentElement.lang === 'it' ? 'it' : 'en',
-          sito: ''                      /* trappola antispam: resta vuota */
+          sito: '',                     /* trappola antispam: resta vuota */
+          /* da quanto e' aperta la pagina: un robot manda in zero secondi */
+          ms: Date.now() - aperta
         })
       })
         .then(function (r) { return r.ok ? r.json() : null; })

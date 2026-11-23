@@ -9,6 +9,7 @@
    testo pronto. Chi riceve legge una richiesta completa, chi scrive non
    lascia dati su nessuna piattaforma. */
 (function () {
+  var aperta = Date.now();   /* quando la pagina e' stata caricata */
   var modulo = document.querySelector('[data-lezioni]');
   if (!modulo) return;
 
@@ -149,7 +150,9 @@
           quando: v.quando || '',
           messaggio: testo(),
           lingua: document.documentElement.lang === 'it' ? 'it' : 'en',
-          sito: ''
+          sito: '',
+          /* da quanto e' aperta la pagina: un robot manda in zero secondi */
+          ms: Date.now() - aperta
         })
       })
         .then(function (r) { return r.ok ? r.json() : null; })
