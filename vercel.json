@@ -1244,5 +1244,11 @@
       "destination": "/",
       "permanent": true
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/riepilogo",
+      "schedule": "0 7 * * 1"
+    }
   ]
 }
