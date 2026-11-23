@@ -260,7 +260,11 @@
             (scelte.length === 1 ? P.una : P.molte) +
             (ruoloScelto >= 0 ? ' <button type="button" class="tutte">' + P.tutte + '</button>' : '') + '</p>';
     h += '<div class="globo-fotos">';
-    for (var k = 0; k < scelte.length && k < 12; k++)
+    /* Niente piu' tetto a dodici: della Carmen di Vienna ce ne sono
+       cinquantaquattro e se ne vedevano dodici, senza che niente lo
+       dicesse. Si scaricano man mano che si scorre (loading="lazy"),
+       quindi mostrarle tutte non pesa. */
+    for (var k = 0; k < scelte.length; k++)
       h += '<img src="' + scelte[k].src + '" alt="' + scelte[k].alt.replace(/"/g, '') + '"' +
            (scelte[k].pv === 'SOLO CARTELLA' ? ' class="daConfermare" title="' + P.daConfermare.charAt(0).toUpperCase() + P.daConfermare.slice(1) + '"' : '') +
            ' loading="lazy">';
