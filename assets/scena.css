@@ -1050,9 +1050,12 @@ body.scena .timeline-vista{position:relative}
    crescere oltre i 44 punti: "i caratteri sono enormi".
    ══════════════════════════════════════════════════════════════════ */
 /* ── IL RACCONTO ────────────────────────────────────────────────── */
-.rac{padding:clamp(66px,9vw,124px) 0}
+/* 70 punti sotto invece di 124: sotto l'ultima riga restavano 142 punti
+   di vuoto. E il titolo a meta' altezza, perche' la colonna di sinistra
+   e' alta 180 e quella di destra 372: in cima lasciava un buco. */
+.rac{padding:clamp(66px,9vw,124px) 0 clamp(44px,5vw,70px)}
 .rac-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(26px,5vw,80px);align-items:start}
+  gap:clamp(26px,5vw,80px);align-items:center}
 .rac-apre{margin:14px 0 0;font:400 clamp(27px,3.4vw,44px)/1.18 var(--serif);
   color:var(--testo);letter-spacing:-.01em;text-wrap:balance}
 .rac-corpo p{margin:0 0 18px;font:300 clamp(14.5px,1.25vw,16.5px)/1.75 var(--sans);
@@ -1083,3 +1086,11 @@ body.scena .rac-in > div:first-child .rac-vai{margin-top:clamp(22px,3vw,34px)}
 body.scena .rac{position:relative}
 body.scena .rac::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
   width:min(1320px,calc(100% - 2*clamp(20px,5vw,72px)));height:1px;background:var(--filo)}
+
+/* Il fondo della biografia: Massimo lo trovava «molto pesante» tutto
+   dello stesso scuro. Una sfumatura calda che si apre in mezzo e torna
+   scura ai bordi, così la fascia respira senza staccarsi dal resto. */
+/* Gli estremi devono essere ESATTAMENTE il fondo della pagina (#1e1a15):
+   partendo da un tono diverso si vedeva un gradino sul filo. */
+body.scena .rac{background:linear-gradient(180deg,
+  #1e1a15 0%, #29221a 50%, #1e1a15 100%)}

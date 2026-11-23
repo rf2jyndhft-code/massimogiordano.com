@@ -31,14 +31,14 @@
 .voce-r:hover img,.voce-r.suona img{opacity:.3}
 .voce-r.suona img{opacity:.42}
 
-.voce-t{display:grid;grid-template-columns:clamp(46px,5vw,76px) 1fr auto;
+.voce-t{display:grid;grid-template-columns:clamp(38px,4vw,56px) 1fr auto;
   align-items:center;gap:0 clamp(14px,2vw,30px);width:100%;
   background:none;border:0;cursor:pointer;color:inherit;text-align:left;
-  padding:clamp(18px,2.6vw,30px) 0;font-family:inherit}
+  padding:clamp(14px,1.8vw,20px) 0;font-family:inherit}
 .voce-n{font:400 11px/1 var(--sans);letter-spacing:.2em;color:var(--oro);
   font-variant-numeric:tabular-nums}
 .voce-r.suona .voce-n{color:var(--testo)}
-.voce-tit{font:400 clamp(25px,4.3vw,54px)/1.04 var(--serif);color:var(--testo2);
+.voce-tit{font:400 clamp(19px,2.3vw,30px)/1.15 var(--serif);color:var(--testo2);
   letter-spacing:-.012em;transition:color .35s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
 .voce-r:hover .voce-tit{color:var(--testo);transform:translateX(10px)}
 .voce-r.suona .voce-tit{color:var(--testo);transform:translateX(10px)}
