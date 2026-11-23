@@ -1,0 +1,209 @@
+/* ══════════════════════════════════════════════════════════════════
+   LA HOME, DA SOTTO I CONTATORI IN GIU' — prova
+   Massimo: «altamente professionale ma fresco giovane e super cool»,
+   e «fino ai contatori tutto ok».
+
+   L'idea: quello che nessun altro sito di cantante ha e' la voce. Il
+   disco smette di essere un riquadro con la copertina e diventa la
+   cosa piu' grande della pagina: tre righe enormi che si suonano.
+   Tutto il resto scende di tono per lasciargliela.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── LA VOCE ────────────────────────────────────────────────────── */
+.voce{position:relative;background:#141109;padding:clamp(64px,9vw,120px) 0 clamp(50px,7vw,88px);
+  border-top:1px solid var(--filo);border-bottom:1px solid var(--filo)}
+.voce-testa{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;
+  margin-bottom:clamp(30px,4vw,54px)}
+.voce-testa h2{margin:20px 0 0;font:400 clamp(30px,4.6vw,56px)/1.02 var(--serif);
+  letter-spacing:-.01em;color:var(--testo)}
+.voce-testa .voce-nota{margin:0;font:300 13.5px/1.6 var(--sans);color:var(--testo4);
+  max-width:34ch}
+
+.voce-lista{list-style:none;margin:0;padding:0}
+.voce-r{position:relative;border-top:1px solid var(--filo);overflow:hidden}
+.voce-r:last-child{border-bottom:1px solid var(--filo)}
+/* la fotografia entra da destra solo quando la riga e' viva: non e'
+   decorazione, dice di che opera si tratta */
+.voce-r img{position:absolute;inset:0 0 0 auto;width:min(54%,620px);height:100%;
+  object-fit:cover;object-position:50% 28%;opacity:0;transition:opacity .55s ease;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 46%);
+  mask-image:linear-gradient(to right,transparent,#000 46%);pointer-events:none}
+.voce-r:hover img,.voce-r.suona img{opacity:.3}
+.voce-r.suona img{opacity:.42}
+
+.voce-t{display:grid;grid-template-columns:clamp(46px,5vw,76px) 1fr auto;
+  align-items:center;gap:0 clamp(14px,2vw,30px);width:100%;
+  background:none;border:0;cursor:pointer;color:inherit;text-align:left;
+  padding:clamp(18px,2.6vw,30px) 0;font-family:inherit}
+.voce-n{font:400 11px/1 var(--sans);letter-spacing:.2em;color:var(--oro);
+  font-variant-numeric:tabular-nums}
+.voce-r.suona .voce-n{color:var(--testo)}
+.voce-tit{font:400 clamp(25px,4.3vw,54px)/1.04 var(--serif);color:var(--testo2);
+  letter-spacing:-.012em;transition:color .35s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.voce-r:hover .voce-tit{color:var(--testo);transform:translateX(10px)}
+.voce-r.suona .voce-tit{color:var(--testo);transform:translateX(10px)}
+.voce-meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px;
+  font:300 12px/1 var(--sans);color:var(--testo4);white-space:nowrap}
+.voce-meta b{font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:10.5px;
+  color:var(--testo3)}
+.voce-dur{font-variant-numeric:tabular-nums}
+/* il filo d'oro che cammina sul bordo basso della riga mentre suona */
+.voce-avanza{position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--oro);
+  transition:width .18s linear}
+.voce-r.suona .voce-avanza{box-shadow:0 0 14px 1px color-mix(in srgb,var(--oro) 55%,transparent)}
+
+.voce-piede{display:flex;flex-wrap:wrap;gap:20px clamp(22px,4vw,56px);align-items:center;
+  margin-top:clamp(26px,3.4vw,44px)}
+.voce-piede>p{margin:0;flex:1 1 360px;max-width:58ch;
+  font:300 13px/1.65 var(--sans);color:var(--testo4)}
+/* la copertina e Spotify stanno in riga con la nota, non sotto */
+.voce .disco2-piede{display:flex;align-items:center;gap:18px;margin:0;flex:0 0 auto}
+.voce .disco2-bollo{width:84px;height:84px;object-fit:cover;flex:0 0 auto;display:block}
+.voce .disco2-vai{margin:0}
+.voce .disco2-vai a{color:var(--testo2);font:400 11px/1 var(--sans);letter-spacing:.18em;
+  text-transform:uppercase;border-bottom:1px solid color-mix(in srgb,var(--oro) 45%,transparent);
+  padding-bottom:4px;white-space:nowrap}
+.voce .disco2-vai a:hover{color:var(--oro)}
+.voce .disco2-altre{margin-top:clamp(22px,3vw,38px)}
+
+/* ── IL RACCONTO ────────────────────────────────────────────────── */
+.rac{padding:clamp(66px,9vw,124px) 0}
+.rac-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(26px,5vw,80px);align-items:start}
+.rac-apre{margin:14px 0 0;font:400 clamp(27px,3.4vw,44px)/1.18 var(--serif);
+  color:var(--testo);letter-spacing:-.01em;text-wrap:balance}
+.rac-corpo p{margin:0 0 18px;font:300 clamp(14.5px,1.25vw,16.5px)/1.75 var(--sans);
+  color:var(--testo2);max-width:62ch}
+.rac-vai{display:inline-block;margin-top:10px;color:var(--testo2);
+  font:400 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+  border-bottom:1px solid color-mix(in srgb,var(--oro) 45%,transparent);padding-bottom:4px}
+.rac-vai:hover{color:var(--oro)}
+
+/* ── L'INTERVISTA, a tutta larghezza ────────────────────────────── */
+.int{position:relative;overflow:hidden;min-height:clamp(420px,62vh,660px);
+  display:flex;align-items:flex-end;isolation:isolate}
+.int video,.int>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 34%;z-index:-2}
+.int::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to top,rgba(20,17,9,.96) 0,rgba(20,17,9,.58) 38%,
+    rgba(20,17,9,.12) 72%,transparent 100%)}
+/* solo il fondo: scrivendo la scorciatoia si cancellava il margine
+   laterale di .in, e sul telefono il titolo finiva contro il bordo */
+.int-in{padding-bottom:clamp(36px,5vh,62px);display:flex;flex-wrap:wrap;
+  gap:18px 40px;align-items:flex-end;width:100%}
+.int-tit{margin:12px 0 8px;font:400 clamp(27px,3.8vw,48px)/1.06 var(--serif);color:var(--testo)}
+.int-sotto{margin:0;font:300 14px/1.6 var(--sans);color:var(--testo3);max-width:44ch}
+.int-vai{display:flex;align-items:center;gap:14px;margin-left:auto;white-space:nowrap}
+.int-cer{width:52px;height:52px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+  border:1px solid color-mix(in srgb,var(--oro) 55%,transparent);transition:transform .4s,border-color .4s}
+.int-vai:hover .int-cer{transform:scale(1.08);border-color:var(--oro)}
+.int-cer i{width:0;height:0;margin-left:4px;border-left:12px solid var(--oro);
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+.int-eti{display:block;font:400 11px/1.5 var(--sans);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--testo2)}
+.int-eti small{display:block;letter-spacing:.04em;text-transform:none;font-size:11.5px;
+  color:var(--testo4)}
+
+/* ── FUORI SCENA ────────────────────────────────────────────────── */
+.fuori{padding:clamp(60px,8vw,110px) 0 0}
+.fuori-testa{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:flex-end;
+  justify-content:space-between;margin-bottom:26px}
+.fuori-testa h2{margin:12px 0 0;font:400 clamp(27px,3.8vw,46px)/1.06 var(--serif);color:var(--testo)}
+.fuori-vai{color:var(--testo3);font:300 13.5px/1 var(--sans)}
+.fuori-vai:hover{color:var(--oro)}
+.fuori-griglia{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.fuori-griglia a{position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#0f0d08}
+.fuori-griglia img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .4s;opacity:.82}
+.fuori-griglia a:hover img{transform:scale(1.07);opacity:1}
+.fuori-velo{position:absolute;inset:auto 0 0 0;padding:14px 14px 12px;opacity:0;
+  transition:opacity .4s;background:linear-gradient(to top,rgba(10,8,4,.92),transparent);
+  font:300 11.5px/1.45 var(--sans);color:var(--testo2)}
+.fuori-griglia a:hover .fuori-velo{opacity:1}
+.fuori-data{display:block;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--oro);margin-bottom:5px}
+.fuori-testo{display:block}
+
+/* ── LA RIGA DEGLI AVVISI ───────────────────────────────────────── */
+.avvisi2{border-top:1px solid var(--filo);margin-top:clamp(56px,7vw,96px)}
+.avvisi2 .in{display:flex;align-items:center;flex-wrap:wrap;gap:12px 28px;
+  padding-top:20px;padding-bottom:20px}
+.avvisi2-eti{margin:0;font:500 10.5px/1 var(--sans);letter-spacing:.2em;
+  text-transform:uppercase;color:var(--oro)}
+.avvisi2-testo{margin:0;margin-right:auto;font:300 13.5px/1.5 var(--sans);color:var(--testo3)}
+/* .modulo e' centrato e largo al massimo 540: qui deve stare in riga,
+   a destra, senza andare a capo */
+body.scena .avvisi2 form{display:flex;gap:14px;flex-wrap:nowrap;align-items:center;
+  max-width:none;margin:0;justify-content:flex-end}
+/* body.scena vince sul semplice .avvisi2: il campo restava un
+   rettangolo piu' chiaro invece di una riga sola */
+body.scena .avvisi2 input{background:transparent;border:0;border-bottom:1px solid var(--bordo);
+  color:var(--testo);font:300 14px/1 var(--sans);padding:9px 2px;flex:0 1 240px;min-width:0}
+.avvisi2 input:focus{outline:0;border-bottom-color:var(--oro)}
+body.scena .avvisi2 button{flex:0 0 auto;background:var(--oro);color:var(--su-oro);border:0;cursor:pointer;
+  font:500 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+  padding:12px 20px;transition:opacity .3s}
+.avvisi2 button:hover{opacity:.85}
+.avvisi2 .esito{width:100%;margin:0;font:300 13px/1.5 var(--sans);color:var(--testo3)}
+
+/* ── SCHERMI STRETTI ────────────────────────────────────────────── */
+@media(max-width:860px){
+  .voce-t{grid-template-columns:34px 1fr;row-gap:8px;padding:16px 0 18px}
+  .voce-meta{grid-column:2;align-items:flex-start;flex-direction:row;gap:10px}
+  .voce-r img{width:100%;-webkit-mask-image:linear-gradient(to right,transparent,#000 62%);
+    mask-image:linear-gradient(to right,transparent,#000 62%)}
+  .voce-piede a{margin-left:0}
+  .rac-in{grid-template-columns:1fr;gap:22px}
+  .int-vai{margin-left:0}
+  /* otto celle: a tre per riga ne restavano due spaiate in fondo */
+  .fuori-griglia{grid-template-columns:repeat(2,1fr)}
+  .avvisi2 input{min-width:0;flex:1 1 180px}
+}
+@media (prefers-reduced-motion:reduce){
+  .voce-tit,.fuori-griglia img,.int-cer{transition:none}
+}
+
+/* ── IL DON CARLO ───────────────────────────────────────────────────
+   Il video vero, dalla produzione di Willy Decker. Massimo: «io
+   metterei l'inizio di Don Carlos che e' bellissimo», e i versi sono
+   quelli che mi ha dettato lui. Parte muto come tutti i video del web,
+   e chi vuole la voce accende l'altoparlante. */
+.carlo{position:relative;overflow:hidden;isolation:isolate;
+  min-height:clamp(480px,78vh,820px);display:flex;align-items:center}
+.carlo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 42%;z-index:-2;background:#080c18}
+/* mentre suona il testo si leva di mezzo: resta la scena e basta */
+.carlo.canta::after{opacity:.25}
+.carlo::after{transition:opacity .9s ease}
+.carlo.canta .carlo-versi,.carlo.canta .carlo-dove,.carlo.canta .occhio{
+  opacity:0;transition:opacity .9s ease;pointer-events:none}
+.carlo-versi,.carlo-dove,.carlo .occhio{transition:opacity .9s ease}
+.carlo.canta .carlo-voce{opacity:.5}
+.carlo.canta .carlo-voce:hover{opacity:1}
+.carlo::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to right,rgba(8,12,24,.86) 0,rgba(8,12,24,.52) 46%,
+    rgba(8,12,24,.08) 78%,transparent 100%)}
+.carlo-in{width:100%}
+.carlo-versi{margin:16px 0 0;font:400 clamp(21px,2.5vw,33px)/1.5 var(--serif);
+  color:var(--testo);letter-spacing:-.005em;text-shadow:0 2px 24px rgba(0,0,0,.6)}
+.carlo-versi span{display:block}
+.carlo-dove{margin:22px 0 0;font:300 12.5px/1.6 var(--sans);color:var(--testo3);
+  letter-spacing:.02em}
+.carlo-voce{margin-top:26px;display:inline-flex;align-items:center;gap:12px;
+  background:none;border:0;cursor:pointer;padding:0;color:var(--testo2);
+  font:400 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.carlo-voce small{display:block;margin-top:6px;letter-spacing:.04em;
+  text-transform:none;font-size:11.5px;color:var(--testo4)}
+.carlo-voce .cer{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid color-mix(in srgb,var(--oro) 55%,transparent);transition:transform .4s,border-color .4s}
+.carlo-voce:hover .cer{transform:scale(1.08);border-color:var(--oro)}
+.carlo-voce .cer::before{content:"";width:0;height:0;margin-left:3px;
+  border-left:11px solid var(--oro);border-top:7px solid transparent;border-bottom:7px solid transparent}
+.carlo.canta .carlo-voce .cer::before{width:11px;height:13px;margin:0;border:0;
+  background:linear-gradient(to right,var(--oro) 0 4px,transparent 4px 7px,var(--oro) 7px 11px)}
+@media(max-width:860px){
+  .carlo{min-height:62svh}
+  .carlo::after{background:linear-gradient(to top,rgba(8,12,24,.92) 0,rgba(8,12,24,.55) 44%,
+    rgba(8,12,24,.1) 80%,transparent 100%)}
+  .carlo-in{align-self:flex-end;padding-bottom:clamp(30px,5vh,52px)}
+}
