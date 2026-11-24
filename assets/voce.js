@@ -133,6 +133,9 @@
     titolo.innerHTML = b.dataset.tit;
     meta.innerHTML = b.dataset.meta;
     sfondo.src = b.dataset.foto;
+    /* ogni scena ha il suo punto di messa a fuoco: con un taglio solo,
+       sul telefono del Don Carlo restava il muro e lui finiva fuori. */
+    if (b.dataset.pos) sfondo.style.objectPosition = b.dataset.pos;
     tutto.textContent = b.querySelector('.lt-d').textContent;
     passato.textContent = '0:00';
     fatta.style.width = '0%';
