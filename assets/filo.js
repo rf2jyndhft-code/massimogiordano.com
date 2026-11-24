@@ -76,9 +76,23 @@
     cx.clearRect(0, 0, w, h);
 
     /* ── il globo, dentro il quadrante ──────────────────────────── */
+    /* La sfera ha un suo vetro scuro: i continenti si leggono anche
+       quando dietro c'e' la fotografia dell'anno, e la fotografia
+       resta accesa tutt'intorno invece di essere spenta su mezza
+       pagina. (Massimo, 24 novembre 2026: «il globo cade sul viso»,
+       poi «ma non si vede piu' la fotografia».) */
+    var vetro = cx.createRadialGradient(cxx, cyy, 0, cxx, cyy, Rg);
+    vetro.addColorStop(0,   'rgba(14,12,9,.80)');
+    vetro.addColorStop(.72, 'rgba(14,12,9,.72)');
+    vetro.addColorStop(1,   'rgba(14,12,9,.40)');
+    cx.beginPath(); cx.arc(cxx, cyy, Rg, 0, TAU);
+    cx.fillStyle = vetro; cx.fill();
+
     cx.beginPath(); cx.arc(cxx, cyy, Rg, 0, TAU);
     cx.strokeStyle = 'rgba(195,153,79,.4)'; cx.lineWidth = 1; cx.stroke();
 
+    cx.save();
+    cx.shadowColor = 'rgba(10,8,6,.85)'; cx.shadowBlur = 5;
     cx.strokeStyle = 'rgba(241,238,232,.46)'; cx.lineWidth = .8;
     TERRE.forEach(function (poly) {
       var giu = true; cx.beginPath();
@@ -89,6 +103,7 @@
       }
       cx.stroke();
     });
+    cx.restore();
     TUTTI.forEach(function (t) {
       var p = proietta(t.la, t.lo, Rg, cxx, cyy);
       if (!p) return;
@@ -114,6 +129,12 @@
     cx.save();
     cx.translate(cxx, cyy);
     cx.textBaseline = 'middle';
+    /* Gli anni e le tacche stanno sopra la fotografia dell'anno, che
+       ora e' accesa: senza un'ombra sotto, sul controluce della
+       finestra sparivano. L'ombra sta sul segno, non sulla foto.
+       (Massimo, 24 novembre 2026: «scura e non ancora centrata») */
+    cx.shadowColor = 'rgba(10,8,6,.95)';
+    cx.shadowBlur = 7;
     for (var i = 0; i < ANNI.length; i++) {
       var ang = POS[i] + giro;
       var qui = (i === attivo), hov = (i === sopra);
@@ -391,4 +412,29 @@
 
   window.addEventListener('resize', function () { dim(); disegna(); });
   dim(); vai(0); muovi();
+})();
+
+/* ══════════════════════════════════════════════════════════════════
+   LA ROTELLA DENTRO LA SEZIONE MUOVE GLI ANNI, NON LA PAGINA
+   Da quando il globo apre la biografia, la sezione e' la prima cosa
+   della pagina e la pagina e' alta una schermata sola: un solo scatto
+   di rotella portava via apertura, globo e tutti e trentanove gli
+   anni, e si finiva sul piede. Ora la rotella scorre la finestra
+   degli anni finche' ce n'e'; quando finisce, la pagina riprende.
+   Solo da 1000 punti in su: sul telefono la finestra non esiste e il
+   dito deve restare libero di scorrere la pagina.
+   (Massimo, 24 novembre 2026: «di nuovo lo sfondo si muove con tutto
+   il resto»)
+   ══════════════════════════════════════════════════════════════════ */
+(function () {
+  var sez = document.querySelector('.filo');
+  var lista = document.querySelector('.filo-racconti');
+  if (!sez || !lista) return;
+  sez.addEventListener('wheel', function (e) {
+    if (getComputedStyle(lista).overflowY !== 'auto') return;   /* telefono */
+    if (lista.contains(e.target)) return;                       /* ci pensa lei */
+    var prima = lista.scrollTop;
+    lista.scrollTop = prima + e.deltaY;
+    if (lista.scrollTop !== prima) e.preventDefault();
+  }, { passive: false });
 })();

@@ -1244,3 +1244,22 @@ body.scena .rac{background:linear-gradient(180deg,
   .lt-o{grid-column:2;white-space:normal}
   .lt-d{grid-row:1;grid-column:3}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   L'APERTURA DELLA BIOGRAFIA E' LA GHIERA
+   Idea sua, 24 novembre 2026: «dovrebbe essere il globo ad aprire?».
+   La fotografia in apertura distraeva dalla biografia; la ghiera dice
+   subito di cosa parla la pagina. Non c'e' piu' una fascia separata:
+   nome e presentazione sono il primo blocco del racconto, a sinistra,
+   e la ghiera e' gia' li' accanto dal primo sguardo.
+   ══════════════════════════════════════════════════════════════════ */
+/* l'aria che il racconto aveva in cima (::before, 34vh) serviva perche'
+   il primo anno potesse arrivare in mezzo alla finestra: ora quel posto
+   lo prende l'apertura, e l'aria passa sotto di lei. */
+body.scena .filo-racconti::before{content:none}
+body.scena .filo-apertura{padding:clamp(8px,3vh,26px) 0 clamp(26px,5vh,48px);
+  border-bottom:1px solid var(--filo);margin-bottom:30vh}
+body.scena .filo-apertura .rule{margin-bottom:18px}
+body.scena .filo-apertura h1{font-size:clamp(40px,5.2vw,72px);line-height:1}
+body.scena .filo-apertura .lede{font-size:clamp(17px,1.5vw,20px);line-height:1.58;
+  color:var(--testo2);max-width:34em}
