@@ -191,7 +191,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="../assets/scena.css?v=b557394b">
+<link rel="stylesheet" href="../assets/scena.css?v=23ec8c6f">
 <link rel="icon" href="../favicon.ico?v=d864334e" sizes="48x48">
 <link rel="icon" href="../favicon-48.png?v=b5086f57" type="image/png" sizes="48x48">
 <link rel="icon" href="../favicon.svg?v=e0ad4b80" type="image/svg+xml">
@@ -236,18 +236,9 @@
     </h1>
     <p class="sotto-nome">Trent’anni sui palcoscenici d’Europa e d’America. E una voce che si sente meglio che si legga.</p>
 
-    <div class="voce-riga">
-      <button type="button" class="ascolta" id="bottone-ascolta" aria-label="Ascolta E lucean le stelle">
-      <span class="cerchio"><span class="tri"></span></span>
-      <span class="dice"><b>Ascolta</b><span>E lucean le stelle · Tosca</span></span>
-    </button>
-    <canvas id="onda" width="1120" height="132" aria-hidden="true"></canvas>
-    </div>
   </div>
   <p class="giu">Scorri<i></i></p>
 </header>
-
-<audio id="suono" preload="none" src="/assets/audio/e-lucean-le-stelle.m4a"></audio>
 
 <!-- ======================= i teatri ======================= -->
 <div class="nastro"><div id="nastro-dentro">
@@ -271,7 +262,7 @@
   <div class="in rac-in">
     <div>
       <p class="occhio">Biografia</p>
-      <p class="rac-apre">Beyond the Voice. Beyond the Stage.</p>
+      <p class="rac-apre">Oltre la voce. Oltre la scena.</p>
       <a class="rac-vai" href="biografia.html">Tutta la biografia &rarr;</a>
     </div>
     <div class="rac-corpo">
@@ -285,45 +276,55 @@
 
 
 <!-- ======================= il disco ======================= -->
-<section class="in disco entra">
-  <p class="occhio">Il disco</p>
-  <h2 class="disco-tit">Amore e Tormento</h2>
-  <div class="disco-dentro">
-    <div class="disco-sx">
-      <img class="disco-copertina" src="/assets/img/amore-e-tormento.jpg?v=bf541cb4" alt="Amore e Tormento" width="1200" height="1198" loading="lazy">
-      <p class="disco-testo">Il primo disco da solista, uscito il 6 maggio 2013 con l’Ensemble del Maggio Musicale Fiorentino diretto da Carlo Goldstein. Tre brani per intero, non trenta secondi.</p>
+<section class="voce entra">
+  <div class="in">
+    <div class="voce-testa">
+      <div>
+        <p class="occhio">Ascolta</p>
+        <h2>Tre arie</h2>
+      </div>
+      <p class="voce-nota">Non soltanto musica, ma storie da vivere.</p>
     </div>
-    <div class="disco-cx">
-      <ul class="brani">
-      <li class="brano">
-        <div class="brano-testa"><b>E lucean le stelle</b><span>Puccini · Tosca · 3:14</span></div>
-        <audio controls preload="none" src="/assets/audio/e-lucean-le-stelle.m4a"></audio>
-      </li>
-      <li class="brano">
-        <div class="brano-testa"><b>Io l’ho perduta</b><span>Verdi · Don Carlo · 4:23</span></div>
-        <audio controls preload="none" src="/assets/audio/io-l-ho-perduta.m4a"></audio>
-      </li>
-      <li class="brano">
-        <div class="brano-testa"><b>La dolcissima effige</b><span>Cilea · Adriana Lecouvreur · 2:28</span></div>
-        <audio controls preload="none" src="/assets/audio/la-dolcissima-effige.m4a"></audio>
-      </li>
-      </ul>
+    <div class="lettore">
+      <div class="lt-scena">
+        <div class="lt-sfondo" aria-hidden="true"><img src="/assets/img/scena/opera-national-de-paris-tosca-03-1200.jpg?v=9e3e208c" alt=""></div>
+        <div class="lt-dentro">
+          <canvas class="lt-onda" width="1120" height="132" aria-hidden="true"></canvas>
+          <div class="lt-testa">
+            <button type="button" class="lt-via" aria-label="Ascolta"><span class="cerchio"><span class="tri"></span></span></button>
+            <div class="lt-dice">
+              <p class="lt-ora-t">E lucean le stelle</p>
+              <p class="lt-ora-m">Puccini &middot; Tosca</p>
+            </div>
+            <div class="lt-tempo"><span class="lt-passato">0:00</span><span class="lt-sep">/</span><span class="lt-tutto">3:14</span></div>
+          </div>
+          <div class="lt-riga" role="progressbar" aria-label="Avanzamento" tabindex="0"><i class="lt-fatta"></i></div>
+        </div>
+      </div>
+      <ol class="lt-scaletta">
+        <li><button type="button" class="lt-br attivo" data-i="0" data-audio="/assets/audio/e-lucean-le-stelle.m4a" data-foto="/assets/img/scena/opera-national-de-paris-tosca-03-1200.jpg" data-tit="E lucean le stelle" data-meta="Puccini &middot; Tosca">
+          <span class="lt-n">01</span>
+          <span class="lt-t">E lucean le stelle</span>
+          <span class="lt-o">Puccini &middot; Tosca</span>
+          <span class="lt-d">3:14</span>
+        </button></li>
+        <li><button type="button" class="lt-br" data-i="1" data-audio="/assets/audio/io-l-ho-perduta.m4a" data-foto="/assets/img/scena/deutsche-oper-berlin-don-carlos-03-1200.jpg" data-tit="Io l&rsquo;ho perduta" data-meta="Verdi &middot; Don Carlo">
+          <span class="lt-n">02</span>
+          <span class="lt-t">Io l&rsquo;ho perduta</span>
+          <span class="lt-o">Verdi &middot; Don Carlo</span>
+          <span class="lt-d">4:23</span>
+        </button></li>
+        <li><button type="button" class="lt-br" data-i="2" data-audio="/assets/audio/la-dolcissima-effige.m4a" data-foto="/assets/img/scena/wiener-staatsoper-adriana-lecouvreur-03-2400.jpg" data-tit="La dolcissima effige" data-meta="Cilea &middot; Adriana Lecouvreur">
+          <span class="lt-n">03</span>
+          <span class="lt-t">La dolcissima effige</span>
+          <span class="lt-o">Cilea &middot; Adriana Lecouvreur</span>
+          <span class="lt-d">2:28</span>
+        </button></li>
+      </ol>
     </div>
-    <p class="disco-vai"><a href="https://open.spotify.com/album/6BiH16iKaZqnc2WpeG4Wkn" rel="noopener" target="_blank">Ascolta su Spotify &rarr;</a></p>
-    <div class="disco-dx">
-      <p class="incisioni-tit">Altre incisioni</p>
-      <ul class="incisioni">
-          <li><b>2000</b><span>Gala verdiano, concerto di fine anno dei Berliner Philharmoniker con Claudio Abbado, pubblicato come <em>Gala from Berlin 2000 · Tutto nel mondo</em>; il concerto si vede nella <a href="https://www.digitalconcerthall.com/en/concert/84" rel="noopener" target="_blank">Digital Concert Hall</a> dell’orchestra</span></li>
-          <li><b>2000</b><span>Massenet, <em>Le Jongleur de Notre-Dame</em>, Teatro dell’Opera di Roma, registrazione dal vivo</span></li>
-          <li><b>2001</b><span>Verdi, <em>I Lombardi alla prima crociata</em> (Oronte), Tiziano Severini, con Dimitra Theodossiou e Giorgio Surian, dal vivo dal Teatro Ponchielli di Cremona, Dynamic CDS390</span></li>
-          <li><b>2004</b><span>Puccini, <em>Gianni Schicchi</em> (Rinuccio), Festival di Glyndebourne, DVD Opus Arte OA0918D</span></li>
-          <li><b>2006</b><span>Massenet, <em>Manon</em> (Des Grieux), il duetto di Saint-Sulpice con Renée Fleming — «Toi! Vous!» e «N’est-ce plus ma main que cette main presse» — dal vivo al Metropolitan con Jesús López Cobos, pubblicato nel 2023 in <a href="https://store.deccaclassics.com/products/greatest-moment-at-the-met-2cd" rel="noopener" target="_blank"><em>Her Greatest Moments at the MET</em></a>, Decca</span></li>
-          <li><b>2007</b><span>Puccini, <em>Il trittico</em> (Rinuccio nel <em>Gianni Schicchi</em>), Metropolitan Opera, James Levine, allestimento Jack O&rsquo;Brien, trasmesso in diretta nei cinema di tutto il mondo il 28 aprile 2007, nella prima stagione delle dirette <em>Live in HD</em> del Met, poi su PBS <em>Great Performances at the Met</em></span></li>
-          <li><b>2007</b><span>Verdi, <em>La traviata</em> (Alfredo), Teatro Regio di Parma, Festival Verdi, 9, 13 e 15 ottobre 2007, <strong>Yuri Temirkanov</strong> al suo debutto operistico in Italia, allestimento Karl-Ernst e Ursel Herrmann, con Svetla Vassileva e Vladimir Stoyanov, DVD C Major 723608</span></li>
-          <li><b>2008</b><span>Donizetti, <em>Imelda de’ Lambertazzi</em> (Lamberto), Orchestra of the Age of Enlightenment, Mark Elder, con Nicole Cabell e Frank Lopardo, dal vivo alla Queen Elizabeth Hall di Londra, 10 marzo 2007, <a href="https://shop.opera-rara.com/product-tag/massimo-giordano" rel="noopener" target="_blank">Opera Rara</a></span></li>
-          <li><b>2010</b><span>Bizet, <em>Carmen</em> (Don José), Staatsoper di Vienna, allestimento di Zeffirelli con Andris Nelsons e Anna Netrebko; <a href="https://www.unitel.de/en/product/do/detail.html?id=2960" rel="noopener" target="_blank">ripreso da Unitel</a></span></li>
-          <li><b>2015</b><span>Verdi, Puccini, Donizetti, Bellini, Mozart, <em>Bella Italia!</em>, gala di Capodanno dal Festspielhaus di Baden-Baden, SWR Sinfonieorchester Baden-Baden und Freiburg, Gérard Korsten, con Angel Blue ed Erwin Schrott, produzione ARD, SWR e 3sat</span></li>
-        </ul>
+    <div class="voce-piede">
+      <p>Incisioni BMG, con l&rsquo;Ensemble del Maggio Musicale Fiorentino diretto da Carlo Goldstein.</p>
+      <p class="voce-spot"><a href="https://open.spotify.com/album/6BiH16iKaZqnc2WpeG4Wkn" rel="noopener" target="_blank">Ascolta su Spotify &rarr;</a></p>
     </div>
   </div>
 </section>
@@ -497,153 +498,6 @@
     treno.addEventListener('mousemove', function(e){ if (!giu) return; e.preventDefault(); treno.scrollLeft = s0 - (e.pageX - x0) * 1.25; });
   }
 
-  /* ---- il suono, e la forma d'onda disegnata da quello che esce -----
-     Non e' un'animazione finta: legge davvero l'uscita audio. Un tenore
-     deve poter essere ascoltato dalla prima schermata, non cercato. */
-  var tasto = document.getElementById('bottone-ascolta'),
-      suono = document.getElementById('suono'),
-      tela  = document.getElementById('onda');
-  if (tasto && suono && tela){
-    var ctx = tela.getContext('2d'), gira = null;
-    /* il canvas alla risoluzione vera dello schermo: su un Mac le barre
-       altrimenti escono sfocate */
-    function misura(){
-      var r = tela.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
-      tela.width = Math.round(r.width * d); tela.height = Math.round(r.height * d);
-    }
-    misura();
-    window.addEventListener('resize', misura);
-
-    var oro = getComputedStyle(document.documentElement)
-                .getPropertyValue('--oro').trim() || '#b9924a';
-
-    var ultimoIstante = 0;
-    function disegna(t){
-      gira = requestAnimationFrame(disegna);
-      var dt = ultimoIstante ? Math.min(.1, (t - ultimoIstante) / 1000) : .016;
-      ultimoIstante = t;
-
-      var L = tela.width, A = tela.height, base = A - 2;
-      ctx.clearRect(0, 0, L, A);
-      var canta = !suono.paused && analizzatore && bordi;
-
-      if (canta){
-        analizzatore.getFloatFrequencyData(dati);
-        var MIN = analizzatore.minDecibels, MAX = analizzatore.maxDecibels;
-        for (var b = 0; b < BANDE; b++){
-          var da = bordi[b], a = Math.max(bordi[b + 1], da + 1), somma = 0, n = 0;
-          for (var k = da; k < a; k++){ var d = dati[k]; if (d > -Infinity){ somma += d; n++; } }
-          var dB = n ? somma / n : MIN;
-          var v = (dB - MIN) / (MAX - MIN);
-          v = Math.max(0, Math.min(1, v));
-          v = Math.pow(v, .78);                       /* un filo di guadagno sui deboli */
-
-          /* salita immediata, discesa di circa 9 dB al secondo */
-          livelli[b] = v > livelli[b] ? v : Math.max(v, livelli[b] - dt * 1.9);
-
-          if (livelli[b] >= picchi[b]) { picchi[b] = livelli[b]; cadutaPicco[b] = -0.55; }
-          else { cadutaPicco[b] += dt * 2.3; picchi[b] = Math.max(livelli[b], picchi[b] - Math.max(0, cadutaPicco[b]) * dt * 2.4); }
-        }
-      } else {
-        for (var z = 0; z < BANDE; z++){
-          livelli[z] = Math.max(0, livelli[z] - dt * 2.6);
-          picchi[z] = Math.max(livelli[z], picchi[z] - dt * 2.0);
-        }
-      }
-
-      var largo = L / BANDE, w = Math.max(1.5, largo * .62);
-      for (var i = 0; i < BANDE; i++){
-        var h = livelli[i] * base;
-        var x = i * largo + (largo - w) / 2;
-        if (h > .5){
-          var g = ctx.createLinearGradient(0, base, 0, base - h);
-          g.addColorStop(0, 'rgba(185,146,74,.35)');
-          g.addColorStop(.55, oro);
-          g.addColorStop(1, '#f1e4c8');
-          ctx.fillStyle = g;
-          ctx.fillRect(x, base - h, w, h);
-        }
-        var hp = picchi[i] * base;
-        if (hp > 1.5){
-          ctx.fillStyle = 'rgba(241,228,200,.9)';
-          ctx.fillRect(x, base - hp - 1.5, w, 1.5);
-        }
-      }
-    }
-
-    /* L'audio NON passa da nessuna parte: esce dall'elemento e basta.
-       La versione di prima lo dirottava dentro il motore audio del browser
-       per disegnare la forma d'onda vera — e in quell'istante il suono si
-       zittiva. Meglio un'onda disegnata che una voce muta.
-
-       L'onda qui segue il tempo e un movimento suo: non è il suono vero,
-       ma si muove solo mentre si canta, e si ferma quando si ferma. */
-    var analizzatore = null, dati = null, motore = null;
-    var BANDE = 56, livelli = new Float32Array(BANDE), picchi = new Float32Array(BANDE),
-        cadutaPicco = new Float32Array(BANDE), bordi = null;
-
-    /* ── Analizzatore di spettro ──────────────────────────────────────
-       Fatto come lo fanno gli strumenti veri, non come un'animazione:
-
-       · le bande sono distribuite per OTTAVE, da 50 Hz a 14 kHz. Una scala
-         lineare schiaccerebbe tutta la voce nel primo decimo dello schermo:
-         un tenore vive fra i 130 Hz del do grave e i 523 del do acuto, più
-         le armoniche che gli danno il colore.
-       · l'ampiezza è in DECIBEL, da -82 a -18, perché l'orecchio sente così.
-       · salita immediata, discesa lenta: l'attacco di una nota si vede
-         tutto, la coda scende con la voce invece di sparire di colpo.
-       · il picco resta sospeso un istante e poi cade: è quello che permette
-         di leggere la dinamica di una frase mentre passa.                */
-    function preparaBande(ctxAudio){
-      var fMin = 50, fMax = Math.min(14000, ctxAudio.sampleRate / 2);
-      var nyquist = ctxAudio.sampleRate / 2, N = analizzatore.frequencyBinCount;
-      bordi = new Array(BANDE + 1);
-      for (var i = 0; i <= BANDE; i++){
-        var f = fMin * Math.pow(fMax / fMin, i / BANDE);
-        bordi[i] = Math.min(N - 1, Math.max(0, Math.round(f / nyquist * N)));
-      }
-    }
-
-    function collega(){
-      if (analizzatore) return Promise.resolve();
-      var AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return Promise.resolve();
-      try {
-        motore = new AC();
-        var sorgente = motore.createMediaElementSource(suono);
-        var an = motore.createAnalyser();
-        an.fftSize = 4096;              /* risoluzione fine sui gravi */
-        an.minDecibels = -82;
-        an.maxDecibels = -18;
-        an.smoothingTimeConstant = 0;   /* il filtro lo faccio io, più fine */
-        dati = new Float32Array(an.frequencyBinCount);
-        sorgente.connect(an);
-        an.connect(motore.destination);
-        analizzatore = an;
-        preparaBande(motore);
-        return motore.resume ? motore.resume() : Promise.resolve();
-      } catch (e) { analizzatore = null; return Promise.resolve(); }
-    }
-
-    tasto.addEventListener('click', function (e) {
-      e.preventDefault(); e.stopPropagation();
-      if (!suono.paused) {
-        suono.pause();
-        tasto.classList.remove('suona');
-        tela.classList.remove('viva');
-        return;
-      }
-      var acceso = function () { tasto.classList.add('suona'); tela.classList.add('viva'); };
-      collega().then(function () {
-        var p = suono.play();
-        if (p && p.then) p.then(acceso).catch(acceso); else acceso();
-      });
-    });
-    disegna();
-    suono.addEventListener('ended', function(){
-      tasto.classList.remove('suona'); tela.classList.remove('viva');
-    });
-  }
 
   /* ---- l'iscrizione agli avvisi: quella vera, non una finta ---- */
   var modulo = document.getElementById('modulo-avvisi');
@@ -741,6 +595,7 @@
 <script src="../assets/video.js?v=ab7dd108" defer></script>
 <script src="../assets/redazione.js?v=ab3e9809" defer></script>
   <script src="../assets/dischi.js?v=0ae6f0a8" defer></script>
+<script src="../assets/voce.js?v=8ac6def6" defer></script>
 <script src="../assets/avvisi.js?v=df8c9918" defer></script>
 <script src="../assets/consenso.js?v=035731af" defer></script>
 </body>
