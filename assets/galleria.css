@@ -1,0 +1,56 @@
+/* ══════════════════════════════════════════════════════════════════
+   LE FOTOGRAFIE — una striscia per sezione
+   Massimo, 24 novembre: la vecchia pagina «rispetto a tutto il sito e'
+   una cacca». Il muro di quadrati tagliava teste e visi — la cosa di
+   cui si e' lamentato piu' volte. Qui ogni fotografia tiene la sua
+   forma vera e si scorre di lato, come si gira il mappamondo.
+   ══════════════════════════════════════════════════════════════════ */
+/* il titolo della pagina resta per i motori di ricerca e per chi legge
+   con la voce, ma non si vede: si parte dritti dalla prima sezione */
+.solo-voce{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;border:0}
+body.scena .gs:first-of-type{border-top:0;padding-top:clamp(34px,5vw,60px)}
+
+body.scena .gs{padding:clamp(30px,4vw,52px) 0 clamp(34px,4.4vw,58px);
+  border-top:1px solid var(--filo)}
+body.scena .gs-testa{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px clamp(20px,3vw,44px);
+  margin-bottom:clamp(18px,2.4vw,28px)}
+body.scena .gs-testa h2{margin:12px 0 0;font:400 clamp(24px,3.2vw,38px)/1.06 var(--serif);
+  color:var(--testo)}
+body.scena .gs-nota{margin:0;max-width:54ch;font:300 13.5px/1.65 var(--sans);color:var(--testo4)}
+body.scena .gs-quante{margin:0 0 0 auto;font:400 10.5px/1 var(--sans);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--testo4);white-space:nowrap}
+
+/* il nastro: scorre di lato, e le fotografie tengono la loro forma */
+/* la striscia parte allineata al testo, non dal bordo dello schermo:
+   a destra invece esce dal quadro, cosi' si capisce che continua */
+body.scena .gs-nastro{display:flex;gap:4px;overflow-x:auto;overscroll-behavior-x:contain;
+  /* niente scroll-snap: con il margine a sinistra il browser partiva
+     gia' scorso di 132 punti, e la prima fotografia finiva tagliata */
+  padding:0 0 14px;
+  padding-left:max(clamp(20px,5vw,72px),calc((100vw - 1320px)/2 + clamp(20px,5vw,72px)));
+  cursor:grab;scrollbar-width:thin;scrollbar-color:var(--bordo) transparent}
+body.scena .gs-nastro.tira{cursor:grabbing}
+body.scena .gs-nastro::-webkit-scrollbar{height:3px}
+body.scena .gs-nastro::-webkit-scrollbar-track{background:transparent}
+body.scena .gs-nastro::-webkit-scrollbar-thumb{background:var(--bordo);border-radius:3px}
+body.scena .gs-nastro figure{margin:0;flex:0 0 auto}
+body.scena .gs-nastro .shot{display:block;padding:0;border:0;background:none;cursor:zoom-in;
+  overflow:hidden;line-height:0}
+body.scena .gs-nastro img{height:clamp(240px,34vw,420px);width:auto;max-width:none;
+  object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .4s;opacity:.92}
+body.scena .gs-nastro .shot:hover img{opacity:1;transform:scale(1.03)}
+body.scena .gs-nastro .shot:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+/* le verticali un po' piu' basse, se no una striscia di ritratti diventa un muro */
+body.scena .gs-f.alto img{height:clamp(240px,34vw,420px)}
+
+/* il filo d'oro che dice quanto manca */
+body.scena .gs-barra{height:1px;background:var(--filo);
+  margin:0 max(clamp(20px,5vw,72px),calc((100vw - 1320px)/2 + clamp(20px,5vw,72px)))}
+body.scena .gs-barra i{display:block;height:1px;width:0;background:var(--oro)}
+
+@media(max-width:760px){
+  body.scena .gs-nastro{gap:3px;padding-bottom:12px}
+  body.scena .gs-nastro img{height:clamp(220px,58vw,300px)}
+  body.scena .gs-quante{margin-left:0}
+}
