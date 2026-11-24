@@ -124,7 +124,7 @@ body.scena .filo-racconto strong{font-weight:500;color:var(--testo)}
    al browser. (Massimo: «tutta la finestra del mappamondo non deve
    essere scrollabile») */
 body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px);
-  touch-action:pinch-zoom}
+  touch-action:pan-y}
 /* La colonna di destra non deve crescere con l'anno: se le liste sono
    lunghe diventava piu' alta dello schermo e copriva quello che c'e'
    sotto (Massimo: «salta da qua a qua e viene coperto il resto»).
@@ -147,11 +147,16 @@ body.scena .filo-scena{position:static;margin:0 0 clamp(32px,5vh,56px);
 }
 /* il quadrante: gli anni in cerchio, il mappamondo dentro */
 body.scena .filo-quadrante{display:block;width:100%;aspect-ratio:1/1;
-  /* pan-y e non 'none': scorrendo in su e in giu' la pagina scorre
-     come sempre, mentre il movimento circolare gira la ghiera. Con
-     'none' il quadrante sul telefono avrebbe rubato lo scorrimento a
-     meta' schermo. */
-  touch-action:pinch-zoom;cursor:grab;
+  /* 'none' e non 'pinch-zoom': con pinch-zoom il browser sul telefono si
+     prende comunque il movimento del dito come scorrimento, e la ghiera
+     non girava — provato il 24 novembre, l'anno restava 1989 e la pagina
+     scappava da 858 a 9789. Con 'none' il dito appartiene alla ghiera.
+     Poi pero': «se passo su quel blocco su e giu' la pagina non scorre,
+     e io ho bisogno di scorrerla». Quindi pan-y: il movimento verticale
+     resta al browser e la pagina scorre come sempre; quello in tondo lo
+     prende la ghiera. Chi comanda e' il copione, che al primo movimento
+     decide se e' un giro o uno scorrimento. */
+  touch-action:pan-y;cursor:grab;
   max-height:min(620px,62vh);margin:0 auto}
 body.scena .filo-quadrante:active{cursor:grabbing}
 body.scena .filo-conti{display:flex;gap:clamp(18px,2.4vw,30px);
@@ -296,23 +301,25 @@ body.scena .bio-scarica-vai a:hover{color:var(--oro);border-bottom-color:var(--o
 @media(min-width:760px) and (max-width:999px) and (orientation:landscape){
   body.scena .filo-in{display:grid;
     grid-template-columns:minmax(0,1fr) clamp(240px,34vw,340px);
-    gap:clamp(16px,2.4vw,30px);align-items:stretch;
-    /* la barra coricata e' alta 92 e sta sopra: il contenuto comincia
-       sotto di lei, se no il quadrante nasce tagliato */
-    height:100vh;padding-top:92px;box-sizing:border-box}
-  body.scena .filo-racconti{height:100%;overflow-y:auto;padding-right:14px;
-    scrollbar-width:thin;
-    scrollbar-color:color-mix(in srgb,var(--oro) 45%,transparent) transparent;
-    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 32px),transparent 100%);
-    mask-image:linear-gradient(to bottom,transparent 0,#000 28px,#000 calc(100% - 32px),transparent 100%)}
+    gap:clamp(16px,2.4vw,30px);align-items:start;
+    padding-top:92px;box-sizing:border-box}
+  /* NIENTE finestra che scorre dentro la pagina. Ce l'aveva, ed era il
+     difetto che Massimo descriveva: «quando passo col dito sopra devo
+     aspettare che il testo arrivi a pie' o capo pagina e poi scrolla».
+     Il racconto era alto 373 punti con 8758 di testo dentro: finche'
+     non finiva quello, la pagina non si muoveva. Ora scorre la pagina,
+     e il quadrante resta appiccicato di lato. */
+  body.scena .filo-racconti{height:auto;overflow:visible;padding-right:14px}
   body.scena .filo-racconti::before,
-  body.scena .filo-racconti::after{content:"";display:block;height:30vh}
-  body.scena .filo-scena{order:0;position:static;height:100%;margin:0;padding:10px 0 6px;
-    box-sizing:border-box;background:none;
-    display:flex;flex-direction:column;justify-content:center}
+  body.scena .filo-racconti::after{content:none}
+  body.scena .filo-scena{order:0;position:sticky;top:84px;height:auto;margin:0;
+    padding:2px 0 6px;box-sizing:border-box;background:none;
+    display:flex;flex-direction:column;justify-content:flex-start}
   body.scena .filo-scena::after{display:none}
-  body.scena .filo-quadrante{width:100%;height:auto;aspect-ratio:1/1;
-    max-height:calc(100% - 64px);margin:0 auto}
+  /* coricato lo schermo e' alto 430: il quadrante si tiene dentro
+     quello che resta sotto la barra, se no sporge e si taglia */
+  body.scena .filo-quadrante{width:auto;height:min(100vh - 200px, 240px);
+    aspect-ratio:1/1;max-height:none;margin:0 auto}
   body.scena .filo-conti{margin:6px 0 0;gap:18px}
   body.scena .filo-conti b{font-size:20px}
   body.scena .filo-conti span{font-size:9px;margin-top:2px}

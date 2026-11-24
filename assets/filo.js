@@ -228,10 +228,20 @@
      Il centro resta libero: li' c'e' il mappamondo, che non si tocca. */
   var trascino = false, angPrec = 0, mosso = 0;
 
-  function angoloDi(ev) {
+  /* Il centro si fissa quando prendi la ghiera, in coordinate di PAGINA.
+     Prima si rileggeva a ogni movimento con getBoundingClientRect: se la
+     pagina scorreva di un pixel il centro si spostava, l'angolo faceva un
+     salto e la ghiera impazziva. Massimo, dall'iPhone: «impazzisce, resta
+     ferma, si muove, si blocca». */
+  var cxP = 0, cyP = 0;
+  function fissaCentro() {
     var r = cv.getBoundingClientRect();
-    return Math.atan2(ev.clientY - r.top - r.height / 2,
-                      ev.clientX - r.left - r.width / 2);
+    cxP = r.left + window.pageXOffset + r.width / 2;
+    cyP = r.top + window.pageYOffset + r.height / 2;
+  }
+  function angoloDi(ev) {
+    return Math.atan2(ev.clientY + window.pageYOffset - cyP,
+                      ev.clientX + window.pageXOffset - cxP);
   }
   function sullAnello(ev) {
     var r = cv.getBoundingClientRect();
@@ -248,19 +258,46 @@
     return vinto;
   }
 
+  /* Al primo movimento si decide: in tondo e' un giro di ghiera, su e giu'
+     e' la pagina che scorre. Finche' non si e' deciso non si tocca niente,
+     cosi' lo scorrimento parte liscio senza strattoni.
+     (Massimo: «se passo su quel blocco su e giu' ho bisogno di scorrere la
+     pagina, non il testo che sta sotto») */
+  var deciso = false, x0 = 0, y0 = 0;
+
   cv.addEventListener('pointerdown', function (e) {
     if (!sullAnello(e)) return;
-    trascino = true; mosso = 0; angPrec = angoloDi(e);
-    if (cv.setPointerCapture) cv.setPointerCapture(e.pointerId);
-    e.preventDefault();
+    trascino = true; deciso = false; mosso = 0;
+    x0 = e.clientX; y0 = e.clientY;
+    fissaCentro(); angPrec = angoloDi(e);
   });
   window.addEventListener('pointermove', function (e) {
     if (!trascino) return;
+    if (!deciso) {
+      var dx = e.clientX - x0, dy = e.clientY - y0;
+      var q = dx * dx + dy * dy;
+      if (q < 100) return;                 /* dieci punti: ancora presto */
+      if (Math.abs(dy) > Math.abs(dx) * 1.2) { trascino = false; return; }  /* scorre la pagina */
+      deciso = true;
+      if (cv.setPointerCapture) { try { cv.setPointerCapture(e.pointerId); } catch (x) {} }
+      fissaCentro(); angPrec = angoloDi(e);
+      return;
+    }
     var a = angoloDi(e), d = a - angPrec;
     while (d > Math.PI) d -= TAU;
     while (d < -Math.PI) d += TAU;
     /* un terzo del giro del dito: era troppo veloce */
-    giro += d * .33; giroVuole = giro; angPrec = a; mosso += Math.abs(d);
+    giro += d * 0.70;
+    /* IL QUADRANTE NON FA IL GIRO COMPLETO. Il 1989 e l'ultimo anno sono
+       attaccati, divisi solo dal varco in fondo: girando all'indietro dal
+       primo si finiva dritti sull'ultimo, un salto di trent'anni. Col
+       mouse quasi non si notava, col dito era il difetto che Massimo
+       vedeva sul telefono. Qui la ghiera si ferma agli estremi. */
+    var g1 = -Math.PI / 2 - POS[0], g2 = -Math.PI / 2 - POS[POS.length - 1];
+    var gMin = Math.min(g1, g2), gMax = Math.max(g1, g2);
+    if (giro < gMin) giro = gMin;
+    if (giro > gMax) giro = gMax;
+    giroVuole = giro; angPrec = a; mosso += Math.abs(d);
     var i = annoInCima();
     if (i >= 0 && i !== attivo) {
       vai(i, true);
@@ -275,7 +312,7 @@
      di scatto e l'occhio non faceva in tempo a seguire l'anno.
      (Massimo: «rallenta il caricamento delle date, in caso vada su un
      anno non deve andare sul testo troppo velocemente») */
-  function accosta(el) {
+  function accosta(el, durataVoluta) {
     if (!el) return;
     var finestra = document.querySelector('.filo-racconti');
     var dentro = finestra && getComputedStyle(finestra).overflowY === 'auto';
@@ -287,7 +324,14 @@
         - (window.innerHeight - el.offsetHeight) / 2;
     var salto = a - da;
     if (Math.abs(salto) < 2) return;
-    var durata = 1100, inizio = 0;
+    /* La durata segue la distanza: un salto corto in fretta, uno lungo
+       con calma. Sul telefono scorre tutta la pagina e i blocchi sono
+       lontani, quindi una durata fissa arrivava di schianto.
+       (Massimo: «fai in modo che come nel desktop il testo arrivi con
+       morbidezza») */
+    var durata = durataVoluta ||
+      Math.max(420, Math.min(1100, 320 + Math.abs(salto) * 0.45));
+    var inizio = 0;
     function morbido(t) { return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; }
     function passo(ora) {
       if (!inizio) inizio = ora;
@@ -305,6 +349,12 @@
     if (attivo >= 0) accosta(blocchi[attivo]);
     if (attivo >= 0) giroVuole = -Math.PI / 2 - POS[attivo];   /* si incastra */
   }
+  /* Su iPhone il browser decide di scorrere PRIMA che arrivi pointermove:
+     l'unico modo di fermarlo e' un ascoltatore touchmove non passivo. */
+  cv.addEventListener('touchmove', function (e) {
+    if (trascino && deciso) e.preventDefault();   /* solo se e' un giro */
+  }, {passive: false});
+
   window.addEventListener('pointerup', lascia);
   window.addEventListener('pointercancel', lascia);
 
@@ -316,7 +366,14 @@
   cv.addEventListener('click', function (e) {
     if (mosso > .05) { mosso = 0; return; }   /* era un giro, non un clic */
     var i = quale(e);
-    if (i >= 0) accosta(blocchi[i]);
+    if (i < 0) return;
+    /* Massimo: «quando clicco su un anno deve andarci immediatamente, non
+       aspettare 3 secondi». Prima il clic faceva solo scorrere, e il
+       mappamondo e i testi cambiavano dopo, quando lo scorrimento
+       arrivava: vai() li accende subito, e la corsa dura 420 invece di
+       1100 (quella lenta resta per quando lasci la ghiera). */
+    vai(i);
+    accosta(blocchi[i]);
   });
 
   var finestra = document.querySelector('.filo-racconti');
