@@ -195,22 +195,22 @@
     },
     {
       "source": "/it/music",
-      "destination": "/it/index.html",
+      "destination": "/it/",
       "permanent": true
     },
     {
       "source": "/it/music/:p*",
-      "destination": "/it/index.html",
+      "destination": "/it/",
       "permanent": true
     },
     {
       "source": "/it/musica",
-      "destination": "/it/index.html",
+      "destination": "/it/",
       "permanent": true
     },
     {
       "source": "/it/musica/:p*",
-      "destination": "/it/index.html",
+      "destination": "/it/",
       "permanent": true
     },
     {
@@ -385,42 +385,42 @@
     },
     {
       "source": "/music",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/music/:p*",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/musik",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/musik/:p*",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/de/music",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/de/music/:p*",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/de/musik",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/de/musik/:p*",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -665,22 +665,22 @@
     },
     {
       "source": "/it/music/",
-      "destination": "/it/index.html",
+      "destination": "/it/",
       "permanent": true
     },
     {
       "source": "/it/music/:p*/",
-      "destination": "/it/index.html",
+      "destination": "/it/",
       "permanent": true
     },
     {
       "source": "/it/musica/",
-      "destination": "/it/index.html",
+      "destination": "/it/",
       "permanent": true
     },
     {
       "source": "/it/musica/:p*/",
-      "destination": "/it/index.html",
+      "destination": "/it/",
       "permanent": true
     },
     {
@@ -855,42 +855,42 @@
     },
     {
       "source": "/music/",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/music/:p*/",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/musik/",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/musik/:p*/",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/de/music/",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/de/music/:p*/",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/de/musik/",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/de/musik/:p*/",
-      "destination": "/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
