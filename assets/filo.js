@@ -225,6 +225,21 @@
       if (mio && !im.src && im.dataset.src) im.src = im.dataset.src;
       im.classList.toggle('visto', mio);
     });
+    /* E QUELLE DI PRIMA E DI DOPO SI PREPARANO INTANTO.
+       Caricare solo l'anno che guardi significa che ogni volta che scorri
+       aspetti 300 KB: la pagina sembrava lenta. Qui i due anni vicini si
+       scaricano in sottofondo, a priorita' bassa, cosi' quando ci arrivi
+       sono gia' pronti. Non si tocca la qualita' di una sola fotografia.
+       (Massimo, 25 novembre 2026: «la biografia e' molto lenta»,
+       «non toccare la qualita' mi raccomando») */
+    [i - 1, i + 1].forEach(function (k) {
+      var im = sfondi[k];
+      if (!im || im.src || !im.dataset.src) return;
+      var p = new Image();
+      if ('fetchPriority' in p) p.fetchPriority = 'low';
+      p.onload = function () { if (!im.src) im.src = im.dataset.src; };
+      p.src = im.dataset.src;
+    });
   }
 
   /* ── il quadrante si tocca ──────────────────────────────────────── */
