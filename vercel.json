@@ -1243,6 +1243,61 @@
       "source": "/de/warenkorb",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/assets/img/scena/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/gallery/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/roma/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/servizio2018/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/buzzeo2009nuove/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/kampf2006/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/press900/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/ritratti/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/slider/:file",
+      "destination": "/assets/img/foto/:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/anni/:file",
+      "destination": "/assets/img/foto/anno-:file",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/ruoli/:file",
+      "destination": "/assets/img/foto/ruolo-:file",
+      "permanent": true
     }
   ],
   "crons": [
