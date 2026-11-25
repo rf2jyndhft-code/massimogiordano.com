@@ -10,7 +10,8 @@
     tutte:'tutte', una:' fotografia', molte:' fotografie',
     credito:'Fotografie: ', haUna:' fotografia ha', hannoMolte:' fotografie hanno',
     daCartella:' l\u2019attribuzione presa dal nome della cartella, non dal file: da confermare.',
-    daConfermare:'attribuzione da confermare', diCui:' di ', stessaCitta:'Anche qui, nella stessa citt\u00e0'
+    daConfermare:'attribuzione da confermare', diCui:' di ', stessaCitta:'Anche qui, nella stessa citt\u00e0',
+    archivio:'Le recite nell\u2019archivio del teatro \u2192'
   } : {
     tutti:'All the theatres', unRuolo:'Role sung here', ruoli:' roles sung here',
     inScena:'On stage', nessuna:'Photographs not yet chosen for this theatre.',
@@ -18,7 +19,8 @@
     tutte:'all', una:' photograph', molte:' photographs',
     credito:'Photographs: ', haUna:' photograph has', hannoMolte:' photographs have',
     daCartella:' its attribution taken from the folder name, not from the file: to be confirmed.',
-    daConfermare:'attribution to be confirmed', diCui:' of ', stessaCitta:'Also here, in the same city'
+    daConfermare:'attribution to be confirmed', diCui:' of ', stessaCitta:'Also here, in the same city',
+    archivio:'The performances in the theatre\u2019s own archive \u2192'
   };
   var D = JSON.parse(document.getElementById('dati').textContent);
   var T = D.teatri, TERRE = D.terre;
@@ -325,6 +327,17 @@
         h += '<button type="button" data-vai="' + vicini[v2] + '">' + T[vicini[v2]].n + '</button>';
       }
       h += '</div>';
+    }
+    /* L'ARCHIVIO DEL TEATRO.
+       Dieci teatri pubblicano online l'elenco delle recite con il cast:
+       da qui ogni data del sito si puo' verificare alla fonte. Serve a
+       chi legge, serve per Wikipedia (dove una modifica senza fonte
+       viene respinta) e dice a Google che questo sito e' collegato agli
+       archivi ufficiali. (Massimo, 25 novembre 2026: «mettiamo i link
+       ai teatri, archivi e produzioni») */
+    if (t.arc) {
+      h += '<p class="globo-arc"><a href="' + t.arc + '" target="_blank" rel="noopener">'
+         + P.archivio + '</a></p>';
     }
     h += '<div class="globo-fotos-posto"></div>';
     scheda.innerHTML = h;

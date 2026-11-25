@@ -84,3 +84,11 @@ canvas.presa{cursor:grabbing}
   font:500 12px/1.2 var(--sans);letter-spacing:.04em;cursor:pointer;transition:.18s}
 .globo-vicini button:hover,.globo-vicini button:focus-visible{
   border-color:var(--oro);color:var(--testo)}
+
+/* Il collegamento all'archivio del teatro: dieci teatri pubblicano
+   l'elenco delle recite con il cast, e da li' ogni data si verifica
+   alla fonte. (Massimo, 25 novembre 2026) */
+.globo-arc{margin:18px 0 0;font-family:var(--sans);font-size:13px;line-height:1.5}
+.globo-arc a{color:var(--oro);border-bottom:1px solid color-mix(in srgb,var(--oro) 40%,transparent);
+  padding-bottom:2px;transition:.18s}
+.globo-arc a:hover{color:var(--testo);border-color:var(--testo)}
