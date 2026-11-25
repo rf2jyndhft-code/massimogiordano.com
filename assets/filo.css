@@ -98,6 +98,12 @@ body.scena .filo-capitolo a:hover{color:var(--testo);border-bottom-color:var(--o
 body.scena .filo-racconti{max-height:none}
 @media(min-width:1000px){
   body.scena .filo-racconti{height:100%;overflow-y:auto;
+    /* lo scorrimento non trabocca sulla pagina: senza questo, finita
+       la spinta del dito il movimento passava alla pagina e si
+       portava via sezione e globo mentre gli anni erano ancora al
+       1992. (Massimo, 25 novembre 2026, con la misura: pagina scesa
+       di 389 punti, globo mezzo fuori in cima) */
+    overscroll-behavior:contain;
     padding-right:clamp(16px,2vw,30px);scrollbar-width:thin;
     scrollbar-color:color-mix(in srgb,var(--oro) 45%,transparent) transparent;
     -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 44px,#000 calc(100% - 54px),transparent 100%);
