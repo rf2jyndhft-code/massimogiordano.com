@@ -204,7 +204,7 @@
     }
   ]
 }</script>
-<link rel="stylesheet" href="assets/scena.css?v=1649f990">
+<link rel="stylesheet" href="assets/scena.css?v=6a2694de">
 <link rel="icon" href="favicon.ico?v=d864334e" sizes="48x48">
 <link rel="icon" href="favicon-48.png?v=b5086f57" type="image/png" sizes="48x48">
 <link rel="icon" href="favicon.svg?v=e0ad4b80" type="image/svg+xml">
@@ -401,7 +401,12 @@
   <form class="modulo" id="modulo-avvisi">
     <input type="email" name="email" required placeholder="your email address" aria-label="Your email address">
     <button type="submit">Subscribe</button>
+    <div class="consenso-riga">
+      <input id="avvisi-ok-home" type="checkbox" name="consenso" required>
+      <label for="avvisi-ok-home">Yes, send me news about concerts, recordings and the Minthis Music Festival. I can unsubscribe from any message.</label>
+    </div>
   </form>
+  <p class="nota">Your address is used only for these messages and is never passed on. <a href="privacy.html">Privacy &amp; cookies</a></p>
   <p class="esito" id="esito-avvisi" role="status" aria-live="polite" hidden></p>
 </div></section>
 
@@ -520,6 +525,8 @@
       var campo = modulo.querySelector('input[type=email]');
       var dice  = document.getElementById('esito-avvisi');
       var tasto = modulo.querySelector('button');
+      var ok = modulo.querySelector('input[type=checkbox]');
+      if (ok && !ok.checked) { ok.focus(); return; }   /* il consenso e' obbligatorio */
       if (!campo.value || !campo.checkValidity()) { campo.focus(); return; }
       tasto.disabled = true;
       dice.hidden = false; dice.textContent = 'One moment…';
