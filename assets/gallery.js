@@ -208,12 +208,28 @@
     }
   });
 
-  /* il dito, sul telefono */
-  var x0 = null, y0 = null;
+  /* il dito, sul telefono.
+     DUE DITA NON SONO UNA SCORSA. Prima, allargando le dita per
+     ingrandire, le due dita si allontanavano, la differenza orizzontale
+     diventava grande e la lente cambiava fotografia invece di
+     ingrandire: «impazzisce e comincia a girarle alla rinfusa senza
+     lasciarle ingrandire» (Massimo, 25 novembre 2026, sulle fotografie
+     di Varsavia). Appena compare un secondo dito la scorsa si annulla
+     e non si riaccende fino a quando non si riparte da zero. */
+  var x0 = null, y0 = null, dita = 0;
   palco.addEventListener('touchstart', function (e) {
+    dita = Math.max(dita, e.touches.length);
+    if (e.touches.length > 1) { x0 = y0 = null; return; }   /* pizzicata */
     x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
   }, { passive: true });
+  palco.addEventListener('touchmove', function (e) {
+    if (e.touches.length > 1) { dita = e.touches.length; x0 = y0 = null; }
+  }, { passive: true });
   palco.addEventListener('touchend', function (e) {
+    if (e.touches.length === 0) {
+      var piu = dita > 1; dita = 0;
+      if (piu) { x0 = y0 = null; return; }                  /* era una pizzicata */
+    }
     if (x0 === null) return;
     var dx = e.changedTouches[0].clientX - x0;
     var dy = e.changedTouches[0].clientY - y0;
@@ -221,4 +237,5 @@
     else if (dy > 90) chiudi();          /* trascinare in giu' chiude, come nelle app */
     x0 = y0 = null;
   }, { passive: true });
+  palco.addEventListener('touchcancel', function () { x0 = y0 = null; dita = 0; }, { passive: true });
 })();
