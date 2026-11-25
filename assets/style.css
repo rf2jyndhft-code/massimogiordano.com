@@ -480,8 +480,15 @@ html.lente-aperta{overflow:hidden}
   outline-offset:3px}
 
 @media (max-width:620px){
-  .lente-freccia{width:46px;height:46px}
-  .lente-palco,.lente-palco img{max-height:calc(100vh - 210px)}
+  /* Sul telefono le frecce scendono SOTTO la fotografia, affiancate.
+     Stavano ai lati, sopra l'immagine, cioe' esattamente dove vanno le
+     dita per ingrandire: la pizzicata finiva per premerle.
+     (Massimo, 25 novembre 2026) */
+  .lente-freccia{width:46px;height:46px;top:auto;bottom:calc(env(safe-area-inset-bottom) + 14px);
+    transform:none}
+  .lente-prima{left:50%;margin-left:-58px}
+  .lente-dopo{right:50%;margin-right:-58px}
+  .lente-palco,.lente-palco img{max-height:calc(100vh - 260px)}
   .lente-did{font-size:13px}
 }
 @media (prefers-reduced-motion:reduce){

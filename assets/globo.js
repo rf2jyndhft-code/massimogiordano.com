@@ -463,23 +463,53 @@
     document.body.style.overflow = '';
     if (tornaA) { try { tornaA.focus(); } catch (e) {} }
   }
-  document.getElementById('chiudi').addEventListener('click', chiudiLente);
-  document.getElementById('prec').addEventListener('click', function () { apriLente(quale - 1); });
-  document.getElementById('succ').addEventListener('click', function () { apriLente(quale + 1); });
-  lente.addEventListener('click', function (ev) { if (ev.target === lente) chiudiLente(); });
+  /* DUE DITA NON SONO UNA SCORSA, E IL CLIC DOPO UNA PIZZICATA NON VALE.
+     Allargando le dita per ingrandire, la lente cambiava fotografia e
+     a volte si chiudeva: la scorsa leggeva solo il primo dito, e
+     finita la pizzicata iPhone manda un clic a quello che sta sotto -
+     cioe' le frecce, che stanno ai lati sopra l'immagine, e lo sfondo,
+     che chiude. Mezzo secondo di sordita' e il problema sparisce.
+     (Massimo, 25 novembre 2026: «impazzisce e comincia a girarle alla
+     rinfusa senza lasciarle ingrandire con le due dita») */
+  var finePizzicata = 0;
+  function dopoPizzicata() { return Date.now() - finePizzicata < 600; }
+
+  document.getElementById('chiudi').addEventListener('click', function () {
+    if (dopoPizzicata()) return; chiudiLente(); });
+  document.getElementById('prec').addEventListener('click', function () {
+    if (dopoPizzicata()) return; apriLente(quale - 1); });
+  document.getElementById('succ').addEventListener('click', function () {
+    if (dopoPizzicata()) return; apriLente(quale + 1); });
+  lente.addEventListener('click', function (ev) {
+    if (dopoPizzicata()) return;
+    if (ev.target === lente) chiudiLente(); });
   document.addEventListener('keydown', function (ev) {
     if (lente.hidden) return;
     if (ev.key === 'Escape') chiudiLente();
     else if (ev.key === 'ArrowLeft') apriLente(quale - 1);
     else if (ev.key === 'ArrowRight') apriLente(quale + 1);
   });
-  /* scorrimento col dito dentro la lente */
-  var lx = 0;
-  lente.addEventListener('touchstart', function (ev) { lx = ev.touches[0].clientX; }, { passive: true });
+  /* scorrimento col dito dentro la lente: un dito solo */
+  var lx = null, dita = 0;
+  lente.addEventListener('touchstart', function (ev) {
+    dita = Math.max(dita, ev.touches.length);
+    if (ev.touches.length > 1) { finePizzicata = Date.now(); lx = null; return; }
+    lx = ev.touches[0].clientX;
+  }, { passive: true });
+  lente.addEventListener('touchmove', function (ev) {
+    if (ev.touches.length > 1) { dita = ev.touches.length; finePizzicata = Date.now(); lx = null; }
+  }, { passive: true });
   lente.addEventListener('touchend', function (ev) {
+    if (ev.touches.length === 0) {
+      var piu = dita > 1; dita = 0;
+      if (piu) { finePizzicata = Date.now(); lx = null; return; }
+    }
+    if (lx === null) return;
     var d = ev.changedTouches[0].clientX - lx;
+    lx = null;
     if (Math.abs(d) > 60) apriLente(quale + (d < 0 ? 1 : -1));
   }, { passive: true });
+  lente.addEventListener('touchcancel', function () { lx = null; dita = 0; }, { passive: true });
 
   /* --------------------------------------------------- elenco */
   /* due teatri nella stessa citta' (Vienna, Berlino, New York): distinguili */

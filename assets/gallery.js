@@ -185,7 +185,17 @@
     b.addEventListener('click', function () { apri(i, b); });
   });
 
+  /* IL CLIC CHE ARRIVA DOPO UNA PIZZICATA NON VALE.
+     Le frecce stanno sopra la fotografia, ai due lati: e' esattamente
+     dove si appoggiano le dita per ingrandire. Finita la pizzicata
+     iPhone manda un clic a quello che sta sotto il dito, e la lente
+     cambiava fotografia o si chiudeva da sola. Mezzo secondo di
+     sordita' dopo l'ultimo dito e il problema sparisce.
+     (Massimo, 25 novembre 2026: «impazzisce e comincia a girarle alla
+     rinfusa») */
+  var finePizzicata = 0;
   lente.addEventListener('click', function (e) {
+    if (Date.now() - finePizzicata < 600) { e.preventDefault(); return; }
     var c = e.target.closest('[data-chiudi]');
     if (c) { chiudi(); return; }
     var v = e.target.closest('[data-vai]');
@@ -219,16 +229,16 @@
   var x0 = null, y0 = null, dita = 0;
   palco.addEventListener('touchstart', function (e) {
     dita = Math.max(dita, e.touches.length);
-    if (e.touches.length > 1) { x0 = y0 = null; return; }   /* pizzicata */
+    if (e.touches.length > 1) { finePizzicata = Date.now(); x0 = y0 = null; return; }   /* pizzicata */
     x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
   }, { passive: true });
   palco.addEventListener('touchmove', function (e) {
-    if (e.touches.length > 1) { dita = e.touches.length; x0 = y0 = null; }
+    if (e.touches.length > 1) { dita = e.touches.length; finePizzicata = Date.now(); x0 = y0 = null; }
   }, { passive: true });
   palco.addEventListener('touchend', function (e) {
     if (e.touches.length === 0) {
       var piu = dita > 1; dita = 0;
-      if (piu) { x0 = y0 = null; return; }                  /* era una pizzicata */
+      if (piu) { finePizzicata = Date.now(); x0 = y0 = null; return; }   /* era una pizzicata */
     }
     if (x0 === null) return;
     var dx = e.changedTouches[0].clientX - x0;
