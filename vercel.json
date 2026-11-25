@@ -74,6 +74,16 @@
   ],
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/it/index.html",
+      "destination": "/it/",
+      "permanent": true
+    },
+    {
       "source": "/it/startseite",
       "destination": "/it/",
       "permanent": true
