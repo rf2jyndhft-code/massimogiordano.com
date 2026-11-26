@@ -91,9 +91,18 @@
     cx.beginPath(); cx.arc(cxx, cyy, Rg, 0, TAU);
     cx.strokeStyle = 'rgba(195,153,79,.4)'; cx.lineWidth = 1; cx.stroke();
 
+    /* NIENTE OMBRA SOTTO LE COSTE.
+       Su Safari i continenti non si disegnavano: solo li', e solo sul
+       telefono. Gli anni, che usano l'ombra sul TESTO, si vedevano; le
+       coste, che la usano su duecentotrenta tracciati sottili, no — ed
+       e' il punto in cui WebKit molla. L'ombra qui non serviva: le coste
+       stanno gia' su un vetro scuro. Tolta, il disegno e' anche piu'
+       leggero su ogni macchina. (Massimo, 27 novembre 2026: «sul
+       telefono la cartina del mappamondo non si visualizza».)
+       Il tratto sale da .46 a .54 per recuperare lo stacco che dava
+       l'ombra. */
     cx.save();
-    cx.shadowColor = 'rgba(10,8,6,.85)'; cx.shadowBlur = 5;
-    cx.strokeStyle = 'rgba(241,238,232,.46)'; cx.lineWidth = .8;
+    cx.strokeStyle = 'rgba(241,238,232,.54)'; cx.lineWidth = .8;
     TERRE.forEach(function (poly) {
       var giu = true; cx.beginPath();
       for (var k = 0; k < poly.length; k++) {
