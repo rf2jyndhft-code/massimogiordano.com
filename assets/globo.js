@@ -282,7 +282,14 @@
     el.innerHTML = h;
     var b = el.querySelector('.tutte');
     if (b) b.addEventListener('click', function () { apriRuolo(t, -1); });
-    mostrate = scelte.slice(0, 12);
+    /* TUTTE, non le prime dodici. Quando abbiamo tolto il tetto alla
+       griglia questo e' rimasto indietro: la pagina mostrava tutte le
+       fotografie ma la lente ne conosceva solo dodici, cosi' cliccando
+       la tredicesima faceva il giro e ne apriva un'altra. Si vedeva
+       solo sulla Carmen di Vienna, l'unica con piu' di dodici.
+       (Massimo, 26 novembre 2026: «quando clicco per allargare una
+       delle foto salta ad un'altra, e solo quelle di Carmen») */
+    mostrate = scelte;
     var mini = el.querySelectorAll('.globo-fotos img');
     for (var q = 0; q < mini.length; q++) {
       (function (k, im) {
