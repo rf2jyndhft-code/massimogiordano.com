@@ -6,9 +6,11 @@
 User-agent: *
 Allow: /
 
-# La cartella stampa contiene file originali pesanti, non pagine.
-# Restano scaricabili da chi ha il link: semplicemente non vanno indicizzati.
-Disallow: /press-kit/
+# La cartella stampa NON si blocca qui. Un indirizzo bloccato non viene
+# letto, quindi Google non vede mai il «non indicizzare» e se lo tiene in
+# archivio: e' esattamente l'avviso «indicizzata ma bloccata da robots.txt»
+# del 26 novembre 2026. Deve poterla leggere e trovarci dentro l'ordine di
+# non indicizzarla, che sta in vercel.json come intestazione X-Robots-Tag.
 
 Sitemap: https://www.massimogiordano.com/sitemap.xml
 
