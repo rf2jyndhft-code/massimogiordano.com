@@ -21,7 +21,8 @@
     credito:'Photographs: ', haUna:' photograph has', hannoMolte:' photographs have',
     daCartella:' its attribution taken from the folder name, not from the file: to be confirmed.',
     daConfermare:'attribution to be confirmed', diCui:' of ', stessaCitta:'Also here, in the same city',
-    archivio:'The performances in the theatre\u2019s own archive \u2192'
+    archivio:'The performances in the theatre\u2019s own archive \u2192',
+    apriTutte:'See all ', chiudiTutte:'Show fewer'
   };
   var D = JSON.parse(document.getElementById('dati').textContent);
   var T = D.teatri, TERRE = D.terre;
