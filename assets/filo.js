@@ -46,6 +46,9 @@
   }
 
   function proietta(la, lo, R, cxx, cyy) {
+    /* la seconda rete: se entra un dato che non e' un numero, qui si
+       ferma e sparisce un punto solo, non tutto il disegno. */
+    if (!isFinite(la) || !isFinite(lo) || !isFinite(lam) || !isFinite(phi)) return null;
     var p = la * RAD, l = (lo - lam) * RAD, p0 = phi * RAD;
     if (Math.sin(p0) * Math.sin(p) + Math.cos(p0) * Math.cos(p) * Math.cos(l) < 0) return null;
     return { x: cxx + R * Math.cos(p) * Math.sin(l),
@@ -196,14 +199,31 @@
     var a = ANNI[i];
     if (!tenendoFermaLaGhiera) giroVuole = -Math.PI / 2 - POS[i];
     acceso = a.teatri;
-    if (a.teatri.length) {
+    /* UN TEATRO SENZA COORDINATE NON DEVE SPEGNERE IL MAPPAMONDO.
+       Il 26 novembre 2026, rigenerando i dati, dieci teatri hanno perso
+       latitudine e longitudine. In JS «undefined * RAD» non e' zero: e'
+       NaN. Bastava arrivare al 2000 — il Teatro dell'Opera di Roma — e
+       l'inclinazione della sfera diventava NaN PER SEMPRE: coste e punti
+       sparivano anche tornando indietro, mentre gli anni e l'anello
+       continuavano perche' non dipendono da li'. Sembrava un difetto di
+       Safari e non lo era. (Massimo: «sul telefono la cartina del
+       mappamondo non si visualizza».)
+       I dati sono stati rimessi a posto, ma il codice non deve piu'
+       poter morire per un dato mancante: qui si contano solo i teatri
+       con coordinate vere, e se non ce n'e' nessuno la sfera resta dove
+       sta invece di impazzire. */
+    var buoni = a.teatri.filter(function (t) {
+      return isFinite(t.la) && isFinite(t.lo);
+    });
+    if (buoni.length) {
       var sx = 0, sy = 0, sz = 0;
-      a.teatri.forEach(function (t) {
+      buoni.forEach(function (t) {
         var p = t.la * RAD, l = t.lo * RAD;
         sx += Math.cos(p) * Math.cos(l); sy += Math.cos(p) * Math.sin(l); sz += Math.sin(p);
       });
-      lamVuole = Math.atan2(sy, sx) / RAD;
-      phiVuole = Math.atan2(sz, Math.sqrt(sx * sx + sy * sy)) / RAD * .8;
+      var nl = Math.atan2(sy, sx) / RAD;
+      var np = Math.atan2(sz, Math.sqrt(sx * sx + sy * sy)) / RAD * .8;
+      if (isFinite(nl) && isFinite(np)) { lamVuole = nl; phiVuole = np; }
     }
     var ruoli = {}, teatri = {};
     for (var k = 0; k <= i; k++) {

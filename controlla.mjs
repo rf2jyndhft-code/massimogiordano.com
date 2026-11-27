@@ -12,6 +12,7 @@
      7. il mappamondo gira da solo e si ferma sotto il mouse   (20 nov: era rimasto fermo)
      8. la sitemap non dichiara date piu' vecchie della modifica vera
      9. nessuna pagina chiede fogli, copioni o foto a /.prova/   (22 nov: repertorio nudo online)
+    10. ogni teatro del filo degli anni ha latitudine e longitudine (27 nov: mappamondo nero)
    Se qualcosa non va, esce con errore: non si pubblica. */
 import { readFileSync, existsSync } from 'node:fs';
 import { spawn } from 'node:child_process';
@@ -199,6 +200,35 @@ try {
   }
   if (sporche > 3) guai.push('e altre ' + (sporche - 3) + ' pagine che chiedono roba da .prova');
   console.log('pagine controllate per i riferimenti a .prova: ' + file.length);
+}
+
+/* 10. OGNI TEATRO DEL FILO HA LE COORDINATE.
+   Il 26 novembre, rigenerando i dati, dieci teatri hanno perso latitudine
+   e longitudine. In JS «undefined * RAD» non e' zero, e' NaN: bastava
+   arrivare al 2000 e il mappamondo restava nero PER SEMPRE, anche
+   tornando indietro. Gli anni continuavano a disegnarsi, quindi il
+   controllo delle immagini e della console non se ne accorgeva, ed e'
+   finito online. Questo lo prende prima. */
+for (const pag of ['biography.html', 'it/biografia.html']) {
+  if (!existsSync(pag)) continue;
+  const h = readFileSync(pag, 'utf8');
+  const apre = '<script type="application/json" id="anni-dati">';
+  const i = h.indexOf(apre);
+  if (i < 0) { guai.push(pag + ': manca il blocco dati del filo degli anni'); continue; }
+  const d = JSON.parse(h.slice(i + apre.length, h.indexOf('</script>', i)));
+  let citati = 0, rotti = [];
+  for (const a of d.anni || []) {
+    for (const t of a.teatri || []) {
+      citati++;
+      if (typeof t.la !== 'number' || typeof t.lo !== 'number'
+          || !isFinite(t.la) || !isFinite(t.lo)) rotti.push(a.anno + ' ' + t.n);
+    }
+  }
+  if (rotti.length) {
+    guai.push(pag + ': ' + rotti.length + ' teatri senza coordinate, il mappamondo resta nero da «'
+      + rotti[0] + '» in poi');
+  }
+  console.log('teatri del filo controllati in ' + pag + ': ' + citati);
 }
 
 console.log();
