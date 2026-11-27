@@ -11,7 +11,8 @@
     credito:'Fotografie: ', haUna:' fotografia ha', hannoMolte:' fotografie hanno',
     daCartella:' l\u2019attribuzione presa dal nome della cartella, non dal file: da confermare.',
     daConfermare:'attribuzione da confermare', diCui:' di ', stessaCitta:'Anche qui, nella stessa citt\u00e0',
-    archivio:'Le recite nell\u2019archivio del teatro \u2192'
+    archivio:'Le recite nell\u2019archivio del teatro \u2192',
+    apriTutte:'Vedi tutte le ', chiudiTutte:'Mostrane meno'
   } : {
     tutti:'All the theatres', unRuolo:'Role sung here', ruoli:' roles sung here',
     inScena:'On stage', nessuna:'Photographs not yet chosen for this theatre.',
@@ -243,6 +244,8 @@
     return n;
   }
 
+  var tutteAperte = false;
+
   function fotografie(t) {
     var el = scheda.querySelector('.globo-fotos-posto');
     if (!el) return;
@@ -261,16 +264,29 @@
     var h = '<p class="eti">' + eti + ' · ' + scelte.length +
             (scelte.length === 1 ? P.una : P.molte) +
             (ruoloScelto >= 0 ? ' <button type="button" class="tutte">' + P.tutte + '</button>' : '') + '</p>';
+    /* SEI IN ANTEPRIMA, IL RESTO SOLO SE LE CHIEDI.
+       Di Vienna ce ne sono ottantasei: aprendo la scheda partiva uno
+       scorrimento infinito, e il mappamondo accanto restava solo in
+       mezzo al nero. Adesso se ne vedono sei e un tasto dice quante
+       sono. Chi le vuole tutte le apre; chi guarda un altro teatro non
+       se le trova addosso. (Massimo, 27 novembre 2026: «io non farei
+       vedere tutte le fotografie subito, solo se uno ci clicca sopra,
+       oppure un tasto apri tutte».)
+       Il tetto NON limita la lente: `mostrate` resta l'elenco intero,
+       cosi' scorrendo a tutto schermo ci sono tutte. */
+    var ANTEPRIMA = 6;
+    var apribile = scelte.length > ANTEPRIMA;
+    var quante = tutteAperte ? scelte.length : Math.min(ANTEPRIMA, scelte.length);
     h += '<div class="globo-fotos">';
-    /* Niente piu' tetto a dodici: della Carmen di Vienna ce ne sono
-       cinquantaquattro e se ne vedevano dodici, senza che niente lo
-       dicesse. Si scaricano man mano che si scorre (loading="lazy"),
-       quindi mostrarle tutte non pesa. */
-    for (var k = 0; k < scelte.length; k++)
+    for (var k = 0; k < quante; k++)
       h += '<img src="' + scelte[k].src + '" alt="' + scelte[k].alt.replace(/"/g, '') + '"' +
            (scelte[k].pv === 'SOLO CARTELLA' ? ' class="daConfermare" title="' + P.daConfermare.charAt(0).toUpperCase() + P.daConfermare.slice(1) + '"' : '') +
            ' loading="lazy">';
     h += '</div>';
+    if (apribile) h += '<p class="globo-ancora"><button type="button" class="ancora">' +
+      (tutteAperte ? P.chiudiTutte
+                   : P.apriTutte + scelte.length + (IT ? ' fotografie' : ' photographs')) +
+      '</button></p>';
     var dubbie = scelte.filter(function (f) { return f.pv === 'SOLO CARTELLA'; }).length;
     var cr = {};
     for (k = 0; k < scelte.length; k++) if (scelte[k].cr) cr[scelte[k].cr] = 1;
@@ -282,6 +298,12 @@
     el.innerHTML = h;
     var b = el.querySelector('.tutte');
     if (b) b.addEventListener('click', function () { apriRuolo(t, -1); });
+    var an = el.querySelector('.ancora');
+    if (an) an.addEventListener('click', function () {
+      tutteAperte = !tutteAperte;
+      fotografie(t);
+      if (!tutteAperte) el.scrollIntoView({ block: 'nearest' });
+    });
     /* TUTTE, non le prime dodici. Quando abbiamo tolto il tetto alla
        griglia questo e' rimasto indietro: la pagina mostrava tutte le
        fotografie ma la lente ne conosceva solo dodici, cosi' cliccando
@@ -305,6 +327,7 @@
 
   function apriRuolo(t, k) {
     ruoloScelto = (ruoloScelto === k) ? -1 : k;
+    tutteAperte = false;          /* cambiando ruolo si riparte da sei */
     var voci = scheda.querySelectorAll('.globo-ruoli li');
     for (var z = 0; z < voci.length; z++) {
       if (z === ruoloScelto) voci[z].setAttribute('aria-current', 'true');
@@ -347,6 +370,7 @@
          + P.archivio + '</a></p>';
     }
     h += '<div class="globo-fotos-posto"></div>';
+    tutteAperte = false;          /* cambiando teatro si riparte da sei */
     scheda.innerHTML = h;
     var voci = scheda.querySelectorAll('.globo-ruoli li');
     (function (tt) {
